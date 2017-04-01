@@ -1,0 +1,56 @@
+﻿@model BolsaTrabajoV1.Models.Logro
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Logro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tituloLogro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tituloLogro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaLogro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaLogro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otorganteLogro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otorganteLogro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcionLogro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcionLogro)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

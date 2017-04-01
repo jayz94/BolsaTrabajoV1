@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BolsaTrabajoV1Model1StoreContainer" CdmEntityContainer="BolsaTrabajoV1Entities2">
+    <EntitySetMapping Name="Logro">
+      <EntityTypeMapping TypeName="BolsaTrabajoV1Model1.Logro">
+        <MappingFragment StoreEntitySet="Logro">
+          <ScalarProperty Name="idLogro" ColumnName="idLogro" />
+          <ScalarProperty Name="tituloLogro" ColumnName="tituloLogro" />
+          <ScalarProperty Name="fechaLogro" ColumnName="fechaLogro" />
+          <ScalarProperty Name="otorganteLogro" ColumnName="otorganteLogro" />
+          <ScalarProperty Name="descripcionLogro" ColumnName="descripcionLogro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

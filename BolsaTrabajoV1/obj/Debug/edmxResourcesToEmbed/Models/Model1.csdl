@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BolsaTrabajoV1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Logro">
+    <Key>
+      <PropertyRef Name="idLogro" />
+    </Key>
+    <Property Name="idLogro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tituloLogro" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
+    <Property Name="fechaLogro" Type="DateTime" Precision="0" />
+    <Property Name="otorganteLogro" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
+    <Property Name="descripcionLogro" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="BolsaTrabajoV1Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Logro" EntityType="Self.Logro" />
+  </EntityContainer>
+</Schema>
