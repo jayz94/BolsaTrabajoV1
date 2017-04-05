@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BolsaTrabajoV1.Models.Logro>
+﻿@model IEnumerable<BolsaTrabajoV1.Models.LOGRO>
 
 @{
     ViewBag.Title = "Index";
@@ -12,16 +12,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.tituloLogro)
+            @Html.DisplayNameFor(model => model.TITULOLOGRO)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaLogro)
+            @Html.DisplayNameFor(model => model.FECHALOGRO)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.otorganteLogro)
+            @Html.DisplayNameFor(model => model.OTORGANTELOGRO)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descripcionLogro)
+            @Html.DisplayNameFor(model => model.DESCRIPCIONLOGRO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PREMIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LABORSOCIAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
         </th>
         <th></th>
     </tr>
@@ -29,21 +38,30 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.tituloLogro)
+            @Html.DisplayFor(modelItem => item.TITULOLOGRO)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.fechaLogro)
+            @Html.DisplayFor(modelItem => item.FECHALOGRO)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.otorganteLogro)
+            @Html.DisplayFor(modelItem => item.OTORGANTELOGRO)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.descripcionLogro)
+            @Html.DisplayFor(modelItem => item.DESCRIPCIONLOGRO)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idLogro }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idLogro }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idLogro })
+            @Html.DisplayFor(modelItem => item.PREMIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LABORSOCIAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CURRICULUM.IDCURRICULUM)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDLOGRO }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDLOGRO }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDLOGRO })
         </td>
     </tr>
 }

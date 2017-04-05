@@ -1,0 +1,58 @@
+﻿@model BolsaTrabajoV1.Models.MENU
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MENU</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBREMENU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBREMENU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IMAGEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IMAGEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCIONMENU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCIONMENU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ORDEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ORDEN)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDMENU }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

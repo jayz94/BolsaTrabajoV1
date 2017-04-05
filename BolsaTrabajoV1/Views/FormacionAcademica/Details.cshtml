@@ -1,0 +1,82 @@
+﻿@model BolsaTrabajoV1.Models.FORMACIONACADEMICA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FORMACIONACADEMICA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.INSTITUCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INSTITUCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TITULO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TITULO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAINICIOFORMACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAINICIOFORMACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAFINFORMACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAFINFORMACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FORMAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FORMAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GRADOACADEMICO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GRADOACADEMICO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPOFORMACINONACADEMICA.NOMBRETIPOFORMACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPOFORMACINONACADEMICA.NOMBRETIPOFORMACION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDFORMACION }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

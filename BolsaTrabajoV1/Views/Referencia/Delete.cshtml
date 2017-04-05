@@ -1,0 +1,80 @@
+﻿@model BolsaTrabajoV1.Models.REFERENCIA
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>REFERENCIA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCIONREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCIONREFERENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TELEFONOREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TELEFONOREFERENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PUESTOREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PUESTOREFERENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONAREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONAREFERENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPRESAORIGENREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPRESAORIGENREFERENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPOREFERENCIA.NOMBRETIPOREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPOREFERENCIA.NOMBRETIPOREFERENCIA)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

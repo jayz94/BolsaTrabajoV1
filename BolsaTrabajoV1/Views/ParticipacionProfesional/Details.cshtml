@@ -1,0 +1,74 @@
+﻿@model BolsaTrabajoV1.Models.PARTICIPACION_PROFESIONAL
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PARTICIPACION_PROFESIONAL</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TITULOPARTICIPACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TITULOPARTICIPACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LUGARPARTICIPACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LUGARPARTICIPACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAPARTICIPACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAPARTICIPACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ANFITRION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ANFITRION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PAIS.NOMBREPAIS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PAIS.NOMBREPAIS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_PARTICIPACION.NOMBRETIPOPARTICIPACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_PARTICIPACION.NOMBRETIPOPARTICIPACION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPARTICIPACION }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,80 @@
+﻿@model BolsaTrabajoV1.Models.PARTICIPACION_PROFESIONAL
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PARTICIPACION_PROFESIONAL</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TITULOPARTICIPACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TITULOPARTICIPACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LUGARPARTICIPACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LUGARPARTICIPACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAPARTICIPACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAPARTICIPACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ANFITRION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ANFITRION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PAIS.NOMBREPAIS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PAIS.NOMBREPAIS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_PARTICIPACION.NOMBRETIPOPARTICIPACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_PARTICIPACION.NOMBRETIPOPARTICIPACION)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

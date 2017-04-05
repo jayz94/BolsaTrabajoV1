@@ -1,0 +1,56 @@
+﻿@model BolsaTrabajoV1.Models.TIPO_DOCUMENTO_IDENTIDAD
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TIPO_DOCUMENTO_IDENTIDAD</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBREDOCUMENTOIDENTIDAD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBREDOCUMENTOIDENTIDAD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CANTIDADCARACTERES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CANTIDADCARACTERES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MASCARA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MASCARA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXTRANJERO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXTRANJERO)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

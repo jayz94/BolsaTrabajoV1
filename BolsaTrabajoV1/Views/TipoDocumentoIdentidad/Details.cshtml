@@ -1,0 +1,50 @@
+﻿@model BolsaTrabajoV1.Models.TIPO_DOCUMENTO_IDENTIDAD
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TIPO_DOCUMENTO_IDENTIDAD</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBREDOCUMENTOIDENTIDAD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBREDOCUMENTOIDENTIDAD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CANTIDADCARACTERES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CANTIDADCARACTERES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MASCARA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MASCARA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXTRANJERO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXTRANJERO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDTIPODOCUMENTOIDENTIDAD }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

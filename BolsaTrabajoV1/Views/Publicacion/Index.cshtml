@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.PUBLICACION>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TITULOPUBLICACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EDITORIAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.REVISTA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHAPUBLICACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LIBRO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NUMEROEDICION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TITULOPUBLICACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EDITORIAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.REVISTA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHAPUBLICACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LIBRO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NUMEROEDICION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CURRICULUM.IDCURRICULUM)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDPUBLICACION }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDPUBLICACION }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDPUBLICACION })
+        </td>
+    </tr>
+}
+
+</table>

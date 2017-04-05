@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.PAIS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBREPAIS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CODIGOPAIS)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBREPAIS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CODIGOPAIS)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDPAIS }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDPAIS }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDPAIS })
+        </td>
+    </tr>
+}
+
+</table>

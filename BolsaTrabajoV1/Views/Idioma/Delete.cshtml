@@ -1,0 +1,80 @@
+﻿@model BolsaTrabajoV1.Models.IDIOMA
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>IDIOMA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBREIDIOMA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBREIDIOMA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LENGUAMATERNA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LENGUAMATERNA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESCRITURA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESCRITURA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LECTURA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LECTURA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONVERSACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONVERSACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESCUCHA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESCUCHA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

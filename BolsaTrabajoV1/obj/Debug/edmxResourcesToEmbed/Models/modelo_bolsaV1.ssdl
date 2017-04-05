@@ -1,0 +1,960 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BolsaTrabajoV1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AREA_CONOCIMIENTO">
+    <Key>
+      <PropertyRef Name="IDAREACONOCIMIENTO" />
+    </Key>
+    <Property Name="IDAREACONOCIMIENTO" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREAREACONOCIMIENTO" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CERTIFICACION">
+    <Key>
+      <PropertyRef Name="IDCERTIFICACION" />
+    </Key>
+    <Property Name="IDCERTIFICACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCURRICULUM" Type="int" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="IDAREACONOCIMIENTO" Type="smallint" Nullable="false" />
+    <Property Name="DESCRIPCIONCERTIFICACION" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="TITULOCERTIFICACION" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="FECHAINICIOCERTIFICACION" Type="datetime" Nullable="false" />
+    <Property Name="FECHAFINCERTIFICACION" Type="datetime" Nullable="false" />
+    <Property Name="CODIGOCERTIFICACION" Type="varchar" MaxLength="10" />
+    <Property Name="INSTITUCION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CONTACTO">
+    <Key>
+      <PropertyRef Name="IDCONTACTO" />
+    </Key>
+    <Property Name="IDCONTACTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="IDTIPOCONTACTO" Type="smallint" Nullable="false" />
+    <Property Name="VINCULO" Type="varchar" MaxLength="512" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CURRICULUM">
+    <Key>
+      <PropertyRef Name="IDCURRICULUM" />
+      <PropertyRef Name="IDPOSTULANTE" />
+    </Key>
+    <Property Name="IDCURRICULUM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DEPARTAMENTO">
+    <Key>
+      <PropertyRef Name="IDDEPARTAMENTO" />
+    </Key>
+    <Property Name="IDDEPARTAMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREDEPARTAMENTO" Type="varchar" MaxLength="12" />
+    <Property Name="ZONA" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="EMPRESA">
+    <Key>
+      <PropertyRef Name="IDEMPRESA" />
+    </Key>
+    <Property Name="IDEMPRESA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CODIGOEMPRESA" Type="char" MaxLength="6" />
+    <Property Name="NOMBREEMPRESA" Type="varchar" MaxLength="74" />
+  </EntityType>
+  <EntityType Name="ESTADO_CIVIL">
+    <Key>
+      <PropertyRef Name="IDESTADOCIVIL" />
+    </Key>
+    <Property Name="IDESTADOCIVIL" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREESTADOCIVIL" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ESTADO_CIVIL_POSTULANTE_MM">
+    <Key>
+      <PropertyRef Name="IDPOSTULANTE" />
+      <PropertyRef Name="IDESTADOCIVIL" />
+    </Key>
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="IDESTADOCIVIL" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EXPERIENCIALABORAL">
+    <Key>
+      <PropertyRef Name="IDEXPERIENCIALABORAL" />
+    </Key>
+    <Property Name="IDEXPERIENCIALABORAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCURRICULUM" Type="int" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="INSTITUCION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CARGO" Type="varchar" MaxLength="255" />
+    <Property Name="TITULOPROYECTO" Type="varchar" MaxLength="1024" />
+    <Property Name="FECHAINICIO" Type="datetime" Nullable="false" />
+    <Property Name="FECHAFIN" Type="datetime" Nullable="false" />
+    <Property Name="NUMEROCONTACTOORG" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="FORMACIONACADEMICA">
+    <Key>
+      <PropertyRef Name="IDFORMACION" />
+    </Key>
+    <Property Name="IDFORMACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCURRICULUM" Type="int" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="IDTIPOFORMACION" Type="int" Nullable="false" />
+    <Property Name="INSTITUCION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TITULO" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="FECHAINICIOFORMACION" Type="datetime" Nullable="false" />
+    <Property Name="FECHAFINFORMACION" Type="datetime" Nullable="false" />
+    <Property Name="FORMAL" Type="bit" Nullable="false" />
+    <Property Name="GRADOACADEMICO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HABILIDAD">
+    <Key>
+      <PropertyRef Name="IDHABILIDAD" />
+    </Key>
+    <Property Name="IDHABILIDAD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCURRICULUM" Type="int" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="IDTIPOHABILIDAD" Type="int" Nullable="false" />
+    <Property Name="NOMBREHABILIDAD" Type="varchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IDIOMA">
+    <Key>
+      <PropertyRef Name="IDIDIOMA" />
+    </Key>
+    <Property Name="IDIDIOMA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCURRICULUM" Type="int" />
+    <Property Name="IDPOSTULANTE" Type="int" />
+    <Property Name="NOMBREIDIOMA" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="LENGUAMATERNA" Type="bit" />
+    <Property Name="ESCRITURA" Type="char" MaxLength="2" />
+    <Property Name="LECTURA" Type="char" MaxLength="2" />
+    <Property Name="CONVERSACION" Type="char" MaxLength="2" />
+    <Property Name="ESCUCHA" Type="char" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="LOGRO">
+    <Key>
+      <PropertyRef Name="IDLOGRO" />
+    </Key>
+    <Property Name="IDLOGRO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCURRICULUM" Type="int" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="TITULOLOGRO" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="FECHALOGRO" Type="datetime" />
+    <Property Name="OTORGANTELOGRO" Type="varchar" MaxLength="255" />
+    <Property Name="DESCRIPCIONLOGRO" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="PREMIO" Type="bit" />
+    <Property Name="LABORSOCIAL" Type="bit" />
+  </EntityType>
+  <EntityType Name="MENU">
+    <Key>
+      <PropertyRef Name="IDMENU" />
+    </Key>
+    <Property Name="IDMENU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREMENU" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="URL" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="IMAGEN" Type="varchar" MaxLength="30" />
+    <Property Name="DESCRIPCIONMENU" Type="varchar" MaxLength="128" />
+    <Property Name="ORDEN" Type="smallint" />
+  </EntityType>
+  <EntityType Name="MUNICIPIO">
+    <Key>
+      <PropertyRef Name="IDMUNICIPIO" />
+    </Key>
+    <Property Name="IDMUNICIPIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDDEPARTAMENTO" Type="int" Nullable="false" />
+    <Property Name="NOMBREMUNICIPIO" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="NIVEL_IDIOMA">
+    <Key>
+      <PropertyRef Name="IDNIVELIDIOMA" />
+    </Key>
+    <Property Name="IDNIVELIDIOMA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRENIVELIDIOMA" Type="varchar" MaxLength="20" />
+    <Property Name="CODIGONIVELIDIOMA" Type="char" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="PAIS">
+    <Key>
+      <PropertyRef Name="IDPAIS" />
+    </Key>
+    <Property Name="IDPAIS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREPAIS" Type="varchar" MaxLength="200" />
+    <Property Name="CODIGOPAIS" Type="char" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="PARTICIPACION_PROFESIONAL">
+    <Key>
+      <PropertyRef Name="IDPARTICIPACION" />
+    </Key>
+    <Property Name="IDPARTICIPACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCURRICULUM" Type="int" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="IDTIPOPARTICIPACION" Type="int" Nullable="false" />
+    <Property Name="IDPAIS" Type="int" />
+    <Property Name="TITULOPARTICIPACION" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="LUGARPARTICIPACION" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="FECHAPARTICIPACION" Type="datetime" Nullable="false" />
+    <Property Name="ANFITRION" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="POSTULANTE">
+    <Key>
+      <PropertyRef Name="IDPOSTULANTE" />
+    </Key>
+    <Property Name="IDPOSTULANTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDUSUARIO" Type="int" Nullable="false" />
+    <Property Name="IDMUNICIPIO" Type="int" />
+    <Property Name="IDCURRICULUM" Type="int" />
+    <Property Name="NOMBREPOSTULANTE" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="APELLIDOPOSTULANTE" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="GENERO" Type="varchar" MaxLength="9" />
+    <Property Name="FECHANACIMIENTO" Type="datetime" />
+    <Property Name="DIRECCION" Type="varchar" MaxLength="256" />
+    <Property Name="URLCURRICULUM" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="POSTULANTE_TIPO_DOCUMENTO_MM">
+    <Key>
+      <PropertyRef Name="IDTIPODOCUMENTOIDENTIDAD" />
+      <PropertyRef Name="IDPOSTULANTE" />
+    </Key>
+    <Property Name="IDTIPODOCUMENTOIDENTIDAD" Type="int" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="NUMERO" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PUBLICACION">
+    <Key>
+      <PropertyRef Name="IDPUBLICACION" />
+    </Key>
+    <Property Name="IDPUBLICACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCURRICULUM" Type="int" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="TITULOPUBLICACION" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="EDITORIAL" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="REVISTA" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="FECHAPUBLICACION" Type="datetime" Nullable="false" />
+    <Property Name="ISBN" Type="varchar" MaxLength="25" />
+    <Property Name="LIBRO" Type="bit" />
+    <Property Name="NUMEROEDICION" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="REFERENCIA">
+    <Key>
+      <PropertyRef Name="IDREFERENCIA" />
+    </Key>
+    <Property Name="IDREFERENCIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDTIPOREFERENCIA" Type="int" Nullable="false" />
+    <Property Name="IDCURRICULUM" Type="int" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="DESCRIPCIONREFERENCIA" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="TELEFONOREFERENCIA" Type="char" MaxLength="9" Nullable="false" />
+    <Property Name="PUESTOREFERENCIA" Type="varchar" MaxLength="255" />
+    <Property Name="PERSONAREFERENCIA" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="EMPRESAORIGENREFERENCIA" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="IDROL" />
+    </Key>
+    <Property Name="IDROL" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREROL" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" />
+  </EntityType>
+  <EntityType Name="ROL_MENU_MM">
+    <Key>
+      <PropertyRef Name="IDROL" />
+      <PropertyRef Name="IDMENU" />
+    </Key>
+    <Property Name="IDROL" Type="smallint" Nullable="false" />
+    <Property Name="IDMENU" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ROL_USUARIO_MM">
+    <Key>
+      <PropertyRef Name="IDUSUARIO" />
+      <PropertyRef Name="IDROL" />
+    </Key>
+    <Property Name="IDUSUARIO" Type="int" Nullable="false" />
+    <Property Name="IDROL" Type="smallint" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" />
+    <Property Name="FECHAASIGNACION" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TELEFONO">
+    <Key>
+      <PropertyRef Name="IDTELEFONO" />
+    </Key>
+    <Property Name="IDTELEFONO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="IDTIPOTELEFONO" Type="smallint" />
+    <Property Name="NUMEROTELEFONO" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="TIPO_CONTACTO">
+    <Key>
+      <PropertyRef Name="IDTIPOCONTACTO" />
+    </Key>
+    <Property Name="IDTIPOCONTACTO" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRETIPOCONTACTO" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIPO_DOCUMENTO_IDENTIDAD">
+    <Key>
+      <PropertyRef Name="IDTIPODOCUMENTOIDENTIDAD" />
+    </Key>
+    <Property Name="IDTIPODOCUMENTOIDENTIDAD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREDOCUMENTOIDENTIDAD" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="CANTIDADCARACTERES" Type="smallint" />
+    <Property Name="MASCARA" Type="varchar" MaxLength="20" />
+    <Property Name="EXTRANJERO" Type="bit" />
+  </EntityType>
+  <EntityType Name="TIPO_HABILIDAD">
+    <Key>
+      <PropertyRef Name="IDTIPOHABILIDAD" />
+    </Key>
+    <Property Name="IDTIPOHABILIDAD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDAREACONOCIMIENTO" Type="smallint" />
+    <Property Name="NOMBRETIPOHABILIDAD" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TIPO_PARTICIPACION">
+    <Key>
+      <PropertyRef Name="IDTIPOPARTICIPACION" />
+    </Key>
+    <Property Name="IDTIPOPARTICIPACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRETIPOPARTICIPACION" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIPO_TELEFONO">
+    <Key>
+      <PropertyRef Name="IDTIPOTELEFONO" />
+    </Key>
+    <Property Name="IDTIPOTELEFONO" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRETIPOTELEFONO" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIPOFORMACINONACADEMICA">
+    <Key>
+      <PropertyRef Name="IDTIPOFORMACION" />
+    </Key>
+    <Property Name="IDTIPOFORMACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRETIPOFORMACION" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIPOREFERENCIA">
+    <Key>
+      <PropertyRef Name="IDTIPOREFERENCIA" />
+    </Key>
+    <Property Name="IDTIPOREFERENCIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRETIPOREFERENCIA" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="IDUSUARIO" />
+    </Key>
+    <Property Name="IDUSUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" />
+    <Property Name="IDEMPRESA" Type="int" />
+    <Property Name="NOMBREUSUARIO" Type="varchar" MaxLength="64" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="1024" />
+    <Property Name="ACTIVO" Type="bit" />
+    <Property Name="COLOR" Type="varchar" MaxLength="12" />
+    <Property Name="IDIOMA" Type="varchar" MaxLength="12" />
+    <Property Name="DEBAJA" Type="bit" />
+    <Property Name="INTENTOS" Type="int" />
+    <Property Name="CORREO" Type="varchar" MaxLength="60" />
+  </EntityType>
+  <Association Name="FK_CERTIFIC_FK_CERTIF_AREA_CON">
+    <End Role="AREA_CONOCIMIENTO" Type="Self.AREA_CONOCIMIENTO" Multiplicity="1" />
+    <End Role="CERTIFICACION" Type="Self.CERTIFICACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AREA_CONOCIMIENTO">
+        <PropertyRef Name="IDAREACONOCIMIENTO" />
+      </Principal>
+      <Dependent Role="CERTIFICACION">
+        <PropertyRef Name="IDAREACONOCIMIENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CERTIFIC_FK_CERTIF_CURRICUL">
+    <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="1" />
+    <End Role="CERTIFICACION" Type="Self.CERTIFICACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURRICULUM">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="CERTIFICACION">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTACTO_FK_CONTAC_POSTULAN">
+    <End Role="POSTULANTE" Type="Self.POSTULANTE" Multiplicity="1" />
+    <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="POSTULANTE">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="CONTACTO">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTACTO_FK_CONTAC_TIPO_CON">
+    <End Role="TIPO_CONTACTO" Type="Self.TIPO_CONTACTO" Multiplicity="1" />
+    <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_CONTACTO">
+        <PropertyRef Name="IDTIPOCONTACTO" />
+      </Principal>
+      <Dependent Role="CONTACTO">
+        <PropertyRef Name="IDTIPOCONTACTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CURRICUL_FK_CURRIC_POSTULAN">
+    <End Role="POSTULANTE" Type="Self.POSTULANTE" Multiplicity="1" />
+    <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="POSTULANTE">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="CURRICULUM">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ESTADO_C_FK_ESTADO_ESTADO_C">
+    <End Role="ESTADO_CIVIL" Type="Self.ESTADO_CIVIL" Multiplicity="1" />
+    <End Role="ESTADO_CIVIL_POSTULANTE_MM" Type="Self.ESTADO_CIVIL_POSTULANTE_MM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO_CIVIL">
+        <PropertyRef Name="IDESTADOCIVIL" />
+      </Principal>
+      <Dependent Role="ESTADO_CIVIL_POSTULANTE_MM">
+        <PropertyRef Name="IDESTADOCIVIL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ESTADO_C_FK_ESTADO_POSTULAN">
+    <End Role="POSTULANTE" Type="Self.POSTULANTE" Multiplicity="1" />
+    <End Role="ESTADO_CIVIL_POSTULANTE_MM" Type="Self.ESTADO_CIVIL_POSTULANTE_MM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="POSTULANTE">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="ESTADO_CIVIL_POSTULANTE_MM">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EXPERIEN_FK_EXPERI_CURRICUL">
+    <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="1" />
+    <End Role="EXPERIENCIALABORAL" Type="Self.EXPERIENCIALABORAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURRICULUM">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="EXPERIENCIALABORAL">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FORMACIO_FK_FORMAC_CURRICUL">
+    <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="1" />
+    <End Role="FORMACIONACADEMICA" Type="Self.FORMACIONACADEMICA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURRICULUM">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="FORMACIONACADEMICA">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FORMACIO_FK_FORMAC_TIPOFORM">
+    <End Role="TIPOFORMACINONACADEMICA" Type="Self.TIPOFORMACINONACADEMICA" Multiplicity="1" />
+    <End Role="FORMACIONACADEMICA" Type="Self.FORMACIONACADEMICA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOFORMACINONACADEMICA">
+        <PropertyRef Name="IDTIPOFORMACION" />
+      </Principal>
+      <Dependent Role="FORMACIONACADEMICA">
+        <PropertyRef Name="IDTIPOFORMACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HABILIDA_FK_HABILI_CURRICUL">
+    <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="1" />
+    <End Role="HABILIDAD" Type="Self.HABILIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURRICULUM">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="HABILIDAD">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HABILIDA_FK_HABILI_TIPO_HAB">
+    <End Role="TIPO_HABILIDAD" Type="Self.TIPO_HABILIDAD" Multiplicity="1" />
+    <End Role="HABILIDAD" Type="Self.HABILIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_HABILIDAD">
+        <PropertyRef Name="IDTIPOHABILIDAD" />
+      </Principal>
+      <Dependent Role="HABILIDAD">
+        <PropertyRef Name="IDTIPOHABILIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDIOMA_FK_IDIOMA_CURRICUL">
+    <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="0..1" />
+    <End Role="IDIOMA" Type="Self.IDIOMA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURRICULUM">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="IDIOMA">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LOGRO_FK_LOGRO__CURRICUL">
+    <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="1" />
+    <End Role="LOGRO" Type="Self.LOGRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURRICULUM">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="LOGRO">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MUNICIPI_FK_MUNICI_DEPARTAM">
+    <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+    <End Role="MUNICIPIO" Type="Self.MUNICIPIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTAMENTO">
+        <PropertyRef Name="IDDEPARTAMENTO" />
+      </Principal>
+      <Dependent Role="MUNICIPIO">
+        <PropertyRef Name="IDDEPARTAMENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PARTICIP_FK_PARTIC_CURRICUL">
+    <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="1" />
+    <End Role="PARTICIPACION_PROFESIONAL" Type="Self.PARTICIPACION_PROFESIONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURRICULUM">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="PARTICIPACION_PROFESIONAL">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PARTICIP_FK_PARTIC_PAIS">
+    <End Role="PAIS" Type="Self.PAIS" Multiplicity="0..1" />
+    <End Role="PARTICIPACION_PROFESIONAL" Type="Self.PARTICIPACION_PROFESIONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAIS">
+        <PropertyRef Name="IDPAIS" />
+      </Principal>
+      <Dependent Role="PARTICIPACION_PROFESIONAL">
+        <PropertyRef Name="IDPAIS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PARTICIP_FK_PARTIC_TIPO_PAR">
+    <End Role="TIPO_PARTICIPACION" Type="Self.TIPO_PARTICIPACION" Multiplicity="1" />
+    <End Role="PARTICIPACION_PROFESIONAL" Type="Self.PARTICIPACION_PROFESIONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_PARTICIPACION">
+        <PropertyRef Name="IDTIPOPARTICIPACION" />
+      </Principal>
+      <Dependent Role="PARTICIPACION_PROFESIONAL">
+        <PropertyRef Name="IDTIPOPARTICIPACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errores durante la generación:
+advertencia 6030: La relación 'FK_POSTULAN_FK_POSTUL_CURRICUL' usa el conjunto de claves externas '{IDCURRICULUM,IDPOSTULANTE}', que están contenidas parcialmente en el conjunto de claves principales '{IDPOSTULANTE}' de la tabla 'POSTULANTE'.  El conjunto de claves externas debe estar contenido totalmente en un conjunto de claves principales o no estar contenido totalmente en el conjunto de claves principales que se van a asignar a un modelo.
+        <Association Name="FK_POSTULAN_FK_POSTUL_CURRICUL">
+          <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="0..1" />
+          <End Role="POSTULANTE" Type="Self.POSTULANTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CURRICULUM">
+              <PropertyRef Name="IDCURRICULUM" />
+              <PropertyRef Name="IDPOSTULANTE" />
+            </Principal>
+            <Dependent Role="POSTULANTE">
+              <PropertyRef Name="IDCURRICULUM" />
+              <PropertyRef Name="IDPOSTULANTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+  <Association Name="FK_POSTULAN_FK_POSTUL_MUNICIPI">
+    <End Role="MUNICIPIO" Type="Self.MUNICIPIO" Multiplicity="0..1" />
+    <End Role="POSTULANTE" Type="Self.POSTULANTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MUNICIPIO">
+        <PropertyRef Name="IDMUNICIPIO" />
+      </Principal>
+      <Dependent Role="POSTULANTE">
+        <PropertyRef Name="IDMUNICIPIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_POSTULAN_FK_POSTUL_POSTULAN">
+    <End Role="POSTULANTE" Type="Self.POSTULANTE" Multiplicity="1" />
+    <End Role="POSTULANTE_TIPO_DOCUMENTO_MM" Type="Self.POSTULANTE_TIPO_DOCUMENTO_MM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="POSTULANTE">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="POSTULANTE_TIPO_DOCUMENTO_MM">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_POSTULAN_FK_POSTUL_TIPO_DOC">
+    <End Role="TIPO_DOCUMENTO_IDENTIDAD" Type="Self.TIPO_DOCUMENTO_IDENTIDAD" Multiplicity="1" />
+    <End Role="POSTULANTE_TIPO_DOCUMENTO_MM" Type="Self.POSTULANTE_TIPO_DOCUMENTO_MM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_DOCUMENTO_IDENTIDAD">
+        <PropertyRef Name="IDTIPODOCUMENTOIDENTIDAD" />
+      </Principal>
+      <Dependent Role="POSTULANTE_TIPO_DOCUMENTO_MM">
+        <PropertyRef Name="IDTIPODOCUMENTOIDENTIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_POSTULAN_FK_POSTUL_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="POSTULANTE" Type="Self.POSTULANTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="IDUSUARIO" />
+      </Principal>
+      <Dependent Role="POSTULANTE">
+        <PropertyRef Name="IDUSUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PUBLICAC_FK_PUBLIC_CURRICUL">
+    <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="1" />
+    <End Role="PUBLICACION" Type="Self.PUBLICACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURRICULUM">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="PUBLICACION">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REFERENC_FK_REFERE_CURRICUL">
+    <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="1" />
+    <End Role="REFERENCIA" Type="Self.REFERENCIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURRICULUM">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="REFERENCIA">
+        <PropertyRef Name="IDCURRICULUM" />
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REFERENC_FK_REFERE_TIPOREFE">
+    <End Role="TIPOREFERENCIA" Type="Self.TIPOREFERENCIA" Multiplicity="1" />
+    <End Role="REFERENCIA" Type="Self.REFERENCIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOREFERENCIA">
+        <PropertyRef Name="IDTIPOREFERENCIA" />
+      </Principal>
+      <Dependent Role="REFERENCIA">
+        <PropertyRef Name="IDTIPOREFERENCIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROL_MENU_FK_ROL_ME_MENU">
+    <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+    <End Role="ROL_MENU_MM" Type="Self.ROL_MENU_MM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENU">
+        <PropertyRef Name="IDMENU" />
+      </Principal>
+      <Dependent Role="ROL_MENU_MM">
+        <PropertyRef Name="IDMENU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROL_MENU_FK_ROL_ME_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="ROL_MENU_MM" Type="Self.ROL_MENU_MM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="IDROL" />
+      </Principal>
+      <Dependent Role="ROL_MENU_MM">
+        <PropertyRef Name="IDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROL_USUA_FK_ROL_US_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="ROL_USUARIO_MM" Type="Self.ROL_USUARIO_MM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="IDROL" />
+      </Principal>
+      <Dependent Role="ROL_USUARIO_MM">
+        <PropertyRef Name="IDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROL_USUA_FK_ROL_US_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="ROL_USUARIO_MM" Type="Self.ROL_USUARIO_MM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="IDUSUARIO" />
+      </Principal>
+      <Dependent Role="ROL_USUARIO_MM">
+        <PropertyRef Name="IDUSUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TELEFONO_FK_TELEFO_POSTULAN">
+    <End Role="POSTULANTE" Type="Self.POSTULANTE" Multiplicity="1" />
+    <End Role="TELEFONO" Type="Self.TELEFONO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="POSTULANTE">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="TELEFONO">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TELEFONO_FK_TELEFO_TIPO_TEL">
+    <End Role="TIPO_TELEFONO" Type="Self.TIPO_TELEFONO" Multiplicity="0..1" />
+    <End Role="TELEFONO" Type="Self.TELEFONO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_TELEFONO">
+        <PropertyRef Name="IDTIPOTELEFONO" />
+      </Principal>
+      <Dependent Role="TELEFONO">
+        <PropertyRef Name="IDTIPOTELEFONO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_HAB_FK_TIPO_H_AREA_CON">
+    <End Role="AREA_CONOCIMIENTO" Type="Self.AREA_CONOCIMIENTO" Multiplicity="0..1" />
+    <End Role="TIPO_HABILIDAD" Type="Self.TIPO_HABILIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AREA_CONOCIMIENTO">
+        <PropertyRef Name="IDAREACONOCIMIENTO" />
+      </Principal>
+      <Dependent Role="TIPO_HABILIDAD">
+        <PropertyRef Name="IDAREACONOCIMIENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_FK_USUARI_EMPRESA">
+    <End Role="EMPRESA" Type="Self.EMPRESA" Multiplicity="0..1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPRESA">
+        <PropertyRef Name="IDEMPRESA" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="IDEMPRESA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_FK_USUARI_POSTULAN">
+    <End Role="POSTULANTE" Type="Self.POSTULANTE" Multiplicity="0..1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="POSTULANTE">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BolsaTrabajoV1ModelStoreContainer">
+    <EntitySet Name="AREA_CONOCIMIENTO" EntityType="Self.AREA_CONOCIMIENTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CURRICULUM" EntityType="Self.CURRICULUM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPRESA" EntityType="Self.EMPRESA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ESTADO_CIVIL" EntityType="Self.ESTADO_CIVIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ESTADO_CIVIL_POSTULANTE_MM" EntityType="Self.ESTADO_CIVIL_POSTULANTE_MM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EXPERIENCIALABORAL" EntityType="Self.EXPERIENCIALABORAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FORMACIONACADEMICA" EntityType="Self.FORMACIONACADEMICA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HABILIDAD" EntityType="Self.HABILIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IDIOMA" EntityType="Self.IDIOMA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOGRO" EntityType="Self.LOGRO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MENU" EntityType="Self.MENU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MUNICIPIO" EntityType="Self.MUNICIPIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NIVEL_IDIOMA" EntityType="Self.NIVEL_IDIOMA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAIS" EntityType="Self.PAIS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PARTICIPACION_PROFESIONAL" EntityType="Self.PARTICIPACION_PROFESIONAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POSTULANTE" EntityType="Self.POSTULANTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POSTULANTE_TIPO_DOCUMENTO_MM" EntityType="Self.POSTULANTE_TIPO_DOCUMENTO_MM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PUBLICACION" EntityType="Self.PUBLICACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REFERENCIA" EntityType="Self.REFERENCIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROL_MENU_MM" EntityType="Self.ROL_MENU_MM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROL_USUARIO_MM" EntityType="Self.ROL_USUARIO_MM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TELEFONO" EntityType="Self.TELEFONO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_CONTACTO" EntityType="Self.TIPO_CONTACTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_DOCUMENTO_IDENTIDAD" EntityType="Self.TIPO_DOCUMENTO_IDENTIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_HABILIDAD" EntityType="Self.TIPO_HABILIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_PARTICIPACION" EntityType="Self.TIPO_PARTICIPACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_TELEFONO" EntityType="Self.TIPO_TELEFONO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPOFORMACINONACADEMICA" EntityType="Self.TIPOFORMACINONACADEMICA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPOREFERENCIA" EntityType="Self.TIPOREFERENCIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CERTIFIC_FK_CERTIF_AREA_CON" Association="Self.FK_CERTIFIC_FK_CERTIF_AREA_CON">
+      <End Role="AREA_CONOCIMIENTO" EntitySet="AREA_CONOCIMIENTO" />
+      <End Role="CERTIFICACION" EntitySet="CERTIFICACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CERTIFIC_FK_CERTIF_CURRICUL" Association="Self.FK_CERTIFIC_FK_CERTIF_CURRICUL">
+      <End Role="CURRICULUM" EntitySet="CURRICULUM" />
+      <End Role="CERTIFICACION" EntitySet="CERTIFICACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTACTO_FK_CONTAC_POSTULAN" Association="Self.FK_CONTACTO_FK_CONTAC_POSTULAN">
+      <End Role="POSTULANTE" EntitySet="POSTULANTE" />
+      <End Role="CONTACTO" EntitySet="CONTACTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTACTO_FK_CONTAC_TIPO_CON" Association="Self.FK_CONTACTO_FK_CONTAC_TIPO_CON">
+      <End Role="TIPO_CONTACTO" EntitySet="TIPO_CONTACTO" />
+      <End Role="CONTACTO" EntitySet="CONTACTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CURRICUL_FK_CURRIC_POSTULAN" Association="Self.FK_CURRICUL_FK_CURRIC_POSTULAN">
+      <End Role="POSTULANTE" EntitySet="POSTULANTE" />
+      <End Role="CURRICULUM" EntitySet="CURRICULUM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ESTADO_C_FK_ESTADO_ESTADO_C" Association="Self.FK_ESTADO_C_FK_ESTADO_ESTADO_C">
+      <End Role="ESTADO_CIVIL" EntitySet="ESTADO_CIVIL" />
+      <End Role="ESTADO_CIVIL_POSTULANTE_MM" EntitySet="ESTADO_CIVIL_POSTULANTE_MM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ESTADO_C_FK_ESTADO_POSTULAN" Association="Self.FK_ESTADO_C_FK_ESTADO_POSTULAN">
+      <End Role="POSTULANTE" EntitySet="POSTULANTE" />
+      <End Role="ESTADO_CIVIL_POSTULANTE_MM" EntitySet="ESTADO_CIVIL_POSTULANTE_MM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EXPERIEN_FK_EXPERI_CURRICUL" Association="Self.FK_EXPERIEN_FK_EXPERI_CURRICUL">
+      <End Role="CURRICULUM" EntitySet="CURRICULUM" />
+      <End Role="EXPERIENCIALABORAL" EntitySet="EXPERIENCIALABORAL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FORMACIO_FK_FORMAC_CURRICUL" Association="Self.FK_FORMACIO_FK_FORMAC_CURRICUL">
+      <End Role="CURRICULUM" EntitySet="CURRICULUM" />
+      <End Role="FORMACIONACADEMICA" EntitySet="FORMACIONACADEMICA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FORMACIO_FK_FORMAC_TIPOFORM" Association="Self.FK_FORMACIO_FK_FORMAC_TIPOFORM">
+      <End Role="TIPOFORMACINONACADEMICA" EntitySet="TIPOFORMACINONACADEMICA" />
+      <End Role="FORMACIONACADEMICA" EntitySet="FORMACIONACADEMICA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HABILIDA_FK_HABILI_CURRICUL" Association="Self.FK_HABILIDA_FK_HABILI_CURRICUL">
+      <End Role="CURRICULUM" EntitySet="CURRICULUM" />
+      <End Role="HABILIDAD" EntitySet="HABILIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HABILIDA_FK_HABILI_TIPO_HAB" Association="Self.FK_HABILIDA_FK_HABILI_TIPO_HAB">
+      <End Role="TIPO_HABILIDAD" EntitySet="TIPO_HABILIDAD" />
+      <End Role="HABILIDAD" EntitySet="HABILIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDIOMA_FK_IDIOMA_CURRICUL" Association="Self.FK_IDIOMA_FK_IDIOMA_CURRICUL">
+      <End Role="CURRICULUM" EntitySet="CURRICULUM" />
+      <End Role="IDIOMA" EntitySet="IDIOMA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LOGRO_FK_LOGRO__CURRICUL" Association="Self.FK_LOGRO_FK_LOGRO__CURRICUL">
+      <End Role="CURRICULUM" EntitySet="CURRICULUM" />
+      <End Role="LOGRO" EntitySet="LOGRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MUNICIPI_FK_MUNICI_DEPARTAM" Association="Self.FK_MUNICIPI_FK_MUNICI_DEPARTAM">
+      <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+      <End Role="MUNICIPIO" EntitySet="MUNICIPIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PARTICIP_FK_PARTIC_CURRICUL" Association="Self.FK_PARTICIP_FK_PARTIC_CURRICUL">
+      <End Role="CURRICULUM" EntitySet="CURRICULUM" />
+      <End Role="PARTICIPACION_PROFESIONAL" EntitySet="PARTICIPACION_PROFESIONAL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PARTICIP_FK_PARTIC_PAIS" Association="Self.FK_PARTICIP_FK_PARTIC_PAIS">
+      <End Role="PAIS" EntitySet="PAIS" />
+      <End Role="PARTICIPACION_PROFESIONAL" EntitySet="PARTICIPACION_PROFESIONAL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PARTICIP_FK_PARTIC_TIPO_PAR" Association="Self.FK_PARTICIP_FK_PARTIC_TIPO_PAR">
+      <End Role="TIPO_PARTICIPACION" EntitySet="TIPO_PARTICIPACION" />
+      <End Role="PARTICIPACION_PROFESIONAL" EntitySet="PARTICIPACION_PROFESIONAL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_POSTULAN_FK_POSTUL_MUNICIPI" Association="Self.FK_POSTULAN_FK_POSTUL_MUNICIPI">
+      <End Role="MUNICIPIO" EntitySet="MUNICIPIO" />
+      <End Role="POSTULANTE" EntitySet="POSTULANTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_POSTULAN_FK_POSTUL_POSTULAN" Association="Self.FK_POSTULAN_FK_POSTUL_POSTULAN">
+      <End Role="POSTULANTE" EntitySet="POSTULANTE" />
+      <End Role="POSTULANTE_TIPO_DOCUMENTO_MM" EntitySet="POSTULANTE_TIPO_DOCUMENTO_MM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_POSTULAN_FK_POSTUL_TIPO_DOC" Association="Self.FK_POSTULAN_FK_POSTUL_TIPO_DOC">
+      <End Role="TIPO_DOCUMENTO_IDENTIDAD" EntitySet="TIPO_DOCUMENTO_IDENTIDAD" />
+      <End Role="POSTULANTE_TIPO_DOCUMENTO_MM" EntitySet="POSTULANTE_TIPO_DOCUMENTO_MM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_POSTULAN_FK_POSTUL_USUARIO" Association="Self.FK_POSTULAN_FK_POSTUL_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="POSTULANTE" EntitySet="POSTULANTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PUBLICAC_FK_PUBLIC_CURRICUL" Association="Self.FK_PUBLICAC_FK_PUBLIC_CURRICUL">
+      <End Role="CURRICULUM" EntitySet="CURRICULUM" />
+      <End Role="PUBLICACION" EntitySet="PUBLICACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REFERENC_FK_REFERE_CURRICUL" Association="Self.FK_REFERENC_FK_REFERE_CURRICUL">
+      <End Role="CURRICULUM" EntitySet="CURRICULUM" />
+      <End Role="REFERENCIA" EntitySet="REFERENCIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REFERENC_FK_REFERE_TIPOREFE" Association="Self.FK_REFERENC_FK_REFERE_TIPOREFE">
+      <End Role="TIPOREFERENCIA" EntitySet="TIPOREFERENCIA" />
+      <End Role="REFERENCIA" EntitySet="REFERENCIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROL_MENU_FK_ROL_ME_MENU" Association="Self.FK_ROL_MENU_FK_ROL_ME_MENU">
+      <End Role="MENU" EntitySet="MENU" />
+      <End Role="ROL_MENU_MM" EntitySet="ROL_MENU_MM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROL_MENU_FK_ROL_ME_ROL" Association="Self.FK_ROL_MENU_FK_ROL_ME_ROL">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="ROL_MENU_MM" EntitySet="ROL_MENU_MM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROL_USUA_FK_ROL_US_ROL" Association="Self.FK_ROL_USUA_FK_ROL_US_ROL">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="ROL_USUARIO_MM" EntitySet="ROL_USUARIO_MM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROL_USUA_FK_ROL_US_USUARIO" Association="Self.FK_ROL_USUA_FK_ROL_US_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="ROL_USUARIO_MM" EntitySet="ROL_USUARIO_MM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TELEFONO_FK_TELEFO_POSTULAN" Association="Self.FK_TELEFONO_FK_TELEFO_POSTULAN">
+      <End Role="POSTULANTE" EntitySet="POSTULANTE" />
+      <End Role="TELEFONO" EntitySet="TELEFONO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TELEFONO_FK_TELEFO_TIPO_TEL" Association="Self.FK_TELEFONO_FK_TELEFO_TIPO_TEL">
+      <End Role="TIPO_TELEFONO" EntitySet="TIPO_TELEFONO" />
+      <End Role="TELEFONO" EntitySet="TELEFONO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_HAB_FK_TIPO_H_AREA_CON" Association="Self.FK_TIPO_HAB_FK_TIPO_H_AREA_CON">
+      <End Role="AREA_CONOCIMIENTO" EntitySet="AREA_CONOCIMIENTO" />
+      <End Role="TIPO_HABILIDAD" EntitySet="TIPO_HABILIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_FK_USUARI_EMPRESA" Association="Self.FK_USUARIO_FK_USUARI_EMPRESA">
+      <End Role="EMPRESA" EntitySet="EMPRESA" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_FK_USUARI_POSTULAN" Association="Self.FK_USUARIO_FK_USUARI_POSTULAN">
+      <End Role="POSTULANTE" EntitySet="POSTULANTE" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

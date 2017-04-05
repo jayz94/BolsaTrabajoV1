@@ -1,0 +1,82 @@
+﻿@model BolsaTrabajoV1.Models.PUBLICACION
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PUBLICACION</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TITULOPUBLICACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TITULOPUBLICACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EDITORIAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EDITORIAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REVISTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REVISTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAPUBLICACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAPUBLICACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LIBRO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIBRO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NUMEROEDICION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NUMEROEDICION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPUBLICACION }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

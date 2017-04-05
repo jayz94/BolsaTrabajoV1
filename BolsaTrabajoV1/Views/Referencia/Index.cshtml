@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.REFERENCIA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DESCRIPCIONREFERENCIA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TELEFONOREFERENCIA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PUESTOREFERENCIA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PERSONAREFERENCIA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPRESAORIGENREFERENCIA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPOREFERENCIA.NOMBRETIPOREFERENCIA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DESCRIPCIONREFERENCIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TELEFONOREFERENCIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PUESTOREFERENCIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PERSONAREFERENCIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPRESAORIGENREFERENCIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CURRICULUM.IDCURRICULUM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPOREFERENCIA.NOMBRETIPOREFERENCIA)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDREFERENCIA }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDREFERENCIA }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDREFERENCIA })
+        </td>
+    </tr>
+}
+
+</table>

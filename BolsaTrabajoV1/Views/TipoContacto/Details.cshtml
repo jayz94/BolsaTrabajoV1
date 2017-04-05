@@ -1,0 +1,26 @@
+﻿@model BolsaTrabajoV1.Models.TIPO_CONTACTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TIPO_CONTACTO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRETIPOCONTACTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRETIPOCONTACTO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDTIPOCONTACTO }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

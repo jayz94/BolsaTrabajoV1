@@ -1,0 +1,26 @@
+﻿@model BolsaTrabajoV1.Models.TIPOFORMACINONACADEMICA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TIPOFORMACINONACADEMICA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRETIPOFORMACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRETIPOFORMACION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDTIPOFORMACION }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

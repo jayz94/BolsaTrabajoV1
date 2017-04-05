@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.TIPO_HABILIDAD>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRETIPOHABILIDAD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AREA_CONOCIMIENTO.NOMBREAREACONOCIMIENTO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRETIPOHABILIDAD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AREA_CONOCIMIENTO.NOMBREAREACONOCIMIENTO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDTIPOHABILIDAD }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDTIPOHABILIDAD }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDTIPOHABILIDAD })
+        </td>
+    </tr>
+}
+
+</table>

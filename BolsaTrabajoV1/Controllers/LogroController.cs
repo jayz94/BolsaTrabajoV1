@@ -13,12 +13,13 @@ namespace BolsaTrabajoV1.Controllers
 {
     public class LogroController : Controller
     {
-        private BolsaTrabajoV1Entities1 db = new BolsaTrabajoV1Entities1();
+        private ConexionBDBolsa db = new ConexionBDBolsa();
 
         // GET: Logro
         public async Task<ActionResult> Index()
         {
-            return View(await db.Logro.ToListAsync());
+            var lOGRO = db.LOGRO.Include(l => l.CURRICULUM);
+            return View(await lOGRO.ToListAsync());
         }
 
         // GET: Logro/Details/5
@@ -28,17 +29,18 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Logro logro = await db.Logro.FindAsync(id);
-            if (logro == null)
+            LOGRO lOGRO = await db.LOGRO.FindAsync(id);
+            if (lOGRO == null)
             {
                 return HttpNotFound();
             }
-            return View(logro);
+            return View(lOGRO);
         }
 
         // GET: Logro/Create
         public ActionResult Create()
         {
+            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
             return View();
         }
 
@@ -47,16 +49,17 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idLogro,tituloLogro,fechaLogro,otorganteLogro,descripcionLogro")] Logro logro)
+        public async Task<ActionResult> Create([Bind(Include = "IDLOGRO,IDCURRICULUM,IDPOSTULANTE,TITULOLOGRO,FECHALOGRO,OTORGANTELOGRO,DESCRIPCIONLOGRO,PREMIO,LABORSOCIAL")] LOGRO lOGRO)
         {
             if (ModelState.IsValid)
             {
-                db.Logro.Add(logro);
+                db.LOGRO.Add(lOGRO);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(logro);
+            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", lOGRO.IDCURRICULUM);
+            return View(lOGRO);
         }
 
         // GET: Logro/Edit/5
@@ -66,12 +69,13 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Logro logro = await db.Logro.FindAsync(id);
-            if (logro == null)
+            LOGRO lOGRO = await db.LOGRO.FindAsync(id);
+            if (lOGRO == null)
             {
                 return HttpNotFound();
             }
-            return View(logro);
+            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", lOGRO.IDCURRICULUM);
+            return View(lOGRO);
         }
 
         // POST: Logro/Edit/5
@@ -79,15 +83,16 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idLogro,tituloLogro,fechaLogro,otorganteLogro,descripcionLogro")] Logro logro)
+        public async Task<ActionResult> Edit([Bind(Include = "IDLOGRO,IDCURRICULUM,IDPOSTULANTE,TITULOLOGRO,FECHALOGRO,OTORGANTELOGRO,DESCRIPCIONLOGRO,PREMIO,LABORSOCIAL")] LOGRO lOGRO)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(logro).State = EntityState.Modified;
+                db.Entry(lOGRO).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(logro);
+            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", lOGRO.IDCURRICULUM);
+            return View(lOGRO);
         }
 
         // GET: Logro/Delete/5
@@ -97,12 +102,12 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Logro logro = await db.Logro.FindAsync(id);
-            if (logro == null)
+            LOGRO lOGRO = await db.LOGRO.FindAsync(id);
+            if (lOGRO == null)
             {
                 return HttpNotFound();
             }
-            return View(logro);
+            return View(lOGRO);
         }
 
         // POST: Logro/Delete/5
@@ -110,8 +115,8 @@ namespace BolsaTrabajoV1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Logro logro = await db.Logro.FindAsync(id);
-            db.Logro.Remove(logro);
+            LOGRO lOGRO = await db.LOGRO.FindAsync(id);
+            db.LOGRO.Remove(lOGRO);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

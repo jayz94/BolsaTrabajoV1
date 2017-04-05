@@ -1,0 +1,126 @@
+﻿<div class="container">
+    <div class="panel" style="margin-top: 4%;">
+        <div class="panel-heading text-center">
+            <h1>ADMINISTRAR CATALOGOS</h1>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b style="color:red">@Html.ActionLink("Tipo Contactos",  "Index", "TipoContacto")</b>
+                </div>
+                <div class="col-md-4 cuadroHijo text-center" onclick="location.href=href='/TipoHabilidad'">
+                    <span class="fa fa-cog"></span>
+                </div>
+            </div>
+
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>Tipo Documentos Identidad</b>
+                </div>
+                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/tipoDocumento'">
+                    <span class="fa fa-cog"></span>
+                </div>
+            </div>
+
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>Tipo Formación Academica</b>
+                </div>
+                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/tipoFormacion'">
+                    <span class="fa fa-cog"></span>
+                </div>
+            </div>
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>TIPO DE FORMACIONES ACADEMICAS</b>
+                </div>
+                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/TipoFormacion'">
+                    <span class="fa fa-cog"></span>
+                </div>
+            </div>
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>PAISES</b>
+                </div>
+                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/Pais'">
+                    <span class="fa fa-cog"></span>
+                </div>
+            </div>
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>TIPO DE RECURSO HUMANO</b>
+                </div>
+                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/TipoRRHH'">
+                    <span class="fa fa-cog"></span>
+                </div>
+            </div>
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>TIPO DE ACTIVIDADES</b>
+                </div>
+                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/TipoActividad'">
+                    <span class="fa fa-cog"></span>
+                </div>
+            </div>
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>TIPO DE RECURSOS</b>
+                </div>
+                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/TipoRecurso'">
+                    <span class="fa fa-cog"></span>
+                </div>
+            </div>
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>ESTADOS DE LOS PROYECTOS</b>
+                </div>
+                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/estado-proyecto'">
+                    <span class="fa fa-cog"></span>
+                </div>
+            </div>
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>UNIDADES DE INVESTIGACIÓN</b>
+                </div>
+                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/UnidadInvestigacion'">
+                    <span class="fa fa-cog"></span>
+                </div>
+            </div>
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>GASTOS</b>
+                </div>
+                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/gastos'">
+                    <span class="fa fa-cog"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .cuadro {
+        color: white;
+        font-size: 120%;
+        background: rgba(30, 93, 129, 0.7);
+        padding: 1%;
+        margin: 1%;
+    }
+
+    .cuadroHijo {
+        font-size: 300%;
+        padding: 4%;
+        background: rgba(255,255,255,0.1);
+        margin-left: 8%;
+        -webkit-border-radius: 100%;
+        /* Firefox 1-3.6 */
+        -moz-border-radius: 100%;
+        /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+        border-radius: 100%;
+    }
+
+        .cuadroHijo:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+</style>

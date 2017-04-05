@@ -1,0 +1,90 @@
+﻿@model BolsaTrabajoV1.Models.POSTULANTE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>POSTULANTE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBREPOSTULANTE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBREPOSTULANTE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.APELLIDOPOSTULANTE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APELLIDOPOSTULANTE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GENERO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GENERO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHANACIMIENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHANACIMIENTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIRECCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIRECCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URLCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URLCURRICULUM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM1.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM1.IDCURRICULUM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO.NOMBREUSUARIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO.NOMBREUSUARIO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPOSTULANTE }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a16e589282e14c138d991a9e393097d7" Name="Diagram1">
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.AREA_CONOCIMIENTO" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.CERTIFICACION" Width="1.5" PointX="9.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.CONTACTO" Width="1.5" PointX="7.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.CURRICULUM" Width="1.5" PointX="7.5" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.DEPARTAMENTO" Width="1.5" PointX="0.75" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.EMPRESA" Width="1.5" PointX="5.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.ESTADO_CIVIL" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.EXPERIENCIALABORAL" Width="1.5" PointX="9.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.FORMACIONACADEMICA" Width="1.5" PointX="12.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.HABILIDAD" Width="1.5" PointX="12.75" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.IDIOMA" Width="1.5" PointX="9.75" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.LOGRO" Width="1.5" PointX="9.75" PointY="41" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.MENU" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.MUNICIPIO" Width="1.5" PointX="3" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.NIVEL_IDIOMA" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.PAIS" Width="1.5" PointX="10.5" PointY="53.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.PARTICIPACION_PROFESIONAL" Width="1.5" PointX="12.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.POSTULANTE" Width="1.5" PointX="5.25" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.POSTULANTE_TIPO_DOCUMENTO_MM" Width="1.5" PointX="7.5" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.PUBLICACION" Width="1.5" PointX="9.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.REFERENCIA" Width="1.5" PointX="9.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.ROL" Width="1.5" PointX="7.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.ROL_USUARIO_MM" Width="1.5" PointX="9.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.TELEFONO" Width="1.5" PointX="12.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.TIPO_CONTACTO" Width="1.5" PointX="5.25" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.TIPO_DOCUMENTO_IDENTIDAD" Width="1.5" PointX="5.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.TIPO_HABILIDAD" Width="1.5" PointX="10.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.TIPO_PARTICIPACION" Width="1.5" PointX="10.5" PointY="34.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.TIPO_TELEFONO" Width="1.5" PointX="10.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.TIPOFORMACINONACADEMICA" Width="1.5" PointX="10.5" PointY="45.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.TIPOREFERENCIA" Width="1.5" PointX="7.5" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsaTrabajoV1Model.USUARIO" Width="1.5" PointX="7.5" PointY="16.5" IsExpanded="true" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_CERTIFIC_FK_CERTIF_AREA_CON" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_TIPO_HAB_FK_TIPO_H_AREA_CON" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_CERTIFIC_FK_CERTIF_CURRICUL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_CONTACTO_FK_CONTAC_POSTULAN" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_CONTACTO_FK_CONTAC_TIPO_CON" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_CURRICUL_FK_CURRIC_POSTULAN" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_EXPERIEN_FK_EXPERI_CURRICUL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_FORMACIO_FK_FORMAC_CURRICUL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_HABILIDA_FK_HABILI_CURRICUL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_IDIOMA_FK_IDIOMA_CURRICUL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_LOGRO_FK_LOGRO__CURRICUL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_PARTICIP_FK_PARTIC_CURRICUL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_POSTULAN_FK_POSTUL_CURRICUL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_PUBLICAC_FK_PUBLIC_CURRICUL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_REFERENC_FK_REFERE_CURRICUL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_MUNICIPI_FK_MUNICI_DEPARTAM" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_USUARIO_FK_USUARI_EMPRESA" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_FORMACIO_FK_FORMAC_TIPOFORM" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_HABILIDA_FK_HABILI_TIPO_HAB" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_POSTULAN_FK_POSTUL_MUNICIPI" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_PARTICIP_FK_PARTIC_PAIS" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_PARTICIP_FK_PARTIC_TIPO_PAR" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_POSTULAN_FK_POSTUL_POSTULAN" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_POSTULAN_FK_POSTUL_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_TELEFONO_FK_TELEFO_POSTULAN" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_USUARIO_FK_USUARI_POSTULAN" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_POSTULAN_FK_POSTUL_TIPO_DOC" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_REFERENC_FK_REFERE_TIPOREFE" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_ROL_USUA_FK_ROL_US_ROL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_ROL_USUA_FK_ROL_US_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_TELEFONO_FK_TELEFO_TIPO_TEL" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.ESTADO_CIVIL_POSTULANTE_MM" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.ROL_MENU_MM" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

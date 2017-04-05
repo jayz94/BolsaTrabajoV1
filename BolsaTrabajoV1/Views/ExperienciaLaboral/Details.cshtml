@@ -1,0 +1,74 @@
+﻿@model BolsaTrabajoV1.Models.EXPERIENCIALABORAL
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EXPERIENCIALABORAL</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.INSTITUCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INSTITUCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CARGO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CARGO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TITULOPROYECTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TITULOPROYECTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAINICIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAINICIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAFIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAFIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NUMEROCONTACTOORG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NUMEROCONTACTOORG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDEXPERIENCIALABORAL }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

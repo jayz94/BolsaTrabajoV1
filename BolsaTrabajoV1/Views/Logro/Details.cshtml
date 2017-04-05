@@ -1,4 +1,4 @@
-﻿@model BolsaTrabajoV1.Models.Logro
+﻿@model BolsaTrabajoV1.Models.LOGRO
 
 @{
     ViewBag.Title = "Details";
@@ -7,44 +7,68 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Logro</h4>
+    <h4>LOGRO</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.tituloLogro)
+            @Html.DisplayNameFor(model => model.TITULOLOGRO)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tituloLogro)
+            @Html.DisplayFor(model => model.TITULOLOGRO)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fechaLogro)
+            @Html.DisplayNameFor(model => model.FECHALOGRO)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fechaLogro)
+            @Html.DisplayFor(model => model.FECHALOGRO)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.otorganteLogro)
+            @Html.DisplayNameFor(model => model.OTORGANTELOGRO)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.otorganteLogro)
+            @Html.DisplayFor(model => model.OTORGANTELOGRO)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.descripcionLogro)
+            @Html.DisplayNameFor(model => model.DESCRIPCIONLOGRO)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.descripcionLogro)
+            @Html.DisplayFor(model => model.DESCRIPCIONLOGRO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PREMIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PREMIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LABORSOCIAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LABORSOCIAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idLogro }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDLOGRO }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.USUARIO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBREUSUARIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PASSWORD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACTIVO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COLOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDIOMA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DEBAJA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.INTENTOS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CORREO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPRESA.CODIGOEMPRESA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.POSTULANTE1.NOMBREPOSTULANTE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBREUSUARIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PASSWORD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACTIVO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COLOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDIOMA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DEBAJA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.INTENTOS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CORREO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPRESA.CODIGOEMPRESA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.POSTULANTE1.NOMBREPOSTULANTE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDUSUARIO }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDUSUARIO }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDUSUARIO })
+        </td>
+    </tr>
+}
+
+</table>

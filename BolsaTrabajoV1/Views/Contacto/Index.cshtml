@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.CONTACTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VINCULO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.POSTULANTE.NOMBREPOSTULANTE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_CONTACTO.NOMBRETIPOCONTACTO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VINCULO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.POSTULANTE.NOMBREPOSTULANTE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_CONTACTO.NOMBRETIPOCONTACTO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDCONTACTO }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDCONTACTO }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDCONTACTO })
+        </td>
+    </tr>
+}
+
+</table>

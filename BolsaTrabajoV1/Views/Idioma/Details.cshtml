@@ -1,0 +1,74 @@
+﻿@model BolsaTrabajoV1.Models.IDIOMA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IDIOMA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBREIDIOMA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBREIDIOMA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LENGUAMATERNA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LENGUAMATERNA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESCRITURA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESCRITURA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LECTURA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LECTURA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONVERSACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONVERSACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESCUCHA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESCUCHA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDIDIOMA }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

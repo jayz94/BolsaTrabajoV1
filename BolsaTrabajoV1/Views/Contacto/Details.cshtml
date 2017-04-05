@@ -1,0 +1,42 @@
+﻿@model BolsaTrabajoV1.Models.CONTACTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CONTACTO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VINCULO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VINCULO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POSTULANTE.NOMBREPOSTULANTE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POSTULANTE.NOMBREPOSTULANTE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_CONTACTO.NOMBRETIPOCONTACTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_CONTACTO.NOMBRETIPOCONTACTO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDCONTACTO }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,88 @@
+﻿@model BolsaTrabajoV1.Models.FORMACIONACADEMICA
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>FORMACIONACADEMICA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.INSTITUCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INSTITUCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TITULO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TITULO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAINICIOFORMACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAINICIOFORMACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAFINFORMACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAFINFORMACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FORMAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FORMAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GRADOACADEMICO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GRADOACADEMICO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPOFORMACINONACADEMICA.NOMBRETIPOFORMACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPOFORMACINONACADEMICA.NOMBRETIPOFORMACION)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

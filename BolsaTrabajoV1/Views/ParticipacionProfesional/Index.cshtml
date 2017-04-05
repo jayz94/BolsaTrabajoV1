@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.PARTICIPACION_PROFESIONAL>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TITULOPARTICIPACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LUGARPARTICIPACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHAPARTICIPACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ANFITRION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PAIS.NOMBREPAIS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_PARTICIPACION.NOMBRETIPOPARTICIPACION)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TITULOPARTICIPACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LUGARPARTICIPACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHAPARTICIPACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ANFITRION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CURRICULUM.IDCURRICULUM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PAIS.NOMBREPAIS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_PARTICIPACION.NOMBRETIPOPARTICIPACION)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDPARTICIPACION }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDPARTICIPACION }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDPARTICIPACION })
+        </td>
+    </tr>
+}
+
+</table>

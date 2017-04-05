@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.FORMACIONACADEMICA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.INSTITUCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TITULO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHAINICIOFORMACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHAFINFORMACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FORMAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GRADOACADEMICO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPOFORMACINONACADEMICA.NOMBRETIPOFORMACION)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.INSTITUCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TITULO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHAINICIOFORMACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHAFINFORMACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FORMAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GRADOACADEMICO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CURRICULUM.IDCURRICULUM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPOFORMACINONACADEMICA.NOMBRETIPOFORMACION)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDFORMACION }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDFORMACION }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDFORMACION })
+        </td>
+    </tr>
+}
+
+</table>

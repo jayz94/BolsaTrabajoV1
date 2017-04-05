@@ -1,0 +1,26 @@
+﻿@model BolsaTrabajoV1.Models.AREA_CONOCIMIENTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AREA_CONOCIMIENTO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBREAREACONOCIMIENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBREAREACONOCIMIENTO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDAREACONOCIMIENTO }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

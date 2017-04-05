@@ -170,47 +170,155 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministracionCatalogosController.cs" />
+    <Compile Include="Controllers\AreaConocimientoController.cs" />
+    <Compile Include="Controllers\CertificacionController.cs" />
+    <Compile Include="Controllers\ContactoController.cs" />
+    <Compile Include="Controllers\CurriculumController.cs" />
+    <Compile Include="Controllers\DepartamentoController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\EstadoCivilController.cs" />
+    <Compile Include="Controllers\ExperienciaLaboralController.cs" />
+    <Compile Include="Controllers\FormacionAcademicaController.cs" />
+    <Compile Include="Controllers\HabilidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IdiomaController.cs" />
     <Compile Include="Controllers\LogroController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\MunicipioController.cs" />
+    <Compile Include="Controllers\NivelIdiomaController.cs" />
+    <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\ParticipacionProfesionalController.cs" />
+    <Compile Include="Controllers\PostulanteController.cs" />
+    <Compile Include="Controllers\PublicacionController.cs" />
+    <Compile Include="Controllers\ReferenciaController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\TelefonoController.cs" />
+    <Compile Include="Controllers\TipoContactoController.cs" />
+    <Compile Include="Controllers\TipoDocumentoIdentidadController.cs" />
+    <Compile Include="Controllers\TipoFormacionAcademicaController.cs" />
+    <Compile Include="Controllers\TipoHabilidadController.cs" />
+    <Compile Include="Controllers\TipoParticipacionController.cs" />
+    <Compile Include="Controllers\TipoReferenciaController.cs" />
+    <Compile Include="Controllers\TipoTelefonoController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BDBolsaTrabajoV1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BDBolsaTrabajoV1.Context.tt</DependentUpon>
+    <Compile Include="Models\AREA_CONOCIMIENTO.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BDBolsaTrabajoV1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BDBolsaTrabajoV1.tt</DependentUpon>
+    <Compile Include="Models\CERTIFICACION.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BDBolsaTrabajoV1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BDBolsaTrabajoV1.edmx</DependentUpon>
+    <Compile Include="Models\CONTACTO.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CURRICULUM.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DEPARTAMENTO.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMPRESA.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ESTADO_CIVIL.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EXPERIENCIALABORAL.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FORMACIONACADEMICA.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HABILIDAD.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Logro.cs">
-      <DependentUpon>BDBolsaTrabajoV1.tt</DependentUpon>
+    <Compile Include="Models\IDIOMA.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LOGRO.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+    <Compile Include="Models\MENU.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.cs">
+    <Compile Include="Models\modelo_bolsaV1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
+    <Compile Include="Models\modelo_bolsaV1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\modelo_bolsaV1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modelo_bolsaV1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MUNICIPIO.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NIVEL_IDIOMA.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PAIS.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PARTICIPACION_PROFESIONAL.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\POSTULANTE.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\POSTULANTE_TIPO_DOCUMENTO_MM.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PUBLICACION.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\REFERENCIA.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ROL.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ROL_USUARIO_MM.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TELEFONO.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPOFORMACINONACADEMICA.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPOREFERENCIA.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPO_CONTACTO.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPO_DOCUMENTO_IDENTIDAD.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPO_HABILIDAD.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPO_PARTICIPACION.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPO_TELEFONO.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USUARIO.cs">
+      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -227,25 +335,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\BDBolsaTrabajoV1.Context.tt">
+    <Content Include="Models\modelo_bolsaV1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BDBolsaTrabajoV1.edmx</DependentUpon>
-      <LastGenOutput>BDBolsaTrabajoV1.Context.cs</LastGenOutput>
+      <DependentUpon>modelo_bolsaV1.edmx</DependentUpon>
+      <LastGenOutput>modelo_bolsaV1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\BDBolsaTrabajoV1.tt">
+    <Content Include="Models\modelo_bolsaV1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BDBolsaTrabajoV1.edmx</DependentUpon>
-      <LastGenOutput>BDBolsaTrabajoV1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>modelo_bolsaV1.edmx</DependentUpon>
+      <LastGenOutput>modelo_bolsaV1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\jsPlantilla\bootstrap.min.js" />
     <Content Include="Scripts\jsPlantilla\Chart.min.js" />
@@ -297,19 +395,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\Model1.edmx">
+    <EntityDeploy Include="Models\modelo_bolsaV1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>modelo_bolsaV1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\BDBolsaTrabajoV1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BDBolsaTrabajoV1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BDBolsaTrabajoV1.edmx.diagram">
-      <DependentUpon>BDBolsaTrabajoV1.edmx</DependentUpon>
+    <Content Include="Models\modelo_bolsaV1.edmx.diagram">
+      <DependentUpon>modelo_bolsaV1.edmx</DependentUpon>
     </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Views\Logro\Create.cshtml" />
@@ -317,6 +408,152 @@
     <Content Include="Views\Logro\Details.cshtml" />
     <Content Include="Views\Logro\Edit.cshtml" />
     <Content Include="Views\Logro\Index.cshtml" />
+    <Content Include="Views\AreaConocimiento\Create.cshtml" />
+    <Content Include="Views\AreaConocimiento\Delete.cshtml" />
+    <Content Include="Views\AreaConocimiento\Details.cshtml" />
+    <Content Include="Views\AreaConocimiento\Edit.cshtml" />
+    <Content Include="Views\AreaConocimiento\Index.cshtml" />
+    <Content Include="Views\Certificacion\Create.cshtml" />
+    <Content Include="Views\Certificacion\Delete.cshtml" />
+    <Content Include="Views\Certificacion\Details.cshtml" />
+    <Content Include="Views\Certificacion\Edit.cshtml" />
+    <Content Include="Views\Certificacion\Index.cshtml" />
+    <Content Include="Views\Curriculum\Create.cshtml" />
+    <Content Include="Views\Curriculum\Delete.cshtml" />
+    <Content Include="Views\Curriculum\Details.cshtml" />
+    <Content Include="Views\Curriculum\Edit.cshtml" />
+    <Content Include="Views\Curriculum\Index.cshtml" />
+    <Content Include="Views\Postulante\Create.cshtml" />
+    <Content Include="Views\Postulante\Delete.cshtml" />
+    <Content Include="Views\Postulante\Details.cshtml" />
+    <Content Include="Views\Postulante\Edit.cshtml" />
+    <Content Include="Views\Postulante\Index.cshtml" />
+    <Content Include="Views\Contacto\Create.cshtml" />
+    <Content Include="Views\Contacto\Delete.cshtml" />
+    <Content Include="Views\Contacto\Details.cshtml" />
+    <Content Include="Views\Contacto\Edit.cshtml" />
+    <Content Include="Views\Contacto\Index.cshtml" />
+    <Content Include="Views\Departamento\Create.cshtml" />
+    <Content Include="Views\Departamento\Delete.cshtml" />
+    <Content Include="Views\Departamento\Details.cshtml" />
+    <Content Include="Views\Departamento\Edit.cshtml" />
+    <Content Include="Views\Departamento\Index.cshtml" />
+    <Content Include="Views\Empresa\Create.cshtml" />
+    <Content Include="Views\Empresa\Delete.cshtml" />
+    <Content Include="Views\Empresa\Details.cshtml" />
+    <Content Include="Views\Empresa\Edit.cshtml" />
+    <Content Include="Views\Empresa\Index.cshtml" />
+    <Content Include="Views\EstadoCivil\Create.cshtml" />
+    <Content Include="Views\EstadoCivil\Delete.cshtml" />
+    <Content Include="Views\EstadoCivil\Details.cshtml" />
+    <Content Include="Views\EstadoCivil\Edit.cshtml" />
+    <Content Include="Views\EstadoCivil\Index.cshtml" />
+    <Content Include="Views\ExperienciaLaboral\Create.cshtml" />
+    <Content Include="Views\ExperienciaLaboral\Delete.cshtml" />
+    <Content Include="Views\ExperienciaLaboral\Details.cshtml" />
+    <Content Include="Views\ExperienciaLaboral\Edit.cshtml" />
+    <Content Include="Views\ExperienciaLaboral\Index.cshtml" />
+    <Content Include="Views\FormacionAcademica\Create.cshtml" />
+    <Content Include="Views\FormacionAcademica\Delete.cshtml" />
+    <Content Include="Views\FormacionAcademica\Details.cshtml" />
+    <Content Include="Views\FormacionAcademica\Edit.cshtml" />
+    <Content Include="Views\FormacionAcademica\Index.cshtml" />
+    <Content Include="Views\Habilidad\Create.cshtml" />
+    <Content Include="Views\Habilidad\Delete.cshtml" />
+    <Content Include="Views\Habilidad\Details.cshtml" />
+    <Content Include="Views\Habilidad\Edit.cshtml" />
+    <Content Include="Views\Habilidad\Index.cshtml" />
+    <Content Include="Views\Idioma\Create.cshtml" />
+    <Content Include="Views\Idioma\Delete.cshtml" />
+    <Content Include="Views\Idioma\Details.cshtml" />
+    <Content Include="Views\Idioma\Edit.cshtml" />
+    <Content Include="Views\Idioma\Index.cshtml" />
+    <Content Include="Views\Menu\Create.cshtml" />
+    <Content Include="Views\Menu\Delete.cshtml" />
+    <Content Include="Views\Menu\Details.cshtml" />
+    <Content Include="Views\Menu\Edit.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Municipio\Create.cshtml" />
+    <Content Include="Views\Municipio\Delete.cshtml" />
+    <Content Include="Views\Municipio\Details.cshtml" />
+    <Content Include="Views\Municipio\Edit.cshtml" />
+    <Content Include="Views\Municipio\Index.cshtml" />
+    <Content Include="Views\NivelIdioma\Create.cshtml" />
+    <Content Include="Views\NivelIdioma\Delete.cshtml" />
+    <Content Include="Views\NivelIdioma\Details.cshtml" />
+    <Content Include="Views\NivelIdioma\Edit.cshtml" />
+    <Content Include="Views\NivelIdioma\Index.cshtml" />
+    <Content Include="Views\Pais\Create.cshtml" />
+    <Content Include="Views\Pais\Delete.cshtml" />
+    <Content Include="Views\Pais\Details.cshtml" />
+    <Content Include="Views\Pais\Edit.cshtml" />
+    <Content Include="Views\Pais\Index.cshtml" />
+    <Content Include="Views\ParticipacionProfesional\Create.cshtml" />
+    <Content Include="Views\ParticipacionProfesional\Delete.cshtml" />
+    <Content Include="Views\ParticipacionProfesional\Details.cshtml" />
+    <Content Include="Views\ParticipacionProfesional\Edit.cshtml" />
+    <Content Include="Views\ParticipacionProfesional\Index.cshtml" />
+    <Content Include="Views\Publicacion\Create.cshtml" />
+    <Content Include="Views\Publicacion\Delete.cshtml" />
+    <Content Include="Views\Publicacion\Details.cshtml" />
+    <Content Include="Views\Publicacion\Edit.cshtml" />
+    <Content Include="Views\Publicacion\Index.cshtml" />
+    <Content Include="Views\Referencia\Create.cshtml" />
+    <Content Include="Views\Referencia\Delete.cshtml" />
+    <Content Include="Views\Referencia\Details.cshtml" />
+    <Content Include="Views\Referencia\Edit.cshtml" />
+    <Content Include="Views\Referencia\Index.cshtml" />
+    <Content Include="Views\Rol\Create.cshtml" />
+    <Content Include="Views\Rol\Delete.cshtml" />
+    <Content Include="Views\Rol\Details.cshtml" />
+    <Content Include="Views\Rol\Edit.cshtml" />
+    <Content Include="Views\Rol\Index.cshtml" />
+    <Content Include="Views\Telefono\Create.cshtml" />
+    <Content Include="Views\Telefono\Delete.cshtml" />
+    <Content Include="Views\Telefono\Details.cshtml" />
+    <Content Include="Views\Telefono\Edit.cshtml" />
+    <Content Include="Views\Telefono\Index.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Usuario\Details.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\TipoContacto\Create.cshtml" />
+    <Content Include="Views\TipoContacto\Delete.cshtml" />
+    <Content Include="Views\TipoContacto\Details.cshtml" />
+    <Content Include="Views\TipoContacto\Edit.cshtml" />
+    <Content Include="Views\TipoContacto\Index.cshtml" />
+    <Content Include="Views\TipoDocumentoIdentidad\Create.cshtml" />
+    <Content Include="Views\TipoDocumentoIdentidad\Delete.cshtml" />
+    <Content Include="Views\TipoDocumentoIdentidad\Details.cshtml" />
+    <Content Include="Views\TipoDocumentoIdentidad\Edit.cshtml" />
+    <Content Include="Views\TipoDocumentoIdentidad\Index.cshtml" />
+    <Content Include="Views\TipoHabilidad\Create.cshtml" />
+    <Content Include="Views\TipoHabilidad\Delete.cshtml" />
+    <Content Include="Views\TipoHabilidad\Details.cshtml" />
+    <Content Include="Views\TipoHabilidad\Edit.cshtml" />
+    <Content Include="Views\TipoHabilidad\Index.cshtml" />
+    <Content Include="Views\TipoParticipacion\Create.cshtml" />
+    <Content Include="Views\TipoParticipacion\Delete.cshtml" />
+    <Content Include="Views\TipoParticipacion\Details.cshtml" />
+    <Content Include="Views\TipoParticipacion\Edit.cshtml" />
+    <Content Include="Views\TipoParticipacion\Index.cshtml" />
+    <Content Include="Views\TipoTelefono\Create.cshtml" />
+    <Content Include="Views\TipoTelefono\Delete.cshtml" />
+    <Content Include="Views\TipoTelefono\Details.cshtml" />
+    <Content Include="Views\TipoTelefono\Edit.cshtml" />
+    <Content Include="Views\TipoTelefono\Index.cshtml" />
+    <Content Include="Views\TipoFormacionAcademica\Create.cshtml" />
+    <Content Include="Views\TipoFormacionAcademica\Delete.cshtml" />
+    <Content Include="Views\TipoFormacionAcademica\Details.cshtml" />
+    <Content Include="Views\TipoFormacionAcademica\Edit.cshtml" />
+    <Content Include="Views\TipoFormacionAcademica\Index.cshtml" />
+    <Content Include="Views\TipoReferencia\Create.cshtml" />
+    <Content Include="Views\TipoReferencia\Delete.cshtml" />
+    <Content Include="Views\TipoReferencia\Details.cshtml" />
+    <Content Include="Views\TipoReferencia\Edit.cshtml" />
+    <Content Include="Views\TipoReferencia\Index.cshtml" />
+    <Content Include="Views\AdministracionCatalogos\MainCatalogos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

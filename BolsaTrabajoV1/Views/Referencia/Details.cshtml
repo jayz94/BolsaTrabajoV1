@@ -1,0 +1,74 @@
+﻿@model BolsaTrabajoV1.Models.REFERENCIA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>REFERENCIA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCIONREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCIONREFERENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TELEFONOREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TELEFONOREFERENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PUESTOREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PUESTOREFERENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONAREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONAREFERENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPRESAORIGENREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPRESAORIGENREFERENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPOREFERENCIA.NOMBRETIPOREFERENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPOREFERENCIA.NOMBRETIPOREFERENCIA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDREFERENCIA }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,34 @@
+﻿@model BolsaTrabajoV1.Models.NIVEL_IDIOMA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NIVEL_IDIOMA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRENIVELIDIOMA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRENIVELIDIOMA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CODIGONIVELIDIOMA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CODIGONIVELIDIOMA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDNIVELIDIOMA }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

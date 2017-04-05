@@ -12,12 +12,18 @@ namespace BolsaTrabajoV1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Logro
+    public partial class LOGRO
     {
-        public int idLogro { get; set; }
-        public string tituloLogro { get; set; }
-        public Nullable<System.DateTime> fechaLogro { get; set; }
-        public string otorganteLogro { get; set; }
-        public string descripcionLogro { get; set; }
+        public int IDLOGRO { get; set; }
+        public int IDCURRICULUM { get; set; }
+        public int IDPOSTULANTE { get; set; }
+        public string TITULOLOGRO { get; set; }
+        public Nullable<System.DateTime> FECHALOGRO { get; set; }
+        public string OTORGANTELOGRO { get; set; }
+        public string DESCRIPCIONLOGRO { get; set; }
+        public Nullable<bool> PREMIO { get; set; }
+        public Nullable<bool> LABORSOCIAL { get; set; }
+    
+        public virtual CURRICULUM CURRICULUM { get; set; }
     }
 }

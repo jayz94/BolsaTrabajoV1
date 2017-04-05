@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.CERTIFICACION>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DESCRIPCIONCERTIFICACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TITULOCERTIFICACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHAINICIOCERTIFICACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHAFINCERTIFICACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CODIGOCERTIFICACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.INSTITUCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AREA_CONOCIMIENTO.NOMBREAREACONOCIMIENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DESCRIPCIONCERTIFICACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TITULOCERTIFICACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHAINICIOCERTIFICACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHAFINCERTIFICACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CODIGOCERTIFICACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.INSTITUCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AREA_CONOCIMIENTO.NOMBREAREACONOCIMIENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CURRICULUM.IDCURRICULUM)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDCERTIFICACION }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDCERTIFICACION }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDCERTIFICACION })
+        </td>
+    </tr>
+}
+
+</table>
