@@ -6,106 +6,124 @@
         <div class="panel-body">
             <div class="col-md-3 cuadro">
                 <div class="col-md-7">
-                    <b style="color:red">@Html.ActionLink("Tipo Contactos",  "Index", "TipoContacto")</b>
+                    <b>AREA CONOCIMIENTO</b>
                 </div>
-                <div class="col-md-4 cuadroHijo text-center" onclick="location.href=href='/TipoHabilidad'">
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "AreaConocimiento")'>
                     <span class="fa fa-cog"></span>
+                </a>
+            </div>
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>TIPO DE CONTACTO</b>
                 </div>
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "TipoContacto")'>
+                    <span class="fa fa-cog"></span>
+                </a>
             </div>
 
             <div class="col-md-3 cuadro">
                 <div class="col-md-7">
-                    <b>Tipo Documentos Identidad</b>
+                    <b>TIPO DOCUMENTO DE IDENTIDAD</b>
                 </div>
-                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/tipoDocumento'">
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "TipoDocumentoIdentidad")'>
                     <span class="fa fa-cog"></span>
-                </div>
+                </a>
             </div>
 
             <div class="col-md-3 cuadro">
                 <div class="col-md-7">
-                    <b>Tipo Formación Academica</b>
+                    <b>TIPO FORMACIÓN ACADEMICA</b>
                 </div>
-                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/tipoFormacion'">
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "TipoFormacionAcademica")'>
                     <span class="fa fa-cog"></span>
-                </div>
+                </a>
             </div>
             <div class="col-md-3 cuadro">
                 <div class="col-md-7">
-                    <b>TIPO DE FORMACIONES ACADEMICAS</b>
+                    <b>TIPO DE HABILIDAD</b>
                 </div>
-                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/TipoFormacion'">
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "TipoHabilidad")'>
                     <span class="fa fa-cog"></span>
-                </div>
+                </a>
             </div>
             <div class="col-md-3 cuadro">
                 <div class="col-md-7">
                     <b>PAISES</b>
                 </div>
-                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/Pais'">
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "Pais")'>
                     <span class="fa fa-cog"></span>
-                </div>
+                </a>
             </div>
             <div class="col-md-3 cuadro">
                 <div class="col-md-7">
-                    <b>TIPO DE RECURSO HUMANO</b>
+                    <b>TIPO DE PARTICIPACIÓN</b>
                 </div>
-                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/TipoRRHH'">
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "TipoParticipacion")'>
                     <span class="fa fa-cog"></span>
-                </div>
+                </a>
             </div>
             <div class="col-md-3 cuadro">
                 <div class="col-md-7">
-                    <b>TIPO DE ACTIVIDADES</b>
+                    <b>TIPO DE REFERNCIA</b>
                 </div>
-                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/TipoActividad'">
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "TipoReferencia")'>
                     <span class="fa fa-cog"></span>
-                </div>
+                </a>
             </div>
             <div class="col-md-3 cuadro">
                 <div class="col-md-7">
-                    <b>TIPO DE RECURSOS</b>
+                    <b>TIPO DE TELEFONO</b>
                 </div>
-                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/TipoRecurso'">
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "TipoTelefono")'>
                     <span class="fa fa-cog"></span>
-                </div>
+                </a>
             </div>
             <div class="col-md-3 cuadro">
                 <div class="col-md-7">
-                    <b>ESTADOS DE LOS PROYECTOS</b>
+                    <b>DEPARTAMENTO</b>
                 </div>
-                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/estado-proyecto'">
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "Departamento")'>
                     <span class="fa fa-cog"></span>
-                </div>
+                </a>
             </div>
             <div class="col-md-3 cuadro">
                 <div class="col-md-7">
-                    <b>UNIDADES DE INVESTIGACIÓN</b>
+                    <b>MUNICIPIO</b>
                 </div>
-                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/UnidadInvestigacion'">
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "Municipio")'>
                     <span class="fa fa-cog"></span>
-                </div>
-            </div>
-            <div class="col-md-3 cuadro">
-                <div class="col-md-7">
-                    <b>GASTOS</b>
-                </div>
-                <div class="col-md-4 cuadroHijo text-center" onclick="location.href='/gastos'">
-                    <span class="fa fa-cog"></span>
-                </div>
+                </a>
             </div>
 
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>ESTADO CIVIL</b>
+                </div>
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "EstadoCivil")'>
+                    <span class="fa fa-cog"></span>
+                </a>
+            </div>
+            <div class="col-md-3 cuadro">
+                <div class="col-md-7">
+                    <b>NIVEL IDIOMA</b>
+                </div>
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "NivelIdioma")'>
+                    <span class="fa fa-cog"></span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
 
 <style>
+    a {
+        color:rgb(255, 255, 255)
+    }
     .cuadro {
         color: white;
         font-size: 120%;
         background: rgba(30, 93, 129, 0.7);
-        padding: 1%;
-        margin: 1%;
+        margin:1%;
     }
 
     .cuadroHijo {

@@ -19,6 +19,8 @@ namespace BolsaTrabajoV1.Controllers
         public async Task<ActionResult> Index()
         {
             var eXPERIENCIALABORAL = db.EXPERIENCIALABORAL.Include(e => e.CURRICULUM);
+            //Models.Linq.Conexion cn = new Models.Linq.Conexion();
+            //List<Models.Linq.AREA_CONOCIMIENTO> area = cn.DB.AREA_CONOCIMIENTO.Where(f => f.IDAREACONOCIMIENTO == 1).ToList();
             return View(await eXPERIENCIALABORAL.ToListAsync());
         }
 
@@ -53,6 +55,7 @@ namespace BolsaTrabajoV1.Controllers
         {
             if (ModelState.IsValid)
             {
+                //eXPERIENCIALABORAL.IDCURRICULUM = Convert.ToInt32(Session["id_curriculum"]);
                 db.EXPERIENCIALABORAL.Add(eXPERIENCIALABORAL);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
