@@ -325,6 +325,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\cssPlantilla\bootstrap-progressbar-3.3.4.min.css" />
+    <Content Include="Content\cssPlantilla\bootstrap-table.css" />
     <Content Include="Content\cssPlantilla\bootstrap.min.css" />
     <Content Include="Content\cssPlantilla\custom.min.css" />
     <Content Include="Content\cssPlantilla\daterangepicker.css" />
@@ -345,13 +346,16 @@
       <DependentUpon>modelo_bolsaV1.edmx</DependentUpon>
       <LastGenOutput>modelo_bolsaV1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\jsPlantilla\bootstrap-table.js" />
     <Content Include="Scripts\jsPlantilla\bootstrap.min.js" />
     <Content Include="Scripts\jsPlantilla\Chart.min.js" />
     <Content Include="Scripts\jsPlantilla\custom.min.js" />
     <Content Include="Scripts\jsPlantilla\fastclick.js" />
     <Content Include="Scripts\jsPlantilla\jquery.min.js" />
     <Content Include="Scripts\jsPlantilla\nprogress.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

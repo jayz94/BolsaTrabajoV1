@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 namespace BolsaTrabajoV1.Models
 {
     using System;
@@ -21,6 +23,9 @@ namespace BolsaTrabajoV1.Models
         }
     
         public short IDTIPOTELEFONO { get; set; }
+
+        [DisplayName("Tipo Telefono")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string NOMBRETIPOTELEFONO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

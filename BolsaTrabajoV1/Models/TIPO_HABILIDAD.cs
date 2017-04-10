@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 namespace BolsaTrabajoV1.Models
 {
     using System;
@@ -22,6 +24,9 @@ namespace BolsaTrabajoV1.Models
     
         public int IDTIPOHABILIDAD { get; set; }
         public Nullable<short> IDAREACONOCIMIENTO { get; set; }
+
+        [DisplayName("Tipo Habilidad")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string NOMBRETIPOHABILIDAD { get; set; }
     
         public virtual AREA_CONOCIMIENTO AREA_CONOCIMIENTO { get; set; }

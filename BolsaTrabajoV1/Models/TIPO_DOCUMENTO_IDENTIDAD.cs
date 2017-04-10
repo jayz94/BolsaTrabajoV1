@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 namespace BolsaTrabajoV1.Models
 {
     using System;
@@ -21,9 +23,21 @@ namespace BolsaTrabajoV1.Models
         }
     
         public int IDTIPODOCUMENTOIDENTIDAD { get; set; }
+
+        [DisplayName("Nombre Documento")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string NOMBREDOCUMENTOIDENTIDAD { get; set; }
+
+        [DisplayName("Cantidad de caracteres")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public Nullable<short> CANTIDADCARACTERES { get; set; }
+
+        [DisplayName("Mascara")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string MASCARA { get; set; }
+
+        [DisplayName("Es Extranjero?")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public Nullable<bool> EXTRANJERO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

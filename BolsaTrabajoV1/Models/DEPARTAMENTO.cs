@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 namespace BolsaTrabajoV1.Models
 {
     using System;
@@ -21,7 +23,14 @@ namespace BolsaTrabajoV1.Models
         }
     
         public int IDDEPARTAMENTO { get; set; }
+
+        [DisplayName("Nombre Departamento")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string NOMBREDEPARTAMENTO { get; set; }
+
+        [DisplayName("Zona")]
+        [Required(ErrorMessage = "Este campo es requerido")]
+        [StringLength(20,ErrorMessage ="no más de 20 caracteres")]
         public string ZONA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

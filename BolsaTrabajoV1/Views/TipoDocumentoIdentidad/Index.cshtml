@@ -9,43 +9,48 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBREDOCUMENTOIDENTIDAD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CANTIDADCARACTERES)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MASCARA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EXTRANJERO)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBREDOCUMENTOIDENTIDAD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CANTIDADCARACTERES)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MASCARA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EXTRANJERO)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDTIPODOCUMENTOIDENTIDAD }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDTIPODOCUMENTOIDENTIDAD }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDTIPODOCUMENTOIDENTIDAD })
-        </td>
-    </tr>
-}
-
+<table class="table" style="color:black;" data-toggle="table" datasrc="true" data-search="true"
+ data-select-item-name="toolbar1" data-pagination="true" data-sort-name="NOMBREAREACONOCIMIENTO"
+ data-sort-order="asc">
+    <thead>
+        <tr>
+            <th data-field="NOMBREDOCUMENTOIDENTIDAD" data-sortable="true">
+                @Html.DisplayNameFor(model => model.NOMBREDOCUMENTOIDENTIDAD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CANTIDADCARACTERES)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MASCARA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EXTRANJERO)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NOMBREDOCUMENTOIDENTIDAD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CANTIDADCARACTERES)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MASCARA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EXTRANJERO)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IDTIPODOCUMENTOIDENTIDAD }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IDTIPODOCUMENTOIDENTIDAD }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IDTIPODOCUMENTOIDENTIDAD })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

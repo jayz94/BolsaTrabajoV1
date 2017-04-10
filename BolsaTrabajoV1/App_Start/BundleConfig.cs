@@ -14,7 +14,8 @@ namespace BolsaTrabajoV1
                         "~/Scripts/jsPlantilla/Char.min.js",
                         "~/Scripts/jsPlantilla/custom.min.js",
                         "~/Scripts/jsPlantilla/fastclick.js",
-                        "~/Scripts/jsPlantilla/nprogress.js"));
+                        "~/Scripts/jsPlantilla/nprogress.js",
+                        "~/Scripts/jsPlantilla/bootstrap-table.js"));
 
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
             // preparado para la producción y podrá utilizar la herramienta de compilación disponible en http://modernizr.com para seleccionar solo las pruebas que necesite.
@@ -26,7 +27,8 @@ namespace BolsaTrabajoV1
                       "~/Content/cssPlantilla/bootstrap-progressbar-3.3.4.min.css",
                       "~/Content/cssPlantilla/jqvmap.min.css",
                       "~/Content/cssPlantilla/daterangepicker.css",
-                      "~/Content/cssPlantilla/custom.min.css"));
+                      "~/Content/cssPlantilla/custom.min.css",
+                      "~/Content/cssPlantilla/bootstrap-table.css"));
 
         }
     }

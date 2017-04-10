@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 namespace BolsaTrabajoV1.Models
 {
     using System;
@@ -15,7 +17,13 @@ namespace BolsaTrabajoV1.Models
     public partial class NIVEL_IDIOMA
     {
         public int IDNIVELIDIOMA { get; set; }
+
+        [DisplayName("Nivel Idioma")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string NOMBRENIVELIDIOMA { get; set; }
+
+        [DisplayName("Código de nivel idioma")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string CODIGONIVELIDIOMA { get; set; }
     }
 }
