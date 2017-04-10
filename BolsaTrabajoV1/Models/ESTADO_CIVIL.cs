@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 namespace BolsaTrabajoV1.Models
 {
     using System;
@@ -21,6 +23,10 @@ namespace BolsaTrabajoV1.Models
         }
     
         public short IDESTADOCIVIL { get; set; }
+
+        [DisplayName("Estado Civil")]
+        [Required(ErrorMessage = "Este campo es requerido")]
+        [StringLength(20,ErrorMessage ="no más de 20 caracteres")]
         public string NOMBREESTADOCIVIL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 namespace BolsaTrabajoV1.Models
 {
     using System;
@@ -20,7 +22,11 @@ namespace BolsaTrabajoV1.Models
             this.FORMACIONACADEMICA = new HashSet<FORMACIONACADEMICA>();
         }
     
+
         public int IDTIPOFORMACION { get; set; }
+
+        [DisplayName("Tipo Formacion")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string NOMBRETIPOFORMACION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

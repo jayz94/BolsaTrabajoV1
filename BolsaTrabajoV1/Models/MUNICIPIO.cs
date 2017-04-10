@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 namespace BolsaTrabajoV1.Models
 {
     using System;
@@ -22,6 +24,9 @@ namespace BolsaTrabajoV1.Models
     
         public int IDMUNICIPIO { get; set; }
         public int IDDEPARTAMENTO { get; set; }
+
+        [DisplayName("Municipio")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string NOMBREMUNICIPIO { get; set; }
     
         public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }

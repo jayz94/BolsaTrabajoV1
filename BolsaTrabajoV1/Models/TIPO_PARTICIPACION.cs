@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 namespace BolsaTrabajoV1.Models
 {
     using System;
@@ -21,6 +23,9 @@ namespace BolsaTrabajoV1.Models
         }
     
         public int IDTIPOPARTICIPACION { get; set; }
+
+        [DisplayName("Tipo Participación")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string NOMBRETIPOPARTICIPACION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
