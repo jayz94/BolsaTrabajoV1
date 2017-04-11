@@ -5,7 +5,7 @@
 //     Los cambios manuales en este archivo pueden causar un comportamiento inesperado de la aplicación.
 //     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
 // </auto-generated>
-//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------//
 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
