@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace BolsaTrabajoV1
+namespace BolsaTrabajoV1//
 {
     public class BundleConfig
     {
