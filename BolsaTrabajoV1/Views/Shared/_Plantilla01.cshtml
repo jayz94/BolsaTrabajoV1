@@ -26,7 +26,7 @@
                         </div>
                         <div class="profile_info">
                             <span>Bienvenido</span>
-                            <h2>John Doe</h2>
+                            <h2>@HttpContext.Current.Session["idUs"]</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -49,6 +49,8 @@
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li><a href='@Url.Action("MainCatalogos", "AdministracionCatalogos")'><i class="fa fa-laptop"></i> Catalogos</a></li>
+                                <li><a href='@Url.Action("Create", "Usuario")'><i class="fa fa-laptop"></i> Usuario</a></li>
+                                <li><a href='@Url.Action("Create", "Postulante")'><i class="fa fa-laptop"></i> Postulante</a></li>
                             </ul>
                         </div>
                     </div>
@@ -116,7 +118,6 @@
             <!-- /footer content -->
         </div>
     </div>
-    @Scripts.Render("~/bundles/jsPlantilla")   
+    @Scripts.Render("~/bundles/jsPlantilla")
 </body>
 </html>
-
