@@ -18,8 +18,10 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Habilidad
         public async Task<ActionResult> Index()
         {
-            var hABILIDAD = db.HABILIDAD.Include(h => h.CURRICULUM).Include(h => h.TIPO_HABILIDAD);
-            return View(await hABILIDAD.ToListAsync());
+            //var hABILIDAD = db.HABILIDAD.Include(h => h.CURRICULUM).Include(h => h.TIPO_HABILIDAD);
+           int idCurriculum = (int)Session["idCurriculum"];
+            var habilidad = from hab in db.HABILIDAD where hab.IDCURRICULUM == idCurriculum select hab;
+            return View(await habilidad.ToListAsync());
         }
 
         // GET: Habilidad/Details/5
@@ -40,7 +42,7 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Habilidad/Create
         public ActionResult Create()
         {
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
+           // ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
             ViewBag.IDTIPOHABILIDAD = new SelectList(db.TIPO_HABILIDAD, "IDTIPOHABILIDAD", "NOMBRETIPOHABILIDAD");
             return View();
         }
@@ -50,16 +52,18 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDHABILIDAD,IDCURRICULUM,IDPOSTULANTE,IDTIPOHABILIDAD,NOMBREHABILIDAD")] HABILIDAD hABILIDAD)
+        public async Task<ActionResult> Create([Bind(Include = "IDTIPOHABILIDAD,NOMBREHABILIDAD")] HABILIDAD hABILIDAD)
         {
             if (ModelState.IsValid)
             {
+                hABILIDAD.IDCURRICULUM= (int)Session["idCurriculum"];
+                hABILIDAD.IDPOSTULANTE = (int)Session["idPostulante"];
                 db.HABILIDAD.Add(hABILIDAD);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", hABILIDAD.IDCURRICULUM);
+           // ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", hABILIDAD.IDCURRICULUM);
             ViewBag.IDTIPOHABILIDAD = new SelectList(db.TIPO_HABILIDAD, "IDTIPOHABILIDAD", "NOMBRETIPOHABILIDAD", hABILIDAD.IDTIPOHABILIDAD);
             return View(hABILIDAD);
         }
@@ -76,7 +80,7 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", hABILIDAD.IDCURRICULUM);
+           // ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", hABILIDAD.IDCURRICULUM);
             ViewBag.IDTIPOHABILIDAD = new SelectList(db.TIPO_HABILIDAD, "IDTIPOHABILIDAD", "NOMBRETIPOHABILIDAD", hABILIDAD.IDTIPOHABILIDAD);
             return View(hABILIDAD);
         }

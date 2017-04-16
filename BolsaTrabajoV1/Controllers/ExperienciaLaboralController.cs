@@ -18,10 +18,12 @@ namespace BolsaTrabajoV1.Controllers
         // GET: ExperienciaLaboral
         public async Task<ActionResult> Index()
         {
-            var eXPERIENCIALABORAL = db.EXPERIENCIALABORAL.Include(e => e.CURRICULUM);
+            //var eXPERIENCIALABORAL = db.EXPERIENCIALABORAL.Include(e => e.CURRICULUM);
             //Models.Linq.Conexion cn = new Models.Linq.Conexion();
             //List<Models.Linq.AREA_CONOCIMIENTO> area = cn.DB.AREA_CONOCIMIENTO.Where(f => f.IDAREACONOCIMIENTO == 1).ToList();
-            return View(await eXPERIENCIALABORAL.ToListAsync());
+            int idCurriculum = (int)Session["idCurriculum"];
+            var experiencia = from exp in db.EXPERIENCIALABORAL where exp.IDCURRICULUM == idCurriculum select exp;
+            return View(experiencia.ToList());
         }
 
         // GET: ExperienciaLaboral/Details/5
@@ -42,7 +44,7 @@ namespace BolsaTrabajoV1.Controllers
         // GET: ExperienciaLaboral/Create
         public ActionResult Create()
         {
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
             return View();
         }
 
@@ -51,11 +53,13 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDEXPERIENCIALABORAL,IDCURRICULUM,IDPOSTULANTE,INSTITUCION,CARGO,TITULOPROYECTO,FECHAINICIO,FECHAFIN,NUMEROCONTACTOORG")] EXPERIENCIALABORAL eXPERIENCIALABORAL)
+        public async Task<ActionResult> Create([Bind(Include = "INSTITUCION,CARGO,TITULOPROYECTO,FECHAINICIO,FECHAFIN,NUMEROCONTACTOORG")] EXPERIENCIALABORAL eXPERIENCIALABORAL)
         {
             if (ModelState.IsValid)
             {
                 //eXPERIENCIALABORAL.IDCURRICULUM = Convert.ToInt32(Session["id_curriculum"]);
+                eXPERIENCIALABORAL.IDCURRICULUM = (int)Session["idCurriculum"];
+                eXPERIENCIALABORAL.IDPOSTULANTE = (int)Session["idPostulante"];
                 db.EXPERIENCIALABORAL.Add(eXPERIENCIALABORAL);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -77,7 +81,7 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", eXPERIENCIALABORAL.IDCURRICULUM);
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", eXPERIENCIALABORAL.IDCURRICULUM);
             return View(eXPERIENCIALABORAL);
         }
 

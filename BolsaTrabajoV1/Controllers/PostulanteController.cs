@@ -55,9 +55,26 @@ namespace BolsaTrabajoV1.Controllers
         {
             if (ModelState.IsValid)
             {
+                pOSTULANTE.IDUSUARIO =(int)Session["idUs"];
                 db.POSTULANTE.Add(pOSTULANTE);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                int id = pOSTULANTE.IDPOSTULANTE; // recuperar el id de postulante
+                //busco usuario por el id de session
+                USUARIO uSUARIO = await db.USUARIO.FindAsync((int)Session["idUs"]); 
+                uSUARIO.IDPOSTULANTE =id;
+                db.Entry(uSUARIO).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                //creo el curriculum de postulante
+                CURRICULUM curriculum = new CURRICULUM();
+                curriculum.IDPOSTULANTE = id;//le asigno el id de postulante a curriculum
+                //guardo el curriculum
+                db.CURRICULUM.Add(curriculum);
+                await db.SaveChangesAsync();
+                //obtengo el id del curriculum guardado y lo guardo en session
+                int idCurriculum = curriculum.IDCURRICULUM;
+                Session["idCurriculum"] = idCurriculum;
+                Session["idPostulante"] = curriculum.IDPOSTULANTE;
+                return RedirectToAction("mainCurriculum","Curriculum");
             }
 
             ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pOSTULANTE.IDCURRICULUM);

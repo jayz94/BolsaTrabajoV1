@@ -1,13 +1,8 @@
 ﻿@model BolsaTrabajoV1.Models.FORMACIONACADEMICA
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
+<h2 class="text-center">Detalle de Formación</h2>
 
 <div>
-    <h4>FORMACIONACADEMICA</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -77,6 +72,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDFORMACION }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-danger" style="margin-right:20%; margin-left:20%" href='@Url.Action("Index", "FormacionAcademica")'>
+        <span class="fa fa-reply">&emsp; Regresar</span>
+    </a>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDFORMACION }, new { @class="btn btn-success"}) 
 </p>

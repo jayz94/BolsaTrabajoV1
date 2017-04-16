@@ -1,13 +1,8 @@
 ﻿@model BolsaTrabajoV1.Models.REFERENCIA
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
+<h2>Detalle de Referencia</h2>
 
 <div>
-    <h4>REFERENCIA</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -53,15 +48,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CURRICULUM.IDCURRICULUM)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TIPOREFERENCIA.NOMBRETIPOREFERENCIA)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.TIPOREFERENCIA.NOMBRETIPOREFERENCIA)
         </dd>
@@ -69,6 +55,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDREFERENCIA }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-danger" style="margin-right:20%; margin-left:20%" href='@Url.Action("Index", "Referencia")'>
+        <span class="fa fa-reply">&emsp; Regresar</span>
+    </a>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDREFERENCIA },new { @class="btn btn-success"}) 
 </p>

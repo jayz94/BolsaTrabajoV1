@@ -18,8 +18,10 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Logro
         public async Task<ActionResult> Index()
         {
-            var lOGRO = db.LOGRO.Include(l => l.CURRICULUM);
-            return View(await lOGRO.ToListAsync());
+            //var lOGRO = db.LOGRO.Include(l => l.CURRICULUM);
+            int idCurriculum = (int)Session["idCurriculum"];
+            var logro = from log in db.LOGRO where log.IDCURRICULUM == idCurriculum select log;
+            return View(await logro.ToListAsync());
         }
 
         // GET: Logro/Details/5
@@ -40,7 +42,7 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Logro/Create
         public ActionResult Create()
         {
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
             return View();
         }
 
@@ -49,16 +51,18 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDLOGRO,IDCURRICULUM,IDPOSTULANTE,TITULOLOGRO,FECHALOGRO,OTORGANTELOGRO,DESCRIPCIONLOGRO,PREMIO,LABORSOCIAL")] LOGRO lOGRO)
+        public async Task<ActionResult> Create([Bind(Include = "TITULOLOGRO,FECHALOGRO,OTORGANTELOGRO,DESCRIPCIONLOGRO,PREMIO,LABORSOCIAL")] LOGRO lOGRO)
         {
             if (ModelState.IsValid)
             {
+                lOGRO.IDCURRICULUM = (int)Session["idCurriculum"];
+                lOGRO.IDPOSTULANTE = (int)Session["idPostulante"];
                 db.LOGRO.Add(lOGRO);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", lOGRO.IDCURRICULUM);
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", lOGRO.IDCURRICULUM);
             return View(lOGRO);
         }
 

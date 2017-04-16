@@ -1,13 +1,7 @@
 ﻿@model IEnumerable<BolsaTrabajoV1.Models.HABILIDAD>
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
+<h2 class="text-center">Habilidades</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -15,12 +9,9 @@
             @Html.DisplayNameFor(model => model.NOMBREHABILIDAD)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.TIPO_HABILIDAD.NOMBRETIPOHABILIDAD)
         </th>
-        <th></th>
+        <th>Acciones</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -29,17 +20,17 @@
             @Html.DisplayFor(modelItem => item.NOMBREHABILIDAD)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CURRICULUM.IDCURRICULUM)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.TIPO_HABILIDAD.NOMBRETIPOHABILIDAD)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDHABILIDAD }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDHABILIDAD }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDHABILIDAD })
+            @Html.ActionLink(" ", "Edit", new { id = item.IDHABILIDAD }, new { @class = "btn btn-success fa fa-edit btn-xs" })
+            @* @Html.ActionLink(" ", "Details", new { id = item.IDHABILIDAD }, new { @class = "btn btn-primary fa fa-search btn-xs" } ) *@
+            @Html.ActionLink(" ", "Delete", new { id = item.IDHABILIDAD }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
         </td>
     </tr>
 }
 
 </table>
+<a class="btn btn-danger" style="margin-top:5%" href='@Url.Action("MainCurriculum", "Curriculum")'>
+    Regresar
+</a>

@@ -18,8 +18,10 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Publicacion
         public async Task<ActionResult> Index()
         {
-            var pUBLICACION = db.PUBLICACION.Include(p => p.CURRICULUM);
-            return View(await pUBLICACION.ToListAsync());
+            int idCurriculum = (int)Session["idCurriculum"];
+            var publicacion = from pub in db.PUBLICACION where pub.IDCURRICULUM == idCurriculum select pub;
+            //var pUBLICACION = db.PUBLICACION.Include(p => p.CURRICULUM);
+            return View(await publicacion.ToListAsync());
         }
 
         // GET: Publicacion/Details/5
@@ -49,16 +51,18 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDPUBLICACION,IDCURRICULUM,IDPOSTULANTE,TITULOPUBLICACION,EDITORIAL,REVISTA,FECHAPUBLICACION,ISBN,LIBRO,NUMEROEDICION")] PUBLICACION pUBLICACION)
+        public async Task<ActionResult> Create([Bind(Include = "TITULOPUBLICACION,EDITORIAL,REVISTA,FECHAPUBLICACION,ISBN,LIBRO,NUMEROEDICION")] PUBLICACION pUBLICACION)
         {
             if (ModelState.IsValid)
             {
+                pUBLICACION.IDCURRICULUM = (int)Session["idCurriculum"];
+                pUBLICACION.IDPOSTULANTE = (int)Session["idPostulante"];
                 db.PUBLICACION.Add(pUBLICACION);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pUBLICACION.IDCURRICULUM);
+           // ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pUBLICACION.IDCURRICULUM);
             return View(pUBLICACION);
         }
 
@@ -91,7 +95,7 @@ namespace BolsaTrabajoV1.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pUBLICACION.IDCURRICULUM);
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pUBLICACION.IDCURRICULUM);
             return View(pUBLICACION);
         }
 

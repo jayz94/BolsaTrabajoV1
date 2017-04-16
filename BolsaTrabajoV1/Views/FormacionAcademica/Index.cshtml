@@ -1,13 +1,9 @@
 ﻿@model IEnumerable<BolsaTrabajoV1.Models.FORMACIONACADEMICA>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+<h2 class="text-center">Formaciones Academicas</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -23,19 +19,11 @@
         <th>
             @Html.DisplayNameFor(model => model.FECHAFINFORMACION)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FORMAL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GRADOACADEMICO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CURRICULUM.IDCURRICULUM)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.TIPOFORMACINONACADEMICA.NOMBRETIPOFORMACION)
         </th>
-        <th></th>
+        <th>Acciones</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -53,23 +41,17 @@
             @Html.DisplayFor(modelItem => item.FECHAFINFORMACION)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FORMAL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GRADOACADEMICO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CURRICULUM.IDCURRICULUM)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.TIPOFORMACINONACADEMICA.NOMBRETIPOFORMACION)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDFORMACION }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDFORMACION }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDFORMACION })
+            @Html.ActionLink(" ", "Edit", new { id = item.IDFORMACION }, new { @class = "btn btn-success fa fa-edit btn-xs" })
+            @Html.ActionLink(" ", "Details", new { id = item.IDFORMACION }, new { @class = "btn btn-primary fa fa-search btn-xs" } ) 
+            @Html.ActionLink(" ", "Delete", new { id = item.IDFORMACION }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
         </td>
     </tr>
 }
 
 </table>
+<a class="btn btn-danger" style="margin-top:5%" href='@Url.Action("MainCurriculum", "Curriculum")'>
+    Regresar
+</a>

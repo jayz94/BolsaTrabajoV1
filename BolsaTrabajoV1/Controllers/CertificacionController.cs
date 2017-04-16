@@ -18,8 +18,9 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Certificacion
         public async Task<ActionResult> Index()
         {
-            var cERTIFICACION = db.CERTIFICACION.Include(c => c.AREA_CONOCIMIENTO).Include(c => c.CURRICULUM);
-            return View(await cERTIFICACION.ToListAsync());
+            int idCurriculum = (int)Session["idCurriculum"];
+            var certificacion = from cer in db.CERTIFICACION where cer.IDCURRICULUM == idCurriculum  select cer;
+            return View(await certificacion.ToListAsync());
         }
 
         // GET: Certificacion/Details/5
@@ -41,7 +42,7 @@ namespace BolsaTrabajoV1.Controllers
         public ActionResult Create()
         {
             ViewBag.IDAREACONOCIMIENTO = new SelectList(db.AREA_CONOCIMIENTO, "IDAREACONOCIMIENTO", "NOMBREAREACONOCIMIENTO");
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
+           // ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
             return View();
         }
 
@@ -50,17 +51,19 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDCERTIFICACION,IDCURRICULUM,IDPOSTULANTE,IDAREACONOCIMIENTO,DESCRIPCIONCERTIFICACION,TITULOCERTIFICACION,FECHAINICIOCERTIFICACION,FECHAFINCERTIFICACION,CODIGOCERTIFICACION,INSTITUCION")] CERTIFICACION cERTIFICACION)
+        public async Task<ActionResult> Create([Bind(Include = "IDAREACONOCIMIENTO,DESCRIPCIONCERTIFICACION,TITULOCERTIFICACION,FECHAINICIOCERTIFICACION,FECHAFINCERTIFICACION,CODIGOCERTIFICACION,INSTITUCION")] CERTIFICACION cERTIFICACION)
         {
             if (ModelState.IsValid)
             {
+                cERTIFICACION.IDCURRICULUM = (int)Session["idCurriculum"];
+                cERTIFICACION.IDPOSTULANTE = (int)Session["idPostulante"];
                 db.CERTIFICACION.Add(cERTIFICACION);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
             ViewBag.IDAREACONOCIMIENTO = new SelectList(db.AREA_CONOCIMIENTO, "IDAREACONOCIMIENTO", "NOMBREAREACONOCIMIENTO", cERTIFICACION.IDAREACONOCIMIENTO);
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", cERTIFICACION.IDCURRICULUM);
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", cERTIFICACION.IDCURRICULUM);
             return View(cERTIFICACION);
         }
 

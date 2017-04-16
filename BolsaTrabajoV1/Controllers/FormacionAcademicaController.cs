@@ -18,8 +18,10 @@ namespace BolsaTrabajoV1.Controllers
         // GET: FormacionAcademica
         public async Task<ActionResult> Index()
         {
-            var fORMACIONACADEMICA = db.FORMACIONACADEMICA.Include(f => f.CURRICULUM).Include(f => f.TIPOFORMACINONACADEMICA);
-            return View(await fORMACIONACADEMICA.ToListAsync());
+            // var fORMACIONACADEMICA = db.FORMACIONACADEMICA.Include(f => f.CURRICULUM).Include(f => f.TIPOFORMACINONACADEMICA);
+            int idCurriculum = (int)Session["idCurriculum"];
+            var formacion = from form in db.FORMACIONACADEMICA where form.IDCURRICULUM == idCurriculum select form;
+            return View(await formacion.ToListAsync());
         }
 
         // GET: FormacionAcademica/Details/5
@@ -40,7 +42,7 @@ namespace BolsaTrabajoV1.Controllers
         // GET: FormacionAcademica/Create
         public ActionResult Create()
         {
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
+           // ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
             ViewBag.IDTIPOFORMACION = new SelectList(db.TIPOFORMACINONACADEMICA, "IDTIPOFORMACION", "NOMBRETIPOFORMACION");
             return View();
         }
@@ -50,16 +52,18 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDFORMACION,IDCURRICULUM,IDPOSTULANTE,IDTIPOFORMACION,INSTITUCION,TITULO,FECHAINICIOFORMACION,FECHAFINFORMACION,FORMAL,GRADOACADEMICO")] FORMACIONACADEMICA fORMACIONACADEMICA)
+        public async Task<ActionResult> Create([Bind(Include = "IDTIPOFORMACION,INSTITUCION,TITULO,FECHAINICIOFORMACION,FECHAFINFORMACION,FORMAL,GRADOACADEMICO")] FORMACIONACADEMICA fORMACIONACADEMICA)
         {
             if (ModelState.IsValid)
             {
+                fORMACIONACADEMICA.IDCURRICULUM = (int)Session["idCurriculum"];
+                fORMACIONACADEMICA.IDPOSTULANTE = (int)Session["idPostulante"];
                 db.FORMACIONACADEMICA.Add(fORMACIONACADEMICA);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", fORMACIONACADEMICA.IDCURRICULUM);
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", fORMACIONACADEMICA.IDCURRICULUM);
             ViewBag.IDTIPOFORMACION = new SelectList(db.TIPOFORMACINONACADEMICA, "IDTIPOFORMACION", "NOMBRETIPOFORMACION", fORMACIONACADEMICA.IDTIPOFORMACION);
             return View(fORMACIONACADEMICA);
         }

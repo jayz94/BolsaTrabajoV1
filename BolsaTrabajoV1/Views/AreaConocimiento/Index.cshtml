@@ -1,23 +1,17 @@
 ﻿@model IEnumerable<BolsaTrabajoV1.Models.AREA_CONOCIMIENTO>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+<h2 class="text-center">Áreas de Conocimiento</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar", "Create",null, new { @class = "btn btn-success" })
 </p>
-<table class="table" style="color:black;" data-toggle="table" datasrc="true" data-search="true"
- data-select-item-name="toolbar1" data-pagination="true" data-sort-name="NOMBREAREACONOCIMIENTO"
- data-sort-order="asc">
+<table style="color:black;" data-toggle="table" data-animation="true" data-search="true" data-pagination="true" data-sort-name="NOMBREAREACONOCIMIENTO">
     <thead>
         <tr>
             <th data-field="NOMBREAREACONOCIMIENTO" data-sortable="true">
                 @Html.DisplayNameFor(model => model.NOMBREAREACONOCIMIENTO)
             </th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -28,9 +22,9 @@
                     @Html.DisplayFor(modelItem => item.NOMBREAREACONOCIMIENTO)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IDAREACONOCIMIENTO }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.IDAREACONOCIMIENTO }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.IDAREACONOCIMIENTO })
+                    @Html.ActionLink(" ", "Edit", new { id = item.IDAREACONOCIMIENTO }, new { @class = "btn btn-success fa fa-edit btn-xs" }) 
+                    @* @Html.ActionLink(" ", "Details", new { id = item.IDAREACONOCIMIENTO }, new { @class = "btn btn-primary fa fa-search btn-xs" } ) *@
+                    @Html.ActionLink(" ", "Delete", new { id = item.IDAREACONOCIMIENTO } , new { @class = "btn btn-danger fa fa-trash btn-xs" } )
                 </td>
             </tr>
         }

@@ -18,8 +18,10 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Referencia
         public async Task<ActionResult> Index()
         {
-            var rEFERENCIA = db.REFERENCIA.Include(r => r.CURRICULUM).Include(r => r.TIPOREFERENCIA);
-            return View(await rEFERENCIA.ToListAsync());
+            //var rEFERENCIA = db.REFERENCIA.Include(r => r.CURRICULUM).Include(r => r.TIPOREFERENCIA);
+            int idCurriculum = (int)Session["idCurriculum"];
+            var referencia = from refe in db.REFERENCIA where refe.IDCURRICULUM == idCurriculum select refe;
+            return View(await referencia.ToListAsync());
         }
 
         // GET: Referencia/Details/5
@@ -40,7 +42,7 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Referencia/Create
         public ActionResult Create()
         {
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
             ViewBag.IDTIPOREFERENCIA = new SelectList(db.TIPOREFERENCIA, "IDTIPOREFERENCIA", "NOMBRETIPOREFERENCIA");
             return View();
         }
@@ -50,16 +52,18 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDREFERENCIA,IDTIPOREFERENCIA,IDCURRICULUM,IDPOSTULANTE,DESCRIPCIONREFERENCIA,TELEFONOREFERENCIA,PUESTOREFERENCIA,PERSONAREFERENCIA,EMPRESAORIGENREFERENCIA")] REFERENCIA rEFERENCIA)
+        public async Task<ActionResult> Create([Bind(Include = "IDTIPOREFERENCIA,IDPOSTULANTE,DESCRIPCIONREFERENCIA,TELEFONOREFERENCIA,PUESTOREFERENCIA,PERSONAREFERENCIA,EMPRESAORIGENREFERENCIA")] REFERENCIA rEFERENCIA)
         {
             if (ModelState.IsValid)
             {
+                rEFERENCIA.IDCURRICULUM = (int)Session["idCurriculum"];
+                rEFERENCIA.IDPOSTULANTE = (int)Session["idPostulante"];
                 db.REFERENCIA.Add(rEFERENCIA);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", rEFERENCIA.IDCURRICULUM);
+           // ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", rEFERENCIA.IDCURRICULUM);
             ViewBag.IDTIPOREFERENCIA = new SelectList(db.TIPOREFERENCIA, "IDTIPOREFERENCIA", "NOMBRETIPOREFERENCIA", rEFERENCIA.IDTIPOREFERENCIA);
             return View(rEFERENCIA);
         }

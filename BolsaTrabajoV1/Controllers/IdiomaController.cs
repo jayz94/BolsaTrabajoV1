@@ -18,8 +18,10 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Idioma
         public async Task<ActionResult> Index()
         {
-            var iDIOMA = db.IDIOMA.Include(i => i.CURRICULUM);
-            return View(await iDIOMA.ToListAsync());
+            //var iDIOMA = db.IDIOMA.Include(i => i.CURRICULUM);
+            int idCurriculum = (int)Session["idCurriculum"];
+            var idioma = from idi in db.IDIOMA where idi.IDCURRICULUM == idCurriculum select idi;
+            return View(await idioma.ToListAsync());
         }
 
         // GET: Idioma/Details/5
@@ -40,7 +42,7 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Idioma/Create
         public ActionResult Create()
         {
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
+           // ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
             return View();
         }
 
@@ -49,16 +51,18 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDIDIOMA,IDCURRICULUM,IDPOSTULANTE,NOMBREIDIOMA,LENGUAMATERNA,ESCRITURA,LECTURA,CONVERSACION,ESCUCHA")] IDIOMA iDIOMA)
+        public async Task<ActionResult> Create([Bind(Include = "NOMBREIDIOMA,LENGUAMATERNA,ESCRITURA,LECTURA,CONVERSACION,ESCUCHA")] IDIOMA iDIOMA)
         {
             if (ModelState.IsValid)
             {
+                iDIOMA.IDCURRICULUM = (int)Session["idCurriculum"];
+                iDIOMA.IDPOSTULANTE = (int)Session["idPostulante"];
                 db.IDIOMA.Add(iDIOMA);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", iDIOMA.IDCURRICULUM);
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", iDIOMA.IDCURRICULUM);
             return View(iDIOMA);
         }
 

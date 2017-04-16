@@ -1,13 +1,8 @@
 ﻿@model BolsaTrabajoV1.Models.PARTICIPACION_PROFESIONAL
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
+<h2 class="text-center">Detalle de Participación</h2>
 
 <div>
-    <h4>PARTICIPACION_PROFESIONAL</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -69,6 +64,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPARTICIPACION }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-danger" style="margin-right:20%; margin-left:20%" href='@Url.Action("Index", "AreaConocimiento")'>
+        <span class="fa fa-reply">&emsp; Regresar</span>
+    </a>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPARTICIPACION },new { @class="btn btn-success"}) 
 </p>

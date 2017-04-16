@@ -1,37 +1,33 @@
 ﻿@model BolsaTrabajoV1.Models.PARTICIPACION_PROFESIONAL
 
-@{
-    ViewBag.Title = "Create";
-}
-
-<h2>Create</h2>
+<h2 class="text-center">Nueva Participación Profesional</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>PARTICIPACION_PROFESIONAL</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDCURRICULUM, "IDCURRICULUM", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDCURRICULUM", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDCURRICULUM, "", new { @class = "text-danger" })
-            </div>
+        @*
+    <div class="form-group">
+        @Html.LabelFor(model => model.IDCURRICULUM, "IDCURRICULUM", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IDCURRICULUM", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IDCURRICULUM, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDPOSTULANTE, "IDPOSTULANTE", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDPOSTULANTE", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDPOSTULANTE, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IDPOSTULANTE, "IDPOSTULANTE", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IDPOSTULANTE", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IDPOSTULANTE, "", new { @class = "text-danger" })
         </div>
-
+    </div>
+        *@
         <div class="form-group">
-            @Html.LabelFor(model => model.IDTIPOPARTICIPACION, "IDTIPOPARTICIPACION", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IDTIPOPARTICIPACION, "Tipo Participación", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("IDTIPOPARTICIPACION", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IDTIPOPARTICIPACION, "", new { @class = "text-danger" })
@@ -80,12 +76,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <a class="btn btn-danger" style="margin-right:20%; margin-left:20%" href='@Url.Action("Index", "ParticipacionProfesional")'>
+                    <span class="fa fa-reply">&emsp; Regresar</span>
+                </a>
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

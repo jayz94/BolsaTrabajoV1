@@ -50,18 +50,21 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDUSUARIO,IDPOSTULANTE,IDEMPRESA,NOMBREUSUARIO,PASSWORD,ACTIVO,COLOR,IDIOMA,DEBAJA,INTENTOS,CORREO")] USUARIO uSUARIO)
+        public async Task<ActionResult> Create([Bind(Include = "IDPOSTULANTE,IDEMPRESA,NOMBREUSUARIO,PASSWORD,ACTIVO,COLOR,IDIOMA,DEBAJA,INTENTOS,CORREO")] USUARIO uSUARIO)
         {
             if (ModelState.IsValid)
             {
                 db.USUARIO.Add(uSUARIO);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                int idUsuario = uSUARIO.IDUSUARIO; // recuperar el id
+                Session["idUs"] = idUsuario;
+                return RedirectToAction("Create","Postulante");
             }
 
             ViewBag.IDEMPRESA = new SelectList(db.EMPRESA, "IDEMPRESA", "CODIGOEMPRESA", uSUARIO.IDEMPRESA);
             ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", uSUARIO.IDPOSTULANTE);
-            return View(uSUARIO);
+            //return View(uSUARIO);
+            return RedirectToAction("Create", "Postulante");
         }
 
         // GET: Usuario/Edit/5
