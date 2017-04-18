@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.ROL_USUARIO_MM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Roles de los usuarios</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.USUARIO.NOMBREUSUARIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ROL.NOMBREROL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHAASIGNACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USUARIO.CORREO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACTIVO)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUARIO.NOMBREUSUARIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROL.NOMBREROL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHAASIGNACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUARIO.CORREO)
+        </td>
+        <td>
+            @if(item.ACTIVO == true) {
+
+            }
+            @Html.DisplayFor(modelItem => item.ACTIVO)
+        |
+            @*Html.ActionLink("Edit", "Edit", new { idusuario = item.IDUSUARIO, idrol = item.IDROL }) |*@
+            @Html.ActionLink("Detalles", "Details", new { idusuario = item.IDUSUARIO, idrol = item.IDROL })
+            @*Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+    </tr>
+}
+
+</table>

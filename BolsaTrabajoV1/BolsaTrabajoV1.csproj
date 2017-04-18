@@ -194,6 +194,7 @@
     <Compile Include="Controllers\PublicacionController.cs" />
     <Compile Include="Controllers\ReferenciaController.cs" />
     <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\ROL_USUARIO_MMController.cs" />
     <Compile Include="Controllers\TelefonoController.cs" />
     <Compile Include="Controllers\TipoContactoController.cs" />
     <Compile Include="Controllers\TipoDocumentoIdentidadController.cs" />
@@ -558,6 +559,11 @@
     <Content Include="Views\TipoReferencia\Edit.cshtml" />
     <Content Include="Views\TipoReferencia\Index.cshtml" />
     <Content Include="Views\AdministracionCatalogos\MainCatalogos.cshtml" />
+    <Content Include="Views\ROL_USUARIO_MM\Create.cshtml" />
+    <Content Include="Views\ROL_USUARIO_MM\Delete.cshtml" />
+    <Content Include="Views\ROL_USUARIO_MM\Details.cshtml" />
+    <Content Include="Views\ROL_USUARIO_MM\Edit.cshtml" />
+    <Content Include="Views\ROL_USUARIO_MM\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
