@@ -55,11 +55,8 @@ namespace BolsaTrabajoV1.Controllers
             if (ModelState.IsValid)
             {
                 int id_usuario = rOL_USUARIO_MM.IDUSUARIO;
-                var rol_usuario_viejo = from ru in db.ROL_USUARIO_MM where ru.IDUSUARIO == id_usuario select ru;
-                foreach (var item in rol_usuario_viejo)
-                {
-                    item.ACTIVO = false;
-                }
+                var coleccion_rol_usuario_viejo = from ru in db.ROL_USUARIO_MM where ru.IDUSUARIO == id_usuario select ru;
+                this.setActivo(coleccion_rol_usuario_viejo);
                 rOL_USUARIO_MM.ACTIVO = true;
                 rOL_USUARIO_MM.FECHAASIGNACION = DateTime.Now;
                 db.ROL_USUARIO_MM.Add(rOL_USUARIO_MM);
@@ -71,7 +68,44 @@ namespace BolsaTrabajoV1.Controllers
             ViewBag.IDUSUARIO = new SelectList(db.USUARIO, "IDUSUARIO", "NOMBREUSUARIO", rOL_USUARIO_MM.IDUSUARIO);
             return View(rOL_USUARIO_MM);
         }
+        
+        
+        public async Task<ActionResult> activar(int? idusuario, int? idrol)
+        {
+            if (idusuario == null || idrol == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ROL_USUARIO_MM rOL_USUARIO_MM = await db.ROL_USUARIO_MM.FindAsync(idusuario, idrol);
+            if (rOL_USUARIO_MM == null)
+            {
+                return HttpNotFound();
+            }
+            var coleccion_rol_usuario_viejo = from ru in db.ROL_USUARIO_MM where ru.IDUSUARIO == idusuario select ru;
+            this.setActivo(coleccion_rol_usuario_viejo);
+            rOL_USUARIO_MM.ACTIVO = true;
+            db.Entry(rOL_USUARIO_MM).State = EntityState.Modified;
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
 
+        public async Task<ActionResult> desactivar(int? idusuario, int? idrol)
+        {
+            if (idusuario == null || idrol == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ROL_USUARIO_MM rOL_USUARIO_MM = await db.ROL_USUARIO_MM.FindAsync(idusuario, idrol);
+            if (rOL_USUARIO_MM == null)
+            {
+                return HttpNotFound();
+            }
+            rOL_USUARIO_MM.ACTIVO = false;
+            db.Entry(rOL_USUARIO_MM).State = EntityState.Modified;
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        /*
         // GET: ROL_USUARIO_MM/Edit/5
         public async Task<ActionResult> Edit(int? idusuario,int? idrol)
         {
@@ -131,6 +165,17 @@ namespace BolsaTrabajoV1.Controllers
             db.ROL_USUARIO_MM.Remove(rOL_USUARIO_MM);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }*/
+
+
+        /* Procedimiento agregado por Elías para desactivar los roles-usuarios viejos
+         posdata falta hacer await db.SaveChangesAsync(); */
+        private void setActivo(IQueryable<ROL_USUARIO_MM> coleccion_rol_usuario_viejo)
+        {
+            foreach (var item in coleccion_rol_usuario_viejo)
+            {
+                item.ACTIVO = false;
+            }
         }
 
         protected override void Dispose(bool disposing)

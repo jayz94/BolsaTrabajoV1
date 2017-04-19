@@ -24,11 +24,15 @@
             @Html.DisplayNameFor(model => model.USUARIO.CORREO)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ACTIVO)
+            Activar
+        </th>
+        <th>
+            Ver detalles
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.USUARIO.NOMBREUSUARIO)
@@ -43,14 +47,20 @@
             @Html.DisplayFor(modelItem => item.USUARIO.CORREO)
         </td>
         <td>
-            @if(item.ACTIVO == true) {
-
+            @if (item.ACTIVO == true)
+            {
+                @Html.ActionLink("Desactivar", "desactivar", new { idusuario = item.IDUSUARIO, idrol = item.IDROL })
             }
-            @Html.DisplayFor(modelItem => item.ACTIVO)
-        |
-            @*Html.ActionLink("Edit", "Edit", new { idusuario = item.IDUSUARIO, idrol = item.IDROL }) |*@
-            @Html.ActionLink("Detalles", "Details", new { idusuario = item.IDUSUARIO, idrol = item.IDROL })
+            else
+            {
+                @Html.ActionLink("Activar", "activar", new { idusuario = item.IDUSUARIO, idrol = item.IDROL })
+            }
+            @*@Html.DisplayFor(modelItem => item.ACTIVO) *@
+            @*Html.ActionLink("Edit", "Edit", new { idusuario = item.IDUSUARIO, idrol = item.IDROL }) |
+                @Html.ActionLink("Activar", "activar", new { idusuario = item.IDUSUARIO, idrol = item.IDROL })*@
             @*Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        <td>
+            @Html.ActionLink("Detalles", "Details", new { idusuario = item.IDUSUARIO, idrol = item.IDROL })
         </td>
     </tr>
 }
