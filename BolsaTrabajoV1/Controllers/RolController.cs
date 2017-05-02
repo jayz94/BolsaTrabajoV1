@@ -51,6 +51,11 @@ namespace BolsaTrabajoV1.Controllers
         {
             if (ModelState.IsValid)
             {
+                var menus = from menu in db.MENU where menu.IDMENU < 3 select menu;
+                foreach(var item in menus)
+                {
+                    rOL.MENU.Add(item);
+                }                
                 db.ROL.Add(rOL);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -71,6 +76,8 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
+            var todosmenus = from menu in db.MENU select menu;
+            ViewBag.menus = todosmenus;
             return View(rOL);
         }
 
@@ -124,5 +131,11 @@ namespace BolsaTrabajoV1.Controllers
             }
             base.Dispose(disposing);
         }
+        /*
+        protected async Task<ActionResult> verMenus(int idRol) 
+        {
+            var menus = from menus in db.ROL where menus.IDROL = (short)idRol select menus;
+            return RedirectToAction("Index");
+        }*/
     }
 }

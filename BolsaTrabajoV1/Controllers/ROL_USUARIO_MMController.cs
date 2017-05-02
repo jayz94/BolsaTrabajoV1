@@ -186,5 +186,11 @@ namespace BolsaTrabajoV1.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public void ajax()
+        {
+            Console.WriteLine("Mensaje enviado desde consola");
+            //return "Mensaje enviado desde el controlador";
+        }
     }
 }

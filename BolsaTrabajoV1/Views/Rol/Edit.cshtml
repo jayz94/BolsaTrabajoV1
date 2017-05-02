@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>ROL</h4>
         <hr />
@@ -33,6 +33,22 @@
                 </div>
             </div>
         </div>
+
+        @foreach (var item in Model.MENU)
+        {
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-2">
+                    <select class="form-control">
+                        @foreach (var menus in ViewBag.menus)
+                        {
+
+                            <option>@menus.NOMBREMENU</option>
+
+                        }
+                    </select>
+                </div>
+            </div>
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

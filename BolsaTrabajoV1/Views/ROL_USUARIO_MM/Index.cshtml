@@ -53,6 +53,7 @@
             }
             else
             {
+                <input type="button" value="Activar" onclick="activar();"/>
                 @Html.ActionLink("Activar", "activar", new { idusuario = item.IDUSUARIO, idrol = item.IDROL })
             }
             @*@Html.DisplayFor(modelItem => item.ACTIVO) *@
@@ -66,3 +67,16 @@
 }
 
 </table>
+<script>
+    function activar() {
+        $.ajax({
+            type: 'GET',
+            URL: '@Url.Action("ajaxaskdjfh")'
+        }).done(function (data) {
+            alert(data);
+            }).fail(function (data) {
+                alert("error");
+                });
+        
+    }
+</script>

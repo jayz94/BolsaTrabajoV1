@@ -28,6 +28,15 @@
 
     </dl>
 </div>
+@if(! isNull( Model.MENU ))
+{
+
+}
+@foreach(var item in Model.MENU)
+{
+    <select>
+    @item.NOMBREMENU</select>
+}
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.IDROL }) |
     @Html.ActionLink("Back to List", "Index")
