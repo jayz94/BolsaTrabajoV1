@@ -11,7 +11,7 @@ namespace BolsaTrabajoV1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class MENU
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +19,9 @@ namespace BolsaTrabajoV1.Models
         {
             this.ROL = new HashSet<ROL>();
         }
-    
+
         public int IDMENU { get; set; }
+        public MENU IDPADRE { get; set; } 
         public string NOMBREMENU { get; set; }
         public string URL { get; set; }
         public string IMAGEN { get; set; }
