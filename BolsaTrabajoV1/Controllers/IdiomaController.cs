@@ -42,7 +42,11 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Idioma/Create
         public ActionResult Create()
         {
-           // ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
+            // ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
+            ViewBag.ESCRITURA = new SelectList(db.NIVEL_IDIOMA,"CODIGONIVELIDIOMA","NOMBRENIVELIDIOMA");
+            ViewBag.LECTURA = new SelectList(db.NIVEL_IDIOMA, "CODIGONIVELIDIOMA", "NOMBRENIVELIDIOMA");
+            ViewBag.CONVERSACION = new SelectList(db.NIVEL_IDIOMA, "CODIGONIVELIDIOMA", "NOMBRENIVELIDIOMA");
+            ViewBag.ESCUCHA = new SelectList(db.NIVEL_IDIOMA, "CODIGONIVELIDIOMA", "NOMBRENIVELIDIOMA");
             return View();
         }
 

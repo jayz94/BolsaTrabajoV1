@@ -26,7 +26,7 @@
                         </div>
                         <div class="profile_info">
                             <span>Bienvenido</span>
-                            <h2>@HttpContext.Current.Session["idUs"]</h2>
+                            <h2>@HttpContext.Current.Session["nombre"]</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -83,7 +83,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="fa fa-user fa-lg" data-toggle="dropdown" aria-expanded="false">
-                                    John Doe
+                                    @HttpContext.Current.Session["nombre"]
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -94,7 +94,7 @@
                                         </a>
                                     </li>
                                     <li><a href="javascript:;">Ayuda</a></li>
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
+                                    <li><a  href='@Url.Action("CerrarSesion", "Usuario")'><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -111,7 +111,7 @@
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    Base de Datos 2017 <a href="https://colorlib.com">UES</a>
                 </div>
                 <div class="clearfix"></div>
             </footer>

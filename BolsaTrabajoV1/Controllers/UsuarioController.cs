@@ -127,7 +127,13 @@ namespace BolsaTrabajoV1.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
+        public async Task<ActionResult> cerrarSesion()
+        {
+            Session.Clear();
+            Session["idRol"] = 1;
+            Session["nombre"] = "NO REGISTRADO";
+            return RedirectToAction("Create", "Usuario");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
