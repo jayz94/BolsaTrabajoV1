@@ -18,10 +18,10 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Postulante
         public async Task<ActionResult> Index()
         {
-            var rol = 2;//obtenemos el rol
+            var rol = 5;//obtenemos el rol
             var query = from menu in db.MENU
                         where menu.ROL.Any(m => m.IDROL == rol)
-                        select new 
+                        select menu;/* 
                         {
                             menu.IDMENU,
                             menu.IDPADRE,
@@ -30,7 +30,7 @@ namespace BolsaTrabajoV1.Controllers
                             menu.IMAGEN,
                             menu.DESCRIPCIONMENU,
                             menu.ORDEN
-                        };
+                        };*/
 
             List<MENU> menus = new List<MENU>();
             foreach (var result in query)

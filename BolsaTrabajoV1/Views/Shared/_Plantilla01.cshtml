@@ -63,14 +63,14 @@
                                             <ul>
                                                 @foreach (var submenu in Session["submenus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
                                                 {
-                                                    if (@submenu.IDPADRE.IDMENU == @menu.IDMENU)//si es submenu del menu padre
+                                                    if (@submenu.IDPADRE == @menu)//si es submenu del menu padre
                                                     {
                                                         <li>
                                                             <a href='#'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a>
                                                             <ul>
                                                                 @foreach (var subsubmenu in Session["subsubmenus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
                                                                 {
-                                                                    if (@subsubmenu.IDPADRE.IDMENU == @submenu.IDMENU)
+                                                                    if (@subsubmenu.IDPADRE == @submenu)
                                                                     {
                                                                         <li><a href='#'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a></li>
                                                                     }
