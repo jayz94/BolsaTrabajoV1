@@ -52,6 +52,38 @@
                                 <li><a href='@Url.Action("Create", "Usuario")'><i class="fa fa-laptop"></i> Usuario</a></li>
                                 <li><a href='@Url.Action("Create", "Postulante")'><i class="fa fa-laptop"></i> Postulante</a></li>
                             </ul>
+                            @foreach (var menu in Session["menus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
+                            {
+                                <ul class="nav side-menu">
+                                    <!--Si no tiene menu padre-->
+                                    @if (@menu.IDPADRE == null)
+                                    {
+                                        <li>
+                                            <a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU</a>
+                                            <ul>
+                                                @foreach (var submenu in Session["submenus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
+                                                {
+                                                    if (@submenu.IDPADRE.IDMENU == @menu.IDMENU)//si es submenu del menu padre
+                                                    {
+                                                        <li>
+                                                            <a href='#'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a>
+                                                            <ul>
+                                                                @foreach (var subsubmenu in Session["subsubmenus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
+                                                                {
+                                                                    if (@subsubmenu.IDPADRE.IDMENU == @submenu.IDMENU)
+                                                                    {
+                                                                        <li><a href='#'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a></li>
+                                                                    }
+                                                                }
+                                                            </ul>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                </ul>
+                            }
                         </div>
                     </div>
                     <!-- /sidebar menu -->
