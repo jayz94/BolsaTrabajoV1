@@ -147,6 +147,7 @@
             <PropertyRef Name="IDMENU" />
           </Key>
           <Property Name="IDMENU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDPADRE" Type="int" />
           <Property Name="NOMBREMENU" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="URL" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="IMAGEN" Type="varchar" MaxLength="30" />
@@ -528,6 +529,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MENU_REFERENCE_MENU">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="0..1" />
+          <End Role="MENU1" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="IDMENU" />
+            </Principal>
+            <Dependent Role="MENU1">
+              <PropertyRef Name="IDPADRE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MUNICIPI_FK_MUNICI_DEPARTAM">
           <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
           <End Role="MUNICIPIO" Type="Self.MUNICIPIO" Multiplicity="*" />
@@ -881,6 +894,10 @@ advertencia 6030: La relación 'FK_POSTULAN_FK_POSTUL_CURRICUL' usa el conjunto 
             <End Role="CURRICULUM" EntitySet="CURRICULUM" />
             <End Role="LOGRO" EntitySet="LOGRO" />
           </AssociationSet>
+          <AssociationSet Name="FK_MENU_REFERENCE_MENU" Association="Self.FK_MENU_REFERENCE_MENU">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="MENU1" EntitySet="MENU" />
+          </AssociationSet>
           <AssociationSet Name="FK_MUNICIPI_FK_MUNICI_DEPARTAM" Association="Self.FK_MUNICIPI_FK_MUNICI_DEPARTAM">
             <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
             <End Role="MUNICIPIO" EntitySet="MUNICIPIO" />
@@ -1133,6 +1150,8 @@ advertencia 6030: La relación 'FK_POSTULAN_FK_POSTUL_CURRICUL' usa el conjunto 
           <Property Name="DESCRIPCIONMENU" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="ORDEN" Type="Int16" />
           <NavigationProperty Name="ROL" Relationship="Self.ROL_MENU_MM" FromRole="MENU" ToRole="ROL" />
+          <NavigationProperty Name="MENU1" Relationship="BolsaTrabajoV1Model.FK_MENU_REFERENCE_MENU" FromRole="MENU" ToRole="MENU1" />
+          <NavigationProperty Name="MENU2" Relationship="BolsaTrabajoV1Model.FK_MENU_REFERENCE_MENU" FromRole="MENU1" ToRole="MENU" />
         </EntityType>
         <EntityType Name="MUNICIPIO">
           <Key>
@@ -1924,7 +1943,15 @@ advertencia 6030: La relación 'FK_POSTULAN_FK_POSTUL_CURRICUL' usa el conjunto 
             <End Role="MENU" EntitySet="MENU" />
             <End Role="ROL" EntitySet="ROL" />
           </AssociationSet>
+          <AssociationSet Name="FK_MENU_REFERENCE_MENU" Association="BolsaTrabajoV1Model.FK_MENU_REFERENCE_MENU">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="MENU1" EntitySet="MENU" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_MENU_REFERENCE_MENU">
+          <End Type="BolsaTrabajoV1Model.MENU" Role="MENU" Multiplicity="0..1" />
+          <End Type="BolsaTrabajoV1Model.MENU" Role="MENU1" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2302,6 +2329,15 @@ advertencia 6030: La relación 'FK_POSTULAN_FK_POSTUL_CURRICUL' usa el conjunto 
             <EndProperty Name="ROL">
               <ScalarProperty Name="IDROL" ColumnName="IDROL" />
             </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_MENU_REFERENCE_MENU" TypeName="BolsaTrabajoV1Model.FK_MENU_REFERENCE_MENU" StoreEntitySet="MENU">
+            <EndProperty Name="MENU1">
+              <ScalarProperty Name="IDMENU" ColumnName="IDMENU" />
+            </EndProperty>
+            <EndProperty Name="MENU">
+              <ScalarProperty Name="IDMENU" ColumnName="IDPADRE" />
+            </EndProperty>
+            <Condition ColumnName="IDPADRE" IsNull="false" />
           </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>

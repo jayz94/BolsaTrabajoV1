@@ -167,6 +167,8 @@
     <Property Name="DESCRIPCIONMENU" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Name="ORDEN" Type="Int16" />
     <NavigationProperty Name="ROL" Relationship="Self.ROL_MENU_MM" FromRole="MENU" ToRole="ROL" />
+    <NavigationProperty Name="MENU1" Relationship="BolsaTrabajoV1Model.FK_MENU_REFERENCE_MENU" FromRole="MENU" ToRole="MENU1" />
+    <NavigationProperty Name="MENU2" Relationship="BolsaTrabajoV1Model.FK_MENU_REFERENCE_MENU" FromRole="MENU1" ToRole="MENU" />
   </EntityType>
   <EntityType Name="MUNICIPIO">
     <Key>
@@ -958,5 +960,13 @@
       <End Role="MENU" EntitySet="MENU" />
       <End Role="ROL" EntitySet="ROL" />
     </AssociationSet>
+    <AssociationSet Name="FK_MENU_REFERENCE_MENU" Association="BolsaTrabajoV1Model.FK_MENU_REFERENCE_MENU">
+      <End Role="MENU" EntitySet="MENU" />
+      <End Role="MENU1" EntitySet="MENU" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_MENU_REFERENCE_MENU">
+    <End Type="BolsaTrabajoV1Model.MENU" Role="MENU" Multiplicity="0..1" />
+    <End Type="BolsaTrabajoV1Model.MENU" Role="MENU1" Multiplicity="*" />
+  </Association>
 </Schema>

@@ -18,10 +18,7 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Postulante
         public async Task<ActionResult> Index()
         {
-            var rol = 5;//obtenemos el rol
-            var query = from menu in db.MENU
-                        where menu.ROL.Any(m => m.IDROL == rol)
-                        select menu;/* 
+            /* 
                         {
                             menu.IDMENU,
                             menu.IDPADRE,
@@ -31,28 +28,12 @@ namespace BolsaTrabajoV1.Controllers
                             menu.DESCRIPCIONMENU,
                             menu.ORDEN
                         };*/
-
-            List<MENU> menus = new List<MENU>();
-            foreach (var result in query)
-            {
-                MENU menu = new MENU();
-                menu.IDMENU = result.IDMENU;
-                menu.NOMBREMENU = result.NOMBREMENU;
-                menu.URL = result.URL;
-                menu.IMAGEN = result.IMAGEN;
-                menu.DESCRIPCIONMENU = result.DESCRIPCIONMENU;
-                menu.ORDEN = result.ORDEN;
-                menu.IDPADRE = result.IDPADRE;
-                menus.Add(menu);
-            }
-            ViewData["menus"] = menus;
-
+            //ViewData["menus"] = menus;
             // ObjectQuery<MENU> q = new ObjectQuery<MENU>(query, db, MergeOption.NoTracking);
-            Session["menus"] = menus;
-            List<MENU> submenus = menus;
-            Session["submenus"] = submenus;
-            List<MENU> subsubmenus = menus;
-            Session["subsubmenus"] = subsubmenus;
+            //List<MENU> submenus = menus;
+            //Session["submenus"] = submenus;
+            //List<MENU> subsubmenus = menus;
+            //Session["subsubmenus"] = subsubmenus;
             var pOSTULANTE = db.POSTULANTE.Include(p => p.CURRICULUM1).Include(p => p.MUNICIPIO).Include(p => p.USUARIO);
             return View(await pOSTULANTE.ToListAsync());
         }

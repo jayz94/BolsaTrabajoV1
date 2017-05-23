@@ -373,5 +373,14 @@
         <ScalarProperty Name="IDROL" ColumnName="IDROL" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_MENU_REFERENCE_MENU" TypeName="BolsaTrabajoV1Model.FK_MENU_REFERENCE_MENU" StoreEntitySet="MENU">
+      <EndProperty Name="MENU1">
+        <ScalarProperty Name="IDMENU" ColumnName="IDMENU" />
+      </EndProperty>
+      <EndProperty Name="MENU">
+        <ScalarProperty Name="IDMENU" ColumnName="IDPADRE" />
+      </EndProperty>
+      <Condition ColumnName="IDPADRE" IsNull="false" />
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>
