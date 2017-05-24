@@ -70,6 +70,7 @@
         <AssociationConnector Association="BolsaTrabajoV1Model.FK_TELEFONO_FK_TELEFO_TIPO_TEL" ManuallyRouted="false" />
         <AssociationConnector Association="BolsaTrabajoV1Model.ESTADO_CIVIL_POSTULANTE_MM" ManuallyRouted="false" />
         <AssociationConnector Association="BolsaTrabajoV1Model.ROL_MENU_MM" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsaTrabajoV1Model.FK_MENU_REFERENCE_MENU" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

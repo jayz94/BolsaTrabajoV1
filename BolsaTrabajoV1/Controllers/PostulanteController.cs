@@ -18,6 +18,22 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Postulante
         public async Task<ActionResult> Index()
         {
+            /* 
+                        {
+                            menu.IDMENU,
+                            menu.IDPADRE,
+                            menu.NOMBREMENU,
+                            menu.URL,
+                            menu.IMAGEN,
+                            menu.DESCRIPCIONMENU,
+                            menu.ORDEN
+                        };*/
+            //ViewData["menus"] = menus;
+            // ObjectQuery<MENU> q = new ObjectQuery<MENU>(query, db, MergeOption.NoTracking);
+            //List<MENU> submenus = menus;
+            //Session["submenus"] = submenus;
+            //List<MENU> subsubmenus = menus;
+            //Session["subsubmenus"] = subsubmenus;
             var pOSTULANTE = db.POSTULANTE.Include(p => p.CURRICULUM1).Include(p => p.MUNICIPIO).Include(p => p.USUARIO);
             return View(await pOSTULANTE.ToListAsync());
         }

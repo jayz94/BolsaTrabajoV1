@@ -132,7 +132,7 @@ namespace BolsaTrabajoV1.Controllers
             Session.Clear();
             Session["idRol"] = 1;
             Session["nombre"] = "NO REGISTRADO";
-            return RedirectToAction("Create", "Usuario");
+            return RedirectToAction("Index", "Home");
         }
         protected override void Dispose(bool disposing)
         {

@@ -142,6 +142,7 @@
       <PropertyRef Name="IDMENU" />
     </Key>
     <Property Name="IDMENU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPADRE" Type="int" />
     <Property Name="NOMBREMENU" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="URL" Type="varchar" MaxLength="256" Nullable="false" />
     <Property Name="IMAGEN" Type="varchar" MaxLength="30" />
@@ -523,6 +524,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MENU_REFERENCE_MENU">
+    <End Role="MENU" Type="Self.MENU" Multiplicity="0..1" />
+    <End Role="MENU1" Type="Self.MENU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENU">
+        <PropertyRef Name="IDMENU" />
+      </Principal>
+      <Dependent Role="MENU1">
+        <PropertyRef Name="IDPADRE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MUNICIPI_FK_MUNICI_DEPARTAM">
     <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
     <End Role="MUNICIPIO" Type="Self.MUNICIPIO" Multiplicity="*" />
@@ -875,6 +888,10 @@ advertencia 6030: La relación 'FK_POSTULAN_FK_POSTUL_CURRICUL' usa el conjunto 
     <AssociationSet Name="FK_LOGRO_FK_LOGRO__CURRICUL" Association="Self.FK_LOGRO_FK_LOGRO__CURRICUL">
       <End Role="CURRICULUM" EntitySet="CURRICULUM" />
       <End Role="LOGRO" EntitySet="LOGRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENU_REFERENCE_MENU" Association="Self.FK_MENU_REFERENCE_MENU">
+      <End Role="MENU" EntitySet="MENU" />
+      <End Role="MENU1" EntitySet="MENU" />
     </AssociationSet>
     <AssociationSet Name="FK_MUNICIPI_FK_MUNICI_DEPARTAM" Association="Self.FK_MUNICIPI_FK_MUNICI_DEPARTAM">
       <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />

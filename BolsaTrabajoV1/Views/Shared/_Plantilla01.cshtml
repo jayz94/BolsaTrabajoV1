@@ -21,9 +21,9 @@
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
-                        <div class="profile_pic">
+                        <!--div class="profile_pic">
                             <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-                        </div>
+                        </!--div-->
                         <div class="profile_info">
                             <span>Bienvenido</span>
                             <h2>@HttpContext.Current.Session["nombre"]</h2>
@@ -33,25 +33,74 @@
                     <br />
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        @*<div class="menu_section">
+        <h3>General</h3>
+        <ul class="nav side-menu">
+            <li>
+                <a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="tables.html">Tables</a></li>
+                    <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>*@
                         <div class="menu_section">
-                            <h3>General</h3>
+                            @*<ul class="nav side-menu">
+        <li><a href='@Url.Action("MainCatalogos", "AdministracionCatalogos")'><i class="fa fa-laptop"></i> Catalogos</a></li>
+        <li><a href='@Url.Action("Create", "Usuario")'><i class="fa fa-laptop"></i> Usuario</a></li>
+        <li><a href='@Url.Action("Create", "Postulante")'><i class="fa fa-laptop"></i> Postulante</a></li>
+    </ul>*@
                             <ul class="nav side-menu">
+                                @foreach (var menu in Session["menus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
+                                {
+                                    <li><a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU</a></li>
+
+                                    if (menu.MENU1 != null || menu.MENU1.Count() > 0)
+                                    {
+                                        <li>
+                                            <ul class="nav side-menu">
+                                                @foreach (var submenu in menu.MENU1)
+                                                {
+                                                    <li><a href='#'><i class="@submenu.IMAGEN"></i>-- @submenu.NOMBREMENU</a></li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                }
+</ul>
+                            @*foreach (var menu in Session["menus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
+    {
+        <ul class="nav side-menu">
+            <!--Si no tiene menu padre-->
+            @if (@menu.IDPADRE == null)
+            {
+                <li>
+                    <a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU</a>
+                    <ul>
+                        @foreach (var submenu in Session["submenus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
+                        {
+                            if (@submenu.IDPADRE == @menu)//si es submenu del menu padre
+                            {
                                 <li>
-                                    <a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="tables.html">Tables</a></li>
-                                        <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                                    <a href='#'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a>
+                                    <ul>
+                                        @foreach (var subsubmenu in Session["subsubmenus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
+                                        {
+                                            if (@subsubmenu.IDPADRE == @submenu)
+                                            {
+                                                <li><a href='#'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a></li>
+                                            }
+                                        }
                                     </ul>
                                 </li>
-                            </ul>
-                        </div>
-                        <div class="menu_section">
-                            <h3>General</h3>
-                            <ul class="nav side-menu">
-                                <li><a href='@Url.Action("MainCatalogos", "AdministracionCatalogos")'><i class="fa fa-laptop"></i> Catalogos</a></li>
-                                <li><a href='@Url.Action("Create", "Usuario")'><i class="fa fa-laptop"></i> Usuario</a></li>
-                                <li><a href='@Url.Action("Create", "Postulante")'><i class="fa fa-laptop"></i> Postulante</a></li>
-                            </ul>
+                            }
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+    }*@
                         </div>
                     </div>
                     <!-- /sidebar menu -->

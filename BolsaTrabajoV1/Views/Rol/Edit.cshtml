@@ -2,6 +2,12 @@
 
 @{
     ViewBag.Title = "Edit";
+    var opciones = new List<string>();
+    foreach(var menus in ViewBag.menus)
+    {
+        opciones.Add("<option value =" + menus.IDMENU + ">" + menus.NOMBREMENU + "</option >");
+    }
+
 }
 
 <h2>Edit</h2>
@@ -36,7 +42,8 @@
 
         <div class="form-group">
             <label class="control-label col-md-4">MENÚS A LOS QUE PUEDE ACCEDER</label>
-        </div>
+        </div><button onclick="agregarMenu(); return false;">Agregar</button>
+        <div id="div_padre"></div>
             @foreach (var item in Model.MENU)//
             {
                 <div class="form-group">
@@ -44,9 +51,7 @@
                         <select class="form-control">
                             @foreach (var menus in ViewBag.menus)
                             {
-
                                 <option value="@menus.IDMENU" @if (menus.IDMENU == item.IDMENU) { Write("selected"); }>@menus.NOMBREMENU</option>
-
                             }
                         </select>
                     </div>
@@ -61,7 +66,24 @@
             </div>
         </div>
 }
+<script>
 
+    function agregarMenu() {
+        var $select = document.createElement("select");
+        var opcion;
+            @foreach(var menus in ViewBag.menus)
+            {
+                WriteLiteral("opcion = document.createElement(\"option\");");
+                WriteLiteral("opcion.value =" + menus.IDMENU + ";");
+                WriteLiteral("opcion.innerHTML = '" + menus.NOMBREMENU + "';");
+                WriteLiteral("$select.appendChild(opcion);");
+            }
+        var div_padre = document.getElementById("div_padre");
+        div_padre.append($select);
+        
+            
+    }
+</script>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
