@@ -82,6 +82,9 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
+            
+            var niveles = from nivel in db.NIVEL_IDIOMA  select nivel;
+            ViewBag.niveles = niveles;
             ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", iDIOMA.IDCURRICULUM);
             return View(iDIOMA);
         }

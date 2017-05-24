@@ -1,13 +1,8 @@
 ﻿@model IEnumerable<BolsaTrabajoV1.Models.NIVEL_IDIOMA>
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+<h2 class="text-center">Niveles de Idioma</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table" style="color:black;" data-toggle="table" datasrc="true" data-search="true"
        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="NOMBREAREACONOCIMIENTO"
@@ -20,7 +15,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.CODIGONIVELIDIOMA)
             </th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -34,12 +29,17 @@
                     @Html.DisplayFor(modelItem => item.CODIGONIVELIDIOMA)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IDNIVELIDIOMA }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.IDNIVELIDIOMA }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.IDNIVELIDIOMA })
+
+                    @Html.ActionLink(" ", "Edit", new { id = item.IDNIVELIDIOMA }, new { @class = "btn btn-success fa fa-edit btn-xs" })
+                    @Html.ActionLink(" ", "Details", new { id = item.IDNIVELIDIOMA }, new { @class = "btn btn-primary fa fa-search btn-xs" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.IDNIVELIDIOMA }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<a class="btn btn-danger" style=" margin-left:40%" href='@Url.Action("MainCatalogos", "AdministracionCatalogos")'>
+    <span class="fa fa-reply">&emsp; Regresar</span>
+</a>
+
 

@@ -1,17 +1,11 @@
 ﻿@model BolsaTrabajoV1.Models.TIPO_TELEFONO
 
-@{
-    ViewBag.Title = "Edit";
-}
-
-<h2>Edit</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TIPO_TELEFONO</h4>
+        <h4 class="text-center">MODIFICAR TIPO TELEFONO</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IDTIPOTELEFONO)
@@ -26,7 +20,10 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <a class="btn btn-danger" style="margin-right:20%; margin-left:20%" href='@Url.Action("Index", "TipoTelefono")'>
+                    <span class="fa fa-reply">&emsp; Regresar</span>
+                </a>
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </div>
     </div>

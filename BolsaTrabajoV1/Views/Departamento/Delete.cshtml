@@ -1,12 +1,6 @@
 ﻿@model BolsaTrabajoV1.Models.DEPARTAMENTO
 
-@{
-    ViewBag.Title = "Delete";
-}
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="text-center">¿Esta seguro de Eliminarlo?</h3>
 <div>
     <h4>DEPARTAMENTO</h4>
     <hr />
@@ -33,8 +27,10 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <a class="btn btn-success" style="margin-right:20%; margin-left:20%" href='@Url.Action("Index", "Departamento")'>
+                <span>&emsp; NO</span>
+            </a>
+            <input type="submit" value="SI" class="btn btn-danger" />
         </div>
     }
 </div>

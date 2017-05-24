@@ -1,13 +1,9 @@
 ﻿@model IEnumerable<BolsaTrabajoV1.Models.TIPO_HABILIDAD>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+<h2 class="text-center">TIPOS DE HABILIDADES</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table" style="color:black;" data-toggle="table" datasrc="true" data-search="true"
  data-select-item-name="toolbar1" data-pagination="true" data-sort-name="NOMBREAREACONOCIMIENTO"
@@ -20,7 +16,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.AREA_CONOCIMIENTO.NOMBREAREACONOCIMIENTO)
             </th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -34,12 +30,16 @@
                     @Html.DisplayFor(modelItem => item.AREA_CONOCIMIENTO.NOMBREAREACONOCIMIENTO)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IDTIPOHABILIDAD }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.IDTIPOHABILIDAD }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.IDTIPOHABILIDAD })
+                    @Html.ActionLink(" ", "Edit", new { id = item.IDTIPOHABILIDAD }, new { @class = "btn btn-success fa fa-edit btn-xs" })
+                    @*@Html.ActionLink(" ", "Details", new { id = item.IDTIPOHABILIDAD }, new { @class = "btn btn-primary fa fa-search btn-xs" })*@
+                    @Html.ActionLink(" ", "Delete", new { id = item.IDTIPOHABILIDAD }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<a class="btn btn-danger" style=" margin-left:40%" href='@Url.Action("MainCatalogos", "AdministracionCatalogos")'>
+    <span class="fa fa-reply">&emsp; Regresar</span>
+</a>
+
 

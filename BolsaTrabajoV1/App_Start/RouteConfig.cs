@@ -16,7 +16,7 @@ namespace BolsaTrabajoV1
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Postulante", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Usuario", action = "Create", id = UrlParameter.Optional }
             );
             //defino mis propias rutas
            
