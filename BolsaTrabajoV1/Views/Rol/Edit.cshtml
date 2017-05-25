@@ -2,11 +2,11 @@
 
 @{
     ViewBag.Title = "Edit";
-    var opciones = new List<string>();
+    /*var opciones = new List<string>();
     foreach(var menus in ViewBag.menus)
     {
         opciones.Add("<option value =" + menus.IDMENU + ">" + menus.NOMBREMENU + "</option >");
-    }
+    }*/
 
 }
 
@@ -42,21 +42,46 @@
 
         <div class="form-group">
             <label class="control-label col-md-4">MENÚS A LOS QUE PUEDE ACCEDER</label>
-        </div><button onclick="agregarMenu(); return false;">Agregar</button>
-        <div id="div_padre"></div>
-            @foreach (var item in Model.MENU)//
-            {
-                <div class="form-group">
-                    <div class="col-md-8 col-md-offset-4">
-                        <select class="form-control">
-                            @foreach (var menus in ViewBag.menus)
-                            {
-                                <option value="@menus.IDMENU" @if (menus.IDMENU == item.IDMENU) { Write("selected"); }>@menus.NOMBREMENU</option>
-                            }
-                        </select>
-                    </div>
+        </div>@*<button onclick="agregarMenu(); return false;">Agregar</button>
+    <div id="div_padre"></div>
+        @foreach (var item in Model.MENU)//
+        {
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <select class="form-control">
+                        @foreach (var menus in ViewBag.menus)
+                        {
+                            <option value="@menus.IDMENU" @if (menus.IDMENU == item.IDMENU) { Write("selected"); }>@menus.NOMBREMENU</option>
+                        }
+                    </select>
                 </div>
-            }
+            </div>
+        }*@
+        <div class="form-group">
+            <div class="col-md-8 col-md-offset-4">
+               <table>
+                   <tr>
+                       @{ 
+                           int cnt = 0;
+                           List<BolsaTrabajoV1.Models.MenusAsignadosViewModel> menus = ViewBag.menus;
+                           foreach(var menu in menus)
+                           {
+                               if(cnt++ % 3 == 0)
+                               {
+                                   @:</tr><tr>
+                               }
+                               @:<td>
+                                    <input type="checkbox" name="selectedMenus" value="@menu.IDMENU" @(Html.Raw(menu.asignado ? "checked=\"checked\"":"")) />
+                                    @menu.IDMENU @: @menu.NOMBREMENU
+                               @:</td>
+                           }
+                           @:</tr>
+                       }
+               </table>
+            </div>
+        </div>
+
+
 
 
             <div class="form-group">

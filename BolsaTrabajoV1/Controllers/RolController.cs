@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BolsaTrabajoV1.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace BolsaTrabajoV1.Controllers
 {
@@ -71,30 +72,75 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ROL rOL = await db.ROL.FindAsync(id);
+            ROL rOL = await db.ROL
+                .Include(i => i.MENU)
+                .Where(i => i.IDROL == id)
+                .SingleAsync();
+            PopulateMenusAsignadosViewModel(rOL);
             if (rOL == null)
             {
                 return HttpNotFound();
             }
-            var todosmenus = from menu in db.MENU select menu;
-            ViewBag.menus = todosmenus;
+            //var todosmenus = from menu in db.MENU select menu;
+            //ViewBag.menus = todosmenus;
             return View(rOL);
         }
 
         // POST: Rol/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IDROL,NOMBREROL,ACTIVO")] ROL rOL)
+        public async Task<ActionResult> Edit([Bind(Include = "IDROL,NOMBREROL,ACTIVO")] ROL rOL, string[] selectedMenus)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(rOL).State = EntityState.Modified;
+                UpdateMenusDelRol(selectedMenus, rOL);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            PopulateMenusAsignadosViewModel(rOL);
             return View(rOL);
+        }*/
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int? id, string[] selectedMenus)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var rolPorActualizar = db.ROL
+               .Include(i => i.MENU)
+               .Where(i => i.IDROL == id)
+               .Single();
+
+            if (TryUpdateModel(rolPorActualizar, "",
+               new string[] { "NOMBREROL", "ACTIVO", "MENU" }))
+            {
+                try
+                {
+                    /*if (String.IsNullOrWhiteSpace(rolPorActualizar.OfficeAssignment.Location))
+                    {
+                        rolPorActualizar.OfficeAssignment = null;
+                    }*/
+
+                    UpdateMenusDelRol(selectedMenus, rolPorActualizar);
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            PopulateMenusAsignadosViewModel(rolPorActualizar);
+            return View(rolPorActualizar);
         }
 
         // GET: Rol/Delete/5
@@ -130,6 +176,57 @@ namespace BolsaTrabajoV1.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public void PopulateMenusAsignadosViewModel(ROL rol)
+        {
+            var todosMenus = db.MENU;
+            var menusAsignados = new HashSet<int>(rol.MENU.Select(m => m.IDMENU));
+            var viewModel = new List<MenusAsignadosViewModel>();
+            foreach(var menu in todosMenus)
+            {
+                viewModel.Add(new MenusAsignadosViewModel
+                {
+                    IDMENU = menu.IDMENU,
+                    NOMBREMENU = menu.NOMBREMENU,
+                    asignado = menusAsignados.Contains(menu.IDMENU)
+                });
+            }
+            ViewBag.menus = viewModel;
+        }
+
+        private void UpdateMenusDelRol(string[] selectedMenus,ROL rolPorActualizar)
+        {
+            if(selectedMenus == null)
+            {
+                rolPorActualizar.MENU/*Clear();//*/ = new List<MENU>();
+                return;
+            }
+
+            var selectedMenusHS = new HashSet<string>(selectedMenus);//seleccionados de la vista
+            var rolMenus = new HashSet<int>(rolPorActualizar.MENU.Select(m => m.IDMENU));//set de menus que ya tiene el rol
+            /*var rolMenus = new HashSet<int>();
+            foreach(var item in rolPorActualizar.MENU)
+            {
+                rolMenus.Add(item.IDMENU);
+            }*/
+            foreach(var menu in db.MENU)
+            {
+                if (selectedMenusHS.Contains(menu.IDMENU.ToString()))
+                {
+                    if (!rolMenus.Contains(menu.IDMENU)/*rolMenus.Count< 1*/)//Si lo ha seleccionado en la vista pero no esta en los del rol, lo agrega
+                    {
+                        rolPorActualizar.MENU.Add(menu);
+                    }
+                }
+                else
+                {
+                    if (rolMenus.Contains(menu.IDMENU))//si no esta en la vista pero si en los del rol, lo elimina
+                    {
+                        rolPorActualizar.MENU.Remove(menu);
+                    }
+                }
+            }
         }
         /*
         protected async Task<ActionResult> verMenus(int idRol) 

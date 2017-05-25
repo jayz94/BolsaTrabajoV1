@@ -17,7 +17,8 @@
         <th>
             @Html.DisplayNameFor(model => model.ACTIVO)
         </th>
-        <th></th>
+        <th>Menus</th>
+        <th>Acciones</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -28,6 +29,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.ACTIVO)
         </td>
+        <td>
+            @{
+                foreach (var menu in item.MENU)
+                {
+                    @menu.IDMENU @: @menu.NOMBREMENU <br />
+                }
+            }
+        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IDROL }) |
             @Html.ActionLink("Details", "Details", new { id=item.IDROL }) |
