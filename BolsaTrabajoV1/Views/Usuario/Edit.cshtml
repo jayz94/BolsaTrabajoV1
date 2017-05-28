@@ -1,36 +1,15 @@
 ﻿@model BolsaTrabajoV1.Models.USUARIO
 
-@{
-    ViewBag.Title = "Edit";
-}
-
-<h2>Edit</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>USUARIO</h4>
+        <h4 class="text-center" >MODIFICAR USUARIO</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IDUSUARIO)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDPOSTULANTE, "IDPOSTULANTE", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDPOSTULANTE", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDPOSTULANTE, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDEMPRESA, "IDEMPRESA", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDEMPRESA", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDEMPRESA, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.CODIGOEMPRESA)
 
         <div class="form-group">
             @Html.LabelFor(model => model.NOMBREUSUARIO, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -41,20 +20,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PASSWORD, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Contraseña Actual</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control" } })
+                <input class="form-control" name="PASSA" type="password" />
                 @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ACTIVO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Contraseña Nueva</label>
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.ACTIVO)
-                    @Html.ValidationMessageFor(model => model.ACTIVO, "", new { @class = "text-danger" })
-                </div>
+                <input class="form-control" name="PASSN" type="password" />
+                @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -73,25 +50,6 @@
                 @Html.ValidationMessageFor(model => model.IDIOMA, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DEBAJA, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.DEBAJA)
-                    @Html.ValidationMessageFor(model => model.DEBAJA, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.INTENTOS, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.INTENTOS, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.INTENTOS, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.CORREO, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -102,12 +60,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

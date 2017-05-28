@@ -34,7 +34,7 @@ namespace BolsaTrabajoV1.Controllers
             //Session["submenus"] = submenus;
             //List<MENU> subsubmenus = menus;
             //Session["subsubmenus"] = subsubmenus;
-            var pOSTULANTE = db.POSTULANTE.Include(p => p.CURRICULUM1).Include(p => p.MUNICIPIO).Include(p => p.USUARIO);
+            var pOSTULANTE = db.POSTULANTE.Include(p => p.MUNICIPIO).Include(p => p.USUARIO);
             return View(await pOSTULANTE.ToListAsync());
         }
 
@@ -77,7 +77,7 @@ namespace BolsaTrabajoV1.Controllers
                 int id = pOSTULANTE.IDPOSTULANTE; // recuperar el id de postulante
                 //busco usuario por el id de session
                 USUARIO uSUARIO = await db.USUARIO.FindAsync((int)Session["idUs"]); 
-                uSUARIO.IDPOSTULANTE =id;
+                //uSUARIO.IDPOSTULANTE =id;
                 db.Entry(uSUARIO).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 //creo el curriculum de postulante
@@ -93,7 +93,7 @@ namespace BolsaTrabajoV1.Controllers
                 return RedirectToAction("mainCurriculum","Curriculum");
             }
 
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pOSTULANTE.IDCURRICULUM);
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pOSTULANTE.IDCURRICULUM);
             ViewBag.IDMUNICIPIO = new SelectList(db.MUNICIPIO, "IDMUNICIPIO", "NOMBREMUNICIPIO", pOSTULANTE.IDMUNICIPIO);
             ViewBag.IDUSUARIO = new SelectList(db.USUARIO, "IDUSUARIO", "NOMBREUSUARIO", pOSTULANTE.IDUSUARIO);
             return View(pOSTULANTE);
@@ -111,7 +111,7 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pOSTULANTE.IDCURRICULUM);
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pOSTULANTE.IDCURRICULUM);
             ViewBag.IDMUNICIPIO = new SelectList(db.MUNICIPIO, "IDMUNICIPIO", "NOMBREMUNICIPIO", pOSTULANTE.IDMUNICIPIO);
             ViewBag.IDUSUARIO = new SelectList(db.USUARIO, "IDUSUARIO", "NOMBREUSUARIO", pOSTULANTE.IDUSUARIO);
             return View(pOSTULANTE);
@@ -130,7 +130,7 @@ namespace BolsaTrabajoV1.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pOSTULANTE.IDCURRICULUM);
+            //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pOSTULANTE.IDCURRICULUM);
             ViewBag.IDMUNICIPIO = new SelectList(db.MUNICIPIO, "IDMUNICIPIO", "NOMBREMUNICIPIO", pOSTULANTE.IDMUNICIPIO);
             ViewBag.IDUSUARIO = new SelectList(db.USUARIO, "IDUSUARIO", "NOMBREUSUARIO", pOSTULANTE.IDUSUARIO);
             return View(pOSTULANTE);

@@ -12,10 +12,18 @@ namespace BolsaTrabajoV1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class NIVEL_IDIOMA
+    public partial class TIPO_EXAMEN
     {
-        public int IDNIVELIDIOMA { get; set; }
-        public string NOMBRENIVELIDIOMA { get; set; }
-        public string CODIGONIVELIDIOMA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TIPO_EXAMEN()
+        {
+            this.EXAMEN = new HashSet<EXAMEN>();
+        }
+    
+        public string DESCRIPCIONTIPO { get; set; }
+        public int IDTIPOEXAMEN { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EXAMEN> EXAMEN { get; set; }
     }
 }

@@ -18,8 +18,8 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Usuario
         public async Task<ActionResult> Index()
         {
-            var uSUARIO = db.USUARIO.Include(u => u.EMPRESA).Include(u => u.POSTULANTE1);
-            return View(await uSUARIO.ToListAsync());
+            //var uSUARIO = db.USUARIO.Include(u => u.EMPRESA).Include(u => u.POSTULANTE1);
+            return View(await db.USUARIO.ToListAsync());
         }
 
         // GET: Usuario/Details/5
@@ -41,7 +41,8 @@ namespace BolsaTrabajoV1.Controllers
         public ActionResult Create()
         {
             ViewBag.IDEMPRESA = new SelectList(db.EMPRESA, "IDEMPRESA", "CODIGOEMPRESA");
-            ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE");
+            //ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE");
+            //ViewBag.IDIOMA = new SelectList(db.IDIOMA,"IDIDIOMA","NOMBREIDIOMA");
             return View();
         }
 
@@ -50,19 +51,33 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDPOSTULANTE,IDEMPRESA,NOMBREUSUARIO,PASSWORD,ACTIVO,COLOR,IDIOMA,DEBAJA,INTENTOS,CORREO")] USUARIO uSUARIO)
+        public async Task<ActionResult> Create(String NOMBREUSUARIO,String PASSWORD,String PASS2,String IDIOMA,String CORREO)
         {
-            if (ModelState.IsValid)
+            /*if (ModelState.IsValid)
+            {*/
+            if (PASSWORD.Equals(PASS2))
             {
-                db.USUARIO.Add(uSUARIO);
+                USUARIO us = new USUARIO();
+                us.NOMBREUSUARIO = NOMBREUSUARIO;
+                us.PASSWORD = PASSWORD;
+                us.ACTIVO = false;
+                us.IDIOMA = IDIOMA;
+                us.CORREO = CORREO;
+                db.USUARIO.Add(us);
                 await db.SaveChangesAsync();
-                int idUsuario = uSUARIO.IDUSUARIO; // recuperar el id
+                int idUsuario = us.IDUSUARIO; // recuperar el id
                 Session["idUs"] = idUsuario;
-                return RedirectToAction("Create","Postulante");
+                //return RedirectToAction("Create", "Postulante");
+                ViewBag.Exito = "Usuario Ingresado con exito";
             }
+            else {
+                ViewBag.ErrorPass = "Contraseñas no Coinciden";
+            }
+            return View();
+           // }
 
-            ViewBag.IDEMPRESA = new SelectList(db.EMPRESA, "IDEMPRESA", "CODIGOEMPRESA", uSUARIO.IDEMPRESA);
-            ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", uSUARIO.IDPOSTULANTE);
+            //ViewBag.IDEMPRESA = new SelectList(db.EMPRESA, "IDEMPRESA", "CODIGOEMPRESA", uSUARIO.CODIGOEMPRESA);
+            //ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", uSUARIO.IDPOSTULANTE);
             //return View(uSUARIO);
             return RedirectToAction("Create", "Postulante");
         }
@@ -79,8 +94,8 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDEMPRESA = new SelectList(db.EMPRESA, "IDEMPRESA", "CODIGOEMPRESA", uSUARIO.IDEMPRESA);
-            ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", uSUARIO.IDPOSTULANTE);
+            ViewBag.IDEMPRESA = new SelectList(db.EMPRESA, "IDEMPRESA", "CODIGOEMPRESA", uSUARIO.CODIGOEMPRESA);
+            //ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", uSUARIO.IDPOSTULANTE);
             return View(uSUARIO);
         }
 
@@ -89,7 +104,7 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IDUSUARIO,IDPOSTULANTE,IDEMPRESA,NOMBREUSUARIO,PASSWORD,ACTIVO,COLOR,IDIOMA,DEBAJA,INTENTOS,CORREO")] USUARIO uSUARIO)
+        public async Task<ActionResult> Edit([Bind(Include = "IDUSUARIO,CODIGOEMPRESA,NOMBREUSUARIO,COLOR,IDIOMA,CORREO")] USUARIO uSUARIO,String PASSA, String PASSN)
         {
             if (ModelState.IsValid)
             {
@@ -97,8 +112,8 @@ namespace BolsaTrabajoV1.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDEMPRESA = new SelectList(db.EMPRESA, "IDEMPRESA", "CODIGOEMPRESA", uSUARIO.IDEMPRESA);
-            ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", uSUARIO.IDPOSTULANTE);
+            ViewBag.CODIGOEMPRESA = new SelectList(db.EMPRESA, "IDEMPRESA", "CODIGOEMPRESA", uSUARIO.CODIGOEMPRESA);
+           // ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", uSUARIO.IDPOSTULANTE);
             return View(uSUARIO);
         }
 
@@ -127,6 +142,17 @@ namespace BolsaTrabajoV1.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public String CambiarEstadoUsuario(int id) {
+            db.cambiarEstadoUsuario(id);
+            return "ya :D "+ id;
+        }
+
+        [HttpPost]
+        public void DesbloquearIntentos(int id) {
+            db.DesbloqueoUsuario(id);
+        }
+
         public async Task<ActionResult> cerrarSesion()
         {
             Session.Clear();

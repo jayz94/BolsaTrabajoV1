@@ -12,10 +12,13 @@ namespace BolsaTrabajoV1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class NIVEL_IDIOMA
+    public partial class ESTADO_CIVIL_POSTULANTE_MM
     {
-        public int IDNIVELIDIOMA { get; set; }
-        public string NOMBRENIVELIDIOMA { get; set; }
-        public string CODIGONIVELIDIOMA { get; set; }
+        public int IDPOSTULANTE { get; set; }
+        public short IDESTADOCIVIL { get; set; }
+        public Nullable<System.DateTime> FECHACAMBIO { get; set; }
+    
+        public virtual ESTADO_CIVIL ESTADO_CIVIL { get; set; }
+        public virtual POSTULANTE POSTULANTE { get; set; }
     }
 }

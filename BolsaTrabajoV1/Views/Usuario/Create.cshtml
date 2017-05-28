@@ -8,6 +8,8 @@
         <h4 class="text-center">NUEVO USUARIO</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h2 class="text-center text-success">@ViewBag.Exito</h2>
+        <h2 class="text-center text-danger"><span class="fa fa-key"></span>&nbsp; @ViewBag.ErrorPass</h2>
         @*
     <div class="form-group">
         @Html.LabelFor(model => model.IDPOSTULANTE, "IDPOSTULANTE", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -40,6 +42,14 @@
                 @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Repita la Contraseña</label>
+            <div class="col-md-10">
+                <input class="form-control" name="PASS2" type="password"/>
+                @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+            </div>
+        </div>
         @*
     <div class="form-group">
         @Html.LabelFor(model => model.ACTIVO, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -50,7 +60,7 @@
             </div>
         </div>
     </div>
-        *@
+
         <div class="form-group">
             @Html.LabelFor(model => model.COLOR, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -58,7 +68,7 @@
                 @Html.ValidationMessageFor(model => model.COLOR, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        *@
         <div class="form-group">
             @Html.LabelFor(model => model.IDIOMA, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

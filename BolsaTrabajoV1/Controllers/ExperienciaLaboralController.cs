@@ -45,6 +45,8 @@ namespace BolsaTrabajoV1.Controllers
         public ActionResult Create()
         {
             //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
+            //campos que trae desde la base, EL CAMPO EN LA VIEWBAG DEBE LLAMARSE IGUAL QUE COMO LO GUARDA
+            ViewBag.IDCARGO = new SelectList(db.CARGO,"IDCARGO","NOMBRECARGO");
             return View();
         }
 
@@ -53,7 +55,7 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "INSTITUCION,CARGO,TITULOPROYECTO,FECHAINICIO,FECHAFIN,NUMEROCONTACTOORG")] EXPERIENCIALABORAL eXPERIENCIALABORAL)
+        public async Task<ActionResult> Create([Bind(Include = "INSTITUCION,IDCARGO,TITULOPROYECTO,FECHAINICIO,FECHAFIN,NUMEROCONTACTOORG")] EXPERIENCIALABORAL eXPERIENCIALABORAL)
         {
             if (ModelState.IsValid)
             {
@@ -82,6 +84,8 @@ namespace BolsaTrabajoV1.Controllers
                 return HttpNotFound();
             }
             //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", eXPERIENCIALABORAL.IDCURRICULUM);
+            //primer parametro es la lista de objetos, el segundo el identificador
+            ViewBag.IDCARGO = new SelectList(db.CARGO, "IDCARGO", "IDCARGO", eXPERIENCIALABORAL.IDCARGO);
             return View(eXPERIENCIALABORAL);
         }
 

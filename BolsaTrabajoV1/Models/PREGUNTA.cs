@@ -12,21 +12,22 @@ namespace BolsaTrabajoV1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AREA_CONOCIMIENTO
+    public partial class PREGUNTA
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AREA_CONOCIMIENTO()
+        public PREGUNTA()
         {
-            this.CERTIFICACION = new HashSet<CERTIFICACION>();
-            this.TIPO_HABILIDAD = new HashSet<TIPO_HABILIDAD>();
+            this.OPCION_PREGUNTA = new HashSet<OPCION_PREGUNTA>();
         }
     
-        public short IDAREACONOCIMIENTO { get; set; }
-        public string NOMBREAREACONOCIMIENTO { get; set; }
+        public Nullable<int> CODIGOEXAMEN { get; set; }
+        public string TEXTOPREGUNTA { get; set; }
+        public int IDPREGUNTA { get; set; }
+        public Nullable<short> IDTIPOOPCION { get; set; }
     
+        public virtual EXAMEN EXAMEN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CERTIFICACION> CERTIFICACION { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TIPO_HABILIDAD> TIPO_HABILIDAD { get; set; }
+        public virtual ICollection<OPCION_PREGUNTA> OPCION_PREGUNTA { get; set; }
+        public virtual TIPOPREGUNTA TIPOPREGUNTA { get; set; }
     }
 }

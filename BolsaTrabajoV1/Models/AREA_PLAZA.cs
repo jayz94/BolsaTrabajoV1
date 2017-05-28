@@ -12,10 +12,9 @@ namespace BolsaTrabajoV1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class NIVEL_IDIOMA
+    public partial class AREA_PLAZA
     {
-        public int IDNIVELIDIOMA { get; set; }
-        public string NOMBRENIVELIDIOMA { get; set; }
-        public string CODIGONIVELIDIOMA { get; set; }
+        public string DESCRIPCIONAREA { get; set; }
+        public int IDAREAPLAZA { get; set; }
     }
 }
