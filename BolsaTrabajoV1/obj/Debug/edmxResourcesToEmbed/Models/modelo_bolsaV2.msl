@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BolsaTrabajoV3ModelStoreContainer" CdmEntityContainer="ConexionBDBolsa">
+    <EntitySetMapping Name="AREA_CARGO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.AREA_CARGO">
+        <MappingFragment StoreEntitySet="AREA_CARGO">
+          <ScalarProperty Name="DESCRIPCIONAREA" ColumnName="DESCRIPCIONAREA" />
+          <ScalarProperty Name="IDAREACARGO" ColumnName="IDAREACARGO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AREA_CONOCIMIENTO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.AREA_CONOCIMIENTO">
+        <MappingFragment StoreEntitySet="AREA_CONOCIMIENTO">
+          <ScalarProperty Name="IDAREACONOCIMIENTO" ColumnName="IDAREACONOCIMIENTO" />
+          <ScalarProperty Name="NOMBREAREACONOCIMIENTO" ColumnName="NOMBREAREACONOCIMIENTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AREA_PLAZA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.AREA_PLAZA">
+        <MappingFragment StoreEntitySet="AREA_PLAZA">
+          <ScalarProperty Name="DESCRIPCIONAREA" ColumnName="DESCRIPCIONAREA" />
+          <ScalarProperty Name="IDAREAPLAZA" ColumnName="IDAREAPLAZA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CARGO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.CARGO">
+        <MappingFragment StoreEntitySet="CARGO">
+          <ScalarProperty Name="IDCARGO" ColumnName="IDCARGO" />
+          <ScalarProperty Name="IDAREACARGO" ColumnName="IDAREACARGO" />
+          <ScalarProperty Name="NOMBRECARGO" ColumnName="NOMBRECARGO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CERTIFICACION">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.CERTIFICACION">
+        <MappingFragment StoreEntitySet="CERTIFICACION">
+          <ScalarProperty Name="IDCERTIFICACION" ColumnName="IDCERTIFICACION" />
+          <ScalarProperty Name="IDCURRICULUM" ColumnName="IDCURRICULUM" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="IDAREACONOCIMIENTO" ColumnName="IDAREACONOCIMIENTO" />
+          <ScalarProperty Name="DESCRIPCIONCERTIFICACION" ColumnName="DESCRIPCIONCERTIFICACION" />
+          <ScalarProperty Name="TITULOCERTIFICACION" ColumnName="TITULOCERTIFICACION" />
+          <ScalarProperty Name="FECHAINICIOCERTIFICACION" ColumnName="FECHAINICIOCERTIFICACION" />
+          <ScalarProperty Name="FECHAFINCERTIFICACION" ColumnName="FECHAFINCERTIFICACION" />
+          <ScalarProperty Name="CODIGOCERTIFICACION" ColumnName="CODIGOCERTIFICACION" />
+          <ScalarProperty Name="INSTITUCION" ColumnName="INSTITUCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTACTO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.CONTACTO">
+        <MappingFragment StoreEntitySet="CONTACTO">
+          <ScalarProperty Name="IDCONTACTO" ColumnName="IDCONTACTO" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="IDTIPOCONTACTO" ColumnName="IDTIPOCONTACTO" />
+          <ScalarProperty Name="VINCULO" ColumnName="VINCULO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CURRICULUM">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.CURRICULUM">
+        <MappingFragment StoreEntitySet="CURRICULUM">
+          <ScalarProperty Name="IDCURRICULUM" ColumnName="IDCURRICULUM" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPARTAMENTO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.DEPARTAMENTO">
+        <MappingFragment StoreEntitySet="DEPARTAMENTO">
+          <ScalarProperty Name="IDDEPARTAMENTO" ColumnName="IDDEPARTAMENTO" />
+          <ScalarProperty Name="NOMBREDEPARTAMENTO" ColumnName="NOMBREDEPARTAMENTO" />
+          <ScalarProperty Name="ZONA" ColumnName="ZONA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPRESA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.EMPRESA">
+        <MappingFragment StoreEntitySet="EMPRESA">
+          <ScalarProperty Name="CODIGOEMPRESA" ColumnName="CODIGOEMPRESA" />
+          <ScalarProperty Name="NOMBREEMPRESA" ColumnName="NOMBREEMPRESA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ESTADO_CIVIL">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.ESTADO_CIVIL">
+        <MappingFragment StoreEntitySet="ESTADO_CIVIL">
+          <ScalarProperty Name="IDESTADOCIVIL" ColumnName="IDESTADOCIVIL" />
+          <ScalarProperty Name="NOMBREESTADOCIVIL" ColumnName="NOMBREESTADOCIVIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ESTADO_CIVIL_POSTULANTE_MM">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.ESTADO_CIVIL_POSTULANTE_MM">
+        <MappingFragment StoreEntitySet="ESTADO_CIVIL_POSTULANTE_MM">
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="IDESTADOCIVIL" ColumnName="IDESTADOCIVIL" />
+          <ScalarProperty Name="FECHACAMBIO" ColumnName="FECHACAMBIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXAMEN">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.EXAMEN">
+        <MappingFragment StoreEntitySet="EXAMEN">
+          <ScalarProperty Name="CODIGOEMPRESA" ColumnName="CODIGOEMPRESA" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="PONDERACION" ColumnName="PONDERACION" />
+          <ScalarProperty Name="CODIGOEXAMEN" ColumnName="CODIGOEXAMEN" />
+          <ScalarProperty Name="IDTIPOEXAMEN" ColumnName="IDTIPOEXAMEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXPERIENCIALABORAL">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.EXPERIENCIALABORAL">
+        <MappingFragment StoreEntitySet="EXPERIENCIALABORAL">
+          <ScalarProperty Name="IDEXPERIENCIALABORAL" ColumnName="IDEXPERIENCIALABORAL" />
+          <ScalarProperty Name="IDCURRICULUM" ColumnName="IDCURRICULUM" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="IDCARGO" ColumnName="IDCARGO" />
+          <ScalarProperty Name="INSTITUCION" ColumnName="INSTITUCION" />
+          <ScalarProperty Name="TITULOPROYECTO" ColumnName="TITULOPROYECTO" />
+          <ScalarProperty Name="FECHAINICIO" ColumnName="FECHAINICIO" />
+          <ScalarProperty Name="FECHAFIN" ColumnName="FECHAFIN" />
+          <ScalarProperty Name="NUMEROCONTACTOORG" ColumnName="NUMEROCONTACTOORG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FORMACIONACADEMICA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.FORMACIONACADEMICA">
+        <MappingFragment StoreEntitySet="FORMACIONACADEMICA">
+          <ScalarProperty Name="IDFORMACION" ColumnName="IDFORMACION" />
+          <ScalarProperty Name="IDCURRICULUM" ColumnName="IDCURRICULUM" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="IDTIPOFORMACION" ColumnName="IDTIPOFORMACION" />
+          <ScalarProperty Name="INSTITUCION" ColumnName="INSTITUCION" />
+          <ScalarProperty Name="TITULO" ColumnName="TITULO" />
+          <ScalarProperty Name="FECHAINICIOFORMACION" ColumnName="FECHAINICIOFORMACION" />
+          <ScalarProperty Name="FECHAFINFORMACION" ColumnName="FECHAFINFORMACION" />
+          <ScalarProperty Name="FORMAL" ColumnName="FORMAL" />
+          <ScalarProperty Name="GRADOACADEMICO" ColumnName="GRADOACADEMICO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FUNCION_PLAZA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.FUNCION_PLAZA">
+        <MappingFragment StoreEntitySet="FUNCION_PLAZA">
+          <ScalarProperty Name="IDFUNCION" ColumnName="IDFUNCION" />
+          <ScalarProperty Name="IDPLAZA" ColumnName="IDPLAZA" />
+          <ScalarProperty Name="DESCRIPCIONPLAZA" ColumnName="DESCRIPCIONPLAZA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GENERO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.GENERO">
+        <MappingFragment StoreEntitySet="GENERO">
+          <ScalarProperty Name="IDGENERO" ColumnName="IDGENERO" />
+          <ScalarProperty Name="DESCRIPCIONGENERO" ColumnName="DESCRIPCIONGENERO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HABILIDAD">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.HABILIDAD">
+        <MappingFragment StoreEntitySet="HABILIDAD">
+          <ScalarProperty Name="IDHABILIDAD" ColumnName="IDHABILIDAD" />
+          <ScalarProperty Name="IDCURRICULUM" ColumnName="IDCURRICULUM" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="IDTIPOHABILIDAD" ColumnName="IDTIPOHABILIDAD" />
+          <ScalarProperty Name="NOMBREHABILIDAD" ColumnName="NOMBREHABILIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IDIOMA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.IDIOMA">
+        <MappingFragment StoreEntitySet="IDIOMA">
+          <ScalarProperty Name="IDIDIOMA" ColumnName="IDIDIOMA" />
+          <ScalarProperty Name="IDCURRICULUM" ColumnName="IDCURRICULUM" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="NOMBREIDIOMA" ColumnName="NOMBREIDIOMA" />
+          <ScalarProperty Name="LENGUAMATERNA" ColumnName="LENGUAMATERNA" />
+          <ScalarProperty Name="ESCRITURA" ColumnName="ESCRITURA" />
+          <ScalarProperty Name="LECTURA" ColumnName="LECTURA" />
+          <ScalarProperty Name="CONVERSACION" ColumnName="CONVERSACION" />
+          <ScalarProperty Name="ESCUCHA" ColumnName="ESCUCHA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOGRO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.LOGRO">
+        <MappingFragment StoreEntitySet="LOGRO">
+          <ScalarProperty Name="IDLOGRO" ColumnName="IDLOGRO" />
+          <ScalarProperty Name="IDCURRICULUM" ColumnName="IDCURRICULUM" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="TITULOLOGRO" ColumnName="TITULOLOGRO" />
+          <ScalarProperty Name="FECHALOGRO" ColumnName="FECHALOGRO" />
+          <ScalarProperty Name="OTORGANTELOGRO" ColumnName="OTORGANTELOGRO" />
+          <ScalarProperty Name="DESCRIPCIONLOGRO" ColumnName="DESCRIPCIONLOGRO" />
+          <ScalarProperty Name="PREMIO" ColumnName="PREMIO" />
+          <ScalarProperty Name="LABORSOCIAL" ColumnName="LABORSOCIAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MENU">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.MENU">
+        <MappingFragment StoreEntitySet="MENU">
+          <ScalarProperty Name="IDMENU" ColumnName="IDMENU" />
+          <ScalarProperty Name="IDPADRE" ColumnName="IDPADRE" />
+          <ScalarProperty Name="NOMBREMENU" ColumnName="NOMBREMENU" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
+          <ScalarProperty Name="DESCRIPCIONMENU" ColumnName="DESCRIPCIONMENU" />
+          <ScalarProperty Name="ORDEN" ColumnName="ORDEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MUNICIPIO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.MUNICIPIO">
+        <MappingFragment StoreEntitySet="MUNICIPIO">
+          <ScalarProperty Name="IDMUNICIPIO" ColumnName="IDMUNICIPIO" />
+          <ScalarProperty Name="IDDEPARTAMENTO" ColumnName="IDDEPARTAMENTO" />
+          <ScalarProperty Name="NOMBREMUNICIPIO" ColumnName="NOMBREMUNICIPIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NIVEL_IDIOMA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.NIVEL_IDIOMA">
+        <MappingFragment StoreEntitySet="NIVEL_IDIOMA">
+          <ScalarProperty Name="IDNIVELIDIOMA" ColumnName="IDNIVELIDIOMA" />
+          <ScalarProperty Name="NOMBRENIVELIDIOMA" ColumnName="NOMBRENIVELIDIOMA" />
+          <ScalarProperty Name="CODIGONIVELIDIOMA" ColumnName="CODIGONIVELIDIOMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OPCION_PREGUNTA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.OPCION_PREGUNTA">
+        <MappingFragment StoreEntitySet="OPCION_PREGUNTA">
+          <ScalarProperty Name="DESCRIPCIONOPCION" ColumnName="DESCRIPCIONOPCION" />
+          <ScalarProperty Name="PUNTAJE" ColumnName="PUNTAJE" />
+          <ScalarProperty Name="ORDEN" ColumnName="ORDEN" />
+          <ScalarProperty Name="IDOPCIONPREGUNTA" ColumnName="IDOPCIONPREGUNTA" />
+          <ScalarProperty Name="IDPREGUNTA" ColumnName="IDPREGUNTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAIS">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.PAIS">
+        <MappingFragment StoreEntitySet="PAIS">
+          <ScalarProperty Name="IDPAIS" ColumnName="IDPAIS" />
+          <ScalarProperty Name="NOMBREPAIS" ColumnName="NOMBREPAIS" />
+          <ScalarProperty Name="CODIGOPAIS" ColumnName="CODIGOPAIS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PARTICIPACION_PROFESIONAL">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.PARTICIPACION_PROFESIONAL">
+        <MappingFragment StoreEntitySet="PARTICIPACION_PROFESIONAL">
+          <ScalarProperty Name="IDPARTICIPACION" ColumnName="IDPARTICIPACION" />
+          <ScalarProperty Name="IDCURRICULUM" ColumnName="IDCURRICULUM" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="IDTIPOPARTICIPACION" ColumnName="IDTIPOPARTICIPACION" />
+          <ScalarProperty Name="IDPAIS" ColumnName="IDPAIS" />
+          <ScalarProperty Name="TITULOPARTICIPACION" ColumnName="TITULOPARTICIPACION" />
+          <ScalarProperty Name="LUGARPARTICIPACION" ColumnName="LUGARPARTICIPACION" />
+          <ScalarProperty Name="FECHAPARTICIPACION" ColumnName="FECHAPARTICIPACION" />
+          <ScalarProperty Name="ANFITRION" ColumnName="ANFITRION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PLAZA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.PLAZA">
+        <MappingFragment StoreEntitySet="PLAZA">
+          <ScalarProperty Name="IDMUNICIPIO" ColumnName="IDMUNICIPIO" />
+          <ScalarProperty Name="IDGENERO" ColumnName="IDGENERO" />
+          <ScalarProperty Name="CODIGOEMPRESA" ColumnName="CODIGOEMPRESA" />
+          <ScalarProperty Name="SALARIO" ColumnName="SALARIO" />
+          <ScalarProperty Name="FORMAPAGO" ColumnName="FORMAPAGO" />
+          <ScalarProperty Name="EDADMIN" ColumnName="EDADMIN" />
+          <ScalarProperty Name="EDADMAX" ColumnName="EDADMAX" />
+          <ScalarProperty Name="VEHICULO" ColumnName="VEHICULO" />
+          <ScalarProperty Name="FECHAFIN" ColumnName="FECHAFIN" />
+          <ScalarProperty Name="FECHAINICIO" ColumnName="FECHAINICIO" />
+          <ScalarProperty Name="IDPLAZA" ColumnName="IDPLAZA" />
+          <ScalarProperty Name="IDCARGO" ColumnName="IDCARGO" />
+          <ScalarProperty Name="ANIOSMINIMOXP" ColumnName="ANIOSMINIMOXP" />
+          <ScalarProperty Name="DESCRIPCIONPLAZA" ColumnName="DESCRIPCIONPLAZA" />
+          <ScalarProperty Name="VACANTES" ColumnName="VACANTES" />
+          <ScalarProperty Name="TIPOJORNADA" ColumnName="TIPOJORNADA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POSTULANTE">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.POSTULANTE">
+        <MappingFragment StoreEntitySet="POSTULANTE">
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="IDUSUARIO" ColumnName="IDUSUARIO" />
+          <ScalarProperty Name="IDMUNICIPIO" ColumnName="IDMUNICIPIO" />
+          <ScalarProperty Name="IDGENERO" ColumnName="IDGENERO" />
+          <ScalarProperty Name="NOMBREPOSTULANTE" ColumnName="NOMBREPOSTULANTE" />
+          <ScalarProperty Name="APELLIDOPOSTULANTE" ColumnName="APELLIDOPOSTULANTE" />
+          <ScalarProperty Name="FECHANACIMIENTO" ColumnName="FECHANACIMIENTO" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="URLCURRICULUM" ColumnName="URLCURRICULUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POSTULANTE_PLAZA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.POSTULANTE_PLAZA">
+        <MappingFragment StoreEntitySet="POSTULANTE_PLAZA">
+          <ScalarProperty Name="IDPLAZA" ColumnName="IDPLAZA" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="FECHAAPLICACION" ColumnName="FECHAAPLICACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POSTULANTE_TIPO_DOCUMENTO_MM">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.POSTULANTE_TIPO_DOCUMENTO_MM">
+        <MappingFragment StoreEntitySet="POSTULANTE_TIPO_DOCUMENTO_MM">
+          <ScalarProperty Name="IDTIPODOCUMENTOIDENTIDAD" ColumnName="IDTIPODOCUMENTOIDENTIDAD" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PREGUNTA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.PREGUNTA">
+        <MappingFragment StoreEntitySet="PREGUNTA">
+          <ScalarProperty Name="CODIGOEXAMEN" ColumnName="CODIGOEXAMEN" />
+          <ScalarProperty Name="TEXTOPREGUNTA" ColumnName="TEXTOPREGUNTA" />
+          <ScalarProperty Name="IDPREGUNTA" ColumnName="IDPREGUNTA" />
+          <ScalarProperty Name="IDTIPOOPCION" ColumnName="IDTIPOOPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PUBLICACION">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.PUBLICACION">
+        <MappingFragment StoreEntitySet="PUBLICACION">
+          <ScalarProperty Name="IDPUBLICACION" ColumnName="IDPUBLICACION" />
+          <ScalarProperty Name="IDCURRICULUM" ColumnName="IDCURRICULUM" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="TITULOPUBLICACION" ColumnName="TITULOPUBLICACION" />
+          <ScalarProperty Name="EDITORIAL" ColumnName="EDITORIAL" />
+          <ScalarProperty Name="REVISTA" ColumnName="REVISTA" />
+          <ScalarProperty Name="FECHAPUBLICACION" ColumnName="FECHAPUBLICACION" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="LIBRO" ColumnName="LIBRO" />
+          <ScalarProperty Name="NUMEROEDICION" ColumnName="NUMEROEDICION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REFERENCIA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.REFERENCIA">
+        <MappingFragment StoreEntitySet="REFERENCIA">
+          <ScalarProperty Name="IDREFERENCIA" ColumnName="IDREFERENCIA" />
+          <ScalarProperty Name="IDTIPOREFERENCIA" ColumnName="IDTIPOREFERENCIA" />
+          <ScalarProperty Name="IDCURRICULUM" ColumnName="IDCURRICULUM" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="DESCRIPCIONREFERENCIA" ColumnName="DESCRIPCIONREFERENCIA" />
+          <ScalarProperty Name="TELEFONOREFERENCIA" ColumnName="TELEFONOREFERENCIA" />
+          <ScalarProperty Name="PUESTOREFERENCIA" ColumnName="PUESTOREFERENCIA" />
+          <ScalarProperty Name="PERSONAREFERENCIA" ColumnName="PERSONAREFERENCIA" />
+          <ScalarProperty Name="EMPRESAORIGENREFERENCIA" ColumnName="EMPRESAORIGENREFERENCIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REQUISITO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.REQUISITO">
+        <MappingFragment StoreEntitySet="REQUISITO">
+          <ScalarProperty Name="IDTIPOREQUISITO" ColumnName="IDTIPOREQUISITO" />
+          <ScalarProperty Name="DESCRIPCIONREQUISITO" ColumnName="DESCRIPCIONREQUISITO" />
+          <ScalarProperty Name="IDREQUISITO" ColumnName="IDREQUISITO" />
+          <ScalarProperty Name="IDPLAZA" ColumnName="IDPLAZA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESPUESTA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.RESPUESTA">
+        <MappingFragment StoreEntitySet="RESPUESTA">
+          <ScalarProperty Name="IDOPCIONPREGUNTA" ColumnName="IDOPCIONPREGUNTA" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="TEXTORESPUESTA" ColumnName="TEXTORESPUESTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROL">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.ROL">
+        <MappingFragment StoreEntitySet="ROL">
+          <ScalarProperty Name="IDROL" ColumnName="IDROL" />
+          <ScalarProperty Name="NOMBREROL" ColumnName="NOMBREROL" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROL_USUARIO_MM">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.ROL_USUARIO_MM">
+        <MappingFragment StoreEntitySet="ROL_USUARIO_MM">
+          <ScalarProperty Name="IDUSUARIO" ColumnName="IDUSUARIO" />
+          <ScalarProperty Name="IDROL" ColumnName="IDROL" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="FECHAASIGNACION" ColumnName="FECHAASIGNACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TELEFONO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.TELEFONO">
+        <MappingFragment StoreEntitySet="TELEFONO">
+          <ScalarProperty Name="IDTELEFONO" ColumnName="IDTELEFONO" />
+          <ScalarProperty Name="IDPOSTULANTE" ColumnName="IDPOSTULANTE" />
+          <ScalarProperty Name="IDTIPOTELEFONO" ColumnName="IDTIPOTELEFONO" />
+          <ScalarProperty Name="NUMEROTELEFONO" ColumnName="NUMEROTELEFONO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_CONTACTO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.TIPO_CONTACTO">
+        <MappingFragment StoreEntitySet="TIPO_CONTACTO">
+          <ScalarProperty Name="IDTIPOCONTACTO" ColumnName="IDTIPOCONTACTO" />
+          <ScalarProperty Name="NOMBRETIPOCONTACTO" ColumnName="NOMBRETIPOCONTACTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_DOCUMENTO_IDENTIDAD">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.TIPO_DOCUMENTO_IDENTIDAD">
+        <MappingFragment StoreEntitySet="TIPO_DOCUMENTO_IDENTIDAD">
+          <ScalarProperty Name="IDTIPODOCUMENTOIDENTIDAD" ColumnName="IDTIPODOCUMENTOIDENTIDAD" />
+          <ScalarProperty Name="NOMBREDOCUMENTOIDENTIDAD" ColumnName="NOMBREDOCUMENTOIDENTIDAD" />
+          <ScalarProperty Name="CANTIDADCARACTERES" ColumnName="CANTIDADCARACTERES" />
+          <ScalarProperty Name="MASCARA" ColumnName="MASCARA" />
+          <ScalarProperty Name="EXTRANJERO" ColumnName="EXTRANJERO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_EXAMEN">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.TIPO_EXAMEN">
+        <MappingFragment StoreEntitySet="TIPO_EXAMEN">
+          <ScalarProperty Name="DESCRIPCIONTIPO" ColumnName="DESCRIPCIONTIPO" />
+          <ScalarProperty Name="IDTIPOEXAMEN" ColumnName="IDTIPOEXAMEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_HABILIDAD">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.TIPO_HABILIDAD">
+        <MappingFragment StoreEntitySet="TIPO_HABILIDAD">
+          <ScalarProperty Name="IDTIPOHABILIDAD" ColumnName="IDTIPOHABILIDAD" />
+          <ScalarProperty Name="IDAREACONOCIMIENTO" ColumnName="IDAREACONOCIMIENTO" />
+          <ScalarProperty Name="NOMBRETIPOHABILIDAD" ColumnName="NOMBRETIPOHABILIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_PARTICIPACION">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.TIPO_PARTICIPACION">
+        <MappingFragment StoreEntitySet="TIPO_PARTICIPACION">
+          <ScalarProperty Name="IDTIPOPARTICIPACION" ColumnName="IDTIPOPARTICIPACION" />
+          <ScalarProperty Name="NOMBRETIPOPARTICIPACION" ColumnName="NOMBRETIPOPARTICIPACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_REQUISITO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.TIPO_REQUISITO">
+        <MappingFragment StoreEntitySet="TIPO_REQUISITO">
+          <ScalarProperty Name="DESCRIPCIONTIPO" ColumnName="DESCRIPCIONTIPO" />
+          <ScalarProperty Name="TABLA" ColumnName="TABLA" />
+          <ScalarProperty Name="IDTIPOREQUISITO" ColumnName="IDTIPOREQUISITO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_TELEFONO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.TIPO_TELEFONO">
+        <MappingFragment StoreEntitySet="TIPO_TELEFONO">
+          <ScalarProperty Name="IDTIPOTELEFONO" ColumnName="IDTIPOTELEFONO" />
+          <ScalarProperty Name="NOMBRETIPOTELEFONO" ColumnName="NOMBRETIPOTELEFONO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPOFORMACINONACADEMICA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.TIPOFORMACINONACADEMICA">
+        <MappingFragment StoreEntitySet="TIPOFORMACINONACADEMICA">
+          <ScalarProperty Name="IDTIPOFORMACION" ColumnName="IDTIPOFORMACION" />
+          <ScalarProperty Name="NOMBRETIPOFORMACION" ColumnName="NOMBRETIPOFORMACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPOPREGUNTA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.TIPOPREGUNTA">
+        <MappingFragment StoreEntitySet="TIPOPREGUNTA">
+          <ScalarProperty Name="IDTIPOPREGUNTA" ColumnName="IDTIPOPREGUNTA" />
+          <ScalarProperty Name="NOMBRETIPOPREGUNTA" ColumnName="NOMBRETIPOPREGUNTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPOREFERENCIA">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.TIPOREFERENCIA">
+        <MappingFragment StoreEntitySet="TIPOREFERENCIA">
+          <ScalarProperty Name="IDTIPOREFERENCIA" ColumnName="IDTIPOREFERENCIA" />
+          <ScalarProperty Name="NOMBRETIPOREFERENCIA" ColumnName="NOMBRETIPOREFERENCIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIO">
+      <EntityTypeMapping TypeName="BolsaTrabajoV3Model.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="IDUSUARIO" ColumnName="IDUSUARIO" />
+          <ScalarProperty Name="CODIGOEMPRESA" ColumnName="CODIGOEMPRESA" />
+          <ScalarProperty Name="NOMBREUSUARIO" ColumnName="NOMBREUSUARIO" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="IDIOMA" ColumnName="IDIOMA" />
+          <ScalarProperty Name="BLOQUEADO" ColumnName="BLOQUEADO" />
+          <ScalarProperty Name="INTENTOS" ColumnName="INTENTOS" />
+          <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ROL_MENU_MM" TypeName="BolsaTrabajoV3Model.ROL_MENU_MM" StoreEntitySet="ROL_MENU_MM">
+      <EndProperty Name="MENU">
+        <ScalarProperty Name="IDMENU" ColumnName="IDMENU" />
+      </EndProperty>
+      <EndProperty Name="ROL">
+        <ScalarProperty Name="IDROL" ColumnName="IDROL" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="cambiarEstadoUsuario" FunctionName="BolsaTrabajoV3Model.Store.cambiarEstadoUsuario" />
+    <FunctionImportMapping FunctionImportName="DesbloqueoUsuario" FunctionName="BolsaTrabajoV3Model.Store.DesbloqueoUsuario" />
+  </EntityContainerMapping>
+</Mapping>
