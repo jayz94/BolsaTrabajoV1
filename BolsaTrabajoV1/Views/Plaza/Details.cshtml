@@ -1,0 +1,138 @@
+﻿@model BolsaTrabajoV1.Models.PLAZA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PLAZA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SALARIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SALARIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FORMAPAGO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FORMAPAGO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EDADMIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EDADMIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EDADMAX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EDADMAX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VEHICULO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VEHICULO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAFIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAFIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAINICIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAINICIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ANIOSMINIMOXP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ANIOSMINIMOXP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCIONPLAZA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCIONPLAZA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VACANTES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VACANTES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPOJORNADA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPOJORNADA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CARGO.NOMBRECARGO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CARGO.NOMBRECARGO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPRESA.NOMBREEMPRESA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPRESA.NOMBREEMPRESA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GENERO.DESCRIPCIONGENERO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GENERO.DESCRIPCIONGENERO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPLAZA }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

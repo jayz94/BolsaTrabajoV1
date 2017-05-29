@@ -1,0 +1,117 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.PLAZA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Plazas</h2>
+
+<p>
+    @Html.ActionLink("Agregar", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SALARIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FORMAPAGO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EDADMIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EDADMAX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VEHICULO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHAFIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHAINICIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ANIOSMINIMOXP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DESCRIPCIONPLAZA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VACANTES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPOJORNADA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CARGO.NOMBRECARGO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPRESA.NOMBREEMPRESA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GENERO.DESCRIPCIONGENERO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SALARIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FORMAPAGO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EDADMIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EDADMAX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VEHICULO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHAFIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHAINICIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ANIOSMINIMOXP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DESCRIPCIONPLAZA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VACANTES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPOJORNADA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CARGO.NOMBRECARGO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPRESA.NOMBREEMPRESA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GENERO.DESCRIPCIONGENERO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MUNICIPIO.NOMBREMUNICIPIO)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.IDPLAZA }, new { @class = "btn btn-success fa fa-edit btn-xs" }) 
+            @Html.ActionLink(" ", "Details", new { id = item.IDPLAZA }, new { @class = "btn btn-primary fa fa-search btn-xs" }) 
+            @Html.ActionLink(" ", "Delete", new { id=item.IDPLAZA }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
+        </td>
+    </tr>
+}
+
+</table>
