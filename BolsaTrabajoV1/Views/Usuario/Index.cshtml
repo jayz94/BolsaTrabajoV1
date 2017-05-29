@@ -51,7 +51,9 @@
             @{
                 if (item.INTENTOS >= 5)
                 {
-                    <input type="checkbox" onchange="desbloquearIntentos(@item.IDUSUARIO)" id="@item.IDUSUARIO" data-toggle="toggle" data-off=".." data-on="SI" checked>
+                    <div id="@item.IDUSUARIO">
+                        <input type="checkbox" onchange="desbloquearIntentos(@item.IDUSUARIO)"  data-toggle="toggle" data-off=".." data-on="SI" checked>
+                    </div>
                 }
                 else
                 {
@@ -82,6 +84,9 @@
             }
         });
     }
+    function ocultarBoton(id){
+        document.getElementById(id).style.visibility="hidden";
+    }
 
     function desbloquearIntentos(id) {
         $.ajax({
@@ -90,8 +95,10 @@
             url: 'Usuario/DesbloquearIntentos/' + id,
             success:function(data)
             {
-               //document.getElementById(id).type="hidden";
+                setTimeout(function(){ocultarBoton(id)},650);
             }
         });
+        
     }
+
 </script>

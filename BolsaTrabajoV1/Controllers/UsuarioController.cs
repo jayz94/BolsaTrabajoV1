@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BolsaTrabajoV1.Models;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace BolsaTrabajoV1.Controllers
 {
@@ -57,9 +59,14 @@ namespace BolsaTrabajoV1.Controllers
             {*/
             if (PASSWORD.Equals(PASS2))
             {
+                //inicia para la encriptacion CHA1
+                SHA1 sha1 = new SHA1CryptoServiceProvider();
+                byte[] inputBytes = (new UnicodeEncoding()).GetBytes(PASSWORD);
+                byte[] hash = sha1.ComputeHash(inputBytes);
+                //finaliza para la encriptacion CHA1
                 USUARIO us = new USUARIO();
                 us.NOMBREUSUARIO = NOMBREUSUARIO;
-                us.PASSWORD = PASSWORD;
+                us.PASSWORD = Convert.ToBase64String(hash);
                 us.ACTIVO = false;
                 us.IDIOMA = IDIOMA;
                 us.CORREO = CORREO;
@@ -104,16 +111,36 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IDUSUARIO,CODIGOEMPRESA,NOMBREUSUARIO,COLOR,IDIOMA,CORREO")] USUARIO uSUARIO,String PASSA, String PASSN)
+        public async Task<ActionResult> Edit([Bind(Include = "IDUSUARIO,CODIGOEMPRESA,NOMBREUSUARIO,COLOR,IDIOMA,CORREO")] USUARIO uSUARIO,String PASSA, String PASSN,int IDUSUARIO)
         {
             if (ModelState.IsValid)
             {
+                if (PASSA != null && PASSN != null) {
+                    int id = IDUSUARIO;
+                    var pass = from us in db.USUARIO where us.IDUSUARIO == id select us;
+                    SHA1 sha1 = new SHA1CryptoServiceProvider();
+                    byte[] inputBytes = (new UnicodeEncoding()).GetBytes(PASSA);
+                    byte[] hash = sha1.ComputeHash(inputBytes);
+                    if (pass.Equals(Convert.ToBase64String(hash)))
+                    {
+                        SHA1 sha2 = new SHA1CryptoServiceProvider();
+                        byte[] inputBytes2 = (new UnicodeEncoding()).GetBytes(PASSN);
+                        byte[] hash2 = sha2.ComputeHash(inputBytes2);
+                        uSUARIO.PASSWORD = Convert.ToBase64String(hash2);
+                    }
+                    else {
+                        ViewBag.MessagePass = "La contraseña Actual no es correcta";
+                        return View();
+                    }
+                    
+                }
                 db.Entry(uSUARIO).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                ViewBag.MessageExito = "Usuario Modificado con exito";
+                return View();
+
             }
             ViewBag.CODIGOEMPRESA = new SelectList(db.EMPRESA, "IDEMPRESA", "CODIGOEMPRESA", uSUARIO.CODIGOEMPRESA);
-           // ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", uSUARIO.IDPOSTULANTE);
             return View(uSUARIO);
         }
 
