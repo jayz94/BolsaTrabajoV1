@@ -36,6 +36,9 @@ namespace BolsaTrabajoV1.Controllers
                 menus.Add(menu);
             }
             Session["menus"] = menus;
+            ViewBag.cargos = db.CARGO.ToList();
+            ViewBag.generos = db.GENERO.ToList();
+            ViewBag.municipios = db.MUNICIPIO.ToList();
             ViewBag.plazas = db.ViewPlazaGenerica.ToList();
             return View();
         }
@@ -63,6 +66,40 @@ namespace BolsaTrabajoV1.Controllers
         public void desplegarMenu(List<MENU> menus)
         {
             Console.Write("Hola a todos");
+        }
+
+        [HttpGet]
+        public ActionResult filtrar(int idtabla,int idRegistro)
+        {
+            //tabla 1: cargo
+            //tabla 2: empresa
+            //tabla 3: salario
+            //tabla 4: munucipio
+            //tabla 5: genero
+            var plazas= from pla in db.ViewPlazaGenerica select pla;
+            switch (idtabla) {
+                case 1:
+                    plazas = from pla in db.ViewPlazaGenerica where pla.idc == idRegistro select pla;
+                    break;
+                /*case 2:
+                    var plazas = from pla in db.ViewPlazaGenerica where pla.idc == idRegistro select pla;
+                    break;
+                case 3:
+                    var plazas = from pla in db.ViewPlazaGenerica where pla.idc == idRegistro select pla;
+                    break;*/
+                case 4:
+                    plazas = from pla in db.ViewPlazaGenerica where pla.idm == idRegistro select pla;
+                    break;
+                case 5:
+                    plazas = from pla in db.ViewPlazaGenerica where pla.idg == idRegistro select pla;
+                    break;
+            }
+            ViewBag.cargos = db.CARGO.ToList();
+            ViewBag.generos = db.GENERO.ToList();
+            ViewBag.municipios = db.MUNICIPIO.ToList();
+            ViewBag.plazas = plazas;
+            return View();
+
         }
     }
 }
