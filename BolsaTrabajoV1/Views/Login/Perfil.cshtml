@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+@if (Session["rol"].ToString() != "1")
+{
+
+    <b>ACCESO DENEGADO :v</b>
+
+  
+    <b></b>
+}
+
+
+@if (Session["rol"].ToString() == "1")
+{
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Profile</title>
+        <title>Index</title>
+        <style type="text/css">
+            body {
+                font-family: Arial;
+                font-size: 10pt;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            Welcome
+            @if (TempData["Message"] != null)
+            {
+                <div>
+                    <b>@TempData["Message"]</b>
+                </div>
+            }
+            <br />
+            <br />
+
+            <div>
+                <b>@Session["nombre"]</b>
+            </div>
+            <div>
+                <b>@Session["id"]</b>
+            </div>
+
+
+            @using (Html.BeginForm("Logout", "Login", FormMethod.Post))
+            {
+                <a href="javascript:;" onclick="document.forms[0].submit();">Logout</a>
+            }
+        </div>
+    </body>
+</html>
+
+}
+
