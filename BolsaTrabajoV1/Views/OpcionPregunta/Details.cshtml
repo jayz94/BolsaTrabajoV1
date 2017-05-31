@@ -1,0 +1,50 @@
+﻿@model BolsaTrabajoV1.Models.OPCION_PREGUNTA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OPCION_PREGUNTA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCIONOPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCIONOPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PUNTAJE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PUNTAJE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ORDEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ORDEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PREGUNTA.TEXTOPREGUNTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PREGUNTA.TEXTOPREGUNTA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDOPCIONPREGUNTA }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

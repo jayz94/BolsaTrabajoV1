@@ -11,98 +11,54 @@
 </p>
 <table class="table">
     <tr>
+
         <th>
-            @Html.DisplayNameFor(model => model.SALARIO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FORMAPAGO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EDADMIN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EDADMAX)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VEHICULO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FECHAFIN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FECHAINICIO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ANIOSMINIMOXP)
+            @Html.DisplayNameFor(model => model.CARGO.NOMBRECARGO)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DESCRIPCIONPLAZA)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.SALARIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EDADMIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ANIOSMINIMOXP)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.VACANTES)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TIPOJORNADA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CARGO.NOMBRECARGO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMPRESA.NOMBREEMPRESA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GENERO.DESCRIPCIONGENERO)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
         </th>
-        <th></th>
+        <th>Acciones</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.SALARIO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FORMAPAGO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EDADMIN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EDADMAX)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VEHICULO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FECHAFIN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FECHAINICIO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ANIOSMINIMOXP)
+            @Html.DisplayFor(modelItem => item.CARGO.NOMBRECARGO)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DESCRIPCIONPLAZA)
         </td>
         <td>
+            $@Html.DisplayFor(modelItem => item.SALARIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EDADMIN)
+            &nbsp;Años
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ANIOSMINIMOXP)
+            &nbsp;Años
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.VACANTES)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TIPOJORNADA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CARGO.NOMBRECARGO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMPRESA.NOMBREEMPRESA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GENERO.DESCRIPCIONGENERO)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.MUNICIPIO.NOMBREMUNICIPIO)
         </td>

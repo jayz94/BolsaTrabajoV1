@@ -1,13 +1,7 @@
 ﻿@model BolsaTrabajoV1.Models.EXAMEN
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
-
 <div>
-    <h4>EXAMEN</h4>
+    <h4 class="text-center">Detalle de Examen</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -44,7 +38,64 @@
 
     </dl>
 </div>
+
+<div class="col-md-12">
+    <label class="text-center">Preguntas</label>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#modalPregunta"></button>
+    <hr>
+    @foreach (var item in ViewBag.preguntas)
+        {
+        <li>
+            @item.TEXTOPREGUNTA
+            @Html.ActionLink(" ", "Edit", "Pregunta", new { id = item.IDPREGUNTA }, new { @class = "btn btn-success fa fa-edit btn-xs" })
+            @Html.ActionLink(" ", "Details", "Pregunta", new { id = item.IDPREGUNTA }, new { @class = "btn btn-primary fa fa-search btn-xs" })
+            @Html.ActionLink(" ", "Delete", "Pregunta", new { id = item.IDPREGUNTA }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
+        </li>
+    }
+</div>
+
+<!--inicia Modal requisito -->
+<div id="modalPregunta" class="modal fade" role="dialog" style="background-color: rgba(4, 4,4,0.4); margin-top:4%">
+    <div class="modal-dialog" style="width: 84%;">
+        <!-- Modal content-->
+        <div class="modal-content" style=" color:#393939">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <h4 class="col-md-5 modal-title">NUEVA PREGUNTA</h4>
+                </div>
+            </div><!--Inicia el cuerpo del formulario-->
+            <div class="modal-body" style="margin-top:5%">
+                <!--Inicia el formulario del model-->
+                <form action="/Pregunta/GuardarPregunta" method="post">
+                    @Html.HiddenFor(model => model.CODIGOEXAMEN)
+                    <div class="row">
+                        <div class="col-md-1 col-sm-6"><label>Texto Pregunta</label></div>
+                        <div class="col-md-7 col-sm-6"><textarea rows="3" cols="30" name="textoPregunta" class="form-control" type="text" maxlength="500" required></textarea></div>
+                        <div class="col-md-1 col-sm-6">
+                            <label>Tipo Pregunta</label>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            @Html.DropDownList("TIPOPREGUNTA", null, htmlAttributes: new { @class = "form-control" });
+                        </div>
+                    </div>
+                    <input class="btn btn-primary" style="margin-left:80%" type="submit" value="Guardar" />
+                </form>
+                <!--finaliza el formulario del model-->
+            </div>
+            <div class="modal-footer">
+                <!-- EL BOTON PARA CERRAR-->
+                <div class="col-md-6 text-center">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+                </div>
+                Pregunta de Examen
+            </div>
+        </div>
+    </div>
+</div>
+<!--Termina Modal Requisito-->
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CODIGOEXAMEN }) |
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CODIGOEXAMEN }) 
     @Html.ActionLink("Back to List", "Index")
 </p>

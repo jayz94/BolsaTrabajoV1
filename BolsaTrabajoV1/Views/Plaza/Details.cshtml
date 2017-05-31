@@ -1,138 +1,237 @@
 ﻿@model BolsaTrabajoV1.Models.PLAZA
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
+<h2 class="text-center">Detalle de Plaza: @Html.DisplayFor(model => model.CARGO.NOMBRECARGO) </h2>
 
 <div>
-    <h4>PLAZA</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SALARIO)
-        </dt>
+    <div class="col-md-6">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CARGO.NOMBRECARGO)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CARGO.NOMBRECARGO)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DESCRIPCIONPLAZA)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SALARIO)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DESCRIPCIONPLAZA)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SALARIO)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FORMAPAGO)
-        </dt>
+            <dd>
+                $@Html.DisplayFor(model => model.SALARIO)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FORMAPAGO)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FORMAPAGO)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EDADMIN)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FORMAPAGO)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHAFIN)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EDADMIN)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FECHAFIN)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EDADMAX)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHAINICIO)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EDADMAX)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FECHAINICIO)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VEHICULO)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VEHICULO)
-        </dd>
+        </dl>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FECHAFIN)
-        </dt>
+    <div class="col-md-6">
+        <dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.FECHAFIN)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EDADMIN)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FECHAINICIO)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EDADMIN)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FECHAINICIO)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EDADMAX)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ANIOSMINIMOXP)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EDADMAX)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ANIOSMINIMOXP)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.VEHICULO)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DESCRIPCIONPLAZA)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VEHICULO)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DESCRIPCIONPLAZA)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ANIOSMINIMOXP)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VACANTES)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ANIOSMINIMOXP)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VACANTES)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TIPOJORNADA)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.VACANTES)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TIPOJORNADA)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.VACANTES)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CARGO.NOMBRECARGO)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TIPOJORNADA)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CARGO.NOMBRECARGO)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TIPOJORNADA)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EMPRESA.NOMBREEMPRESA)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.GENERO.DESCRIPCIONGENERO)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EMPRESA.NOMBREEMPRESA)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.GENERO.DESCRIPCIONGENERO)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GENERO.DESCRIPCIONGENERO)
-        </dt>
+        </dl>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-6" style="margin-top:5%">
+            <label class="text-center">FUNCIONES QUE DESEMPEÑARA EN EL CARGO</label>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#modalFuncion"></button>
+            <hr>
+            @foreach (var item in ViewBag.funciones)
+            {
+                <li>
+                    @item.DESCRIPCIONPLAZA
+                    @Html.ActionLink(" ", "Edit", "FuncionPlaza", new { id = item.IDFUNCION }, new { @class = "btn btn-success fa fa-edit btn-xs" })
+                    @Html.ActionLink(" ", "Delete", "FuncionPlaza", new { id = item.IDFUNCION }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
+                </li>
+            }
 
-        <dd>
-            @Html.DisplayFor(model => model.GENERO.DESCRIPCIONGENERO)
-        </dd>
+        </div>
+        <div class="col-md-6" style="margin-top:5%">
+            <label class="text-center">REQUISITOS PARA EL CARGO</label>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#modalRequisito"></button>
+            <hr>
+            @foreach (var item in ViewBag.requisitos)
+            {
+                <li>
+                    @item.DESCRIPCIONREQUISITO
+                    @Html.ActionLink(" ", "Edit", "Requisito", new { id = item.IDREQUISITO }, new { @class = "btn btn-success fa fa-edit btn-xs" })
+                    @Html.ActionLink(" ", "Details", "Requisito", new { id = item.IDREQUISITO }, new { @class = "btn btn-primary fa fa-search btn-xs" })
+                    @Html.ActionLink(" ", "Delete", "Requisito", new { id = item.IDREQUISITO }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
+                </li>
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
 </div>
-<p>
+
+ <!--inicia Modal requisito -->
+<div id="modalRequisito" class="modal fade" role="dialog" style="background-color: rgba(4, 4,4,0.4); margin-top:4%">
+    <div class="modal-dialog" style="width: 84%;">
+        <!-- Modal content-->
+        <div class="modal-content" style=" color:#393939">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <h4 class="col-md-5 modal-title">NUEVO REQUISITO</h4>
+                </div>
+            </div><!--Inicia el cuerpo del formulario-->
+            <div class="modal-body" style="margin-top:5%">
+            <!--Inicia el formulario del model-->
+                <form action="/Requisito/GuardarRequisito" method="post" id="formRequisito">
+                    @Html.HiddenFor(model => model.IDPLAZA)
+                    <div class="row">
+                        <div class="col-md-1 col-sm-6"><label>Descripción Requisito</label></div>
+                        <div class="col-md-7 col-sm-6"><textarea rows="3" cols="30" name="desc" class="form-control" type="text" maxlength="500" required></textarea></div>
+                        <div class="col-md-1 col-sm-6">
+                            <label>Tipo Requisito</label>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            @Html.DropDownList("TIPOREQUISITO", null, htmlAttributes: new { @class = "form-control" });
+                        </div>
+                    </div>
+                    <input class="btn btn-primary" style="margin-left:80%" type="submit" value="Guardar" />
+                </form>
+            <!--finaliza el formulario del model-->
+        </div>
+            <div class="modal-footer">
+                <!-- EL BOTON PARA CERRAR-->
+                <div class="col-md-6 text-center">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+                </div>
+                Datos de Requisitos Requeridos por la Plaza
+            </div>
+        </div>
+    </div>
+</div>
+<!--Termina Modal Requisito-->
+ <!--inicia Modal Funcion-->
+<div id="modalFuncion" class="modal fade" role="dialog" style="background-color: rgba(4, 4,4,0.4);">
+    <div class="modal-dialog" style="width: 84%;">
+        <!-- Modal content-->
+        <div class="modal-content" style=" color:#393939">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <h4 class="col-md-5 modal-title">NUEVA FUNCIÓN DE CARGO</h4>
+                </div>
+            </div><!--Inicia el cuerpo del formulario-->
+            <div class="modal-body">
+                <!--Inicia el formulario del model-->
+                <form action="/FuncionPlaza/GuardarFuncion" method="post" id="formRequisito">
+                    @Html.HiddenFor(model => model.IDPLAZA)
+                    <div class="row">
+                        <div class="col-md-1 col-sm-6"><label>Descripción Función</label></div>
+                        <div class="col-md-7 col-sm-6"><textarea rows="3" cols="30" name="desc" class="form-control" type="text" maxlength="500" required></textarea></div>
+                    </div>
+                    <input class="btn btn-primary" style="margin-left:80%" type="submit" value="Guardar" />
+                </form>
+                <!--finaliza el formulario del model-->
+            </div>
+
+            <div class="modal-footer">
+                <!-- EL BOTON PARA CERRAR-->
+                <div class="col-md-6 text-center">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+                </div>
+                Datos de funciones a desempeñar en el cargo
+            </div>
+        </div>
+    </div>
+</div>
+<!--Termina Modal Funcion-->
+
+<p style="margin-top:9%">
     @Html.ActionLink("Edit", "Edit", new { id = Model.IDPLAZA }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

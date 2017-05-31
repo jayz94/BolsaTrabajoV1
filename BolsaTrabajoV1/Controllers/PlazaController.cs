@@ -30,10 +30,15 @@ namespace BolsaTrabajoV1.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PLAZA pLAZA = await db.PLAZA.FindAsync(id);
+            var funcionPlaza = from funcion in db.FUNCION_PLAZA where funcion.IDPLAZA ==id select funcion;
+            var requisitoPlaza = from requisito in db.REQUISITO where requisito.IDPLAZA == id select requisito;
             if (pLAZA == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.TIPOREQUISITO = new SelectList(db.TIPO_REQUISITO, "IDTIPOREQUISITO", "DESCRIPCIONTIPO");
+            ViewBag.funciones = funcionPlaza;
+            ViewBag.requisitos = requisitoPlaza;
             return View(pLAZA);
         }
 

@@ -11,119 +11,124 @@ using BolsaTrabajoV1.Models;
 
 namespace BolsaTrabajoV1.Controllers
 {
-    public class ExamenController : Controller
+    public class FuncionPlazaController : Controller
     {
         private ConexionBDBolsa db = new ConexionBDBolsa();
 
-        // GET: Examen
+        // GET: FuncionPlaza
         public async Task<ActionResult> Index()
         {
-            var eXAMEN = db.EXAMEN.Include(e => e.EMPRESA).Include(e => e.TIPO_EXAMEN);
-            return View(await eXAMEN.ToListAsync());
+            var fUNCION_PLAZA = db.FUNCION_PLAZA.Include(f => f.PLAZA);
+            return View(await fUNCION_PLAZA.ToListAsync());
         }
 
-        // GET: Examen/Details/5
+        // GET: FuncionPlaza/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EXAMEN eXAMEN = await db.EXAMEN.FindAsync(id);
-            if (eXAMEN == null)
+            FUNCION_PLAZA fUNCION_PLAZA = await db.FUNCION_PLAZA.FindAsync(id);
+            if (fUNCION_PLAZA == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TIPOPREGUNTA = new SelectList(db.TIPOPREGUNTA,"IDTIPOPREGUNTA","NOMBRETIPOPREGUNTA");
-            var preguntas = from pregunta in db.PREGUNTA where pregunta.CODIGOEXAMEN == id select pregunta;
-            ViewBag.preguntas = preguntas;
-            return View(eXAMEN);
+            return View(fUNCION_PLAZA);
         }
 
-        // GET: Examen/Create
+        // GET: FuncionPlaza/Create
         public ActionResult Create()
         {
-            ViewBag.CODIGOEMPRESA = new SelectList(db.EMPRESA, "CODIGOEMPRESA", "NOMBREEMPRESA");
-            ViewBag.IDTIPOEXAMEN = new SelectList(db.TIPO_EXAMEN, "IDTIPOEXAMEN", "DESCRIPCIONTIPO");
+            ViewBag.IDPLAZA = new SelectList(db.PLAZA, "IDPLAZA", "FORMAPAGO");
             return View();
         }
 
-        // POST: Examen/Create
+        // POST: FuncionPlaza/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CODIGOEMPRESA,ACTIVO,PONDERACION,CODIGOEXAMEN,IDTIPOEXAMEN")] EXAMEN eXAMEN)
+        public async Task<ActionResult> Create([Bind(Include = "IDFUNCION,IDPLAZA,DESCRIPCIONPLAZA")] FUNCION_PLAZA fUNCION_PLAZA)
         {
             if (ModelState.IsValid)
             {
-                db.EXAMEN.Add(eXAMEN);
+                db.FUNCION_PLAZA.Add(fUNCION_PLAZA);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CODIGOEMPRESA = new SelectList(db.EMPRESA, "CODIGOEMPRESA", "NOMBREEMPRESA", eXAMEN.CODIGOEMPRESA);
-            ViewBag.IDTIPOEXAMEN = new SelectList(db.TIPO_EXAMEN, "IDTIPOEXAMEN", "DESCRIPCIONTIPO", eXAMEN.IDTIPOEXAMEN);
-            return View(eXAMEN);
+            ViewBag.IDPLAZA = new SelectList(db.PLAZA, "IDPLAZA", "FORMAPAGO", fUNCION_PLAZA.IDPLAZA);
+            return View(fUNCION_PLAZA);
         }
 
-        // GET: Examen/Edit/5
+        //POST: FuncionPlaza/GuardarFuncion
+        [HttpPost]
+        public async Task<ActionResult> GuardarFuncion(int IDPLAZA, String desc)
+        {
+            FUNCION_PLAZA funcion = new FUNCION_PLAZA();
+            funcion.IDPLAZA = IDPLAZA;
+            funcion.DESCRIPCIONPLAZA = desc;
+            db.FUNCION_PLAZA.Add(funcion);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Details","Plaza", new { @id = IDPLAZA });
+        }
+
+        // GET: FuncionPlaza/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EXAMEN eXAMEN = await db.EXAMEN.FindAsync(id);
-            if (eXAMEN == null)
+            FUNCION_PLAZA fUNCION_PLAZA = await db.FUNCION_PLAZA.FindAsync(id);
+            if (fUNCION_PLAZA == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CODIGOEMPRESA = new SelectList(db.EMPRESA, "CODIGOEMPRESA", "NOMBREEMPRESA", eXAMEN.CODIGOEMPRESA);
-            ViewBag.IDTIPOEXAMEN = new SelectList(db.TIPO_EXAMEN, "IDTIPOEXAMEN", "DESCRIPCIONTIPO", eXAMEN.IDTIPOEXAMEN);
-            return View(eXAMEN);
+            ViewBag.IDPLAZA = new SelectList(db.PLAZA, "IDPLAZA", "FORMAPAGO", fUNCION_PLAZA.IDPLAZA);
+            return View(fUNCION_PLAZA);
         }
 
-        // POST: Examen/Edit/5
+        // POST: FuncionPlaza/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CODIGOEMPRESA,ACTIVO,PONDERACION,CODIGOEXAMEN,IDTIPOEXAMEN")] EXAMEN eXAMEN)
+        public async Task<ActionResult> Edit([Bind(Include = "IDFUNCION,IDPLAZA,DESCRIPCIONPLAZA")] FUNCION_PLAZA fUNCION_PLAZA)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(eXAMEN).State = EntityState.Modified;
+                db.Entry(fUNCION_PLAZA).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.CODIGOEMPRESA = new SelectList(db.EMPRESA, "CODIGOEMPRESA", "NOMBREEMPRESA", eXAMEN.CODIGOEMPRESA);
-            ViewBag.IDTIPOEXAMEN = new SelectList(db.TIPO_EXAMEN, "IDTIPOEXAMEN", "DESCRIPCIONTIPO", eXAMEN.IDTIPOEXAMEN);
-            return View(eXAMEN);
+            ViewBag.IDPLAZA = new SelectList(db.PLAZA, "IDPLAZA", "FORMAPAGO", fUNCION_PLAZA.IDPLAZA);
+            return View(fUNCION_PLAZA);
         }
 
-        // GET: Examen/Delete/5
+        // GET: FuncionPlaza/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EXAMEN eXAMEN = await db.EXAMEN.FindAsync(id);
-            if (eXAMEN == null)
+            FUNCION_PLAZA fUNCION_PLAZA = await db.FUNCION_PLAZA.FindAsync(id);
+            if (fUNCION_PLAZA == null)
             {
                 return HttpNotFound();
             }
-            return View(eXAMEN);
+            return View(fUNCION_PLAZA);
         }
 
-        // POST: Examen/Delete/5
+        // POST: FuncionPlaza/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            EXAMEN eXAMEN = await db.EXAMEN.FindAsync(id);
-            db.EXAMEN.Remove(eXAMEN);
+            FUNCION_PLAZA fUNCION_PLAZA = await db.FUNCION_PLAZA.FindAsync(id);
+            db.FUNCION_PLAZA.Remove(fUNCION_PLAZA);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

@@ -36,6 +36,7 @@ namespace BolsaTrabajoV1.Controllers
                 menus.Add(menu);
             }
             Session["menus"] = menus;
+            ViewBag.plazas = db.ViewPlazaGenerica.ToList();
             return View();
         }
 

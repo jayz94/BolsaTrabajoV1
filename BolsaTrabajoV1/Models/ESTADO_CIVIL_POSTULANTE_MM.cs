@@ -17,6 +17,7 @@ namespace BolsaTrabajoV1.Models
         public int IDPOSTULANTE { get; set; }
         public short IDESTADOCIVIL { get; set; }
         public Nullable<System.DateTime> FECHACAMBIO { get; set; }
+        public Nullable<short> ACTIVO { get; set; }
     
         public virtual ESTADO_CIVIL ESTADO_CIVIL { get; set; }
         public virtual POSTULANTE POSTULANTE { get; set; }

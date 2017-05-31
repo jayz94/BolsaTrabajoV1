@@ -31,11 +31,13 @@ namespace BolsaTrabajoV1.Models
         public Nullable<bool> BLOQUEADO { get; set; }
         public Nullable<int> INTENTOS { get; set; }
         public string CORREO { get; set; }
+        public Nullable<short> IDROL { get; set; }
     
         public virtual EMPRESA EMPRESA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<POSTULANTE> POSTULANTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ROL_USUARIO_MM> ROL_USUARIO_MM { get; set; }
+        public virtual ROL ROL { get; set; }
     }
 }

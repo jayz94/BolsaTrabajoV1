@@ -1,0 +1,107 @@
+﻿@model BolsaTrabajoV1.Models.PREGUNTA
+
+
+<div>
+    <h4>Detalle de Pregunta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TEXTOPREGUNTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEXTOPREGUNTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXAMEN.CODIGOEXAMEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXAMEN.CODIGOEXAMEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPOPREGUNTA.NOMBRETIPOPREGUNTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPOPREGUNTA.NOMBRETIPOPREGUNTA)
+        </dd>
+
+    </dl>
+</div>
+<div class="col-md-12">
+    <label class="text-center">Opciones</label>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#modalOpcion"></button>
+    <hr>
+    @foreach (var item in ViewBag.opciones)
+    {
+        <li>
+            @item.DESCRIPCIONOPCION
+            @Html.ActionLink(" ", "Edit", "Opcion", new { id = item.IDOPCIONPREGUNTA }, new { @class = "btn btn-success fa fa-edit btn-xs" })
+            @Html.ActionLink(" ", "Details", "Pregunta", new { id = item.IDOPCIONPREGUNTA }, new { @class = "btn btn-primary fa fa-search btn-xs" })
+            @Html.ActionLink(" ", "Delete", "Pregunta", new { id = item.IDOPCIONPREGUNTA }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
+        </li>
+    }
+</div>
+
+
+
+<!--inicia Modal requisito -->
+<div id="modalOpcion" class="modal fade" role="dialog" style="background-color: rgba(4, 4,4,0.4); margin-top:4%">
+    <div class="modal-dialog" style="width: 84%;">
+        <!-- Modal content-->
+        <div class="modal-content" style=" color:#393939">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <h4 class="col-md-5 modal-title">NUEVA OPCIÓN</h4>
+                </div>
+            </div><!--Inicia el cuerpo del formulario-->
+            <div class="modal-body" style="margin-top:5%">
+                <!--Inicia el formulario del model-->
+                <form action="/OpcionPregunta/GuardarOpcion" method="post">
+                    @Html.HiddenFor(model => model.IDPREGUNTA)
+                    <div class="row">
+                        <div class="col-md-1 col-sm-6">
+                            <label>Texto Opción</label>
+                        </div>
+                        <div class="col-md-3 col-sm-6"><textarea rows="3" cols="30" name="textoOpcion" class="form-control" type="text" maxlength="500" required>
+                            </textarea>
+                        </div>
+                        <div class="col-md-1 col-sm-6">
+                            <label>Texto Opción</label>
+                        </div>
+                        <div class="col-md-1 col-sm-6">
+                            <label>Orden</label>
+                        </div>
+                        <div class="col-md-1 col-sm-6">
+                            <input name="orden" class="form-control"/>
+                        </div>
+                        <div class="col-md-1 col-sm-6">
+                            <label>Puntaje</label>
+                        </div>
+                        <div class="col-md-1 col-sm-6">
+                            <input name="puntaje" class="form-control" />
+                        </div>
+                        <input class="btn btn-primary" style="margin-left:80%" type="submit" value="Guardar" />
+                    </div>
+                </form>
+                <!--finaliza el formulario del model-->
+            </div>
+            <div class="modal-footer">
+                <!-- EL BOTON PARA CERRAR-->
+                <div class="col-md-6 text-center">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+                </div>
+                Opción de Pregunta
+            </div>
+        </div>
+    </div>
+</div>
+<!--Termina Modal Requisito-->
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPREGUNTA }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

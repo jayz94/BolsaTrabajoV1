@@ -1,0 +1,36 @@
+﻿@model BolsaTrabajoV1.Models.REQUISITO
+
+<div>
+    <h4 class="text-center">Detalle de Requisito</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCIONREQUISITO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCIONREQUISITO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PLAZA.FORMAPAGO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PLAZA.FORMAPAGO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_REQUISITO.DESCRIPCIONTIPO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_REQUISITO.DESCRIPCIONTIPO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Regresar", "Details", "Plaza", new { id = Model.IDPLAZA }, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDREQUISITO }, new { @class = "btn btn-success" }) 
+</p>

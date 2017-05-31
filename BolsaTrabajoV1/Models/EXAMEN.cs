@@ -25,6 +25,7 @@ namespace BolsaTrabajoV1.Models
         public decimal PONDERACION { get; set; }
         public int CODIGOEXAMEN { get; set; }
         public Nullable<int> IDTIPOEXAMEN { get; set; }
+        public string DESCRIPCIONEXAMEN { get; set; }
     
         public virtual EMPRESA EMPRESA { get; set; }
         public virtual TIPO_EXAMEN TIPO_EXAMEN { get; set; }

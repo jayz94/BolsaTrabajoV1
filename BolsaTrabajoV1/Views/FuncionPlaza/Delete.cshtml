@@ -1,0 +1,24 @@
+﻿@model BolsaTrabajoV1.Models.FUNCION_PLAZA
+
+<h3>Esta seguro de eliminar esta función de la plaza?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCIONPLAZA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCIONPLAZA)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="SI" class="btn btn-danger" /> 
+            @Html.ActionLink("Regresar", "Details", "Plaza", new { id=Model.IDPLAZA},new { @class = "btn btn-success" })
+        </div>
+    }
+</div>

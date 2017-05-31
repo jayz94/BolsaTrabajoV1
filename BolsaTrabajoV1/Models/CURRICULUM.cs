@@ -30,6 +30,7 @@ namespace BolsaTrabajoV1.Models
     
         public int IDCURRICULUM { get; set; }
         public int IDPOSTULANTE { get; set; }
+        public string DESCRIPCION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CERTIFICACION> CERTIFICACION { get; set; }
