@@ -34,7 +34,7 @@ namespace BolsaTrabajoV1.Controllers
 
         public ActionResult Perfil()
         {
-
+         
             var rol = 1;//obtenemos el rol
 
             var query = from menu in db.MENU
@@ -97,9 +97,7 @@ namespace BolsaTrabajoV1.Controllers
                         TempData["Message"] = user.NOMBREUSUARIO;
                         user.IDUSUARIO = userID.Value;
                         user.IDROL = Convert.ToInt16(rol.Value);
-                        Session["nombre"] = user.NOMBREUSUARIO;
-                        Session["id"] = user.IDUSUARIO;
-                        Session["rol"] = Convert.ToUInt32(user.IDROL);
+                       
                         Session["usuario"] = user;
                         return RedirectToAction("Perfil");
 
