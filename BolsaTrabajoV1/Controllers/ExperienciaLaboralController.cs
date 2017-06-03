@@ -23,7 +23,7 @@ namespace BolsaTrabajoV1.Controllers
             //List<Models.Linq.AREA_CONOCIMIENTO> area = cn.DB.AREA_CONOCIMIENTO.Where(f => f.IDAREACONOCIMIENTO == 1).ToList();
             int idCurriculum = (int)Session["idCurriculum"];
             var experiencia = from exp in db.EXPERIENCIALABORAL where exp.IDCURRICULUM == idCurriculum select exp;
-            return View(experiencia.ToList());
+            return View(experiencia.ToListAsync());
         }
 
         // GET: ExperienciaLaboral/Details/5

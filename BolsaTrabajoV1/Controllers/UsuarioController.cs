@@ -187,6 +187,21 @@ namespace BolsaTrabajoV1.Controllers
             Session["nombre"] = "NO REGISTRADO";
             return RedirectToAction("Index", "Home");
         }
+
+        public async Task<ActionResult> redirigirUsuario(int idUsuario)
+        {
+            USUARIO uSUARIO = await db.USUARIO.FindAsync(idUsuario);
+            if (uSUARIO.IDROL==2)//usuario postulante
+            {
+                return RedirectToAction("Details", "Postulante", new { idusuario = uSUARIO.IDUSUARIO });
+            }
+            if (uSUARIO.IDROL == 3)//usuario postulante
+            {
+                return RedirectToAction("Details", "Empresa", new { idusuario = uSUARIO.IDUSUARIO });
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

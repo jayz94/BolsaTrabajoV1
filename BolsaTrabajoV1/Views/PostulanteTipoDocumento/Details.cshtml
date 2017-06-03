@@ -1,0 +1,42 @@
+﻿@model BolsaTrabajoV1.Models.POSTULANTE_TIPO_DOCUMENTO_MM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>POSTULANTE_TIPO_DOCUMENTO_MM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NUMERO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NUMERO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POSTULANTE.NOMBREPOSTULANTE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POSTULANTE.NOMBREPOSTULANTE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_DOCUMENTO_IDENTIDAD.MASCARA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_DOCUMENTO_IDENTIDAD.MASCARA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -59,6 +59,7 @@ namespace BolsaTrabajoV1.Controllers
             ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM");
             ViewBag.IDMUNICIPIO = new SelectList(db.MUNICIPIO, "IDMUNICIPIO", "NOMBREMUNICIPIO");
             ViewBag.IDUSUARIO = new SelectList(db.USUARIO, "IDUSUARIO", "NOMBREUSUARIO");
+            ViewBag.IDGENERO = new SelectList(db.GENERO, "IDGENERO", "DESCRIPCIONGENERO");
             return View();
         }
 
@@ -67,22 +68,22 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDPOSTULANTE,IDUSUARIO,IDMUNICIPIO,IDCURRICULUM,NOMBREPOSTULANTE,APELLIDOPOSTULANTE,GENERO,FECHANACIMIENTO,DIRECCION,URLCURRICULUM")] POSTULANTE pOSTULANTE)
+        public async Task<ActionResult> Create([Bind(Include = "IDPOSTULANTE,IDUSUARIO,IDMUNICIPIO,IDCURRICULUM,NOMBREPOSTULANTE,APELLIDOPOSTULANTE,IDGENERO,FECHANACIMIENTO,DIRECCION,URLCURRICULUM")] POSTULANTE pOSTULANTE)
         {
             if (ModelState.IsValid)
             {
-                pOSTULANTE.IDUSUARIO =(int)Session["idUs"];
+                pOSTULANTE.IDUSUARIO = 1;//(int)Session["idUs"];
                 db.POSTULANTE.Add(pOSTULANTE);
                 await db.SaveChangesAsync();
-                int id = pOSTULANTE.IDPOSTULANTE; // recuperar el id de postulante
+                //int id = pOSTULANTE.IDPOSTULANTE; // recuperar el id de postulante
                 //busco usuario por el id de session
-                USUARIO uSUARIO = await db.USUARIO.FindAsync((int)Session["idUs"]); 
+                USUARIO uSUARIO = await db.USUARIO.FindAsync(1/*(int)Session["idUs"]*/); 
                 //uSUARIO.IDPOSTULANTE =id;
                 db.Entry(uSUARIO).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 //creo el curriculum de postulante
                 CURRICULUM curriculum = new CURRICULUM();
-                curriculum.IDPOSTULANTE = id;//le asigno el id de postulante a curriculum
+                curriculum.IDPOSTULANTE = uSUARIO.IDUSUARIO;//le asigno el id de postulante a curriculum
                 //guardo el curriculum
                 db.CURRICULUM.Add(curriculum);
                 await db.SaveChangesAsync();
@@ -96,6 +97,7 @@ namespace BolsaTrabajoV1.Controllers
             //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pOSTULANTE.IDCURRICULUM);
             ViewBag.IDMUNICIPIO = new SelectList(db.MUNICIPIO, "IDMUNICIPIO", "NOMBREMUNICIPIO", pOSTULANTE.IDMUNICIPIO);
             ViewBag.IDUSUARIO = new SelectList(db.USUARIO, "IDUSUARIO", "NOMBREUSUARIO", pOSTULANTE.IDUSUARIO);
+            ViewBag.IDGENERO = new SelectList(db.GENERO, "IDGENERO", "DESCRIPCIONGENERO");
             return View(pOSTULANTE);
         }
 
@@ -114,6 +116,7 @@ namespace BolsaTrabajoV1.Controllers
             //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pOSTULANTE.IDCURRICULUM);
             ViewBag.IDMUNICIPIO = new SelectList(db.MUNICIPIO, "IDMUNICIPIO", "NOMBREMUNICIPIO", pOSTULANTE.IDMUNICIPIO);
             ViewBag.IDUSUARIO = new SelectList(db.USUARIO, "IDUSUARIO", "NOMBREUSUARIO", pOSTULANTE.IDUSUARIO);
+            ViewBag.IDGENERO = new SelectList(db.GENERO, "IDGENERO", "DESCRIPCIONGENERO");
             return View(pOSTULANTE);
         }
 
@@ -133,6 +136,7 @@ namespace BolsaTrabajoV1.Controllers
             //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", pOSTULANTE.IDCURRICULUM);
             ViewBag.IDMUNICIPIO = new SelectList(db.MUNICIPIO, "IDMUNICIPIO", "NOMBREMUNICIPIO", pOSTULANTE.IDMUNICIPIO);
             ViewBag.IDUSUARIO = new SelectList(db.USUARIO, "IDUSUARIO", "NOMBREUSUARIO", pOSTULANTE.IDUSUARIO);
+            ViewBag.IDGENERO = new SelectList(db.GENERO, "IDGENERO", "DESCRIPCIONGENERO");
             return View(pOSTULANTE);
         }
 

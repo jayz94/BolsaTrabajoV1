@@ -1,6 +1,12 @@
 ﻿@model BolsaTrabajoV1.Models.POSTULANTE
-@using (Html.BeginForm()) 
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+@Scripts.Render("~/Scripts/jsDatepicker/jquery-ui.js")
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+@using (Html.BeginForm())
 {
+
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
@@ -13,16 +19,9 @@
                 @Html.DropDownList("IDUSUARIO", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IDUSUARIO, "", new { @class = "text-danger" })
             </div>
-        </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDMUNICIPIO, "Municipio", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDMUNICIPIO", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDMUNICIPIO, "", new { @class = "text-danger" })
-            </div>
         </div>
-        @*
+
+        
     <div class="form-group">
         @Html.LabelFor(model => model.IDCURRICULUM, "IDCURRICULUM", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -50,7 +49,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.GENERO, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.GENERO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("IDGENERO", null, htmlAttributes : new { @class = "form-control" } )
                 @Html.ValidationMessageFor(model => model.GENERO, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -58,7 +57,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FECHANACIMIENTO, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FECHANACIMIENTO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.FECHANACIMIENTO, new { htmlAttributes = new { @class = "form-control datepicker" } })
                 @Html.ValidationMessageFor(model => model.FECHANACIMIENTO, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -68,6 +67,15 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DIRECCION, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DIRECCION, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDMUNICIPIO, "MUNICIPIO", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IDMUNICIPIO", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IDMUNICIPIO, "", new { @class = "text-danger" })
             </div>
         </div>
         @*
@@ -86,3 +94,9 @@
         </div>
     </div>
 }
+<script>
+    $('#FECHANACIMIENTO').datetimepicker({
+        format: 'DD/MM/YYYY',
+        viewMode: 'years'
+    });
+</script>
