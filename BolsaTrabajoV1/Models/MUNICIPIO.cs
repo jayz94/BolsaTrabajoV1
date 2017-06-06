@@ -17,6 +17,7 @@ namespace BolsaTrabajoV1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MUNICIPIO()
         {
+            this.EMPRESA = new HashSet<EMPRESA>();
             this.PLAZA = new HashSet<PLAZA>();
             this.POSTULANTE = new HashSet<POSTULANTE>();
         }
@@ -26,6 +27,8 @@ namespace BolsaTrabajoV1.Models
         public string NOMBREMUNICIPIO { get; set; }
     
         public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EMPRESA> EMPRESA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PLAZA> PLAZA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

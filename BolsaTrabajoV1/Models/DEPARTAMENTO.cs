@@ -21,9 +21,11 @@ namespace BolsaTrabajoV1.Models
         }
     
         public int IDDEPARTAMENTO { get; set; }
+        public Nullable<int> IDPAIS { get; set; }
         public string NOMBREDEPARTAMENTO { get; set; }
         public string ZONA { get; set; }
     
+        public virtual PAIS PAIS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MUNICIPIO> MUNICIPIO { get; set; }
     }

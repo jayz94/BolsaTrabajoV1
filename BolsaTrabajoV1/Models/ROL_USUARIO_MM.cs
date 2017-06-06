@@ -18,8 +18,5 @@ namespace BolsaTrabajoV1.Models
         public short IDROL { get; set; }
         public Nullable<bool> ACTIVO { get; set; }
         public Nullable<System.DateTime> FECHAASIGNACION { get; set; }
-    
-        public virtual ROL ROL { get; set; }
-        public virtual USUARIO USUARIO { get; set; }
     }
 }

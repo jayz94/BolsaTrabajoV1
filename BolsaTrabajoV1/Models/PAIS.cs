@@ -17,6 +17,7 @@ namespace BolsaTrabajoV1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PAIS()
         {
+            this.DEPARTAMENTO = new HashSet<DEPARTAMENTO>();
             this.PARTICIPACION_PROFESIONAL = new HashSet<PARTICIPACION_PROFESIONAL>();
         }
     
@@ -24,6 +25,8 @@ namespace BolsaTrabajoV1.Models
         public string NOMBREPAIS { get; set; }
         public string CODIGOPAIS { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DEPARTAMENTO> DEPARTAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PARTICIPACION_PROFESIONAL> PARTICIPACION_PROFESIONAL { get; set; }
     }

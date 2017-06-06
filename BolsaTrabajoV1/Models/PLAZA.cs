@@ -38,6 +38,7 @@ namespace BolsaTrabajoV1.Models
         public string DESCRIPCIONPLAZA { get; set; }
         public Nullable<int> VACANTES { get; set; }
         public string TIPOJORNADA { get; set; }
+        public byte[] IMAGENPLAZA { get; set; }
     
         public virtual CARGO CARGO { get; set; }
         public virtual EMPRESA EMPRESA { get; set; }

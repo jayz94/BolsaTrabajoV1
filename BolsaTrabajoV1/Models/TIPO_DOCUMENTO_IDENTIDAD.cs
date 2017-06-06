@@ -21,7 +21,7 @@ namespace BolsaTrabajoV1.Models
         }
     
         public int IDTIPODOCUMENTOIDENTIDAD { get; set; }
-        public Nullable<decimal> NOMBREDOCUMENTOIDENTIDAD { get; set; }
+        public string NOMBREDOCUMENTOIDENTIDAD { get; set; }
         public Nullable<short> CANTIDADCARACTERES { get; set; }
         public string MASCARA { get; set; }
         public Nullable<bool> EXTRANJERO { get; set; }

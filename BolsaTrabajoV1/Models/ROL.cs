@@ -17,9 +17,8 @@ namespace BolsaTrabajoV1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ROL()
         {
-            this.ROL_USUARIO_MM = new HashSet<ROL_USUARIO_MM>();
-            this.MENU = new HashSet<MENU>();
             this.USUARIO = new HashSet<USUARIO>();
+            this.MENU = new HashSet<MENU>();
         }
     
         public short IDROL { get; set; }
@@ -27,10 +26,8 @@ namespace BolsaTrabajoV1.Models
         public Nullable<bool> ACTIVO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ROL_USUARIO_MM> ROL_USUARIO_MM { get; set; }
+        public virtual ICollection<USUARIO> USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MENU> MENU { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIO> USUARIO { get; set; }
     }
 }

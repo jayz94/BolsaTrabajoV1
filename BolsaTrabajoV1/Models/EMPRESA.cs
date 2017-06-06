@@ -23,8 +23,18 @@ namespace BolsaTrabajoV1.Models
         }
     
         public int CODIGOEMPRESA { get; set; }
+        public Nullable<int> IDMUNICIPIO { get; set; }
+        public Nullable<int> IDGIRO { get; set; }
         public string NOMBREEMPRESA { get; set; }
+        public string DESCRIPCION { get; set; }
+        public string ABREVIATURA { get; set; }
+        public string NIT { get; set; }
+        public string CORREOELECTRONICO { get; set; }
+        public string TELEFONO { get; set; }
+        public byte[] IMAGENEMPRESA { get; set; }
     
+        public virtual GIRO GIRO { get; set; }
+        public virtual MUNICIPIO MUNICIPIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EXAMEN> EXAMEN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

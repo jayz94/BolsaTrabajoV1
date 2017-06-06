@@ -35,6 +35,7 @@ namespace BolsaTrabajoV1.Models
         public Nullable<System.DateTime> FECHANACIMIENTO { get; set; }
         public string DIRECCION { get; set; }
         public string URLCURRICULUM { get; set; }
+        public byte[] IMAGENPOSTULANTE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTACTO> CONTACTO { get; set; }
