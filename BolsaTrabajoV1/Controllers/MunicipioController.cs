@@ -59,6 +59,8 @@ namespace BolsaTrabajoV1.Controllers
             }
 
             ViewBag.IDDEPARTAMENTO = new SelectList(db.DEPARTAMENTO, "IDDEPARTAMENTO", "NOMBREDEPARTAMENTO", mUNICIPIO.IDDEPARTAMENTO);
+
+           
             return View(mUNICIPIO);
         }
 

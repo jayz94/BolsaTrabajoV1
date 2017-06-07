@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BolsaTrabajoV1.Models;
+using System.Data.SqlClient;
 
 namespace BolsaTrabajoV1.Controllers
 {
@@ -39,23 +40,74 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Empresa/Create
         public ActionResult Create()
         {
+            
+            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTO, "IDDEPARTAMENTO", "NOMBREDEPARTAMENTO");
+            ViewBag.PAIS = new SelectList(db.PAIS, "IDPAIS", "NOMBREPAIS");
+            ViewBag.IDGIRO = new SelectList(db.GIRO, "IDGIRO", "DESCRIPCIONGIRO");
+
+
+
+
+
             return View();
         }
+
+
+        public JsonResult GetMunicipios(int id)
+         {
+
+             
+             SelectList municipios = new SelectList(db.MUNICIPIO.Where(p=>p.IDDEPARTAMENTO==id), "IDMUNICIPIO", "NOMBREMUNICIPIO");
+
+
+             return Json(new SelectList(municipios, "Value", "Text"));
+         }
+
+
+
+
 
         // POST: Empresa/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDEMPRESA,CODIGOEMPRESA,NOMBREEMPRESA")] EMPRESA eMPRESA)
+        public async Task<ActionResult> Create([Bind(Include = "CODIGOEMPRESA,ABREVIATURA,NOMBREEMPRESA,CORREOELECTRONICO,TELEFONO,IDMUNICIPIO,NIT,IDGIRO,DESCRIPCION")] EMPRESA eMPRESA)
         {
-            if (ModelState.IsValid)
+
+            try
             {
-                db.EMPRESA.Add(eMPRESA);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.EMPRESA.Add(eMPRESA);
+                    await db.SaveChangesAsync();
+
+                    var usr = new USUARIO();
+                    usr = (USUARIO)Session["usuario"];
+
+                    USUARIO result = (from u in db.USUARIO
+                                     where u.IDUSUARIO == usr.IDUSUARIO
+                                     select u).SingleOrDefault();
+
+                    result.CODIGOEMPRESA = eMPRESA.CODIGOEMPRESA;
+                    db.SaveChanges();
+
+
+                    return RedirectToAction("Index");
+
+                }
             }
 
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "No se guardaron los cambios. Por favor verifique los datos.");
+
+            }
+
+            ViewBag.IDMUNICIPIO = new SelectList(db.MUNICIPIO, "IDMUNICIPIO", "NOMBREMUNICIPIO", eMPRESA.IDMUNICIPIO);
+            ViewBag.GIRO = new SelectList(db.GIRO, "IDGIRO", "DESCRIPCIONGIRO", eMPRESA.IDGIRO);
+           
             return View(eMPRESA);
         }
 
@@ -71,6 +123,21 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTO, "IDDEPARTAMENTO", "NOMBREDEPARTAMENTO");
+            ViewBag.PAIS = new SelectList(db.PAIS, "IDPAIS", "NOMBREPAIS");
+            ViewBag.IDGIRO = new SelectList(db.GIRO, "IDGIRO", "DESCRIPCIONGIRO");
+
+
+            int idmun = Convert.ToInt32(eMPRESA.IDMUNICIPIO);
+
+            MUNICIPIO municipio =
+                (from mun in db.MUNICIPIO
+                where mun.IDMUNICIPIO == idmun
+                select mun).SingleOrDefault();
+
+            TempData["dept"] = municipio.IDDEPARTAMENTO;
+            TempData["giro"] = eMPRESA.IDGIRO;
+            TempData["mn"] = eMPRESA.MUNICIPIO;
             return View(eMPRESA);
         }
 
