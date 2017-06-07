@@ -66,6 +66,9 @@ namespace BolsaTrabajoV1.Controllers
                     case -3:
                         TempData["Message"] = "Cuenta bloqueada";
                         break;
+                    case -1:
+                        TempData["Message"] = "No existe usuario";
+                        break;
                     default:
 
                         FormsAuthentication.SetAuthCookie(user.NOMBREUSUARIO, true);
