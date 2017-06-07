@@ -4,86 +4,104 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>POSTULANTE</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NOMBREPOSTULANTE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NOMBREPOSTULANTE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.APELLIDOPOSTULANTE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.APELLIDOPOSTULANTE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GENERO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GENERO.DESCRIPCIONGENERO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FECHANACIMIENTO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FECHANACIMIENTO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DIRECCION)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DIRECCION)
-        </dd>
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.URLCURRICULUM)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.URLCURRICULUM)
-        </dd>
-        @*
-    <dt>
-        @Html.DisplayNameFor(model => model.CURRICULUM1.IDCURRICULUM)
-    </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.CURRICULUM1.IDCURRICULUM)
-    </dd>
-        *@
-        <dt>
-            @Html.DisplayNameFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.USUARIO.NOMBREUSUARIO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.USUARIO.NOMBREUSUARIO)
-        </dd>
-
-    </dl>
+<h2>Tu perfil</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-body">
+                <h3>@Model.NOMBREPOSTULANTE @Model.APELLIDOPOSTULANTE</h3>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-5">
+            <div class="panel">
+                <div class="panel-body text-center">
+                    <img src="~/Images/no-profile-pic.png" style="width:300px;height:300px;"/>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-7">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h4>Acerca de Usted</h4>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-responsive table-striped">
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.NOMBREPOSTULANTE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.NOMBREPOSTULANTE)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.APELLIDOPOSTULANTE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.APELLIDOPOSTULANTE)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.GENERO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.GENERO.DESCRIPCIONGENERO)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.FECHANACIMIENTO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.FECHANACIMIENTO)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.DIRECCION)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.DIRECCION)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.URLCURRICULUM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.URLCURRICULUM)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.MUNICIPIO.NOMBREMUNICIPIO)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.USUARIO.NOMBREUSUARIO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.USUARIO.NOMBREUSUARIO)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.IDPOSTULANTE }) 
     @*Html.ActionLink("Back to List", "Index")*@
