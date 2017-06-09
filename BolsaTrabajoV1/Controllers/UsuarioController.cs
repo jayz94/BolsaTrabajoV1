@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using BolsaTrabajoV1.Models;
 using System.Text;
 using System.Security.Cryptography;
+using System.Net.Mail;
+using System.Web.Routing;
 
 namespace BolsaTrabajoV1.Controllers
 {
@@ -48,6 +50,64 @@ namespace BolsaTrabajoV1.Controllers
             return View();
         }
 
+        public void enviarCorreo(string correo, string nombre, string asunto, string mensaje)
+        {
+            var fromAddress = new MailAddress("sistemabolsadetrabajo@gmail.com", "SIBTRA S.A de C.V.");
+            var toAddress = new MailAddress(correo, nombre);
+            string fromPassword = "sibtra2017";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+
+
+            MailMessage msg = new MailMessage(fromAddress.ToString(), toAddress.ToString(), asunto, mensaje);
+
+            msg.IsBodyHtml = true;
+
+            smtp.Send(msg);
+
+        }
+
+        public string generarMensaje(USUARIO us)
+        {
+            string body = "Hola " + us.NOMBREUSUARIO + ",";
+            body += "<br /><br />Por favor haga click en el siguiente link para activar su cuenta.";
+            body += "<br /><a href = '" + string.Format("{0}://{1}/Usuario/Activation?id={2}&hash={3}", Request.Url.Scheme, Request.Url.Authority, us.IDUSUARIO, us.PASSWORD) + "'>Click aqui para activar cuenta.</a>";
+            body += "<br /><br />Gracias!";
+            return body;
+        }
+
+        public ActionResult Activation(int id, string hash)
+        {
+
+            if (id != null)
+            {
+                USUARIO user = db.USUARIO.Find(id);
+                if (user == null)
+                {
+                    TempData["MessageV"] = "Usuario No Activado";
+                }
+                else if (user.PASSWORD.Equals(hash))
+                {
+                    user.ACTIVO = true;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["MessageV"] = "Usuario Activado Exitosamente";
+                }
+            }
+
+            return RedirectToAction("Index", "Login");
+        }
+
+
         // POST: Usuario/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -76,6 +136,9 @@ namespace BolsaTrabajoV1.Controllers
                 Session["idUs"] = idUsuario;
                 //return RedirectToAction("Create", "Postulante");
                 ViewBag.Exito = "Usuario Ingresado con exito";
+
+                string mensaje = generarMensaje(us);
+                enviarCorreo(us.CORREO, us.NOMBREUSUARIO, "Activacion de cuenta SIBTRA", mensaje);
             }
             else {
                 ViewBag.ErrorPass = "Contraseñas no Coinciden";
@@ -86,7 +149,7 @@ namespace BolsaTrabajoV1.Controllers
             //ViewBag.IDEMPRESA = new SelectList(db.EMPRESA, "IDEMPRESA", "CODIGOEMPRESA", uSUARIO.CODIGOEMPRESA);
             //ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", uSUARIO.IDPOSTULANTE);
             //return View(uSUARIO);
-            return RedirectToAction("Create", "Postulante");
+            //return RedirectToAction("Create", "Postulante");
         }
 
         // GET: Usuario/Edit/5
@@ -180,7 +243,7 @@ namespace BolsaTrabajoV1.Controllers
             db.DesbloqueoUsuario(id);
         }
 
-        public async Task<ActionResult> cerrarSesion()
+        public RedirectToRouteResult cerrarSesion()
         {
             Session.Clear();
             Session["idRol"] = 1;
@@ -190,14 +253,18 @@ namespace BolsaTrabajoV1.Controllers
 
         public async Task<ActionResult> redirigirUsuario(int idUsuario)
         {
-            USUARIO uSUARIO = await db.USUARIO.FindAsync(idUsuario);
+            //USUARIO uSUARIO = await db.USUARIO.FindAsync(idUsuario);
+            USUARIO uSUARIO = (USUARIO) Session["usuario"];
             if (uSUARIO.IDROL==2)//usuario postulante
             {
-                return RedirectToAction("Details", "Postulante", new { idusuario = uSUARIO.IDUSUARIO });
+                var post = await db.POSTULANTE.FirstAsync(p => p.IDUSUARIO == uSUARIO.IDUSUARIO);//from postu in db.POSTULANTE where postu.IDUSUARIO == uSUARIO.IDUSUARIO select postu;    
+                //return RedirectToAction("Details", "Postulante", new { idusuario = post.IDUSUARIO });
+                return RedirectToAction("Details", "Postulante", new RouteValueDictionary( new { id = post.IDPOSTULANTE } ));
             }
-            if (uSUARIO.IDROL == 3)//usuario postulante
+            if (uSUARIO.IDROL == 3)//usuario empresa
             {
-                return RedirectToAction("Details", "Empresa", new { idusuario = uSUARIO.IDUSUARIO });
+                //var empresa =await db.EMPRESA.FirstAsync(e => e.CODIGOEMPRESA == uSUARIO.CODIGOEMPRESA);
+                return RedirectToAction("Details", "Empresa", new { idusuario = uSUARIO.CODIGOEMPRESA });
             }
             return RedirectToAction("Index", "Home");
         }

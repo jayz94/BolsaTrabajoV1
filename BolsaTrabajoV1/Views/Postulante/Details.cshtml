@@ -22,6 +22,41 @@
                     <img src="~/Images/no-profile-pic.png" style="width:300px;height:300px;"/>
                 </div>
             </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <h4>Tus Documentos de Identidad</h4>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th>Documento</th>
+                                <th>Número</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.POSTULANTE_TIPO_DOCUMENTO_MM.Count < 1)
+                            {
+                                <tr><td>No has ingresado ningún documento de identidad aún.</td></tr>
+                            }
+                            else
+                            {
+                                foreach (var documento in Model.POSTULANTE_TIPO_DOCUMENTO_MM)
+                                {
+                                    <tr>
+                                        <td>
+                                            @documento.TIPO_DOCUMENTO_IDENTIDAD.NOMBREDOCUMENTOIDENTIDAD
+                                        </td>
+                                        <td>
+                                            @documento.NUMERO
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         
         <div class="col-md-7">
@@ -96,6 +131,14 @@
                             </td>
                         </tr>
                     </table>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <h4>Tu información de contacto</h4>
+                </div>
+                <div class="panel-body">@*desplegamos la vista parcial de tipo de contactos en el panel *@
+                    @Html.Partial("_PartialContactos")
                 </div>
             </div>
         </div>
