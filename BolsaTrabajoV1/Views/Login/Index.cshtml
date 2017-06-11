@@ -54,6 +54,12 @@
                                     <b>@TempData["Message"]</b>
                                 </div>
                             }
+                            @if (TempData["MessageV"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    <strong>@TempData["MessageV"]</strong>
+                                </div>
+                            }
 
                             <div class="clearfix"></div>
 

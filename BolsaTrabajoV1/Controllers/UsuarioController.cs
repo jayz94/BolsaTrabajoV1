@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using BolsaTrabajoV1.Models;
 using System.Text;
 using System.Security.Cryptography;
+using System.Net.Mail;
 
 namespace BolsaTrabajoV1.Controllers
 {
@@ -48,6 +49,64 @@ namespace BolsaTrabajoV1.Controllers
             return View();
         }
 
+        public void enviarCorreo(string correo, string nombre, string asunto, string mensaje)
+        {
+            var fromAddress = new MailAddress("sistemabolsadetrabajo@gmail.com", "SIBTRA S.A de C.V.");
+            var toAddress = new MailAddress(correo, nombre);
+            string fromPassword = "sibtra2017";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+
+
+            MailMessage msg = new MailMessage(fromAddress.ToString(), toAddress.ToString(), asunto, mensaje);
+
+            msg.IsBodyHtml = true;
+
+            smtp.Send(msg);
+
+        }
+
+        public string generarMensaje(USUARIO us)
+        {
+            string body = "Hola " + us.NOMBREUSUARIO + ",";
+            body += "<br /><br />Por favor haga click en el siguiente link para activar su cuenta.";
+            body += "<br /><a href = '" + string.Format("{0}://{1}/Usuario/Activation?id={2}&hash={3}", Request.Url.Scheme, Request.Url.Authority, us.IDUSUARIO, us.PASSWORD) + "'>Click aqui para activar cuenta.</a>";
+            body += "<br /><br />Gracias!";
+            return body;
+        }
+
+        public ActionResult Activation(int id, string hash)
+        {
+
+            if (id != null)
+            {
+                USUARIO user = db.USUARIO.Find(id);
+                if (user == null)
+                {
+                    TempData["MessageV"] = "Usuario No Activado";
+                }
+                else if (user.PASSWORD.Equals(hash))
+                {
+                    user.ACTIVO = true;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["MessageV"] = "Usuario Activado Exitosamente";
+                }
+            }
+
+            return RedirectToAction("Index", "Login");
+        }
+
+
         // POST: Usuario/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -76,6 +135,9 @@ namespace BolsaTrabajoV1.Controllers
                 Session["idUs"] = idUsuario;
                 //return RedirectToAction("Create", "Postulante");
                 ViewBag.Exito = "Usuario Ingresado con exito";
+
+                string mensaje = generarMensaje(us);
+                enviarCorreo(us.CORREO, us.NOMBREUSUARIO, "Activacion de cuenta SIBTRA", mensaje);
             }
             else {
                 ViewBag.ErrorPass = "Contraseñas no Coinciden";
