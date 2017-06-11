@@ -1,160 +1,106 @@
-﻿<link rel="stylesheet" href="assets/css/styles.css" />
+﻿@model IEnumerable<BolsaTrabajoV1.Models.PostulanteCurriculum>
+
+<h2 class="text-center">Postulantes</h2>
+
+<link rel="stylesheet" href="assets/css/styles.css" />
 <nav id="colorNav">
     <ul>
         <li class="green">
-            <a href="#">CARGO</a>
+            <a href="#">DEPARTAMENTO</a>
             <ul>
-                @foreach (var cargo in ViewBag.cargos)
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
+                @foreach (var departamento in ViewBag.departamentos)
                 {
-                    <li><a href='@Url.Action("filtrar", "Home",new { idTabla=1, idRegistro=cargo.IDCARGO})'>@cargo.NOMBRECARGO</a></li>
-                }
-            </ul>
-        </li>
-        <li class="red">
-            <a href="#">AREA DE CARGO</a>
-            <ul>
-                @if (ViewBag.areaCargos != null)
-            {
-                foreach (var areac in ViewBag.areaCargos)
-                {
-                        <li><a href='@Url.Action("filtrar", "Home",new { idTabla=2, idRegistro=areac.IDAREACARGO})'>@areac.DESCRIPCIONAREA</a></li>
-                    }
+                    <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=1, idRegistro=departamento.IDDEPARTAMENTO})'>@departamento.NOMBREDEPARTAMENTO</a></li>
                 }
             </ul>
         </li>
         <li class="blue">
-            <a href="#">EMPRESA</a>
+            <a href="#" class="icon-beaker">IDIOMA</a>
             <ul>
-                @if (ViewBag.empresas != null)
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
+                @foreach (var idioma in ViewBag.idiomas)
             {
-                foreach (var empresa in ViewBag.empresas)
-                {
-                    <li><a href='@Url.Action("filtrar", "Home",new { idTabla=3, idRegistro=empresa.CODIGOEMPRESA})'>@empresa.NOMBREEMPRESA</a></li>
+                    <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla = 2, idRegistro = idioma.IDIDIOMA })'>@idioma.NOMBREIDIOMA</a></li>
                 }
-            }
-        </ul>
-        </li>
-        <li class="green">
-            <a href="#" class="icon-envelope">SALARIO</a>
-            <ul>
-                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=4, idRegistro=6})'>TODOS</a></li>
-                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=4, idRegistro=1})'>$0  -- $500</a></li>
-                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=4, idRegistro=2})'>$500  -- $1000</a></li>
-                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=4, idRegistro=3})'>$1000  -- $1500</a></li>
-                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=4, idRegistro=4})'>$1500  -- $2000</a></li>
-                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=4, idRegistro=5})'>Mayor a $2000</a></li>
-
             </ul>
         </li>
-    <li class="yellow">
-        <a href="#" class="icon-beaker">DEPARTAMENTO</a>
-        <ul>
-            @foreach (var departamento in ViewBag.departamentos)
+        <li class="yellow">
+            <a href="#" class="icon-beaker">AREA CONOCIMIENTO</a>
+            <ul>
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
+                @foreach (var areaCo in ViewBag.areasConocimiento)
             {
-                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=5, idRegistro=departamento.IDDEPARTAMENTO})'>@departamento.NOMBREDEPARTAMENTO</a></li>
-            }
-        </ul>
-    </li>
-    <li class="purple">
-        <a href="#" class="icon-envelope">GÉNERO</a>
-        <ul>
-            @foreach (var genero in ViewBag.generos)
-            {
-                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=6, idRegistro=genero.IDGENERO})'>@genero.DESCRIPCIONGENERO</a></li>
-            }
-        </ul>
-    </li>
-    <li class="blue">
-        <a href="#" class="icon-envelope">GIRO EMPRESAS</a>
-        <ul>
-            @foreach (var giro in ViewBag.giros)
-        {
-                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=7, idRegistro=giro.IDGIRO})'>@giro.DESCRIPCIONGIRO</a></li>
-            }
-        </ul>
-    </li>
-</ul>
-</nav>
-<h4 class="text-center">PLAZAS DISPONIBLES</h4>
-<div class="panel">
-    <div class="panel-body">
-        <table class="table">
-            <tr style="background-color:rgb(207, 207, 207)">
-                <th>
-                    Cargo
-                </th>
-                <th>
-                    Descripción
-                </th>
-                <th>
-                    Empresa
-                </th>
-                <th>
-                    Salario
-                </th>
-                <th>
-                    Género
-                </th>
-                <th>
-                    Municipio
-                </th>
-                <th>
-                    Vacantes
-                </th>
-                <th>
-                    Minimo Experiencia
-                </th>
-            </tr>
-            @if (ViewBag.plazas != null)
-            {
-                foreach (var plaza in ViewBag.plazas)
-                {
-                    <tr>
-                        <td>@plaza.car</td>
-
-                        <td>@plaza.des</td>
-
-                        <td>@plaza.emp</td>
-
-                        <td>$@plaza.sal</td>
-
-                        <td>@plaza.gen</td>
-
-                        <td>@plaza.mun</td>
-
-                        <td>@plaza.vac</td>
-
-                        <td>@plaza.emin</td>
-                    </tr>
+                    <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla = 3, idRegistro = areaCo.IDAREACONOCIMIENTO })'>@areaCo.NOMBREAREACONOCIMIENTO</a></li>
                 }
-            }
-        </table>
-    </div>
-</div>
+            </ul>
+        </li>
+        <li class="blue">
+            <a href="#" class="icon-beaker">TIPO HABILIDAD</a>
+            <ul>
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
+                @foreach (var tipoHabilidad in ViewBag.tiposHabilidades)
+            {
+                    <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla = 4, idRegistro = tipoHabilidad.IDTIPOHABILIDAD })'>@tipoHabilidad.NOMBRETIPOHABILIDAD</a></li>
+                }
+            </ul>
+        </li>
+        <li class="yellow">
+            <a href="#" class="icon-beaker">TIPO FORMACION ACADEMICA</a>
+            <ul>
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
+                @foreach (var tipoFor in ViewBag.tiposFormaciones)
+            {
+                    <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla = 5, idRegistro = tipoFor.IDTIPOFORMACION })'>@tipoFor.NOMBRETIPOFORMACION</a></li>
+                }
+            </ul>
+        </li>
+        <li class="purple">
+            <a href="#" class="icon-envelope">GÉNERO</a>
+            <ul>
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
+                @foreach (var genero in ViewBag.generos)
+            {
+                    <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=6, idRegistro=genero.IDGENERO})'>@genero.DESCRIPCIONGENERO</a></li>
+                }
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<table class="table">
+    <tr>
+        <th>Nombre          </th>
+        <th>Género          </th>
+        <th>Edad            </th>
+        <th>Habilidad       </th>
+        <th>Idioma          </th>
+        <th>Título/<br /> Institución  </th>
+        <th>Municipio de Habitaciòn</th>
+        <th>Acciones        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @Html.DisplayFor(modelItem => item.nombre)  </td>
+            <td> @Html.DisplayFor(modelItem => item.genero)  </td>
+            <td> @Html.DisplayFor(modelItem => item.edad)    </td>
+            <td> @Html.DisplayFor(modelItem => item.habilidad)  </td>
+            <td> @Html.DisplayFor(modelItem => item.idioma)  </td>
+            <td> @Html.DisplayFor(modelItem => item.titulo)<br /> @Html.DisplayFor(modelItem => item.institucion)  </td>
+            <td> @Html.DisplayFor(modelItem => item.municipio)</td>
+        </tr>
+    }
+
+</table>
 
 
 <style>
-    /*-------------------------
-        Simple reset
-    --------------------------*/
     * {
         margin: 0;
         padding: 0;
     }
-    /*-------------------------
-        General Styles
-    --------------------------
-    html{
-        background:url('../img/background.jpg') #fefefe;
-        position:relative;
-    }
-
-    body{
-        padding: 200px 0 0;
-        font:14px/1.3 'Segoe UI',Arial, sans-serif;
-        min-height:500px;
-    }
-    */
 
     a, a:visited {
         text-decoration: none;
@@ -169,11 +115,6 @@
     section, footer, nav {
         display: block;
     }
-
-
-    /*----------------------------
-        The Navigation Menu
-    -----------------------------*/
 
 
     #colorNav > ul {
@@ -260,7 +201,7 @@
     /* This will trigger the CSS */
     /* transition animation on hover */
     #colorNav li:hover ul {
-        max-height: 500px; /* Increase when adding more dropdown items */
+        max-height: 600px; /* Increase when adding more dropdown items */
     }
     /*----------------------------
         Color Themes
@@ -297,9 +238,6 @@
         padding: 7px;
     }
 
-    /*----------------------------
-        The Footer
-    -----------------------------*/
     footer {
         background-color: #111111;
         bottom: 0;
