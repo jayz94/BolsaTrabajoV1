@@ -1,0 +1,28 @@
+﻿<table class="table table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>Tipo de Contacto</th>
+            <th>Número / Direccion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.CONTACTO.Count < 1)
+        {
+            <tr><td>No has ingresado tu informacion de contacto aún.</td></tr>
+        }
+        else
+        {
+            foreach (var contacto in Model.CONTACTO)
+            {
+                <tr>
+                    <td>
+                        @contacto.TIPO_CONTACTO.NOMBRETIPOCONTACTO
+                    </td>
+                    <td>
+                        @contacto.VINCULO
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
