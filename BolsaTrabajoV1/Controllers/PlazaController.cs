@@ -36,6 +36,14 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
+
+            ROL RolEmpresa = (from r in db.ROL
+                              where r.NOMBREROL == "Empresa"
+                              select r).SingleOrDefault();
+
+            Session["RolEmpresa"] = RolEmpresa.IDROL;
+
+
             ViewBag.TIPOREQUISITO = new SelectList(db.TIPO_REQUISITO, "IDTIPOREQUISITO", "DESCRIPCIONTIPO");
             ViewBag.funciones = funcionPlaza;
             ViewBag.requisitos = requisitoPlaza;

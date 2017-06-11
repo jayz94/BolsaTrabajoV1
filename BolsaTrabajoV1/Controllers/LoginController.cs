@@ -11,6 +11,7 @@ using System.Data.Entity.Core.Objects;
 
 
 
+
 using BolsaTrabajoV1.Models;
 
 namespace BolsaTrabajoV1.Controllers
@@ -69,12 +70,35 @@ namespace BolsaTrabajoV1.Controllers
                     default:
 
                         FormsAuthentication.SetAuthCookie(user.NOMBREUSUARIO, true);
-                        TempData["Message"] = user.NOMBREUSUARIO;
+                      
                         user.IDUSUARIO = userID.Value;
                         user.IDROL = Convert.ToInt16(rol.Value);
+
+
+
+                        USUARIO currentU= (from u in db.USUARIO
+                                          where u.IDUSUARIO == user.IDUSUARIO
+                                          select u).SingleOrDefault();
+
+                        
+                        TempData["Message"] = currentU.NOMBREUSUARIO;
+
+                        Session["usuario"] = currentU;
+
+
+
+
+                        ROL RolEmpresa= (from r in db.ROL
+                                         where r.NOMBREROL=="Postulante"
+                                         select r).SingleOrDefault();
+
+                        this.cargarMenus();
+
                        
-                        Session["usuario"] = user;
-                        return RedirectToAction("Perfil");
+                        
+
+
+                        return RedirectToAction("Index", "Postulante");
                 }
             }
             return View(user);
@@ -84,8 +108,12 @@ namespace BolsaTrabajoV1.Controllers
         public void cargarMenus()
         {
             var rol = 5;//obtenemos el rol
+
+            var usr = new USUARIO();
+            usr = (USUARIO)Session["usuario"];
+
             var query = from menu in db.MENU
-                        where menu.ROL.Any(m => m.IDROL == rol)
+                        where menu.ROL.Any(m => m.IDROL == usr.IDROL)
                         //where menu.MENU2 == null
                         select menu;
             List<MENU> menus = new List<MENU>();

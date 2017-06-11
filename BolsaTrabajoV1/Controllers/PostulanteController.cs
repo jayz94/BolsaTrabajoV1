@@ -8,34 +8,171 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BolsaTrabajoV1.Models;
+using System.Data.Entity.Core.Objects;
 
 namespace BolsaTrabajoV1.Controllers
 {
     public class PostulanteController : Controller
     {
         private ConexionBDBolsa db = new ConexionBDBolsa();
-
+        
         // GET: Postulante
         public async Task<ActionResult> Index()
         {
-            /* 
-                        {
-                            menu.IDMENU,
-                            menu.IDPADRE,
-                            menu.NOMBREMENU,
-                            menu.URL,
-                            menu.IMAGEN,
-                            menu.DESCRIPCIONMENU,
-                            menu.ORDEN
-                        };*/
-            //ViewData["menus"] = menus;
-            // ObjectQuery<MENU> q = new ObjectQuery<MENU>(query, db, MergeOption.NoTracking);
-            //List<MENU> submenus = menus;
-            //Session["submenus"] = submenus;
-            //List<MENU> subsubmenus = menus;
-            //Session["subsubmenus"] = subsubmenus;
-            var pOSTULANTE = db.POSTULANTE.Include(p => p.MUNICIPIO).Include(p => p.USUARIO);
-            return View(await pOSTULANTE.ToListAsync());
+            ViewBag.departamentos = db.DEPARTAMENTO;
+            ViewBag.areasConocimiento = db.AREA_CONOCIMIENTO;
+            ViewBag.tiposHabilidades = db.TIPO_HABILIDAD;
+            ViewBag.generos = db.GENERO;
+            ViewBag.tiposFormaciones = db.TIPOFORMACINONACADEMICA;
+            ViewBag.idiomas = db.IDIOMA;
+            return View(await db.ViewPostulante.ToListAsync());
+        }
+
+        //GET: FiltrarPostulante
+        public async Task<ActionResult> FiltrarPostulante(int idTabla, int idRegistro) {
+            //tabla 1: departamento            //tabla 2: idioma            //tabla 3: area conocimiento
+            //tabla 4: tipo habilidad          //tabla 5: formacion academica   //tabla 6: genero
+            ViewBag.departamentos = db.DEPARTAMENTO;
+            ViewBag.areasConocimiento = db.AREA_CONOCIMIENTO;
+            ViewBag.tiposHabilidades = db.TIPO_HABILIDAD;
+            ViewBag.generos = db.GENERO;
+            ViewBag.tiposFormaciones = db.TIPOFORMACINONACADEMICA;
+            ViewBag.idiomas = db.IDIOMA;
+            dynamic postulantes;//MUY CURIOSO LA FORMA EN COMO SE DEFINE ESTA VARIABLE COMO TIPO DE DATOS DINAMICA QUE PUEDE TOMAR CUALQUIER VALOR
+
+            switch (idTabla)
+            {
+                case 1:
+                    postulantes = from pos in db.ViewPostulante
+                                  join curr in db.ViewCurriculum on pos.idpostulante equals curr.IDPOSTULANTE
+                                  where pos.iddep ==idRegistro
+                                  select new
+                                  {
+                                      pos.nombre,
+                                      pos.genero,
+                                      pos.Edad,
+                                      curr.INSTITUCION,
+                                      curr.NOMBREHABILIDAD,
+                                      curr.NOMBREIDIOMA,
+                                      curr.TITULO,
+                                      pos.municipio
+                                  };
+                    break;
+                case 2:
+                    IDIOMA idioma = await db.IDIOMA.FindAsync(idRegistro);
+                    postulantes = from pos in db.ViewPostulante
+                                  join curr in db.ViewCurriculum on pos.idpostulante equals curr.IDPOSTULANTE
+                                  where curr.idacth == idRegistro || curr.NOMBREIDIOMA.ToLower() == idioma.NOMBREIDIOMA.ToLower()
+                                  select new
+                                  {
+                                      pos.nombre,
+                                      pos.genero,
+                                      pos.Edad,
+                                      curr.INSTITUCION,
+                                      curr.NOMBREHABILIDAD,
+                                      curr.NOMBREIDIOMA,
+                                      curr.TITULO,
+                                      pos.municipio
+                                  };
+                    break;
+                case 3:
+                    postulantes = from pos in db.ViewPostulante
+                                  join curr in db.ViewCurriculum on pos.idpostulante equals curr.IDPOSTULANTE
+                                  where curr.idacth == idRegistro || curr.idaccr==idRegistro
+                                  select new
+                                  {
+                                      pos.nombre,
+                                      pos.genero,
+                                      pos.Edad,
+                                      curr.INSTITUCION,
+                                      curr.NOMBREHABILIDAD,
+                                      curr.NOMBREIDIOMA,
+                                      curr.TITULO,
+                                      pos.municipio
+                                  };
+                    break;
+                case 4:
+                    postulantes = from pos in db.ViewPostulante
+                                  join curr in db.ViewCurriculum on pos.idpostulante equals curr.IDPOSTULANTE
+                                  where curr.IDTIPOHABILIDAD == idRegistro
+                                  select new
+                                  {
+                                      pos.nombre,
+                                      pos.genero,
+                                      pos.Edad,
+                                      curr.INSTITUCION,
+                                      curr.NOMBREHABILIDAD,
+                                      curr.NOMBREIDIOMA,
+                                      curr.TITULO,
+                                      pos.municipio
+                                  };
+                    break;
+                case 5:
+                    postulantes = from pos in db.ViewPostulante
+                                  join curr in db.ViewCurriculum on pos.idpostulante equals curr.IDPOSTULANTE
+                                  where curr.IDTIPOFORMACION == idRegistro
+                                  select new
+                                  {
+                                      pos.nombre,
+                                      pos.genero,
+                                      pos.Edad,
+                                      curr.INSTITUCION,
+                                      curr.NOMBREHABILIDAD,
+                                      curr.NOMBREIDIOMA,
+                                      curr.TITULO,
+                                      pos.municipio
+                                  };
+                    break;
+                case 6:
+                    postulantes = from pos in db.ViewPostulante
+                                  join curr in db.ViewCurriculum on pos.idpostulante equals curr.IDPOSTULANTE
+                                  where pos.idgenero == idRegistro
+                                  select new
+                                  {
+                                      pos.nombre,
+                                      pos.genero,
+                                      pos.Edad,
+                                      curr.INSTITUCION,
+                                      curr.NOMBREHABILIDAD,
+                                      curr.NOMBREIDIOMA,
+                                      curr.TITULO,
+                                      pos.municipio
+                                  };
+                    break;
+                default:
+                    postulantes = from pos in db.ViewPostulante
+                                  join curr in db.ViewCurriculum on pos.idpostulante equals curr.IDPOSTULANTE
+                                  select new
+                                  {
+                                      pos.nombre,
+                                      pos.genero,
+                                      pos.Edad,
+                                      curr.INSTITUCION,
+                                      curr.NOMBREHABILIDAD,
+                                      curr.NOMBREIDIOMA,
+                                      curr.TITULO,
+                                      pos.municipio
+                                  };
+                    break;
+            }
+
+
+            List<PostulanteCurriculum> listaPostulantes=new List<PostulanteCurriculum>();
+            foreach(var postulante in postulantes)
+            {
+                PostulanteCurriculum postCurr = new PostulanteCurriculum();
+                postCurr.nombre = postulante.nombre;
+                postCurr.genero = postulante.genero;
+                postCurr.edad =(int) postulante.Edad;
+                postCurr.institucion = postulante.INSTITUCION;
+                postCurr.habilidad = postulante.NOMBREHABILIDAD;
+                postCurr.idioma = postulante.NOMBREIDIOMA;
+                postCurr.titulo = postulante.TITULO;
+                postCurr.municipio = postulante.municipio;
+                //agregamos a la lista el objeto creado 
+                listaPostulantes.Add(postCurr);
+            }
+            return View(listaPostulantes.ToList());
         }
 
         // GET: Postulante/Details/5
@@ -72,7 +209,9 @@ namespace BolsaTrabajoV1.Controllers
         {
             if (ModelState.IsValid)
             {
-                pOSTULANTE.IDUSUARIO = 1;//(int)Session["idUs"];
+                USUARIO us = new USUARIO();
+                us = (USUARIO)Session["usuario"];
+                pOSTULANTE.IDUSUARIO = us.IDUSUARIO;//(int)Session["idUs"];
                 db.POSTULANTE.Add(pOSTULANTE);
                 await db.SaveChangesAsync();
                 //int id = pOSTULANTE.IDPOSTULANTE; // recuperar el id de postulante
