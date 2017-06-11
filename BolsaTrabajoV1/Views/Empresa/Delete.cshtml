@@ -4,30 +4,141 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Eliminar Empresa</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Desea eliminar esta empresa?</h3>
 <div>
-    <h4>EMPRESA</h4>
+    
     <hr />
+
+
+
+
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CODIGOEMPRESA)
+            CODIGO:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.CODIGOEMPRESA)
         </dd>
 
+
+        <br>
+
+
         <dt>
-            @Html.DisplayNameFor(model => model.NOMBREEMPRESA)
+            NOMBRE:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.NOMBREEMPRESA)
         </dd>
 
+
+        <br>
+
+
+
+        <dt>
+            ABREVIATURA:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ABREVIATURA)
+        </dd>
+
+
+
+        <br>
+
+        <dt>
+            CORREO ELECTRONICO:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CORREOELECTRONICO)
+        </dd>
+
+
+
+        <br>
+        <dt>
+            TELEFONO:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TELEFONO)
+        </dd>
+
+
+
+        <br>
+        <dt>
+            PAIS
+        </dt>
+
+        <dd>
+            @TempData["nPais"]
+        </dd>
+
+
+        <br>
+        <dt>
+            DEPARTAMENTO
+        </dt>
+
+        <dd>
+            @TempData["nDept"]
+        </dd>
+
+
+        <br>
+
+        <dt>
+            MUNICIPIO
+        </dt>
+
+        <dd>
+            @TempData["nMn"]
+        </dd>
+
+
+
+        <br>
+        <dt>
+            NIT:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIT)
+        </dd>
+
+
+        <br>
+        <dt>
+            GIRO:
+        </dt>
+
+        <dd>
+            @TempData["nGiro"]
+        </dd>
+
+
+        <br>
+        <dt>
+            DESCRIPCION:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCION)
+        </dd>
+
+
+
+
     </dl>
+
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()

@@ -22,6 +22,12 @@ namespace BolsaTrabajoV1.Controllers
             return View(await db.EMPRESA.ToListAsync());
         }
 
+
+
+
+
+
+
         // GET: Empresa/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -34,20 +40,51 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
+
+
+            
+
+
+
+            TempData["nPais"] = eMPRESA.MUNICIPIO.DEPARTAMENTO.PAIS.NOMBREPAIS;
+            TempData["nDept"] = eMPRESA.MUNICIPIO.DEPARTAMENTO.NOMBREDEPARTAMENTO;
+            TempData["nGiro"] = eMPRESA.GIRO.DESCRIPCIONGIRO;
+            TempData["nMn"] = eMPRESA.MUNICIPIO.NOMBREMUNICIPIO;
+
+
+
+
+
             return View(eMPRESA);
         }
+
+
+
+
+
+
+
 
         // GET: Empresa/Create
         public ActionResult Create()
         {
             
-            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTO, "IDDEPARTAMENTO", "NOMBREDEPARTAMENTO");
+
+
             ViewBag.PAIS = new SelectList(db.PAIS, "IDPAIS", "NOMBREPAIS");
             ViewBag.IDGIRO = new SelectList(db.GIRO, "IDGIRO", "DESCRIPCIONGIRO");
+          
 
+            ROL RolEmpresa = (from r in db.ROL
+                              where r.NOMBREROL == "Empresa"
+                              select r).SingleOrDefault();
 
+            if (RolEmpresa != null) {
 
+                TempData["RolEmpresa"] = RolEmpresa.IDROL.ToString();
+            }
 
+            
 
             return View();
         }
@@ -62,6 +99,20 @@ namespace BolsaTrabajoV1.Controllers
 
              return Json(new SelectList(municipios, "Value", "Text"));
          }
+
+
+
+
+        public JsonResult GetDepartamentos(int id)
+        {
+
+
+            SelectList departamentos = new SelectList(db.DEPARTAMENTO.Where(p => p.IDPAIS == id), "IDDEPARTAMENTO", "NOMBREDEPARTAMENTO");
+
+
+            return Json(new SelectList(departamentos, "Value", "Text"));
+        }
+
 
 
 
@@ -84,6 +135,8 @@ namespace BolsaTrabajoV1.Controllers
 
                     var usr = new USUARIO();
                     usr = (USUARIO)Session["usuario"];
+
+
 
                     USUARIO result = (from u in db.USUARIO
                                      where u.IDUSUARIO == usr.IDUSUARIO
@@ -111,6 +164,16 @@ namespace BolsaTrabajoV1.Controllers
             return View(eMPRESA);
         }
 
+
+
+
+
+
+
+
+
+
+
         // GET: Empresa/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
@@ -128,25 +191,30 @@ namespace BolsaTrabajoV1.Controllers
             ViewBag.IDGIRO = new SelectList(db.GIRO, "IDGIRO", "DESCRIPCIONGIRO");
 
 
-            int idmun = Convert.ToInt32(eMPRESA.IDMUNICIPIO);
+            TempData["pais"] = eMPRESA.MUNICIPIO.DEPARTAMENTO.PAIS.IDPAIS;
+            TempData["dept"] = eMPRESA.MUNICIPIO.DEPARTAMENTO.IDDEPARTAMENTO;
+            TempData["giro"] = eMPRESA.GIRO.IDGIRO;
+            TempData["mn"] = eMPRESA.MUNICIPIO.IDMUNICIPIO;
 
-            MUNICIPIO municipio =
-                (from mun in db.MUNICIPIO
-                where mun.IDMUNICIPIO == idmun
-                select mun).SingleOrDefault();
 
-            TempData["dept"] = municipio.IDDEPARTAMENTO;
-            TempData["giro"] = eMPRESA.IDGIRO;
-            TempData["mn"] = eMPRESA.MUNICIPIO;
+
             return View(eMPRESA);
         }
+
+
+
+
+
+
+
+
 
         // POST: Empresa/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IDEMPRESA,CODIGOEMPRESA,NOMBREEMPRESA")] EMPRESA eMPRESA)
+        public async Task<ActionResult> Edit([Bind(Include = "CODIGOEMPRESA,ABREVIATURA,NOMBREEMPRESA,CORREOELECTRONICO,TELEFONO,IDMUNICIPIO,NIT,IDGIRO,DESCRIPCION")] EMPRESA eMPRESA)
         {
             if (ModelState.IsValid)
             {
@@ -156,6 +224,18 @@ namespace BolsaTrabajoV1.Controllers
             }
             return View(eMPRESA);
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Empresa/Delete/5
         public async Task<ActionResult> Delete(int? id)
@@ -169,6 +249,13 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
+
+
+
+            TempData["nPais"] = eMPRESA.MUNICIPIO.DEPARTAMENTO.PAIS.NOMBREPAIS;
+            TempData["nDept"] = eMPRESA.MUNICIPIO.DEPARTAMENTO.NOMBREDEPARTAMENTO;
+            TempData["nGiro"] = eMPRESA.GIRO.DESCRIPCIONGIRO;
+            TempData["nMn"] = eMPRESA.MUNICIPIO.NOMBREMUNICIPIO;
             return View(eMPRESA);
         }
 

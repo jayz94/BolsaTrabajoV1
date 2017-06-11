@@ -123,6 +123,20 @@
         </dl>
     </div>
     <div class="col-md-12">
+
+        @{ 
+
+
+            var usr = new BolsaTrabajoV1.Models.USUARIO();
+            usr = (BolsaTrabajoV1.Models.USUARIO)Session["usuario"];
+
+
+        }
+
+        @if (Session["RolEmpresa"].ToString() == usr.IDROL.ToString())
+        {
+
+
         <div class="col-md-6" style="margin-top:5%">
             <label class="text-center">FUNCIONES QUE DESEMPEÑARA EN EL CARGO</label>&nbsp;&nbsp;&nbsp;
             <button type="button" class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#modalFuncion"></button>
@@ -152,6 +166,47 @@
             }
 
         </div>
+        }
+
+
+
+
+        else
+        {
+
+
+            <div class="col-md-6" style="margin-top:5%">
+                
+                <hr>
+                @foreach (var item in ViewBag.funciones)
+                {
+                    <li>
+                        @item.DESCRIPCIONPLAZA
+                        
+                    </li>
+                }
+
+            </div>
+
+
+            <div class="col-md-6" style="margin-top:5%">
+                
+                <hr>
+                @foreach (var item in ViewBag.requisitos)
+                {
+                    <li>
+                        @item.DESCRIPCIONREQUISITO
+                        
+                    </li>
+                }
+
+            </div>
+        }
+
+
+        
+
+
     </div>
 </div>
 

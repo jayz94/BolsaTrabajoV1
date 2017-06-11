@@ -16,10 +16,55 @@
         //Dropdownlist Selectedchange event
 
 
+
+
+        // CUANDO SE CARGA LA PAGINA
+
+
         $(function () {
             //all onload actions you want
-            $("#DEPARTAMENTO").val(@TempData["dept"])
+
             $("#IDGIRO").val(@TempData["giro"])
+            $("#PAIS").val(@TempData["pais"])
+
+
+
+
+
+
+            $("#DEPARTAMENTO").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDepartamentos")', // we are calling json method
+
+                dataType: 'json',
+
+                data: { id: $("#PAIS").val() },
+                // here we are get value of selected country and passing same value as inputto json method GetStates.
+
+                success: function (departamentos) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $("#DEPARTAMENTO").append('<option value=null>  -Seleccione el departamento- </option>')
+                    $.each(departamentos, function (i, dp) {
+                        $("#DEPARTAMENTO").append('<option value="' + dp.Value + '">' +
+                         dp.Text + '</option>');
+                        // here we are adding option for States
+
+                    });
+                    $("#DEPARTAMENTO").val(@TempData["dept"])
+
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve departamentos.' + ex);
+                }
+            });
+
+
+
+
+
+
 
             $("#IDMUNICIPIO").empty();
             $.ajax({
@@ -28,7 +73,7 @@
 
                 dataType: 'json',
 
-                data: { id: $("#DEPARTAMENTO").val() },
+                data: { id: @TempData["dept"] },
                 // here we are get value of selected country and passing same value as inputto json method GetStates.
 
                 success: function (municipios) {
@@ -40,19 +85,22 @@
                          mn.Text + '</option>');
                         // here we are adding option for States
 
-
+                        
+                        $("#IDMUNICIPIO").val(@TempData["mn"])
 
                     });
 
-                    $("#IDMUNICIPIO").val(@TempData["mn"])
-                  
+
                 },
                 error: function (ex) {
-                    alert('Failed to retrieve states.' + ex);
+                    alert('Failed to retrieve municipios.' + ex);
                 }
             });
             return false;
         });
+    
+
+        //CUANDO SE CAMBIA LA SELECCION
 
 
         $("#DEPARTAMENTO").change(function () {
@@ -86,6 +134,57 @@
         })
     });
 </script>
+
+
+
+<script type="text/javascript">
+
+
+
+    $(document).ready(function () {
+
+
+
+
+
+        $("#PAIS").change(function () {
+
+            $("#DEPARTAMENTO").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDepartamentos")', // we are calling json method
+
+                dataType: 'json',
+
+                data: { id: $("#PAIS").val() },
+                // here we are get value of selected country and passing same value as inputto json method GetStates.
+
+                success: function (departamentos) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $("#DEPARTAMENTO").append('<option value=null>  -Seleccione el departamento- </option>')
+                    $.each(departamentos, function (i, dp) {
+                        $("#DEPARTAMENTO").append('<option value="' + dp.Value + '">' +
+                         dp.Text + '</option>');
+                        // here we are adding option for States
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+
+
+
+
+    })
+
+
+</script>
+
 
 @using (Html.BeginForm())
 {
