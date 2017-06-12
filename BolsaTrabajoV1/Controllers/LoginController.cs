@@ -8,6 +8,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data.Entity.Core.Objects;
+using System.Security.Cryptography;
+using System.Text;
 
 
 
@@ -46,7 +48,15 @@ namespace BolsaTrabajoV1.Controllers
         {
 
 
-            ObjectResult<ValidarUsuario_Result> result = db.ValidarUsuario(user.NOMBREUSUARIO, user.PASSWORD);
+            //inicia para la encriptacion CHA1
+            SHA1 sha1 = new SHA1CryptoServiceProvider();
+            byte[] inputBytes = (new UnicodeEncoding()).GetBytes(user.PASSWORD);
+            byte[] hash = sha1.ComputeHash(inputBytes);
+            //finaliza para la encriptacion CHA1
+
+
+
+            ObjectResult<ValidarUsuario_Result> result = db.ValidarUsuario(user.NOMBREUSUARIO, Convert.ToBase64String(hash));
 
             int? valido;
             int? userID;
