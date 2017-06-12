@@ -1,5 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@{
+    //Primero traemos el objeto usuario de la sesion
+    BolsaTrabajoV1.Models.USUARIO user = Session["usuario"] as BolsaTrabajoV1.Models.USUARIO;
+    //Luego convertimos los menus en una lista de menus.
+    List<BolsaTrabajoV1.Models.MENU> listaMenus = (List<BolsaTrabajoV1.Models.MENU>)Session["menus"];
+}<!DOCTYPE html>
+<html lang="en" ng-app="BolsaTrabajo">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -16,17 +21,17 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-signing"></i> <span>SIBTRA</span></a>
+                        <a href="/Home" class="site_title"><i class="fa fa-signing"></i> <span>SIBTRA</span></a>
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
-                        <!--div class="profile_pic">
-                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-                        </!--div-->
+                        <div class="profile_pic">
+                            @*<img src="images/img.jpg" alt="" class="img-circle profile_img">*@
+                        </div>
                         <div class="profile_info">
                             <span>Bienvenido</span>
-                            <h2>@HttpContext.Current.Session["nombre"]</h2>
+                            <h2>@user.NOMBREUSUARIO</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -34,106 +39,130 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         @*<div class="menu_section">
-        <h3>General</h3>
-        <ul class="nav side-menu">
-            <li>
-                <a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="tables.html">Tables</a></li>
-                    <li><a href="tables_dynamic.html">Table Dynamic</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>*@
+                                <h3>General</h3>
+                                <ul class="nav side-menu">
+                                    <li>
+                                        <a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="tables.html">Tables</a></li>
+                                            <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>*@
+
+                        @*<ul class="nav side-menu">
+                                <li><a href='@Url.Action("MainCatalogos", "AdministracionCatalogos")'><i class="fa fa-laptop"></i> Catalogos</a></li>
+                                <li><a href='@Url.Action("Create", "Usuario")'><i class="fa fa-laptop"></i> Usuario</a></li>
+                                <li><a href='@Url.Action("Create", "Postulante")'><i class="fa fa-laptop"></i> Postulante</a></li>
+                            </ul>*@
                         <div class="menu_section">
-                            @*<ul class="nav side-menu">
-                <li><a href='@Url.Action("MainCatalogos", "AdministracionCatalogos")'><i class="fa fa-laptop"></i> Catalogos</a></li>
-                <li><a href='@Url.Action("Create", "Usuario")'><i class="fa fa-laptop"></i> Usuario</a></li>
-                <li><a href='@Url.Action("Create", "Postulante")'><i class="fa fa-laptop"></i> Postulante</a></li>
-            </ul>*@
                             <ul class="nav side-menu">
-                                <li>
-                                    <a href='#'><i class=""></i> Elemento estático<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="child_menu">
-                                        <li><a href='#'><i class=""></i> Segundo nivel<span class="fa fa-chevron-down"></span></a>
-                                            
+                                @*<li>
+                                        <a href='#'><i class=""></i> Elemento estático<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="child_menu">
+                                            <li>
+                                                <a href='#'><i class=""></i> Segundo nivel<span class="fa fa-chevron-down"></span></a>
                                                 <ul class="side-menu">
                                                     <li>Tercer nivel</li>
                                                 </ul>
-                                        </li>
-                                        <li>
-                                            Segundo nivel
-                                            <ul>
-                                                <li>Tercer nivel</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                @if (Session["usuario"] != (null))//Elementos del menú que se cargan si hay usuario con rol registrado
-                                            {
-                                                var usr = Session["usuario"] as BolsaTrabajoV1.Models.USUARIO;
-                                                List<BolsaTrabajoV1.Models.MENU> listaMenus = (List<BolsaTrabajoV1.Models.MENU>)Session["menus"];
-                                                foreach (var menu in listaMenus)
-                                                {
-                                        //WriteLiteral("<li><a href='#'></i>literalmente</a></li>");
-                                        <li><a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU</a></li>
-                                        if (menu.MENU1 != null || menu.MENU1.Count() > 0)
-                                        {
+                                            </li>
                                             <li>
-                                                <ul class="nav side-menu">
-                                                    @foreach (var submenu in menu.MENU1)
+                                                Segundo nivel
+                                                <ul>
+                                                    <li>Tercer nivel</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>*@
+                                @foreach (var menu in listaMenus)//Recorremos los de primer nivel
+                                {
+                                    if (menu.MENU2 == null)//Menu2 es id padre
+                                    {
+                                        if (menu.MENU1.Count() > 0)//Menu1 es la coleccion de objetos hijo
+                                        {
+                                            <li><a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU<span class="fa fa-chevron-down"></span></a></li>
+                                            <li>
+                                                <ul class="child_menu">
+                                                    @foreach (var submenu in menu.MENU1)//Recorremos los de segundo nivel
                                                     {
-                                                        if (listaMenus.Contains(submenu)) { 
-                                                            <li><a href='#'><i class="@submenu.IMAGEN"></i>-- @submenu.NOMBREMENU</a></li>
+                                                        if (listaMenus.Contains(submenu))
+                                                        {
+                                                            <li><a href='@submenu.URL'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a></li>
                                                         }
                                                     }
                                                 </ul>
                                             </li>
                                         }
+                                        else //Si no tiene hijos se muestra sin la flechita hacia abajo
+                                        {
+                                            <li><a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU</a></li>
+                                        }
                                     }
-
                                 }
-                                else
-                                {
-                                    //Elementos del menú que se cargarán si no hay usuario registrado
-                                    <li><a href='#'><i class=""></i> Inicio</a></li>
-                                }
-                            </ul>
-
-                            @*foreach (var menu in Session["menus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
-            {
-                <ul class="nav side-menu">
-                    <!--Si no tiene menu padre-->
-                    @if (@menu.IDPADRE == null)
-                    {
-                        <li>
-                            <a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU</a>
-                            <ul>
-                                @foreach (var submenu in Session["submenus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
-                                {
-                                    if (@submenu.IDPADRE == @menu)//si es submenu del menu padre
+                                @*
+                                    @if (user.IDROL != 1)//Elementos del menú que se cargan si hay usuario con rol registrado
                                     {
-                                        <li>
-                                            <a href='#'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a>
-                                            <ul>
-                                                @foreach (var subsubmenu in Session["subsubmenus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
-                                                {
-                                                    if (@subsubmenu.IDPADRE == @submenu)
-                                                    {
-                                                        <li><a href='#'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a></li>
-                                                    }
-                                                }
-                                            </ul>
-                                        </li>
-                                    }
-                                }
+                                        List<BolsaTrabajoV1.Models.MENU> listaMenus = (List<BolsaTrabajoV1.Models.MENU>)Session["menus"];
+                                        foreach (var menu in listaMenus)
+                                        {
+                                            //WriteLiteral("<li><a href='#'></i>literalmente</a></li>");
+                                            <li><a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU</a></li>
+                                            if (menu.MENU1 != null || menu.MENU1.Count() > 0)
+                                            {
+                                                <li>
+                                                    <ul class="nav side-menu">
+                                                        @foreach (var submenu in menu.MENU1)
+                                                        {
+                                                            if (listaMenus.Contains(submenu))
+                                                            {
+                                                                <li><a href='#'><i class="@submenu.IMAGEN"></i>-- @submenu.NOMBREMENU</a></li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            }
+                                        }
+
+                                    }*@
                             </ul>
-                        </li>
-                    }
-                </ul>
-            }*@
+
+                            @*
+
+                                foreach (var menu in Session["menus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
+                                    {
+                                        <ul class="nav side-menu">
+                                            <!--Si no tiene menu padre-->
+                                            @if (@menu.IDPADRE == null)
+                                            {
+                                                <li>
+                                                    <a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU</a>
+                                                    <ul>
+                                                        @foreach (var submenu in Session["submenus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
+                                                        {
+                                                            if (@submenu.IDPADRE == @menu)//si es submenu del menu padre
+                                                            {
+                                                                <li>
+                                                                    <a href='#'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a>
+                                                                    <ul>
+                                                                        @foreach (var subsubmenu in Session["subsubmenus"] as IEnumerable<BolsaTrabajoV1.Models.MENU>)
+                                                                        {
+                                                                            if (@subsubmenu.IDPADRE == @submenu)
+                                                                            {
+                                                                                <li><a href='#'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a></li>
+                                                                            }
+                                                                        }
+                                                                    </ul>
+                                                                </li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }*@
                         </div>
+
                     </div>
                     <!-- /sidebar menu -->
                     <!-- /menu footer buttons -->
@@ -163,22 +192,22 @@
                         </div>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
-                                <a href="javascript:;" class="fa fa-user fa-lg" data-toggle="dropdown" aria-expanded="false">
-                                    @*HttpContext.Current.Session["nombre"]*@
+                                <a href="#" class="fa fa-user fa-lg" data-toggle="dropdown" aria-expanded="false">
+                                    <span style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">  @user.NOMBREUSUARIO</span>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    @if (Session["usuario"]!=null)
+                                    @if (user.IDROL != 1)
                                     {//Elementos que se mostrarán si ha iniciado sesión
-                                        var usr = (BolsaTrabajoV1.Models.USUARIO)Session["usuario"];
-                                        <li><a href="@Url.Action("redirigirUsuario", "Usuario", new { idusuario = usr.IDUSUARIO })"> Perfil</a></li>
+
+                                        <li><a href="@Url.Action("redirigirUsuario", "Usuario", new { idusuario = user.IDUSUARIO })"> Perfil</a></li>
                                         <li>
                                             <a href="javascript:;">
                                                 <span>Configuraciones</span>
                                             </a>
                                         </li>
                                         <li><a href="javascript:;">Ayuda</a></li>
-                                        <li><a  href='@Url.Action("CerrarSesion", "Usuario")'><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
+                                        <li><a href='@Url.Action("CerrarSesion", "Usuario")'><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
                                     }
                                     else//Elementos que se mostrarán si no ha iniciado sesión
                                     {
@@ -210,5 +239,8 @@
         </div>
     </div>
     @Scripts.Render("~/bundles/jsPlantilla")
+    <environment names="Development">
+        <script src="~/Scripts/angular.min.js"></script>
+    </environment>
 </body>
 </html>

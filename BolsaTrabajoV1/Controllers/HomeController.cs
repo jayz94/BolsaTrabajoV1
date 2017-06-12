@@ -22,7 +22,7 @@ namespace BolsaTrabajoV1.Controllers
                 Session["usuario"] = us;
                 var query = from menu in db.MENU
                             where menu.ROL.Any(m => m.IDROL == us.IDROL)
-                            where menu.MENU2 == null
+                            //where menu.MENU2 == null
                             select menu;
                 List<MENU> menus = new List<MENU>();
                 foreach (var result in query)
