@@ -75,6 +75,8 @@ namespace BolsaTrabajoV1.Controllers
             ViewBag.IDGIRO = new SelectList(db.GIRO, "IDGIRO", "DESCRIPCIONGIRO");
           
 
+            /*ESTE ROL SE ENVIA A LA VISTA PARA FILTRAR EL CONTENIDO*/
+
             ROL RolEmpresa = (from r in db.ROL
                               where r.NOMBREROL == "Empresa"
                               select r).SingleOrDefault();
