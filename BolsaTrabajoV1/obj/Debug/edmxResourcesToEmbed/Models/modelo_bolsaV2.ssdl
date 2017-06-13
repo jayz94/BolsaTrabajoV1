@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="BolsaTrabajoV3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="BolsaTrabajoV1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="AREA_CARGO">
     <Key>
       <PropertyRef Name="IDAREACARGO" />
@@ -13,13 +13,6 @@
     </Key>
     <Property Name="IDAREACONOCIMIENTO" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NOMBREAREACONOCIMIENTO" Type="varchar" MaxLength="30" Nullable="false" />
-  </EntityType>
-  <EntityType Name="AREA_PLAZA">
-    <Key>
-      <PropertyRef Name="IDAREAPLAZA" />
-    </Key>
-    <Property Name="DESCRIPCIONAREA" Type="varchar" MaxLength="35" />
-    <Property Name="IDAREAPLAZA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="CARGO">
     <Key>
@@ -60,12 +53,14 @@
     </Key>
     <Property Name="IDCURRICULUM" Type="int" Nullable="false" />
     <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="DEPARTAMENTO">
     <Key>
       <PropertyRef Name="IDDEPARTAMENTO" />
     </Key>
     <Property Name="IDDEPARTAMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPAIS" Type="int" />
     <Property Name="NOMBREDEPARTAMENTO" Type="varchar" MaxLength="12" />
     <Property Name="ZONA" Type="varchar" MaxLength="15" />
   </EntityType>
@@ -74,7 +69,15 @@
       <PropertyRef Name="CODIGOEMPRESA" />
     </Key>
     <Property Name="CODIGOEMPRESA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDMUNICIPIO" Type="int" />
+    <Property Name="IDGIRO" Type="int" />
     <Property Name="NOMBREEMPRESA" Type="varchar" MaxLength="74" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="1000" />
+    <Property Name="ABREVIATURA" Type="varchar" MaxLength="25" />
+    <Property Name="NIT" Type="varchar" MaxLength="17" />
+    <Property Name="CORREOELECTRONICO" Type="varchar" MaxLength="100" />
+    <Property Name="TELEFONO" Type="varchar" MaxLength="9" />
+    <Property Name="IMAGENEMPRESA" Type="image" />
   </EntityType>
   <EntityType Name="ESTADO_CIVIL">
     <Key>
@@ -91,6 +94,7 @@
     <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
     <Property Name="IDESTADOCIVIL" Type="smallint" Nullable="false" />
     <Property Name="FECHACAMBIO" Type="datetime" />
+    <Property Name="ACTIVO" Type="smallint" />
   </EntityType>
   <EntityType Name="EXAMEN">
     <Key>
@@ -101,6 +105,7 @@
     <Property Name="PONDERACION" Type="decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="CODIGOEXAMEN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDTIPOEXAMEN" Type="int" />
+    <Property Name="DESCRIPCIONEXAMEN" Type="varchar" MaxLength="600" />
   </EntityType>
   <EntityType Name="EXPERIENCIALABORAL">
     <Key>
@@ -137,7 +142,7 @@
     </Key>
     <Property Name="IDFUNCION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDPLAZA" Type="int" />
-    <Property Name="DESCRIPCIONPLAZA" Type="varchar" MaxLength="1" />
+    <Property Name="DESCRIPCIONPLAZA" Type="varchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="GENERO">
     <Key>
@@ -145,6 +150,13 @@
     </Key>
     <Property Name="IDGENERO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DESCRIPCIONGENERO" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="GIRO">
+    <Key>
+      <PropertyRef Name="IDGIRO" />
+    </Key>
+    <Property Name="IDGIRO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DESCRIPCIONGIRO" Type="varchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="HABILIDAD">
     <Key>
@@ -264,6 +276,7 @@
     <Property Name="DESCRIPCIONPLAZA" Type="varchar" MaxLength="1024" />
     <Property Name="VACANTES" Type="int" />
     <Property Name="TIPOJORNADA" Type="varchar" MaxLength="20" />
+    <Property Name="IMAGENPLAZA" Type="image" />
   </EntityType>
   <EntityType Name="POSTULANTE">
     <Key>
@@ -278,6 +291,7 @@
     <Property Name="FECHANACIMIENTO" Type="datetime" />
     <Property Name="DIRECCION" Type="varchar" MaxLength="256" />
     <Property Name="URLCURRICULUM" Type="varchar" MaxLength="500" />
+    <Property Name="IMAGENPOSTULANTE" Type="image" />
   </EntityType>
   <EntityType Name="POSTULANTE_PLAZA">
     <Key>
@@ -302,9 +316,17 @@
       <PropertyRef Name="IDPREGUNTA" />
     </Key>
     <Property Name="CODIGOEXAMEN" Type="int" />
-    <Property Name="TEXTOPREGUNTA" Type="varchar" MaxLength="1" />
+    <Property Name="TEXTOPREGUNTA" Type="varchar" MaxLength="1000" />
     <Property Name="IDPREGUNTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDTIPOOPCION" Type="smallint" />
+  </EntityType>
+  <EntityType Name="PRIVILEGIO">
+    <Key>
+      <PropertyRef Name="IDROL" />
+      <PropertyRef Name="IDMENU" />
+    </Key>
+    <Property Name="IDROL" Type="smallint" Nullable="false" />
+    <Property Name="IDMENU" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PUBLICACION">
     <Key>
@@ -340,7 +362,7 @@
       <PropertyRef Name="IDREQUISITO" />
     </Key>
     <Property Name="IDTIPOREQUISITO" Type="int" />
-    <Property Name="DESCRIPCIONREQUISITO" Type="varchar" MaxLength="100" />
+    <Property Name="DESCRIPCIONREQUISITO" Type="varchar" MaxLength="500" />
     <Property Name="IDREQUISITO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDPLAZA" Type="int" />
   </EntityType>
@@ -360,14 +382,6 @@
     <Property Name="IDROL" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NOMBREROL" Type="varchar" MaxLength="32" Nullable="false" />
     <Property Name="ACTIVO" Type="bit" />
-  </EntityType>
-  <EntityType Name="ROL_MENU_MM">
-    <Key>
-      <PropertyRef Name="IDROL" />
-      <PropertyRef Name="IDMENU" />
-    </Key>
-    <Property Name="IDROL" Type="smallint" Nullable="false" />
-    <Property Name="IDMENU" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ROL_USUARIO_MM">
     <Key>
@@ -400,7 +414,7 @@
       <PropertyRef Name="IDTIPODOCUMENTOIDENTIDAD" />
     </Key>
     <Property Name="IDTIPODOCUMENTOIDENTIDAD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NOMBREDOCUMENTOIDENTIDAD" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="NOMBREDOCUMENTOIDENTIDAD" Type="varchar" MaxLength="50" />
     <Property Name="CANTIDADCARACTERES" Type="smallint" />
     <Property Name="MASCARA" Type="varchar" MaxLength="20" />
     <Property Name="EXTRANJERO" Type="bit" />
@@ -416,7 +430,7 @@
     <Key>
       <PropertyRef Name="IDTIPOHABILIDAD" />
     </Key>
-    <Property Name="IDTIPOHABILIDAD" Type="int" Nullable="false" />
+    <Property Name="IDTIPOHABILIDAD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDAREACONOCIMIENTO" Type="smallint" />
     <Property Name="NOMBRETIPOHABILIDAD" Type="varchar" MaxLength="50" />
   </EntityType>
@@ -434,6 +448,7 @@
     <Property Name="DESCRIPCIONTIPO" Type="varchar" MaxLength="100" />
     <Property Name="TABLA" Type="varchar" MaxLength="25" />
     <Property Name="IDTIPOREQUISITO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CAMPOTABLA" Type="varchar" MaxLength="40" />
   </EntityType>
   <EntityType Name="TIPO_TELEFONO">
     <Key>
@@ -469,6 +484,7 @@
     </Key>
     <Property Name="IDUSUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CODIGOEMPRESA" Type="int" />
+    <Property Name="IDROL" Type="smallint" />
     <Property Name="NOMBREUSUARIO" Type="varchar" MaxLength="64" />
     <Property Name="PASSWORD" Type="varchar" MaxLength="1024" />
     <Property Name="ACTIVO" Type="bit" />
@@ -477,6 +493,69 @@
     <Property Name="BLOQUEADO" Type="bit" />
     <Property Name="INTENTOS" Type="int" />
     <Property Name="CORREO" Type="varchar" MaxLength="60" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BolsaTrabajoV1.dbo.ViewCurriculum' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewCurriculum">
+    <Key>
+      <PropertyRef Name="IDCURRICULUM" />
+      <PropertyRef Name="IDPOSTULANTE" />
+    </Key>
+    <Property Name="NOMBREHABILIDAD" Type="varchar" MaxLength="256" />
+    <Property Name="INSTITUCION" Type="varchar" MaxLength="50" />
+    <Property Name="TITULO" Type="varchar" MaxLength="255" />
+    <Property Name="NOMBREIDIOMA" Type="varchar" MaxLength="100" />
+    <Property Name="IDCURRICULUM" Type="int" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="int" Nullable="false" />
+    <Property Name="IDTIPOHABILIDAD" Type="int" />
+    <Property Name="IDTIPOFORMACION" Type="int" />
+    <Property Name="idacth" Type="smallint" />
+    <Property Name="idaccr" Type="smallint" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BolsaTrabajoV1.dbo.ViewPlazaGenerica' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewPlazaGenerica">
+    <Key>
+      <PropertyRef Name="codempresa" />
+      <PropertyRef Name="iddepart" />
+      <PropertyRef Name="idplaza" />
+      <PropertyRef Name="idcargo" />
+    </Key>
+    <Property Name="cargo" Type="varchar" MaxLength="255" />
+    <Property Name="descriplaza" Type="varchar" MaxLength="1024" />
+    <Property Name="salario" Type="real" />
+    <Property Name="edadmin" Type="smallint" />
+    <Property Name="edadmax" Type="smallint" />
+    <Property Name="vacantes" Type="int" />
+    <Property Name="minimoexp" Type="smallint" />
+    <Property Name="empresa" Type="varchar" MaxLength="74" />
+    <Property Name="municipio" Type="varchar" MaxLength="30" />
+    <Property Name="idgiroemp" Type="int" />
+    <Property Name="codempresa" Type="int" Nullable="false" />
+    <Property Name="iddepart" Type="int" Nullable="false" />
+    <Property Name="idplaza" Type="int" Nullable="false" />
+    <Property Name="idcargo" Type="int" Nullable="false" />
+    <Property Name="idareacargo" Type="int" />
+    <Property Name="idgenero" Type="int" />
+    <Property Name="genero" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BolsaTrabajoV1.dbo.ViewPostulante' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewPostulante">
+    <Key>
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="idpostulante" />
+      <PropertyRef Name="iddep" />
+      <PropertyRef Name="idcu" />
+    </Key>
+    <Property Name="genero" Type="varchar" MaxLength="25" />
+    <Property Name="nombre" Type="varchar" MaxLength="257" Nullable="false" />
+    <Property Name="Edad" Type="int" />
+    <Property Name="municipio" Type="varchar" MaxLength="30" />
+    <Property Name="idgenero" Type="int" />
+    <Property Name="idpostulante" Type="int" Nullable="false" />
+    <Property Name="iddep" Type="int" Nullable="false" />
+    <Property Name="idcu" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_CARGO_REFERENCE_AREA_CAR">
     <End Role="AREA_CARGO" Type="Self.AREA_CARGO" Multiplicity="0..1" />
@@ -549,6 +628,42 @@
       </Principal>
       <Dependent Role="CURRICULUM">
         <PropertyRef Name="IDPOSTULANTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DEPARTAM_FK_DEPART_PAIS">
+    <End Role="PAIS" Type="Self.PAIS" Multiplicity="0..1" />
+    <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAIS">
+        <PropertyRef Name="IDPAIS" />
+      </Principal>
+      <Dependent Role="DEPARTAMENTO">
+        <PropertyRef Name="IDPAIS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPRESA_REFERENCE_GIRO">
+    <End Role="GIRO" Type="Self.GIRO" Multiplicity="0..1" />
+    <End Role="EMPRESA" Type="Self.EMPRESA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GIRO">
+        <PropertyRef Name="IDGIRO" />
+      </Principal>
+      <Dependent Role="EMPRESA">
+        <PropertyRef Name="IDGIRO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPRESA_REFERENCE_MUNICIPI">
+    <End Role="MUNICIPIO" Type="Self.MUNICIPIO" Multiplicity="0..1" />
+    <End Role="EMPRESA" Type="Self.EMPRESA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MUNICIPIO">
+        <PropertyRef Name="IDMUNICIPIO" />
+      </Principal>
+      <Dependent Role="EMPRESA">
+        <PropertyRef Name="IDMUNICIPIO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -948,6 +1063,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PRIVILEG_FK_ROL_ME_MENU">
+    <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+    <End Role="PRIVILEGIO" Type="Self.PRIVILEGIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENU">
+        <PropertyRef Name="IDMENU" />
+      </Principal>
+      <Dependent Role="PRIVILEGIO">
+        <PropertyRef Name="IDMENU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRIVILEG_FK_ROL_ME_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="PRIVILEGIO" Type="Self.PRIVILEGIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="IDROL" />
+      </Principal>
+      <Dependent Role="PRIVILEGIO">
+        <PropertyRef Name="IDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PUBLICAC_FK_PUBLIC_CURRICUL">
     <End Role="CURRICULUM" Type="Self.CURRICULUM" Multiplicity="1" />
     <End Role="PUBLICACION" Type="Self.PUBLICACION" Multiplicity="*" />
@@ -1036,54 +1175,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ROL_MENU_FK_ROL_ME_MENU">
-    <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
-    <End Role="ROL_MENU_MM" Type="Self.ROL_MENU_MM" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MENU">
-        <PropertyRef Name="IDMENU" />
-      </Principal>
-      <Dependent Role="ROL_MENU_MM">
-        <PropertyRef Name="IDMENU" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ROL_MENU_FK_ROL_ME_ROL">
-    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
-    <End Role="ROL_MENU_MM" Type="Self.ROL_MENU_MM" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ROL">
-        <PropertyRef Name="IDROL" />
-      </Principal>
-      <Dependent Role="ROL_MENU_MM">
-        <PropertyRef Name="IDROL" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ROL_USUA_FK_ROL_US_ROL">
-    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
-    <End Role="ROL_USUARIO_MM" Type="Self.ROL_USUARIO_MM" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ROL">
-        <PropertyRef Name="IDROL" />
-      </Principal>
-      <Dependent Role="ROL_USUARIO_MM">
-        <PropertyRef Name="IDROL" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ROL_USUA_FK_ROL_US_USUARIO">
-    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
-    <End Role="ROL_USUARIO_MM" Type="Self.ROL_USUARIO_MM" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="USUARIO">
-        <PropertyRef Name="IDUSUARIO" />
-      </Principal>
-      <Dependent Role="ROL_USUARIO_MM">
-        <PropertyRef Name="IDUSUARIO" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_TELEFONO_FK_TELEFO_POSTULAN">
     <End Role="POSTULANTE" Type="Self.POSTULANTE" Multiplicity="1" />
     <End Role="TELEFONO" Type="Self.TELEFONO" Multiplicity="*" />
@@ -1132,16 +1223,35 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_USUARIO_REFERENCE_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="0..1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="IDROL" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="IDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Function Name="cambiarEstadoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
   <Function Name="DesbloqueoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idUs" Type="int" Mode="In" />
   </Function>
-  <EntityContainer Name="BolsaTrabajoV3ModelStoreContainer">
+  <Function Name="ObtenerResultados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codEmp" Type="int" Mode="In" />
+    <Parameter Name="idp" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_CheckCredentials" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="BolsaTrabajoV1ModelStoreContainer">
     <EntitySet Name="AREA_CARGO" EntityType="Self.AREA_CARGO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AREA_CONOCIMIENTO" EntityType="Self.AREA_CONOCIMIENTO" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AREA_PLAZA" EntityType="Self.AREA_PLAZA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CARGO" EntityType="Self.CARGO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" Schema="dbo" store:Type="Tables" />
@@ -1155,6 +1265,7 @@
     <EntitySet Name="FORMACIONACADEMICA" EntityType="Self.FORMACIONACADEMICA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FUNCION_PLAZA" EntityType="Self.FUNCION_PLAZA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GENERO" EntityType="Self.GENERO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GIRO" EntityType="Self.GIRO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HABILIDAD" EntityType="Self.HABILIDAD" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="IDIOMA" EntityType="Self.IDIOMA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LOGRO" EntityType="Self.LOGRO" Schema="dbo" store:Type="Tables" />
@@ -1169,12 +1280,12 @@
     <EntitySet Name="POSTULANTE_PLAZA" EntityType="Self.POSTULANTE_PLAZA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="POSTULANTE_TIPO_DOCUMENTO_MM" EntityType="Self.POSTULANTE_TIPO_DOCUMENTO_MM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PREGUNTA" EntityType="Self.PREGUNTA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRIVILEGIO" EntityType="Self.PRIVILEGIO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PUBLICACION" EntityType="Self.PUBLICACION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="REFERENCIA" EntityType="Self.REFERENCIA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="REQUISITO" EntityType="Self.REQUISITO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RESPUESTA" EntityType="Self.RESPUESTA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ROL_MENU_MM" EntityType="Self.ROL_MENU_MM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ROL_USUARIO_MM" EntityType="Self.ROL_USUARIO_MM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TELEFONO" EntityType="Self.TELEFONO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TIPO_CONTACTO" EntityType="Self.TIPO_CONTACTO" Schema="dbo" store:Type="Tables" />
@@ -1188,6 +1299,53 @@
     <EntitySet Name="TIPOPREGUNTA" EntityType="Self.TIPOPREGUNTA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TIPOREFERENCIA" EntityType="Self.TIPOREFERENCIA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ViewCurriculum" EntityType="Self.ViewCurriculum" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ViewCurriculum].[NOMBREHABILIDAD] AS [NOMBREHABILIDAD], 
+    [ViewCurriculum].[INSTITUCION] AS [INSTITUCION], 
+    [ViewCurriculum].[TITULO] AS [TITULO], 
+    [ViewCurriculum].[NOMBREIDIOMA] AS [NOMBREIDIOMA], 
+    [ViewCurriculum].[IDCURRICULUM] AS [IDCURRICULUM], 
+    [ViewCurriculum].[IDPOSTULANTE] AS [IDPOSTULANTE], 
+    [ViewCurriculum].[IDTIPOHABILIDAD] AS [IDTIPOHABILIDAD], 
+    [ViewCurriculum].[IDTIPOFORMACION] AS [IDTIPOFORMACION], 
+    [ViewCurriculum].[idacth] AS [idacth], 
+    [ViewCurriculum].[idaccr] AS [idaccr]
+    FROM [dbo].[ViewCurriculum] AS [ViewCurriculum]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ViewPlazaGenerica" EntityType="Self.ViewPlazaGenerica" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ViewPlazaGenerica].[cargo] AS [cargo], 
+    [ViewPlazaGenerica].[descriplaza] AS [descriplaza], 
+    [ViewPlazaGenerica].[salario] AS [salario], 
+    [ViewPlazaGenerica].[edadmin] AS [edadmin], 
+    [ViewPlazaGenerica].[edadmax] AS [edadmax], 
+    [ViewPlazaGenerica].[vacantes] AS [vacantes], 
+    [ViewPlazaGenerica].[minimoexp] AS [minimoexp], 
+    [ViewPlazaGenerica].[empresa] AS [empresa], 
+    [ViewPlazaGenerica].[municipio] AS [municipio], 
+    [ViewPlazaGenerica].[idgiroemp] AS [idgiroemp], 
+    [ViewPlazaGenerica].[codempresa] AS [codempresa], 
+    [ViewPlazaGenerica].[iddepart] AS [iddepart], 
+    [ViewPlazaGenerica].[idplaza] AS [idplaza], 
+    [ViewPlazaGenerica].[idcargo] AS [idcargo], 
+    [ViewPlazaGenerica].[idareacargo] AS [idareacargo], 
+    [ViewPlazaGenerica].[idgenero] AS [idgenero], 
+    [ViewPlazaGenerica].[genero] AS [genero]
+    FROM [dbo].[ViewPlazaGenerica] AS [ViewPlazaGenerica]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ViewPostulante" EntityType="Self.ViewPostulante" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ViewPostulante].[genero] AS [genero], 
+    [ViewPostulante].[nombre] AS [nombre], 
+    [ViewPostulante].[Edad] AS [Edad], 
+    [ViewPostulante].[municipio] AS [municipio], 
+    [ViewPostulante].[idgenero] AS [idgenero], 
+    [ViewPostulante].[idpostulante] AS [idpostulante], 
+    [ViewPostulante].[iddep] AS [iddep], 
+    [ViewPostulante].[idcu] AS [idcu]
+    FROM [dbo].[ViewPostulante] AS [ViewPostulante]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_CARGO_REFERENCE_AREA_CAR" Association="Self.FK_CARGO_REFERENCE_AREA_CAR">
       <End Role="AREA_CARGO" EntitySet="AREA_CARGO" />
       <End Role="CARGO" EntitySet="CARGO" />
@@ -1211,6 +1369,18 @@
     <AssociationSet Name="FK_CURRICUL_FK_CURRIC_POSTULAN" Association="Self.FK_CURRICUL_FK_CURRIC_POSTULAN">
       <End Role="POSTULANTE" EntitySet="POSTULANTE" />
       <End Role="CURRICULUM" EntitySet="CURRICULUM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DEPARTAM_FK_DEPART_PAIS" Association="Self.FK_DEPARTAM_FK_DEPART_PAIS">
+      <End Role="PAIS" EntitySet="PAIS" />
+      <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPRESA_REFERENCE_GIRO" Association="Self.FK_EMPRESA_REFERENCE_GIRO">
+      <End Role="GIRO" EntitySet="GIRO" />
+      <End Role="EMPRESA" EntitySet="EMPRESA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPRESA_REFERENCE_MUNICIPI" Association="Self.FK_EMPRESA_REFERENCE_MUNICIPI">
+      <End Role="MUNICIPIO" EntitySet="MUNICIPIO" />
+      <End Role="EMPRESA" EntitySet="EMPRESA" />
     </AssociationSet>
     <AssociationSet Name="FK_ESTADO_C_FK_ESTADO_ESTADO_C" Association="Self.FK_ESTADO_C_FK_ESTADO_ESTADO_C">
       <End Role="ESTADO_CIVIL" EntitySet="ESTADO_CIVIL" />
@@ -1340,6 +1510,14 @@
       <End Role="TIPOPREGUNTA" EntitySet="TIPOPREGUNTA" />
       <End Role="PREGUNTA" EntitySet="PREGUNTA" />
     </AssociationSet>
+    <AssociationSet Name="FK_PRIVILEG_FK_ROL_ME_MENU" Association="Self.FK_PRIVILEG_FK_ROL_ME_MENU">
+      <End Role="MENU" EntitySet="MENU" />
+      <End Role="PRIVILEGIO" EntitySet="PRIVILEGIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRIVILEG_FK_ROL_ME_ROL" Association="Self.FK_PRIVILEG_FK_ROL_ME_ROL">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="PRIVILEGIO" EntitySet="PRIVILEGIO" />
+    </AssociationSet>
     <AssociationSet Name="FK_PUBLICAC_FK_PUBLIC_CURRICUL" Association="Self.FK_PUBLICAC_FK_PUBLIC_CURRICUL">
       <End Role="CURRICULUM" EntitySet="CURRICULUM" />
       <End Role="PUBLICACION" EntitySet="PUBLICACION" />
@@ -1368,22 +1546,6 @@
       <End Role="POSTULANTE" EntitySet="POSTULANTE" />
       <End Role="RESPUESTA" EntitySet="RESPUESTA" />
     </AssociationSet>
-    <AssociationSet Name="FK_ROL_MENU_FK_ROL_ME_MENU" Association="Self.FK_ROL_MENU_FK_ROL_ME_MENU">
-      <End Role="MENU" EntitySet="MENU" />
-      <End Role="ROL_MENU_MM" EntitySet="ROL_MENU_MM" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ROL_MENU_FK_ROL_ME_ROL" Association="Self.FK_ROL_MENU_FK_ROL_ME_ROL">
-      <End Role="ROL" EntitySet="ROL" />
-      <End Role="ROL_MENU_MM" EntitySet="ROL_MENU_MM" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ROL_USUA_FK_ROL_US_ROL" Association="Self.FK_ROL_USUA_FK_ROL_US_ROL">
-      <End Role="ROL" EntitySet="ROL" />
-      <End Role="ROL_USUARIO_MM" EntitySet="ROL_USUARIO_MM" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ROL_USUA_FK_ROL_US_USUARIO" Association="Self.FK_ROL_USUA_FK_ROL_US_USUARIO">
-      <End Role="USUARIO" EntitySet="USUARIO" />
-      <End Role="ROL_USUARIO_MM" EntitySet="ROL_USUARIO_MM" />
-    </AssociationSet>
     <AssociationSet Name="FK_TELEFONO_FK_TELEFO_POSTULAN" Association="Self.FK_TELEFONO_FK_TELEFO_POSTULAN">
       <End Role="POSTULANTE" EntitySet="POSTULANTE" />
       <End Role="TELEFONO" EntitySet="TELEFONO" />
@@ -1398,6 +1560,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_USUARIO_FK_USUARI_EMPRESA" Association="Self.FK_USUARIO_FK_USUARI_EMPRESA">
       <End Role="EMPRESA" EntitySet="EMPRESA" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_REFERENCE_ROL" Association="Self.FK_USUARIO_REFERENCE_ROL">
+      <End Role="ROL" EntitySet="ROL" />
       <End Role="USUARIO" EntitySet="USUARIO" />
     </AssociationSet>
   </EntityContainer>

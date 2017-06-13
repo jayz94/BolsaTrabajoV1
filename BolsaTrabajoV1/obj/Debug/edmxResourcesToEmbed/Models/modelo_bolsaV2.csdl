@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="BolsaTrabajoV3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="BolsaTrabajoV1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="AREA_CARGO">
     <Key>
       <PropertyRef Name="IDAREACARGO" />
@@ -16,13 +16,6 @@
     <Property Name="NOMBREAREACONOCIMIENTO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="CERTIFICACION" Relationship="Self.FK_CERTIFIC_FK_CERTIF_AREA_CON" FromRole="AREA_CONOCIMIENTO" ToRole="CERTIFICACION" />
     <NavigationProperty Name="TIPO_HABILIDAD" Relationship="Self.FK_TIPO_HAB_FK_TIPO_H_AREA_CON" FromRole="AREA_CONOCIMIENTO" ToRole="TIPO_HABILIDAD" />
-  </EntityType>
-  <EntityType Name="AREA_PLAZA">
-    <Key>
-      <PropertyRef Name="IDAREAPLAZA" />
-    </Key>
-    <Property Name="DESCRIPCIONAREA" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
-    <Property Name="IDAREAPLAZA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
   </EntityType>
   <EntityType Name="CARGO">
     <Key>
@@ -70,6 +63,7 @@
     </Key>
     <Property Name="IDCURRICULUM" Type="Int32" Nullable="false" />
     <Property Name="IDPOSTULANTE" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CERTIFICACION" Relationship="Self.FK_CERTIFIC_FK_CERTIF_CURRICUL" FromRole="CURRICULUM" ToRole="CERTIFICACION" />
     <NavigationProperty Name="POSTULANTE" Relationship="Self.FK_CURRICUL_FK_CURRIC_POSTULAN" FromRole="CURRICULUM" ToRole="POSTULANTE" />
     <NavigationProperty Name="EXPERIENCIALABORAL" Relationship="Self.FK_EXPERIEN_FK_EXPERI_CURRICUL" FromRole="CURRICULUM" ToRole="EXPERIENCIALABORAL" />
@@ -86,8 +80,10 @@
       <PropertyRef Name="IDDEPARTAMENTO" />
     </Key>
     <Property Name="IDDEPARTAMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPAIS" Type="Int32" />
     <Property Name="NOMBREDEPARTAMENTO" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
     <Property Name="ZONA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PAIS" Relationship="Self.FK_DEPARTAM_FK_DEPART_PAIS" FromRole="DEPARTAMENTO" ToRole="PAIS" />
     <NavigationProperty Name="MUNICIPIO" Relationship="Self.FK_MUNICIPI_FK_MUNICI_DEPARTAM" FromRole="DEPARTAMENTO" ToRole="MUNICIPIO" />
   </EntityType>
   <EntityType Name="EMPRESA">
@@ -95,7 +91,17 @@
       <PropertyRef Name="CODIGOEMPRESA" />
     </Key>
     <Property Name="CODIGOEMPRESA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDMUNICIPIO" Type="Int32" />
+    <Property Name="IDGIRO" Type="Int32" />
     <Property Name="NOMBREEMPRESA" Type="String" MaxLength="74" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="ABREVIATURA" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="NIT" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+    <Property Name="CORREOELECTRONICO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="IMAGENEMPRESA" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="GIRO" Relationship="Self.FK_EMPRESA_REFERENCE_GIRO" FromRole="EMPRESA" ToRole="GIRO" />
+    <NavigationProperty Name="MUNICIPIO" Relationship="Self.FK_EMPRESA_REFERENCE_MUNICIPI" FromRole="EMPRESA" ToRole="MUNICIPIO" />
     <NavigationProperty Name="EXAMEN" Relationship="Self.FK_EXAMEN_REFERENCE_EMPRESA" FromRole="EMPRESA" ToRole="EXAMEN" />
     <NavigationProperty Name="PLAZA" Relationship="Self.FK_PLAZA_REFERENCE_EMPRESA" FromRole="EMPRESA" ToRole="PLAZA" />
     <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO_FK_USUARI_EMPRESA" FromRole="EMPRESA" ToRole="USUARIO" />
@@ -116,6 +122,7 @@
     <Property Name="IDPOSTULANTE" Type="Int32" Nullable="false" />
     <Property Name="IDESTADOCIVIL" Type="Int16" Nullable="false" />
     <Property Name="FECHACAMBIO" Type="DateTime" Precision="3" />
+    <Property Name="ACTIVO" Type="Int16" />
     <NavigationProperty Name="ESTADO_CIVIL" Relationship="Self.FK_ESTADO_C_FK_ESTADO_ESTADO_C" FromRole="ESTADO_CIVIL_POSTULANTE_MM" ToRole="ESTADO_CIVIL" />
     <NavigationProperty Name="POSTULANTE" Relationship="Self.FK_ESTADO_C_FK_ESTADO_POSTULAN" FromRole="ESTADO_CIVIL_POSTULANTE_MM" ToRole="POSTULANTE" />
   </EntityType>
@@ -128,6 +135,7 @@
     <Property Name="PONDERACION" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="CODIGOEXAMEN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDTIPOEXAMEN" Type="Int32" />
+    <Property Name="DESCRIPCIONEXAMEN" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="EMPRESA" Relationship="Self.FK_EXAMEN_REFERENCE_EMPRESA" FromRole="EXAMEN" ToRole="EMPRESA" />
     <NavigationProperty Name="TIPO_EXAMEN" Relationship="Self.FK_EXAMEN_REFERENCE_TIPO_EXA" FromRole="EXAMEN" ToRole="TIPO_EXAMEN" />
     <NavigationProperty Name="PREGUNTA" Relationship="Self.FK_PREGUNTA_REFERENCE_EXAMEN" FromRole="EXAMEN" ToRole="PREGUNTA" />
@@ -171,7 +179,7 @@
     </Key>
     <Property Name="IDFUNCION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDPLAZA" Type="Int32" />
-    <Property Name="DESCRIPCIONPLAZA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPCIONPLAZA" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="PLAZA" Relationship="Self.FK_FUNCION__REFERENCE_PLAZA" FromRole="FUNCION_PLAZA" ToRole="PLAZA" />
   </EntityType>
   <EntityType Name="GENERO">
@@ -182,6 +190,14 @@
     <Property Name="DESCRIPCIONGENERO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="PLAZA" Relationship="Self.FK_PLAZA_REFERENCE_GENERO" FromRole="GENERO" ToRole="PLAZA" />
     <NavigationProperty Name="POSTULANTE" Relationship="Self.FK_POSTULAN_REFERENCE_GENERO" FromRole="GENERO" ToRole="POSTULANTE" />
+  </EntityType>
+  <EntityType Name="GIRO">
+    <Key>
+      <PropertyRef Name="IDGIRO" />
+    </Key>
+    <Property Name="IDGIRO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DESCRIPCIONGIRO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EMPRESA" Relationship="Self.FK_EMPRESA_REFERENCE_GIRO" FromRole="GIRO" ToRole="EMPRESA" />
   </EntityType>
   <EntityType Name="HABILIDAD">
     <Key>
@@ -238,7 +254,7 @@
     <Property Name="ORDEN" Type="Int16" />
     <NavigationProperty Name="MENU1" Relationship="Self.FK_MENU_REFERENCE_MENU" FromRole="MENU" ToRole="MENU1" />
     <NavigationProperty Name="MENU2" Relationship="Self.FK_MENU_REFERENCE_MENU" FromRole="MENU1" ToRole="MENU" />
-    <NavigationProperty Name="ROL" Relationship="Self.ROL_MENU_MM" FromRole="MENU" ToRole="ROL" />
+    <NavigationProperty Name="ROL" Relationship="Self.PRIVILEGIO" FromRole="MENU" ToRole="ROL" />
   </EntityType>
   <EntityType Name="MUNICIPIO">
     <Key>
@@ -248,6 +264,7 @@
     <Property Name="IDDEPARTAMENTO" Type="Int32" Nullable="false" />
     <Property Name="NOMBREMUNICIPIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.FK_MUNICIPI_FK_MUNICI_DEPARTAM" FromRole="MUNICIPIO" ToRole="DEPARTAMENTO" />
+    <NavigationProperty Name="EMPRESA" Relationship="Self.FK_EMPRESA_REFERENCE_MUNICIPI" FromRole="MUNICIPIO" ToRole="EMPRESA" />
     <NavigationProperty Name="PLAZA" Relationship="Self.FK_PLAZA_REFERENCE_MUNICIPI" FromRole="MUNICIPIO" ToRole="PLAZA" />
     <NavigationProperty Name="POSTULANTE" Relationship="Self.FK_POSTULAN_FK_POSTUL_MUNICIPI" FromRole="MUNICIPIO" ToRole="POSTULANTE" />
   </EntityType>
@@ -278,6 +295,7 @@
     <Property Name="IDPAIS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NOMBREPAIS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="CODIGOPAIS" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.FK_DEPARTAM_FK_DEPART_PAIS" FromRole="PAIS" ToRole="DEPARTAMENTO" />
     <NavigationProperty Name="PARTICIPACION_PROFESIONAL" Relationship="Self.FK_PARTICIP_FK_PARTIC_PAIS" FromRole="PAIS" ToRole="PARTICIPACION_PROFESIONAL" />
   </EntityType>
   <EntityType Name="PARTICIPACION_PROFESIONAL">
@@ -317,6 +335,7 @@
     <Property Name="DESCRIPCIONPLAZA" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
     <Property Name="VACANTES" Type="Int32" />
     <Property Name="TIPOJORNADA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IMAGENPLAZA" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="CARGO" Relationship="Self.FK_PLAZA_REFERENCE_CARGO" FromRole="PLAZA" ToRole="CARGO" />
     <NavigationProperty Name="EMPRESA" Relationship="Self.FK_PLAZA_REFERENCE_EMPRESA" FromRole="PLAZA" ToRole="EMPRESA" />
     <NavigationProperty Name="FUNCION_PLAZA" Relationship="Self.FK_FUNCION__REFERENCE_PLAZA" FromRole="PLAZA" ToRole="FUNCION_PLAZA" />
@@ -338,6 +357,7 @@
     <Property Name="FECHANACIMIENTO" Type="DateTime" Precision="3" />
     <Property Name="DIRECCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
     <Property Name="URLCURRICULUM" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IMAGENPOSTULANTE" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="CONTACTO" Relationship="Self.FK_CONTACTO_FK_CONTAC_POSTULAN" FromRole="POSTULANTE" ToRole="CONTACTO" />
     <NavigationProperty Name="CURRICULUM" Relationship="Self.FK_CURRICUL_FK_CURRIC_POSTULAN" FromRole="POSTULANTE" ToRole="CURRICULUM" />
     <NavigationProperty Name="ESTADO_CIVIL_POSTULANTE_MM" Relationship="Self.FK_ESTADO_C_FK_ESTADO_POSTULAN" FromRole="POSTULANTE" ToRole="ESTADO_CIVIL_POSTULANTE_MM" />
@@ -376,7 +396,7 @@
       <PropertyRef Name="IDPREGUNTA" />
     </Key>
     <Property Name="CODIGOEXAMEN" Type="Int32" />
-    <Property Name="TEXTOPREGUNTA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="TEXTOPREGUNTA" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
     <Property Name="IDPREGUNTA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDTIPOOPCION" Type="Int16" />
     <NavigationProperty Name="EXAMEN" Relationship="Self.FK_PREGUNTA_REFERENCE_EXAMEN" FromRole="PREGUNTA" ToRole="EXAMEN" />
@@ -420,7 +440,7 @@
       <PropertyRef Name="IDREQUISITO" />
     </Key>
     <Property Name="IDTIPOREQUISITO" Type="Int32" />
-    <Property Name="DESCRIPCIONREQUISITO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPCIONREQUISITO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="IDREQUISITO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDPLAZA" Type="Int32" />
     <NavigationProperty Name="PLAZA" Relationship="Self.FK_REQUISIT_REFERENCE_PLAZA" FromRole="REQUISITO" ToRole="PLAZA" />
@@ -444,8 +464,8 @@
     <Property Name="IDROL" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NOMBREROL" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ACTIVO" Type="Boolean" />
-    <NavigationProperty Name="ROL_USUARIO_MM" Relationship="Self.FK_ROL_USUA_FK_ROL_US_ROL" FromRole="ROL" ToRole="ROL_USUARIO_MM" />
-    <NavigationProperty Name="MENU" Relationship="Self.ROL_MENU_MM" FromRole="ROL" ToRole="MENU" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO_REFERENCE_ROL" FromRole="ROL" ToRole="USUARIO" />
+    <NavigationProperty Name="MENU" Relationship="Self.PRIVILEGIO" FromRole="ROL" ToRole="MENU" />
   </EntityType>
   <EntityType Name="ROL_USUARIO_MM">
     <Key>
@@ -456,8 +476,6 @@
     <Property Name="IDROL" Type="Int16" Nullable="false" />
     <Property Name="ACTIVO" Type="Boolean" />
     <Property Name="FECHAASIGNACION" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="ROL" Relationship="Self.FK_ROL_USUA_FK_ROL_US_ROL" FromRole="ROL_USUARIO_MM" ToRole="ROL" />
-    <NavigationProperty Name="USUARIO" Relationship="Self.FK_ROL_USUA_FK_ROL_US_USUARIO" FromRole="ROL_USUARIO_MM" ToRole="USUARIO" />
   </EntityType>
   <EntityType Name="TELEFONO">
     <Key>
@@ -483,7 +501,7 @@
       <PropertyRef Name="IDTIPODOCUMENTOIDENTIDAD" />
     </Key>
     <Property Name="IDTIPODOCUMENTOIDENTIDAD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NOMBREDOCUMENTOIDENTIDAD" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NOMBREDOCUMENTOIDENTIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="CANTIDADCARACTERES" Type="Int16" />
     <Property Name="MASCARA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="EXTRANJERO" Type="Boolean" />
@@ -501,7 +519,7 @@
     <Key>
       <PropertyRef Name="IDTIPOHABILIDAD" />
     </Key>
-    <Property Name="IDTIPOHABILIDAD" Type="Int32" Nullable="false" />
+    <Property Name="IDTIPOHABILIDAD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDAREACONOCIMIENTO" Type="Int16" />
     <Property Name="NOMBRETIPOHABILIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="AREA_CONOCIMIENTO" Relationship="Self.FK_TIPO_HAB_FK_TIPO_H_AREA_CON" FromRole="TIPO_HABILIDAD" ToRole="AREA_CONOCIMIENTO" />
@@ -522,6 +540,7 @@
     <Property Name="DESCRIPCIONTIPO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="TABLA" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="IDTIPOREQUISITO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CAMPOTABLA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="REQUISITO" Relationship="Self.FK_REQUISIT_REFERENCE_TIPO_REQ" FromRole="TIPO_REQUISITO" ToRole="REQUISITO" />
   </EntityType>
   <EntityType Name="TIPO_TELEFONO">
@@ -562,6 +581,7 @@
     </Key>
     <Property Name="IDUSUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CODIGOEMPRESA" Type="Int32" />
+    <Property Name="IDROL" Type="Int16" />
     <Property Name="NOMBREUSUARIO" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
     <Property Name="PASSWORD" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
     <Property Name="ACTIVO" Type="Boolean" />
@@ -572,7 +592,64 @@
     <Property Name="CORREO" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="EMPRESA" Relationship="Self.FK_USUARIO_FK_USUARI_EMPRESA" FromRole="USUARIO" ToRole="EMPRESA" />
     <NavigationProperty Name="POSTULANTE" Relationship="Self.FK_POSTULAN_FK_POSTUL_USUARIO" FromRole="USUARIO" ToRole="POSTULANTE" />
-    <NavigationProperty Name="ROL_USUARIO_MM" Relationship="Self.FK_ROL_USUA_FK_ROL_US_USUARIO" FromRole="USUARIO" ToRole="ROL_USUARIO_MM" />
+    <NavigationProperty Name="ROL" Relationship="Self.FK_USUARIO_REFERENCE_ROL" FromRole="USUARIO" ToRole="ROL" />
+  </EntityType>
+  <EntityType Name="ViewCurriculum">
+    <Key>
+      <PropertyRef Name="IDCURRICULUM" />
+      <PropertyRef Name="IDPOSTULANTE" />
+    </Key>
+    <Property Name="NOMBREHABILIDAD" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="INSTITUCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TITULO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBREIDIOMA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IDCURRICULUM" Type="Int32" Nullable="false" />
+    <Property Name="IDPOSTULANTE" Type="Int32" Nullable="false" />
+    <Property Name="IDTIPOHABILIDAD" Type="Int32" />
+    <Property Name="IDTIPOFORMACION" Type="Int32" />
+    <Property Name="idacth" Type="Int16" />
+    <Property Name="idaccr" Type="Int16" />
+  </EntityType>
+  <EntityType Name="ViewPlazaGenerica">
+    <Key>
+      <PropertyRef Name="codempresa" />
+      <PropertyRef Name="iddepart" />
+      <PropertyRef Name="idplaza" />
+      <PropertyRef Name="idcargo" />
+    </Key>
+    <Property Name="cargo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="descriplaza" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="salario" Type="Single" />
+    <Property Name="edadmin" Type="Int16" />
+    <Property Name="edadmax" Type="Int16" />
+    <Property Name="vacantes" Type="Int32" />
+    <Property Name="minimoexp" Type="Int16" />
+    <Property Name="empresa" Type="String" MaxLength="74" FixedLength="false" Unicode="false" />
+    <Property Name="municipio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="idgiroemp" Type="Int32" />
+    <Property Name="codempresa" Type="Int32" Nullable="false" />
+    <Property Name="iddepart" Type="Int32" Nullable="false" />
+    <Property Name="idplaza" Type="Int32" Nullable="false" />
+    <Property Name="idcargo" Type="Int32" Nullable="false" />
+    <Property Name="idareacargo" Type="Int32" />
+    <Property Name="idgenero" Type="Int32" />
+    <Property Name="genero" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ViewPostulante">
+    <Key>
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="idpostulante" />
+      <PropertyRef Name="iddep" />
+      <PropertyRef Name="idcu" />
+    </Key>
+    <Property Name="genero" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="257" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Edad" Type="Int32" />
+    <Property Name="municipio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="idgenero" Type="Int32" />
+    <Property Name="idpostulante" Type="Int32" Nullable="false" />
+    <Property Name="iddep" Type="Int32" Nullable="false" />
+    <Property Name="idcu" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_CARGO_REFERENCE_AREA_CAR">
     <End Role="AREA_CARGO" Type="Self.AREA_CARGO" Multiplicity="0..1" />
@@ -796,6 +873,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_DEPARTAM_FK_DEPART_PAIS">
+    <End Role="PAIS" Type="Self.PAIS" Multiplicity="0..1" />
+    <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAIS">
+        <PropertyRef Name="IDPAIS" />
+      </Principal>
+      <Dependent Role="DEPARTAMENTO">
+        <PropertyRef Name="IDPAIS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MUNICIPI_FK_MUNICI_DEPARTAM">
     <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
     <End Role="MUNICIPIO" Type="Self.MUNICIPIO" Multiplicity="*" />
@@ -805,6 +894,30 @@
       </Principal>
       <Dependent Role="MUNICIPIO">
         <PropertyRef Name="IDDEPARTAMENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPRESA_REFERENCE_GIRO">
+    <End Role="GIRO" Type="Self.GIRO" Multiplicity="0..1" />
+    <End Role="EMPRESA" Type="Self.EMPRESA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GIRO">
+        <PropertyRef Name="IDGIRO" />
+      </Principal>
+      <Dependent Role="EMPRESA">
+        <PropertyRef Name="IDGIRO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPRESA_REFERENCE_MUNICIPI">
+    <End Role="MUNICIPIO" Type="Self.MUNICIPIO" Multiplicity="0..1" />
+    <End Role="EMPRESA" Type="Self.EMPRESA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MUNICIPIO">
+        <PropertyRef Name="IDMUNICIPIO" />
+      </Principal>
+      <Dependent Role="EMPRESA">
+        <PropertyRef Name="IDMUNICIPIO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1168,27 +1281,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ROL_USUA_FK_ROL_US_ROL">
-    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
-    <End Role="ROL_USUARIO_MM" Type="Self.ROL_USUARIO_MM" Multiplicity="*" />
+  <Association Name="FK_USUARIO_REFERENCE_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="0..1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ROL">
         <PropertyRef Name="IDROL" />
       </Principal>
-      <Dependent Role="ROL_USUARIO_MM">
+      <Dependent Role="USUARIO">
         <PropertyRef Name="IDROL" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ROL_USUA_FK_ROL_US_USUARIO">
-    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
-    <End Role="ROL_USUARIO_MM" Type="Self.ROL_USUARIO_MM" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="USUARIO">
-        <PropertyRef Name="IDUSUARIO" />
-      </Principal>
-      <Dependent Role="ROL_USUARIO_MM">
-        <PropertyRef Name="IDUSUARIO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1204,14 +1305,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ROL_MENU_MM">
+  <Association Name="PRIVILEGIO">
     <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
     <End Role="ROL" Type="Self.ROL" Multiplicity="*" />
   </Association>
   <EntityContainer Name="ConexionBDBolsa" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AREA_CARGO" EntityType="Self.AREA_CARGO" />
     <EntitySet Name="AREA_CONOCIMIENTO" EntityType="Self.AREA_CONOCIMIENTO" />
-    <EntitySet Name="AREA_PLAZA" EntityType="Self.AREA_PLAZA" />
     <EntitySet Name="CARGO" EntityType="Self.CARGO" />
     <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" />
     <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" />
@@ -1225,6 +1325,7 @@
     <EntitySet Name="FORMACIONACADEMICA" EntityType="Self.FORMACIONACADEMICA" />
     <EntitySet Name="FUNCION_PLAZA" EntityType="Self.FUNCION_PLAZA" />
     <EntitySet Name="GENERO" EntityType="Self.GENERO" />
+    <EntitySet Name="GIRO" EntityType="Self.GIRO" />
     <EntitySet Name="HABILIDAD" EntityType="Self.HABILIDAD" />
     <EntitySet Name="IDIOMA" EntityType="Self.IDIOMA" />
     <EntitySet Name="LOGRO" EntityType="Self.LOGRO" />
@@ -1257,6 +1358,9 @@
     <EntitySet Name="TIPOPREGUNTA" EntityType="Self.TIPOPREGUNTA" />
     <EntitySet Name="TIPOREFERENCIA" EntityType="Self.TIPOREFERENCIA" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+    <EntitySet Name="ViewCurriculum" EntityType="Self.ViewCurriculum" />
+    <EntitySet Name="ViewPlazaGenerica" EntityType="Self.ViewPlazaGenerica" />
+    <EntitySet Name="ViewPostulante" EntityType="Self.ViewPostulante" />
     <AssociationSet Name="FK_CARGO_REFERENCE_AREA_CAR" Association="Self.FK_CARGO_REFERENCE_AREA_CAR">
       <End Role="AREA_CARGO" EntitySet="AREA_CARGO" />
       <End Role="CARGO" EntitySet="CARGO" />
@@ -1325,9 +1429,21 @@
       <End Role="CURRICULUM" EntitySet="CURRICULUM" />
       <End Role="REFERENCIA" EntitySet="REFERENCIA" />
     </AssociationSet>
+    <AssociationSet Name="FK_DEPARTAM_FK_DEPART_PAIS" Association="Self.FK_DEPARTAM_FK_DEPART_PAIS">
+      <End Role="PAIS" EntitySet="PAIS" />
+      <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+    </AssociationSet>
     <AssociationSet Name="FK_MUNICIPI_FK_MUNICI_DEPARTAM" Association="Self.FK_MUNICIPI_FK_MUNICI_DEPARTAM">
       <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
       <End Role="MUNICIPIO" EntitySet="MUNICIPIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPRESA_REFERENCE_GIRO" Association="Self.FK_EMPRESA_REFERENCE_GIRO">
+      <End Role="GIRO" EntitySet="GIRO" />
+      <End Role="EMPRESA" EntitySet="EMPRESA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPRESA_REFERENCE_MUNICIPI" Association="Self.FK_EMPRESA_REFERENCE_MUNICIPI">
+      <End Role="MUNICIPIO" EntitySet="MUNICIPIO" />
+      <End Role="EMPRESA" EntitySet="EMPRESA" />
     </AssociationSet>
     <AssociationSet Name="FK_EXAMEN_REFERENCE_EMPRESA" Association="Self.FK_EXAMEN_REFERENCE_EMPRESA">
       <End Role="EMPRESA" EntitySet="EMPRESA" />
@@ -1449,19 +1565,15 @@
       <End Role="TIPO_REQUISITO" EntitySet="TIPO_REQUISITO" />
       <End Role="REQUISITO" EntitySet="REQUISITO" />
     </AssociationSet>
-    <AssociationSet Name="FK_ROL_USUA_FK_ROL_US_ROL" Association="Self.FK_ROL_USUA_FK_ROL_US_ROL">
+    <AssociationSet Name="FK_USUARIO_REFERENCE_ROL" Association="Self.FK_USUARIO_REFERENCE_ROL">
       <End Role="ROL" EntitySet="ROL" />
-      <End Role="ROL_USUARIO_MM" EntitySet="ROL_USUARIO_MM" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ROL_USUA_FK_ROL_US_USUARIO" Association="Self.FK_ROL_USUA_FK_ROL_US_USUARIO">
       <End Role="USUARIO" EntitySet="USUARIO" />
-      <End Role="ROL_USUARIO_MM" EntitySet="ROL_USUARIO_MM" />
     </AssociationSet>
     <AssociationSet Name="FK_TELEFONO_FK_TELEFO_TIPO_TEL" Association="Self.FK_TELEFONO_FK_TELEFO_TIPO_TEL">
       <End Role="TIPO_TELEFONO" EntitySet="TIPO_TELEFONO" />
       <End Role="TELEFONO" EntitySet="TELEFONO" />
     </AssociationSet>
-    <AssociationSet Name="ROL_MENU_MM" Association="Self.ROL_MENU_MM">
+    <AssociationSet Name="PRIVILEGIO" Association="Self.PRIVILEGIO">
       <End Role="MENU" EntitySet="MENU" />
       <End Role="ROL" EntitySet="ROL" />
     </AssociationSet>
@@ -1471,5 +1583,40 @@
     <FunctionImport Name="DesbloqueoUsuario">
       <Parameter Name="idUs" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="ObtenerResultados" ReturnType="Collection(BolsaTrabajoV1Model.ObtenerResultados_Result)">
+      <Parameter Name="codEmp" Mode="In" Type="Int32" />
+      <Parameter Name="idp" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="USP_CheckCredentials" ReturnType="Collection(BolsaTrabajoV1Model.USP_CheckCredentials_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ValidarUsuario" ReturnType="Collection(BolsaTrabajoV1Model.ValidarUsuario_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="ObtenerResultados_Result">
+    <Property Type="Int32" Name="IDPOSTULANTE" Nullable="false" />
+    <Property Type="String" Name="NOMBREPOSTULANTE" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="CODIGOEMPRESA" Nullable="false" />
+    <Property Type="String" Name="NOMBREEMPRESA" Nullable="true" MaxLength="74" />
+    <Property Type="Int32" Name="IDPLAZA" Nullable="false" />
+    <Property Type="String" Name="DESCRIPCIONPLAZA" Nullable="true" MaxLength="1024" />
+    <Property Type="Int32" Name="CODIGOEXAMEN" Nullable="false" />
+    <Property Type="String" Name="DESCRIPCIONEXAMEN" Nullable="true" MaxLength="600" />
+    <Property Type="Int32" Name="PUNTAJE" Nullable="true" />
+    <Property Type="Decimal" Name="PONDERACION" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="TOTAL" Nullable="true" Precision="29" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="USP_CheckCredentials_Result">
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="Int16" Name="Rol" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ValidarUsuario_Result">
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="Int16" Name="Rol" Nullable="true" />
+  </ComplexType>
 </Schema>
