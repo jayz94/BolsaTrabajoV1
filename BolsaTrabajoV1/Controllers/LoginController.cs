@@ -46,16 +46,11 @@ namespace BolsaTrabajoV1.Controllers
         [AllowAnonymous]
         public ActionResult Index(USUARIO user)
         {
-
-
             //inicia para la encriptacion CHA1
             SHA1 sha1 = new SHA1CryptoServiceProvider();
             byte[] inputBytes = (new UnicodeEncoding()).GetBytes(user.PASSWORD);
             byte[] hash = sha1.ComputeHash(inputBytes);
             //finaliza para la encriptacion CHA1
-
-
-
             ObjectResult<ValidarUsuario_Result> result = db.ValidarUsuario(user.NOMBREUSUARIO, Convert.ToBase64String(hash));
 
             int? valido;
@@ -93,9 +88,6 @@ namespace BolsaTrabajoV1.Controllers
                       
                         user.IDUSUARIO = userID.Value;
                         user.IDROL = Convert.ToInt16(rol.Value);
-
-
-
                         USUARIO currentU= (from u in db.USUARIO
                                           where u.IDUSUARIO == user.IDUSUARIO
                                           select u).SingleOrDefault();
@@ -104,19 +96,12 @@ namespace BolsaTrabajoV1.Controllers
                         TempData["Message"] = currentU.NOMBREUSUARIO;
 
                         Session["usuario"] = currentU;
-
-
-
-
+                        
                         ROL RolEmpresa= (from r in db.ROL
                                          where r.NOMBREROL=="Postulante"
                                          select r).SingleOrDefault();
 
                         this.cargarMenus();
-
-                       
-                        
-
 
                         return RedirectToAction("Index", "Postulante");
                 }

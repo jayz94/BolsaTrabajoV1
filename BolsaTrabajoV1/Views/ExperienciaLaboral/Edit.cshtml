@@ -1,5 +1,9 @@
 ﻿@model BolsaTrabajoV1.Models.EXPERIENCIALABORAL
-
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+@Scripts.Render("~/Scripts/jsDatepicker/jquery-ui.js")
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+@Styles.Render("~/bundles/datepickerCSS")
 <h2 class="text-center">Editar Experiencia Laboral</h2>
 
 @using (Html.BeginForm())
@@ -38,10 +42,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CARGO, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IDCARGO,"IDCARGO", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CARGO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CARGO, "", new { @class = "text-danger" })
+                @Html.DropDownList("IDCARGO", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IDCARGO, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -86,3 +90,13 @@
         </div>
     </div>
 }
+<script>
+    $('#FECHAINICIO').datetimepicker({
+        format: 'DD/MM/YYYY',
+        viewMode: 'years'
+    });
+    $('#FECHAFIN').datetimepicker({
+        format: 'DD/MM/YYYY',
+        viewMode: 'years'
+    });
+</script>

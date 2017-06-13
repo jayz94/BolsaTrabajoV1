@@ -122,30 +122,38 @@ namespace BolsaTrabajoV1.Controllers
             {*/
             if (PASSWORD.Equals(PASS2))
             {
-                //inicia para la encriptacion CHA1
-                SHA1 sha1 = new SHA1CryptoServiceProvider();
-                byte[] inputBytes = (new UnicodeEncoding()).GetBytes(PASSWORD);
-                byte[] hash = sha1.ComputeHash(inputBytes);
-                //finaliza para la encriptacion CHA1
-                USUARIO us = new USUARIO();
-                us.NOMBREUSUARIO = NOMBREUSUARIO;
-                us.PASSWORD = Convert.ToBase64String(hash);
-                us.ACTIVO = false;
-                if (rol == "on")
-                    us.IDROL = 2;
+                int usuarioBase = (from usu in db.USUARIO where usu.NOMBREUSUARIO == NOMBREUSUARIO /*|| usu.CORREO==CORREO*/ select usu).Count();
+                if (usuarioBase > 0) {
+                    ViewBag.ErrorPass = "Este Correo o Usuario ya Existe, Intente con uno nuevo";
+                }
                 else
-                    us.IDROL = 3;
-                us.CORREO = CORREO;
-                db.USUARIO.Add(us);
-                await db.SaveChangesAsync();
-                int idUsuario = us.IDUSUARIO; // recuperar el id
-                Session["idUs"] = idUsuario;
-                //return RedirectToAction("Create", "Postulante");
-                ViewBag.Exito = "Usuario Ingresado con exito";
+                {
+                    //inicia para la encriptacion CHA1
+                    SHA1 sha1 = new SHA1CryptoServiceProvider();
+                    byte[] inputBytes = (new UnicodeEncoding()).GetBytes(PASSWORD);
+                    byte[] hash = sha1.ComputeHash(inputBytes);
+                    //finaliza para la encriptacion CHA1
+                    USUARIO us = new USUARIO();
+                    us.NOMBREUSUARIO = NOMBREUSUARIO;
+                    us.PASSWORD = Convert.ToBase64String(hash);
+                    us.ACTIVO = false;
+                    if (rol == "on")
+                        us.IDROL = 2;
+                    else
+                        us.IDROL = 3;
+                    us.CORREO = CORREO;
+                    db.USUARIO.Add(us);
+                    await db.SaveChangesAsync();
+                    int idUsuario = us.IDUSUARIO; // recuperar el id
+                    Session["idUs"] = idUsuario;
+                    //return RedirectToAction("Create", "Postulante");
+                    ViewBag.Exito = "Usuario Ingresado con exito , debe confirmar su cuenta mediante el correo enviado a su cuenta";
 
-                string mensaje = generarMensaje(us);
-                enviarCorreo(us.CORREO, us.NOMBREUSUARIO, "Activacion de cuenta SIBTRA", mensaje);
+                    string mensaje = generarMensaje(us);
+                    enviarCorreo(us.CORREO, us.NOMBREUSUARIO, "Activacion de cuenta SIBTRA", mensaje);
+                }
             }
+              
             else {
                 ViewBag.ErrorPass = "Contraseñas no Coinciden";
             }

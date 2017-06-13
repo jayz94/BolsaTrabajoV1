@@ -51,10 +51,12 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDPARTICIPACION,IDCURRICULUM,IDPOSTULANTE,IDTIPOPARTICIPACION,IDPAIS,TITULOPARTICIPACION,LUGARPARTICIPACION,FECHAPARTICIPACION,ANFITRION")] PARTICIPACION_PROFESIONAL pARTICIPACION_PROFESIONAL)
+        public async Task<ActionResult> Create([Bind(Include = "IDPARTICIPACION,IDTIPOPARTICIPACION,IDPAIS,TITULOPARTICIPACION,LUGARPARTICIPACION,FECHAPARTICIPACION,ANFITRION")] PARTICIPACION_PROFESIONAL pARTICIPACION_PROFESIONAL)
         {
             if (ModelState.IsValid)
             {
+                pARTICIPACION_PROFESIONAL.IDCURRICULUM = (int)Session["idCurriculum"];
+                pARTICIPACION_PROFESIONAL.IDPOSTULANTE = (int)Session["idPostulante"];
                 db.PARTICIPACION_PROFESIONAL.Add(pARTICIPACION_PROFESIONAL);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
