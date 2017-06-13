@@ -21,6 +21,78 @@ namespace BolsaTrabajoV1.Controllers
             var eXAMEN = db.EXAMEN.Include(e => e.EMPRESA).Include(e => e.TIPO_EXAMEN);
             return View(await eXAMEN.ToListAsync());
         }
+        
+        public ActionResult Test()
+        {
+            var ex = 2;/*esta variable se sustituira por un parametro*/
+            //ordenamos de manera aleatoria las preguntas y solo tomamos 5
+            var query = (from examen in db.EXAMEN
+                        join pregunta in db.PREGUNTA on examen.CODIGOEXAMEN equals pregunta.CODIGOEXAMEN
+                        where examen.CODIGOEXAMEN == ex
+                        select new { pregunta.IDPREGUNTA,pregunta.TEXTOPREGUNTA}).OrderBy(question => Guid.NewGuid()).Take(5);
+
+            
+
+            List<PREGUNTA> preguntas = new List<PREGUNTA>();
+
+            foreach (var result in query)
+            {
+                PREGUNTA pregunta = new PREGUNTA();
+                pregunta.IDPREGUNTA = result.IDPREGUNTA;
+                pregunta.TEXTOPREGUNTA = result.TEXTOPREGUNTA;
+
+                var query2 = (from exam in db.EXAMEN
+                              join preg in db.PREGUNTA on exam.CODIGOEXAMEN equals preg.CODIGOEXAMEN
+                              join op in db.OPCION_PREGUNTA on preg.IDPREGUNTA equals op.IDPREGUNTA
+                              where exam.CODIGOEXAMEN == ex
+                              where preg.IDPREGUNTA == pregunta.IDPREGUNTA
+                              select new { op.IDOPCIONPREGUNTA,op.DESCRIPCIONOPCION,op.IDPREGUNTA }
+                    ).OrderBy(question => Guid.NewGuid());
+
+                foreach (var r in query2)
+                {
+                    OPCION_PREGUNTA opcion = new OPCION_PREGUNTA();
+                    opcion.IDOPCIONPREGUNTA = r.IDOPCIONPREGUNTA;
+                    opcion.DESCRIPCIONOPCION = r.DESCRIPCIONOPCION;
+                    opcion.IDPREGUNTA = r.IDPREGUNTA;
+
+                    pregunta.OPCION_PREGUNTA.Add(opcion);
+
+                }
+
+
+                preguntas.Add(pregunta);
+            }
+            ViewBag.preguntas = preguntas;
+            TempData["preguntas"] = preguntas;//usaremos esta variable en el metodo post
+            return View();
+        }
+
+        // POST: Examen/Guardar
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Guardar(FormCollection form)
+        {
+
+            RESPUESTA respuesta; 
+            foreach (var pregunta in TempData["preguntas"] as IEnumerable<PREGUNTA>)
+            {
+                string auxiliar = "respuestas-"+pregunta.IDPREGUNTA;                
+                string resp = form[auxiliar];
+
+                    respuesta= new RESPUESTA();
+                    respuesta.IDOPCIONPREGUNTA = Int16.Parse(resp);
+                    respuesta.IDPOSTULANTE = 1;//se obtendra de la session
+                    db.RESPUESTA.Add(respuesta);
+                    await db.SaveChangesAsync();
+
+            }
+
+              return RedirectToAction("Index");
+            
+        }
 
         // GET: Examen/Details/5
         public async Task<ActionResult> Details(int? id)

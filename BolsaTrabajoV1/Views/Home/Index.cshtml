@@ -96,25 +96,21 @@
                 foreach (var plaza in ViewBag.plazas)
                 {
                     <tr>
-                        <td>@plaza.car</td>
+                        <td>@plaza.cargo</td>
 
-                        <td>@plaza.des</td>
+                        <td>@plaza.descriplaza</td>
 
-                        <td>@plaza.emp</td>
+                        <td>@plaza.empresa</td>
 
-                        <td>$@plaza.sal</td>
+                        <td>$@plaza.salario</td>
 
-                        <td>@plaza.gen</td>
+                        <td>@plaza.genero</td>
 
-                        <td>@plaza.mun</td>
+                        <td>@plaza.municipio</td>
 
-                        <td>@plaza.vac</td>
+                        <td>@plaza.vacantes</td>
 
-                        <td>@plaza.emin</td>
-
-                        
-                       <td>@Html.ActionLink("Plaza", "Details", "Plaza", new { id = plaza.idp }, new { @class = "btn btn-primary fa fa-search btn-xs" })</td>
-                     
+                        <td>@plaza.edadmin</td>
                     </tr>
                 }
             }
