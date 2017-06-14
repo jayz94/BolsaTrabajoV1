@@ -1,5 +1,9 @@
 ﻿@model BolsaTrabajoV1.Models.USUARIO
 
+<script src="~/Scripts/jquery-1.7.2.min.js"></script>
+<link href="~/Content/libreriasTogle/bootstrap-toggle-bootstrap-toggle.min.css" rel="stylesheet" />
+<script src="~/Content/libreriasTogle/bootstrap-toggle-bootstrap-toggle.min.js"></script>
+
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -38,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PASSWORD, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @type="password" } })
+                @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @type="password", @pattern = "(?=.*[a-z])(?=.*[A-Z]).{8,}", @title= "Debe contener al menos  una letra mayúscula y minúscula, y al menos 8 o más caracteres" } })
                 @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -47,7 +51,7 @@
             <label class="control-label col-md-2">Repita la Contraseña</label>
             <div class="col-md-10">
                 <input class="form-control" name="PASS2" type="password"/>
-                @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" ,@pattern= "(?=.*[a-z])(?=.*[A-Z]).{8,}", @title = "Debe contener al menos una letra mayúscula y minúscula, y al menos 8 o más caracteres" })
             </div>
         </div>
         @*
@@ -68,7 +72,6 @@
                 @Html.ValidationMessageFor(model => model.COLOR, "", new { @class = "text-danger" })
             </div>
         </div>
-        *@
         <div class="form-group">
             @Html.LabelFor(model => model.IDIOMA, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -76,7 +79,7 @@
                 @Html.ValidationMessageFor(model => model.IDIOMA, "", new { @class = "text-danger" })
             </div>
         </div>
-        @*
+
     <div class="form-group">
         @Html.LabelFor(model => model.DEBAJA, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -98,15 +101,20 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CORREO, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CORREO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CORREO, new { htmlAttributes = new { @class = "form-control", @type="email"} })
                 @Html.ValidationMessageFor(model => model.CORREO, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="checkbox" name="rol" data-toggle="toggle" data-off="EMPRESA" data-on="POSTULANTE">
             </div>
         </div>
-    </div>
+            
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
 }

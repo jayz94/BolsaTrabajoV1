@@ -1,2 +1,3 @@
 BolsaTrabajoV1.sln
 BolsaTrabajoV1/Web.Config
+BolsaTrabajoV1/Models

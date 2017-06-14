@@ -1,5 +1,9 @@
 ﻿@model BolsaTrabajoV1.Models.PARTICIPACION_PROFESIONAL
-
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+@Scripts.Render("~/Scripts/jsDatepicker/jquery-ui.js")
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+@Styles.Render("~/bundles/datepickerCSS")
 <h2 class="text-center">Nueva Participación Profesional</h2>
 
 @using (Html.BeginForm()) 
@@ -85,3 +89,9 @@
         </div>
     </div>
 }
+<script>
+    $('#FECHAPARTICIPACION').datetimepicker({
+        format: 'DD/MM/YYYY',
+        viewMode: 'years'
+    });
+</script>

@@ -1,6 +1,10 @@
 ﻿@model BolsaTrabajoV1.Models.PUBLICACION
 <h2 class="text-center">Editar Publicación</h2>
-
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+@Scripts.Render("~/Scripts/jsDatepicker/jquery-ui.js")
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+@Styles.Render("~/bundles/datepickerCSS")
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -98,3 +102,9 @@
         </div>
     </div>
 }
+<script>
+    $('#FECHAPUBLICACION').datetimepicker({
+        format: 'DD/MM/YYYY',
+        viewMode: 'years'
+    });
+</script>

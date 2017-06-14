@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+}
+
+<h2 class="text-center">Examen</h2>
+
+<form action="../Examen/Guardar" method="POST">
+    @Html.AntiForgeryToken()
+
+
+    <div class="container">
+        <div class="panel panel primary">
+            <div class="panel-body">
+                <p class="alert alert-info">Elije la respuesta correcta</p>
+                @foreach (var pregunta in ViewBag.preguntas as IEnumerable<BolsaTrabajoV1.Models.PREGUNTA>)
+                {
+                    <div class="row">
+                        <strong><label hidden="hidden">@pregunta.IDPREGUNTA</label></strong>
+                        <strong><label>@pregunta.TEXTOPREGUNTA</label></strong>
+                        @foreach (var opcion in pregunta.OPCION_PREGUNTA as IEnumerable<BolsaTrabajoV1.Models.OPCION_PREGUNTA>)
+                        {
+                            <br />
+                                <input type="radio" id="@opcion.DESCRIPCIONOPCION" name="respuestas-@opcion.IDPREGUNTA" value="@opcion.IDOPCIONPREGUNTA" required /> <label>@opcion.DESCRIPCIONOPCION</label>
+
+                        }
+                    </div>
+                }
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" class="btn btn-primary align-center" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

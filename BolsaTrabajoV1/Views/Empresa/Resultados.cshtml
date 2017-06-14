@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Resultados";
+}
+
+<h2 class="text-center">Resultados</h2>
+
+<div class="container">
+    <div class="panel panel primary">
+        <div class="panel-body">
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Postulante</th>
+                            <th>Plaza</th>
+                            <th>Examen</th>
+                            <th>Puntaje</th>
+                            <th>Ponderacion</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var resultado in ViewBag.resultados as IEnumerable<BolsaTrabajoV1.Models.ObtenerResultados_Result>)
+                        {
+                            <tr>
+                                <td>@resultado.NOMBREPOSTULANTE</td>
+                                <td>@resultado.DESCRIPCIONPLAZA</td>
+                                <td>@resultado.DESCRIPCIONEXAMEN</td>
+                                <td>@resultado.PUNTAJE</td>
+                                <td>@resultado.PONDERACION</td>
+                                <td>@resultado.TOTAL</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

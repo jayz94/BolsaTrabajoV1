@@ -85,25 +85,28 @@ namespace BolsaTrabajoV1.Controllers
             return body;
         }
 
-        public ActionResult Activation(int id, string hash)
+        public async Task<ActionResult> Activation(int id, String hash)
         {
-
-            if (id != null)
+            USUARIO user = await db.USUARIO.FindAsync(id);
+            if (user == null)
             {
-                USUARIO user = db.USUARIO.Find(id);
-                if (user == null)
-                {
-                    TempData["MessageV"] = "Usuario No Activado";
-                }
-                else if (user.PASSWORD.Equals(hash))
-                {
-                    user.ACTIVO = true;
+                TempData["MessageV"] = "Usuario No Activado";
+            }
+            else
+            {
+                String pass1=hash.ToString().Substring(0, 3);
+                String pass2=user.PASSWORD.ToString().Substring(0, 3);
+                String pass3 = hash.ToString().Substring(4, 7);
+                String pass4 = user.PASSWORD.ToString().Substring(4, 7);
+                if (pass1.Equals(pass2) || pass3.Equals(pass4)) {
+                    user.ACTIVO =true;
                     db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
                     TempData["MessageV"] = "Usuario Activado Exitosamente";
                 }
+                else
+                    TempData["MessageV"] = "Usuario No Activado";
             }
-
             return RedirectToAction("Index", "Login");
         }
 
@@ -113,33 +116,44 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(String NOMBREUSUARIO,String PASSWORD,String PASS2,String IDIOMA,String CORREO)
+        public async Task<ActionResult> Create(String NOMBREUSUARIO,String PASSWORD,String PASS2,String rol,String CORREO)
         {
             /*if (ModelState.IsValid)
             {*/
             if (PASSWORD.Equals(PASS2))
             {
-                //inicia para la encriptacion CHA1
-                SHA1 sha1 = new SHA1CryptoServiceProvider();
-                byte[] inputBytes = (new UnicodeEncoding()).GetBytes(PASSWORD);
-                byte[] hash = sha1.ComputeHash(inputBytes);
-                //finaliza para la encriptacion CHA1
-                USUARIO us = new USUARIO();
-                us.NOMBREUSUARIO = NOMBREUSUARIO;
-                us.PASSWORD = Convert.ToBase64String(hash);
-                us.ACTIVO = false;
-                us.IDIOMA = IDIOMA;
-                us.CORREO = CORREO;
-                db.USUARIO.Add(us);
-                await db.SaveChangesAsync();
-                int idUsuario = us.IDUSUARIO; // recuperar el id
-                Session["idUs"] = idUsuario;
-                //return RedirectToAction("Create", "Postulante");
-                ViewBag.Exito = "Usuario Ingresado con exito";
+                int usuarioBase = (from usu in db.USUARIO where usu.NOMBREUSUARIO == NOMBREUSUARIO /*|| usu.CORREO==CORREO*/ select usu).Count();
+                if (usuarioBase > 0) {
+                    ViewBag.ErrorPass = "Este Correo o Usuario ya Existe, Intente con uno nuevo";
+                }
+                else
+                {
+                    //inicia para la encriptacion CHA1
+                    SHA1 sha1 = new SHA1CryptoServiceProvider();
+                    byte[] inputBytes = (new UnicodeEncoding()).GetBytes(PASSWORD);
+                    byte[] hash = sha1.ComputeHash(inputBytes);
+                    //finaliza para la encriptacion CHA1
+                    USUARIO us = new USUARIO();
+                    us.NOMBREUSUARIO = NOMBREUSUARIO;
+                    us.PASSWORD = Convert.ToBase64String(hash);
+                    us.ACTIVO = false;
+                    if (rol == "on")
+                        us.IDROL = 2;
+                    else
+                        us.IDROL = 3;
+                    us.CORREO = CORREO;
+                    db.USUARIO.Add(us);
+                    await db.SaveChangesAsync();
+                    int idUsuario = us.IDUSUARIO; // recuperar el id
+                    Session["idUs"] = idUsuario;
+                    //return RedirectToAction("Create", "Postulante");
+                    ViewBag.Exito = "Usuario Ingresado con exito , debe confirmar su cuenta mediante el correo enviado a su cuenta";
 
-                string mensaje = generarMensaje(us);
-                enviarCorreo(us.CORREO, us.NOMBREUSUARIO, "Activacion de cuenta SIBTRA", mensaje);
+                    string mensaje = generarMensaje(us);
+                    enviarCorreo(us.CORREO, us.NOMBREUSUARIO, "Activacion de cuenta SIBTRA", mensaje);
+                }
             }
+              
             else {
                 ViewBag.ErrorPass = "Contraseñas no Coinciden";
             }

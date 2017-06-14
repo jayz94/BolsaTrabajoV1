@@ -30,6 +30,9 @@ namespace BolsaTrabajoV1//
                       "~/Content/cssPlantilla/custom.min.css",
                       "~/Content/cssPlantilla/bootstrap-table.css"));
 
+            bundles.Add(new StyleBundle("~/bundles/datepickerCSS").Include("~/Content/bootstrap-datetimepicker.css"));
+            bundles.Add(new ScriptBundle("~/content/datepickerJS").Include("~/Script/jquery-3.1.1.js", 
+                "~/Scripts/jsDatepicker/jquery-ui.js", "~/Scripts/moment.min.js", "~/Scripts/bootstrap-datetimepicker.js"));
         }
     }
 }

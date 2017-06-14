@@ -23,7 +23,7 @@ namespace BolsaTrabajoV1.Controllers
             //List<Models.Linq.AREA_CONOCIMIENTO> area = cn.DB.AREA_CONOCIMIENTO.Where(f => f.IDAREACONOCIMIENTO == 1).ToList();
             int idCurriculum = (int)Session["idCurriculum"];
             var experiencia = from exp in db.EXPERIENCIALABORAL where exp.IDCURRICULUM == idCurriculum select exp;
-            return View(experiencia.ToListAsync());
+            return View(await experiencia.ToListAsync());
         }
 
         // GET: ExperienciaLaboral/Details/5
@@ -85,7 +85,7 @@ namespace BolsaTrabajoV1.Controllers
             }
             //ViewBag.IDCURRICULUM = new SelectList(db.CURRICULUM, "IDCURRICULUM", "IDCURRICULUM", eXPERIENCIALABORAL.IDCURRICULUM);
             //primer parametro es la lista de objetos, el segundo el identificador
-            ViewBag.IDCARGO = new SelectList(db.CARGO, "IDCARGO", "IDCARGO", eXPERIENCIALABORAL.IDCARGO);
+            ViewBag.IDCARGO = new SelectList(db.CARGO, "IDCARGO", "NOMBRECARGO", eXPERIENCIALABORAL.IDCARGO);
             return View(eXPERIENCIALABORAL);
         }
 
@@ -94,7 +94,7 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IDEXPERIENCIALABORAL,IDCURRICULUM,IDPOSTULANTE,INSTITUCION,CARGO,TITULOPROYECTO,FECHAINICIO,FECHAFIN,NUMEROCONTACTOORG")] EXPERIENCIALABORAL eXPERIENCIALABORAL)
+        public async Task<ActionResult> Edit([Bind(Include = "IDEXPERIENCIALABORAL,IDCURRICULUM,IDPOSTULANTE,INSTITUCION,IDCARGO,TITULOPROYECTO,FECHAINICIO,FECHAFIN,NUMEROCONTACTOORG")] EXPERIENCIALABORAL eXPERIENCIALABORAL)
         {
             if (ModelState.IsValid)
             {

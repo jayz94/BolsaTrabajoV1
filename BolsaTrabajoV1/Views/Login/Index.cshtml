@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>SIBTRA </title>
 
     @Styles.Render("~/Content/cssPlantilla")
 
@@ -33,17 +33,17 @@
                 <div class="animate form login_form">
                     <section class="login_content">
                         <form>
-                            <h1>Login Form</h1>
-                            <div>
-                                @Html.TextBoxFor(m => m.NOMBREUSUARIO)
+                            <h1>BIENVENIDO AL SISTEMA DE BOLSA DE TRABAJO</h1>
+                            <div style="max-width:250px; margin-left:40px">
+                                @Html.TextBoxFor(m => m.NOMBREUSUARIO,new { @class= "form-control", @placeholder = "usuario o correo " })
+                            </div>
+                            <br>
+                            <div style="max-width:250px; margin-left:40px">
+                                @Html.PasswordFor(m => m.PASSWORD, new { @class = "form-control" ,@placeholder="Contraseña" })
                             </div>
                             <br>
                             <div>
-                                @Html.PasswordFor(m => m.PASSWORD)
-                            </div>
-                            <br>
-                            <div>
-                                <input type="submit" value="Login" />
+                                <input type="submit" value="Ingresar" />
 
                             </div>
 
@@ -68,8 +68,8 @@
                                 <br />
 
                                 <div>
-                                    <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                                    <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                                    <h1><i class="fa fa-user"></i> UES</h1>
+                                    <p>©2017 BASE DE DATOS 115</p>
                                 </div>
                             </div>
                         </form>

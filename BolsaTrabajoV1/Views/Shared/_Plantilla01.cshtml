@@ -98,7 +98,7 @@
                                         }
                                         else //Si no tiene hijos se muestra sin la flechita hacia abajo
                                         {
-                                            <li><a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU</a></li>
+                                            <li><a href='@menu.URL'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU</a></li>
                                         }
                                     }
                                 }
@@ -242,7 +242,7 @@
     </div>
     @Scripts.Render("~/bundles/jsPlantilla")
     <environment names="Development">
-        <script src="~/Scripts/angular.min.js"></script>
+        @*<script src="~/Scripts/angular.min.js"></script>*@
     </environment>
 </body>
 </html>

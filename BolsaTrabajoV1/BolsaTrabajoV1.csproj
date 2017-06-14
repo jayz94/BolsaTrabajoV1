@@ -171,156 +171,241 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministracionCatalogosController.cs" />
+    <Compile Include="Controllers\AreaCargoController.cs" />
     <Compile Include="Controllers\AreaConocimientoController.cs" />
+    <Compile Include="Controllers\CargoController.cs" />
     <Compile Include="Controllers\CertificacionController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\CurriculumController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EstadoCivilController.cs" />
+    <Compile Include="Controllers\EstadoCivilPostulanteController.cs" />
+    <Compile Include="Controllers\ExamenController.cs" />
     <Compile Include="Controllers\ExperienciaLaboralController.cs" />
     <Compile Include="Controllers\FormacionAcademicaController.cs" />
+    <Compile Include="Controllers\FuncionPlazaController.cs" />
+    <Compile Include="Controllers\GeneroController.cs" />
     <Compile Include="Controllers\HabilidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdiomaController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogroController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MunicipioController.cs" />
     <Compile Include="Controllers\NivelIdiomaController.cs" />
+    <Compile Include="Controllers\OpcionPreguntaController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\ParticipacionProfesionalController.cs" />
+    <Compile Include="Controllers\PlazaController.cs" />
     <Compile Include="Controllers\PostulanteController.cs" />
+    <Compile Include="Controllers\PostulanteTipoDocumentoController.cs" />
+    <Compile Include="Controllers\PreguntaController.cs" />
     <Compile Include="Controllers\PublicacionController.cs" />
     <Compile Include="Controllers\ReferenciaController.cs" />
+    <Compile Include="Controllers\RequisitoController.cs" />
     <Compile Include="Controllers\RolController.cs" />
-    <Compile Include="Controllers\ROL_USUARIO_MMController.cs" />
     <Compile Include="Controllers\TelefonoController.cs" />
     <Compile Include="Controllers\TipoContactoController.cs" />
     <Compile Include="Controllers\TipoDocumentoIdentidadController.cs" />
+    <Compile Include="Controllers\TipoExamenController.cs" />
     <Compile Include="Controllers\TipoFormacionAcademicaController.cs" />
     <Compile Include="Controllers\TipoHabilidadController.cs" />
     <Compile Include="Controllers\TipoParticipacionController.cs" />
+    <Compile Include="Controllers\TipoPreguntaController.cs" />
     <Compile Include="Controllers\TipoReferenciaController.cs" />
+    <Compile Include="Controllers\TipoRequisitoController.cs" />
     <Compile Include="Controllers\TipoTelefonoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AREA_CARGO.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AREA_CONOCIMIENTO.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CARGO.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CERTIFICACION.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CONTACTO.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CURRICULUM.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DEPARTAMENTO.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EMPRESA.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ESTADO_CIVIL.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ESTADO_CIVIL_POSTULANTE_MM.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EXAMEN.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EXPERIENCIALABORAL.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FORMACIONACADEMICA.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FUNCION_PLAZA.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GENERO.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GIRO.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HABILIDAD.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IDIOMA.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOGRO.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MENU.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\modelo_bolsaV1.Context.cs">
+    <Compile Include="Models\MenusAsignadosViewModel.cs" />
+    <Compile Include="Models\modelo_bolsaV2.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>modelo_bolsaV1.Context.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\modelo_bolsaV1.cs">
+    <Compile Include="Models\modelo_bolsaV2.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\modelo_bolsaV1.Designer.cs">
+    <Compile Include="Models\modelo_bolsaV2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>modelo_bolsaV1.edmx</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\MUNICIPIO.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NIVEL_IDIOMA.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerResultados_Result.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OPCION_PREGUNTA.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PAIS.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PARTICIPACION_PROFESIONAL.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PLAZA.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\POSTULANTE.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PostulanteCurriculum.cs" />
+    <Compile Include="Models\POSTULANTE_PLAZA.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\POSTULANTE_TIPO_DOCUMENTO_MM.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PREGUNTA.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PUBLICACION.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\REFERENCIA.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\REQUISITO.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RESPUESTA.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ROL.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ROL_USUARIO_MM.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TELEFONO.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPOFORMACINONACADEMICA.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPOPREGUNTA.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPOREFERENCIA.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPO_CONTACTO.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPO_DOCUMENTO_IDENTIDAD.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPO_EXAMEN.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPO_HABILIDAD.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPO_PARTICIPACION.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPO_REQUISITO.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPO_TELEFONO.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USP_CheckCredentials_Result.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USUARIO.cs">
-      <DependentUpon>modelo_bolsaV1.tt</DependentUpon>
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ValidarUsuario_Result.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewCurriculum.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewPlazaGenerica.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewPostulante.cs">
+      <DependentUpon>modelo_bolsaV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -337,16 +422,188 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\modelo_bolsaV1.Context.tt">
+    <Content Include="Images\no-profile-pic.png" />
+    <Content Include="Models\modelo_bolsaV2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>modelo_bolsaV1.edmx</DependentUpon>
-      <LastGenOutput>modelo_bolsaV1.Context.cs</LastGenOutput>
+      <DependentUpon>modelo_bolsaV2.edmx</DependentUpon>
+      <LastGenOutput>modelo_bolsaV2.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\modelo_bolsaV1.tt">
+    <Content Include="Models\modelo_bolsaV2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>modelo_bolsaV1.edmx</DependentUpon>
-      <LastGenOutput>modelo_bolsaV1.cs</LastGenOutput>
+      <DependentUpon>modelo_bolsaV2.edmx</DependentUpon>
+      <LastGenOutput>modelo_bolsaV2.cs</LastGenOutput>
     </Content>
+    <Content Include="obj\Debug\BolsaTrabajoV1.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\BolsaTrabajoV1.dll" />
+    <Content Include="obj\Debug\BolsaTrabajoV1.pdb" />
+    <Content Include="obj\Debug\TempPE\Models.BDBolsaTrabajoV1.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.BDBolsaTrabajoV1.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model1.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model1.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelo_bolsaV2.Designer.cs.dll" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\Flot\examples\ajax\index.html" />
+    <Content Include="Scripts\Flot\examples\annotating\index.html" />
+    <Content Include="Scripts\Flot\examples\axes-interacting\index.html" />
+    <Content Include="Scripts\Flot\examples\axes-multiple\index.html" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\date.js" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\index.html" />
+    <Content Include="Scripts\Flot\examples\axes-time\index.html" />
+    <Content Include="Scripts\Flot\examples\background.png" />
+    <Content Include="Scripts\Flot\examples\basic-options\index.html" />
+    <Content Include="Scripts\Flot\examples\basic-usage\index.html" />
+    <Content Include="Scripts\Flot\examples\canvas\index.html" />
+    <Content Include="Scripts\Flot\examples\categories\index.html" />
+    <Content Include="Scripts\Flot\examples\examples.css" />
+    <Content Include="Scripts\Flot\examples\image\hs-2004-27-a-large-web.jpg" />
+    <Content Include="Scripts\Flot\examples\image\index.html" />
+    <Content Include="Scripts\Flot\examples\index.html" />
+    <Content Include="Scripts\Flot\examples\interacting\index.html" />
+    <Content Include="Scripts\Flot\examples\navigate\arrow-down.gif" />
+    <Content Include="Scripts\Flot\examples\navigate\arrow-left.gif" />
+    <Content Include="Scripts\Flot\examples\navigate\arrow-right.gif" />
+    <Content Include="Scripts\Flot\examples\navigate\arrow-up.gif" />
+    <Content Include="Scripts\Flot\examples\navigate\index.html" />
+    <Content Include="Scripts\Flot\examples\percentiles\index.html" />
+    <Content Include="Scripts\Flot\examples\realtime\index.html" />
+    <Content Include="Scripts\Flot\examples\resize\index.html" />
+    <Content Include="Scripts\Flot\examples\selection\index.html" />
+    <Content Include="Scripts\Flot\examples\series-errorbars\index.html" />
+    <Content Include="Scripts\Flot\examples\series-pie\index.html" />
+    <Content Include="Scripts\Flot\examples\series-toggle\index.html" />
+    <Content Include="Scripts\Flot\examples\series-types\index.html" />
+    <Content Include="Scripts\Flot\examples\shared\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Scripts\Flot\examples\stacking\index.html" />
+    <Content Include="Scripts\Flot\examples\symbols\index.html" />
+    <Content Include="Scripts\Flot\examples\threshold\index.html" />
+    <Content Include="Scripts\Flot\examples\tracking\index.html" />
+    <Content Include="Scripts\Flot\examples\visitors\index.html" />
+    <Content Include="Scripts\Flot\examples\zooming\index.html" />
+    <Content Include="Scripts\Flot\jquery.flot.canvas.js" />
+    <Content Include="Scripts\Flot\jquery.flot.categories.js" />
+    <Content Include="Scripts\Flot\jquery.flot.crosshair.js" />
+    <Content Include="Scripts\Flot\jquery.flot.errorbars.js" />
+    <Content Include="Scripts\Flot\jquery.flot.fillbetween.js" />
+    <Content Include="Scripts\Flot\jquery.flot.image.js" />
+    <Content Include="Scripts\Flot\jquery.flot.js" />
+    <Content Include="Scripts\Flot\jquery.flot.navigate.js" />
+    <Content Include="Scripts\Flot\jquery.flot.pie.js" />
+    <Content Include="Scripts\Flot\jquery.flot.resize.js" />
+    <Content Include="Scripts\Flot\jquery.flot.selection.js" />
+    <Content Include="Scripts\Flot\jquery.flot.stack.js" />
+    <Content Include="Scripts\Flot\jquery.flot.symbol.js" />
+    <Content Include="Scripts\Flot\jquery.flot.threshold.js" />
+    <Content Include="Scripts\Flot\jquery.flot.time.js" />
+    <Content Include="Scripts\Flot\LICENSE.txt" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery\AUTHORS.txt" />
+    <Content Include="Scripts\jquery\dist\jquery.js" />
+    <Content Include="Scripts\jquery\dist\jquery.min.js" />
+    <Content Include="Scripts\jquery\excanvas.js" />
+    <Content Include="Scripts\jquery\excanvas.min.js" />
+    <Content Include="Scripts\jquery\external\sizzle\dist\sizzle.js" />
+    <Content Include="Scripts\jquery\external\sizzle\dist\sizzle.min.js" />
+    <Content Include="Scripts\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="Scripts\jquery\jquery.colorhelpers.js" />
+    <Content Include="Scripts\jquery\jquery.js" />
+    <Content Include="Scripts\jquery\LICENSE.txt" />
+    <Content Include="Scripts\jquery\src\ajax.js" />
+    <Content Include="Scripts\jquery\src\ajax\jsonp.js" />
+    <Content Include="Scripts\jquery\src\ajax\load.js" />
+    <Content Include="Scripts\jquery\src\ajax\parseJSON.js" />
+    <Content Include="Scripts\jquery\src\ajax\parseXML.js" />
+    <Content Include="Scripts\jquery\src\ajax\script.js" />
+    <Content Include="Scripts\jquery\src\ajax\var\location.js" />
+    <Content Include="Scripts\jquery\src\ajax\var\nonce.js" />
+    <Content Include="Scripts\jquery\src\ajax\var\rquery.js" />
+    <Content Include="Scripts\jquery\src\ajax\xhr.js" />
+    <Content Include="Scripts\jquery\src\attributes.js" />
+    <Content Include="Scripts\jquery\src\attributes\attr.js" />
+    <Content Include="Scripts\jquery\src\attributes\classes.js" />
+    <Content Include="Scripts\jquery\src\attributes\prop.js" />
+    <Content Include="Scripts\jquery\src\attributes\support.js" />
+    <Content Include="Scripts\jquery\src\attributes\val.js" />
+    <Content Include="Scripts\jquery\src\callbacks.js" />
+    <Content Include="Scripts\jquery\src\core.js" />
+    <Content Include="Scripts\jquery\src\core\access.js" />
+    <Content Include="Scripts\jquery\src\core\init.js" />
+    <Content Include="Scripts\jquery\src\core\parseHTML.js" />
+    <Content Include="Scripts\jquery\src\core\ready.js" />
+    <Content Include="Scripts\jquery\src\core\var\rsingleTag.js" />
+    <Content Include="Scripts\jquery\src\css.js" />
+    <Content Include="Scripts\jquery\src\css\addGetHookIf.js" />
+    <Content Include="Scripts\jquery\src\css\adjustCSS.js" />
+    <Content Include="Scripts\jquery\src\css\curCSS.js" />
+    <Content Include="Scripts\jquery\src\css\defaultDisplay.js" />
+    <Content Include="Scripts\jquery\src\css\hiddenVisibleSelectors.js" />
+    <Content Include="Scripts\jquery\src\css\showHide.js" />
+    <Content Include="Scripts\jquery\src\css\support.js" />
+    <Content Include="Scripts\jquery\src\css\var\cssExpand.js" />
+    <Content Include="Scripts\jquery\src\css\var\getStyles.js" />
+    <Content Include="Scripts\jquery\src\css\var\isHidden.js" />
+    <Content Include="Scripts\jquery\src\css\var\rmargin.js" />
+    <Content Include="Scripts\jquery\src\css\var\rnumnonpx.js" />
+    <Content Include="Scripts\jquery\src\css\var\swap.js" />
+    <Content Include="Scripts\jquery\src\data.js" />
+    <Content Include="Scripts\jquery\src\data\Data.js" />
+    <Content Include="Scripts\jquery\src\data\var\acceptData.js" />
+    <Content Include="Scripts\jquery\src\data\var\dataPriv.js" />
+    <Content Include="Scripts\jquery\src\data\var\dataUser.js" />
+    <Content Include="Scripts\jquery\src\deferred.js" />
+    <Content Include="Scripts\jquery\src\deprecated.js" />
+    <Content Include="Scripts\jquery\src\dimensions.js" />
+    <Content Include="Scripts\jquery\src\effects.js" />
+    <Content Include="Scripts\jquery\src\effects\animatedSelector.js" />
+    <Content Include="Scripts\jquery\src\effects\Tween.js" />
+    <Content Include="Scripts\jquery\src\event.js" />
+    <Content Include="Scripts\jquery\src\event\ajax.js" />
+    <Content Include="Scripts\jquery\src\event\alias.js" />
+    <Content Include="Scripts\jquery\src\event\focusin.js" />
+    <Content Include="Scripts\jquery\src\event\support.js" />
+    <Content Include="Scripts\jquery\src\event\trigger.js" />
+    <Content Include="Scripts\jquery\src\exports\amd.js" />
+    <Content Include="Scripts\jquery\src\exports\global.js" />
+    <Content Include="Scripts\jquery\src\intro.js" />
+    <Content Include="Scripts\jquery\src\jquery.js" />
+    <Content Include="Scripts\jquery\src\manipulation.js" />
+    <Content Include="Scripts\jquery\src\manipulation\buildFragment.js" />
+    <Content Include="Scripts\jquery\src\manipulation\getAll.js" />
+    <Content Include="Scripts\jquery\src\manipulation\setGlobalEval.js" />
+    <Content Include="Scripts\jquery\src\manipulation\support.js" />
+    <Content Include="Scripts\jquery\src\manipulation\var\rcheckableType.js" />
+    <Content Include="Scripts\jquery\src\manipulation\var\rscriptType.js" />
+    <Content Include="Scripts\jquery\src\manipulation\var\rtagName.js" />
+    <Content Include="Scripts\jquery\src\manipulation\wrapMap.js" />
+    <Content Include="Scripts\jquery\src\manipulation\_evalUrl.js" />
+    <Content Include="Scripts\jquery\src\offset.js" />
+    <Content Include="Scripts\jquery\src\outro.js" />
+    <Content Include="Scripts\jquery\src\queue.js" />
+    <Content Include="Scripts\jquery\src\queue\delay.js" />
+    <Content Include="Scripts\jquery\src\selector-native.js" />
+    <Content Include="Scripts\jquery\src\selector-sizzle.js" />
+    <Content Include="Scripts\jquery\src\selector.js" />
+    <Content Include="Scripts\jquery\src\serialize.js" />
+    <Content Include="Scripts\jquery\src\traversing.js" />
+    <Content Include="Scripts\jquery\src\traversing\findFilter.js" />
+    <Content Include="Scripts\jquery\src\traversing\var\dir.js" />
+    <Content Include="Scripts\jquery\src\traversing\var\rneedsContext.js" />
+    <Content Include="Scripts\jquery\src\traversing\var\siblings.js" />
+    <Content Include="Scripts\jquery\src\var\arr.js" />
+    <Content Include="Scripts\jquery\src\var\class2type.js" />
+    <Content Include="Scripts\jquery\src\var\concat.js" />
+    <Content Include="Scripts\jquery\src\var\document.js" />
+    <Content Include="Scripts\jquery\src\var\documentElement.js" />
+    <Content Include="Scripts\jquery\src\var\hasOwn.js" />
+    <Content Include="Scripts\jquery\src\var\indexOf.js" />
+    <Content Include="Scripts\jquery\src\var\pnum.js" />
+    <Content Include="Scripts\jquery\src\var\push.js" />
+    <Content Include="Scripts\jquery\src\var\rcssNum.js" />
+    <Content Include="Scripts\jquery\src\var\rnotwhite.js" />
+    <Content Include="Scripts\jquery\src\var\slice.js" />
+    <Content Include="Scripts\jquery\src\var\support.js" />
+    <Content Include="Scripts\jquery\src\var\toString.js" />
+    <Content Include="Scripts\jquery\src\wrap.js" />
+    <Content Include="Scripts\jsDatepicker\jquery-ui.js" />
     <Content Include="Scripts\jsPlantilla\bootstrap-table.js" />
     <Content Include="Scripts\jsPlantilla\bootstrap.min.js" />
     <Content Include="Scripts\jsPlantilla\Chart.min.js" />
@@ -354,6 +611,9 @@
     <Content Include="Scripts\jsPlantilla\fastclick.js" />
     <Content Include="Scripts\jsPlantilla\jquery.min.js" />
     <Content Include="Scripts\jsPlantilla\nprogress.js" />
+    <Content Include="Scripts\js\custom.js" />
+    <Content Include="Scripts\js\custom.min.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -400,12 +660,30 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\modelo_bolsaV1.edmx">
+    <Content Include="obj\Debug\BolsaTrabajoV1.csprojResolveAssemblyReference.cache" />
+    <Content Include="obj\Debug\CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\modelo_bolsaV2.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\modelo_bolsaV2.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\modelo_bolsaV2.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\BDBolsaTrabajoV1.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\BDBolsaTrabajoV1.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\BDBolsaTrabajoV1.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Model1.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Model1.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Model1.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelo_bolsaV1.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelo_bolsaV1.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelo_bolsaV1.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelo_bolsaV2.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelo_bolsaV2.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelo_bolsaV2.ssdl" />
+    <EntityDeploy Include="Models\modelo_bolsaV2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>modelo_bolsaV1.Designer.cs</LastGenOutput>
+      <LastGenOutput>modelo_bolsaV2.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\modelo_bolsaV1.edmx.diagram">
-      <DependentUpon>modelo_bolsaV1.edmx</DependentUpon>
+    <Content Include="Models\modelo_bolsaV2.edmx.diagram">
+      <DependentUpon>modelo_bolsaV2.edmx</DependentUpon>
     </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Views\Logro\Create.cshtml" />
@@ -564,6 +842,126 @@
     <Content Include="Views\ROL_USUARIO_MM\Details.cshtml" />
     <Content Include="Views\ROL_USUARIO_MM\Edit.cshtml" />
     <Content Include="Views\ROL_USUARIO_MM\Index.cshtml" />
+    <Content Include="Scripts\Flot\.bower.json" />
+    <Content Include="Scripts\Flot\.gitignore" />
+    <Content Include="Scripts\Flot\.travis.yml" />
+    <Content Include="Scripts\Flot\API.md" />
+    <Content Include="Scripts\Flot\component.json" />
+    <Content Include="Scripts\Flot\CONTRIBUTING.md" />
+    <Content Include="Scripts\Flot\examples\ajax\data-eu-gdp-growth-1.json" />
+    <Content Include="Scripts\Flot\examples\ajax\data-eu-gdp-growth-2.json" />
+    <Content Include="Scripts\Flot\examples\ajax\data-eu-gdp-growth-3.json" />
+    <Content Include="Scripts\Flot\examples\ajax\data-eu-gdp-growth-4.json" />
+    <Content Include="Scripts\Flot\examples\ajax\data-eu-gdp-growth-5.json" />
+    <Content Include="Scripts\Flot\examples\ajax\data-eu-gdp-growth.json" />
+    <Content Include="Scripts\Flot\examples\ajax\data-japan-gdp-growth.json" />
+    <Content Include="Scripts\Flot\examples\ajax\data-usa-gdp-growth.json" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\africa" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\antarctica" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\asia" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\australasia" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\backward" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\etcetera" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\europe" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\factory" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\iso3166.tab" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\leapseconds" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\northamerica" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\pacificnew" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\solar87" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\solar88" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\solar89" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\southamerica" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\systemv" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\yearistype.sh" />
+    <Content Include="Scripts\Flot\examples\axes-time-zones\tz\zone.tab" />
+    <Content Include="Scripts\Flot\FAQ.md" />
+    <Content Include="Scripts\Flot\flot.jquery.json" />
+    <Content Include="Scripts\Flot\Makefile" />
+    <Content Include="Scripts\Flot\NEWS.md" />
+    <Content Include="Scripts\Flot\package.json" />
+    <Content Include="Scripts\Flot\PLUGINS.md" />
+    <Content Include="Scripts\Flot\README.md" />
+    <Content Include="Scripts\jquery\.bower.json" />
+    <Content Include="Scripts\jquery\bower.json" />
+    <Content Include="Scripts\jquery\dist\jquery.min.map" />
+    <Content Include="Scripts\jquery\external\sizzle\dist\sizzle.min.map" />
+    <Content Include="Scripts\jquery\README.md" />
+    <Content Include="Scripts\jquery\src\.jshintrc" />
+    <Content Include="Views\AreaCargo\Create.cshtml" />
+    <Content Include="Views\AreaCargo\Delete.cshtml" />
+    <Content Include="Views\AreaCargo\Details.cshtml" />
+    <Content Include="Views\AreaCargo\Edit.cshtml" />
+    <Content Include="Views\AreaCargo\Index.cshtml" />
+    <Content Include="Views\Cargo\Create.cshtml" />
+    <Content Include="Views\Cargo\Delete.cshtml" />
+    <Content Include="Views\Cargo\Details.cshtml" />
+    <Content Include="Views\Cargo\Edit.cshtml" />
+    <Content Include="Views\Cargo\Index.cshtml" />
+    <Content Include="Views\EstadoCivilPostulante\Create.cshtml" />
+    <Content Include="Views\EstadoCivilPostulante\Delete.cshtml" />
+    <Content Include="Views\EstadoCivilPostulante\Details.cshtml" />
+    <Content Include="Views\EstadoCivilPostulante\Edit.cshtml" />
+    <Content Include="Views\EstadoCivilPostulante\Index.cshtml" />
+    <Content Include="Views\Examen\Create.cshtml" />
+    <Content Include="Views\Examen\Delete.cshtml" />
+    <Content Include="Views\Examen\Details.cshtml" />
+    <Content Include="Views\Examen\Edit.cshtml" />
+    <Content Include="Views\Examen\Index.cshtml" />
+    <Content Include="Views\FuncionPlaza\Create.cshtml" />
+    <Content Include="Views\FuncionPlaza\Delete.cshtml" />
+    <Content Include="Views\FuncionPlaza\Details.cshtml" />
+    <Content Include="Views\FuncionPlaza\Edit.cshtml" />
+    <Content Include="Views\FuncionPlaza\Index.cshtml" />
+    <Content Include="Views\Genero\Create.cshtml" />
+    <Content Include="Views\Genero\Delete.cshtml" />
+    <Content Include="Views\Genero\Details.cshtml" />
+    <Content Include="Views\Genero\Edit.cshtml" />
+    <Content Include="Views\Genero\Index.cshtml" />
+    <Content Include="Views\Home\filtrar.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Perfil.cshtml" />
+    <Content Include="Views\OpcionPregunta\Create.cshtml" />
+    <Content Include="Views\OpcionPregunta\Delete.cshtml" />
+    <Content Include="Views\OpcionPregunta\Details.cshtml" />
+    <Content Include="Views\OpcionPregunta\Edit.cshtml" />
+    <Content Include="Views\OpcionPregunta\Index.cshtml" />
+    <Content Include="Views\Plaza\Create.cshtml" />
+    <Content Include="Views\Plaza\Delete.cshtml" />
+    <Content Include="Views\Plaza\Details.cshtml" />
+    <Content Include="Views\Plaza\Edit.cshtml" />
+    <Content Include="Views\Plaza\Index.cshtml" />
+    <Content Include="Views\PostulanteTipoDocumento\Create.cshtml" />
+    <Content Include="Views\PostulanteTipoDocumento\Delete.cshtml" />
+    <Content Include="Views\PostulanteTipoDocumento\Details.cshtml" />
+    <Content Include="Views\PostulanteTipoDocumento\Edit.cshtml" />
+    <Content Include="Views\PostulanteTipoDocumento\Index.cshtml" />
+    <Content Include="Views\Postulante\FiltrarPostulante.cshtml" />
+    <Content Include="Views\Pregunta\Create.cshtml" />
+    <Content Include="Views\Pregunta\Delete.cshtml" />
+    <Content Include="Views\Pregunta\Details.cshtml" />
+    <Content Include="Views\Pregunta\Edit.cshtml" />
+    <Content Include="Views\Pregunta\Index.cshtml" />
+    <Content Include="Views\Requisito\Create.cshtml" />
+    <Content Include="Views\Requisito\Delete.cshtml" />
+    <Content Include="Views\Requisito\Details.cshtml" />
+    <Content Include="Views\Requisito\Edit.cshtml" />
+    <Content Include="Views\Requisito\Index.cshtml" />
+    <Content Include="Views\TipoExamen\Create.cshtml" />
+    <Content Include="Views\TipoExamen\Delete.cshtml" />
+    <Content Include="Views\TipoExamen\Details.cshtml" />
+    <Content Include="Views\TipoExamen\Edit.cshtml" />
+    <Content Include="Views\TipoExamen\Index.cshtml" />
+    <Content Include="Views\TipoPregunta\Create.cshtml" />
+    <Content Include="Views\TipoPregunta\Delete.cshtml" />
+    <Content Include="Views\TipoPregunta\Details.cshtml" />
+    <Content Include="Views\TipoPregunta\Edit.cshtml" />
+    <Content Include="Views\TipoPregunta\Index.cshtml" />
+    <Content Include="Views\TipoRequisito\Create.cshtml" />
+    <Content Include="Views\TipoRequisito\Delete.cshtml" />
+    <Content Include="Views\TipoRequisito\Details.cshtml" />
+    <Content Include="Views\TipoRequisito\Edit.cshtml" />
+    <Content Include="Views\TipoRequisito\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.CARGO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Cargos</h2>
+
+<p>
+    @Html.ActionLink("Agregar", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRECARGO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AREA_CARGO.DESCRIPCIONAREA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRECARGO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AREA_CARGO.DESCRIPCIONAREA)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.IDCARGO }, new { @class = "btn btn-success fa fa-edit btn-xs" }) 
+            @Html.ActionLink(" ", "Details", new { id = item.IDCARGO }, new { @class = "btn btn-primary fa fa-search btn-xs" }) 
+            @Html.ActionLink(" ", "Delete", new { id=item.IDCARGO }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
+        </td>
+    </tr>
+}
+
+</table>
