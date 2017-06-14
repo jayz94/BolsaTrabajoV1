@@ -56,7 +56,7 @@
                                 <li><a href='@Url.Action("Create", "Usuario")'><i class="fa fa-laptop"></i> Usuario</a></li>
                                 <li><a href='@Url.Action("Create", "Postulante")'><i class="fa fa-laptop"></i> Postulante</a></li>
                             </ul>*@
-                        <div class="menu_section">
+                        <div class="menu_section"><h3>Hora 00:00</h3>
                             <ul class="nav side-menu">
                                 @*<li>
                                         <a href='#'><i class=""></i> Elemento estático<span class="fa fa-chevron-down"></span></a>
@@ -83,12 +83,14 @@
                                         {
                                             <li><a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU<span class="fa fa-chevron-down"></span></a></li>
                                             <li>
-                                                <ul class="child_menu">
+                                                <ul class="nav child_menu">
                                                     @foreach (var submenu in menu.MENU1)//Recorremos los de segundo nivel
                                                     {
-                                                        if (listaMenus.Contains(submenu))
+                                                        foreach(var menulista in listaMenus) { 
+                                                        if (menulista.IDMENU == submenu.IDMENU)
                                                         {
-                                                            <li><a href='@submenu.URL'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a></li>
+                                                            <li> <a href='@submenu.URL'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a></li>
+                                                            }
                                                         }
                                                     }
                                                 </ul>
