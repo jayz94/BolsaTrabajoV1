@@ -111,6 +111,11 @@
                         <td>@plaza.vacantes</td>
 
                         <td>@plaza.edadmin</td>
+
+                        
+
+                        <td>@Html.ActionLink("Plaza", "Details", "Plaza", new { id = plaza.idplaza }, new { @class = "btn btn-primary fa fa-search btn-xs" })</td>
+
                     </tr>
                 }
             }

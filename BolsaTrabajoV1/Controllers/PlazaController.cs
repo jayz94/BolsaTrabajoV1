@@ -30,13 +30,16 @@ namespace BolsaTrabajoV1.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PLAZA pLAZA = await db.PLAZA.FindAsync(id);
-            var funcionPlaza = from funcion in db.FUNCION_PLAZA where funcion.IDPLAZA ==id select funcion;
+            var funcionPlaza = from funcion in db.FUNCION_PLAZA where funcion.IDPLAZA == id select funcion;
             var requisitoPlaza = from requisito in db.REQUISITO where requisito.IDPLAZA == id select requisito;
             if (pLAZA == null)
             {
                 return HttpNotFound();
             }
 
+
+            TempData["id_plaza"] = pLAZA.IDPLAZA;
+            TempData["empresa_plaza"] = pLAZA.CODIGOEMPRESA;
             ROL RolEmpresa = (from r in db.ROL
                               where r.NOMBREROL == "Empresa"
                               select r).SingleOrDefault();
@@ -49,6 +52,62 @@ namespace BolsaTrabajoV1.Controllers
             ViewBag.requisitos = requisitoPlaza;
             return View(pLAZA);
         }
+
+
+
+
+
+        public ActionResult Aplicar()
+        {
+
+
+
+            int idp = Convert.ToInt32(TempData["id_plaza"]);
+
+            var usr = new USUARIO();
+            usr = (USUARIO)Session["usuario"];
+
+
+            POSTULANTE pos = (from p in db.POSTULANTE
+                              where p.IDUSUARIO == usr.IDUSUARIO
+                              select p).SingleOrDefault();
+
+
+            POSTULANTE_PLAZA aplicacion = new POSTULANTE_PLAZA
+            {
+                IDPLAZA = idp,
+                IDPOSTULANTE = pos.IDPOSTULANTE,
+                FECHAAPLICACION = DateTime.Now
+
+            };
+
+
+
+            db.POSTULANTE_PLAZA.Add(aplicacion);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Make some adjustments.
+                // ...
+                // Try again.
+
+            }
+
+
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+
+
+
 
         // GET: Plaza/Create
         public ActionResult Create()

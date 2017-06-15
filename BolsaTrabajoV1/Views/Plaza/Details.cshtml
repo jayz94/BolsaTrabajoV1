@@ -124,65 +124,27 @@
     </div>
     <div class="col-md-12">
 
-        @{ 
-
-
+        @if (Session["usuario"] != null)
+        {
             var usr = new BolsaTrabajoV1.Models.USUARIO();
             usr = (BolsaTrabajoV1.Models.USUARIO)Session["usuario"];
 
 
-        }
-
-        @if (Session["RolEmpresa"].ToString() == usr.IDROL.ToString())
-        {
 
 
-        <div class="col-md-6" style="margin-top:5%">
-            <label class="text-center">FUNCIONES QUE DESEMPEÑARA EN EL CARGO</label>&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#modalFuncion"></button>
-            <hr>
-            @foreach (var item in ViewBag.funciones)
+
+            if (usr.IDROL == 1)
             {
-                <li>
-                    @item.DESCRIPCIONPLAZA
-                    @Html.ActionLink(" ", "Edit", "FuncionPlaza", new { id = item.IDFUNCION }, new { @class = "btn btn-success fa fa-edit btn-xs" })
-                    @Html.ActionLink(" ", "Delete", "FuncionPlaza", new { id = item.IDFUNCION }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
-                </li>
-            }
-
-        </div>
-        <div class="col-md-6" style="margin-top:5%">
-            <label class="text-center">REQUISITOS PARA EL CARGO</label>&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#modalRequisito"></button>
-            <hr>
-            @foreach (var item in ViewBag.requisitos)
-            {
-                <li>
-                    @item.DESCRIPCIONREQUISITO
-                    @Html.ActionLink(" ", "Edit", "Requisito", new { id = item.IDREQUISITO }, new { @class = "btn btn-success fa fa-edit btn-xs" })
-                    @Html.ActionLink(" ", "Details", "Requisito", new { id = item.IDREQUISITO }, new { @class = "btn btn-primary fa fa-search btn-xs" })
-                    @Html.ActionLink(" ", "Delete", "Requisito", new { id = item.IDREQUISITO }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
-                </li>
-            }
-
-        </div>
-        }
-
-
-
-
-        else
-        {
 
 
             <div class="col-md-6" style="margin-top:5%">
-                
+                <label class="text-center">FUNCIONES QUE DESEMPEÑARA EN EL CARGO</label>&nbsp;&nbsp;&nbsp;
                 <hr>
                 @foreach (var item in ViewBag.funciones)
                 {
                     <li>
                         @item.DESCRIPCIONPLAZA
-                        
+
                     </li>
                 }
 
@@ -190,27 +152,120 @@
 
 
             <div class="col-md-6" style="margin-top:5%">
-                
+                <label class="text-center">REQUISITOS PARA EL CARGO</label>&nbsp;&nbsp;&nbsp;
                 <hr>
                 @foreach (var item in ViewBag.requisitos)
                 {
                     <li>
                         @item.DESCRIPCIONREQUISITO
-                        
+
                     </li>
                 }
 
             </div>
+
+
+
+            <label class="text-center">DEBE INICIAR SESION PARA APLICAR A ESTA PLAZA</label>
+
+
+
+            }
+
+            else
+            {
+
+
+                if ((Session["RolEmpresa"].ToString() == usr.IDROL.ToString()) && (TempData["empresa_plaza"].ToString() == usr.CODIGOEMPRESA.ToString()))
+                {
+
+
+
+                <div class="col-md-6" style="margin-top:5%">
+                    <label class="text-center">FUNCIONES QUE DESEMPEÑARA EN EL CARGO</label>&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#modalFuncion"></button>
+                    <hr>
+                    @foreach (var item in ViewBag.funciones)
+                    {
+                        <li>
+                            @item.DESCRIPCIONPLAZA
+                            @Html.ActionLink(" ", "Edit", "FuncionPlaza", new { id = item.IDFUNCION }, new { @class = "btn btn-success fa fa-edit btn-xs" })
+                            @Html.ActionLink(" ", "Delete", "FuncionPlaza", new { id = item.IDFUNCION }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
+                        </li>
+                    }
+
+                </div>
+                <div class="col-md-6" style="margin-top:5%">
+                    <label class="text-center">REQUISITOS PARA EL CARGO</label>&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#modalRequisito"></button>
+                    <hr>
+                    @foreach (var item in ViewBag.requisitos)
+                    {
+                        <li>
+                            @item.DESCRIPCIONREQUISITO
+                            @Html.ActionLink(" ", "Edit", "Requisito", new { id = item.IDREQUISITO }, new { @class = "btn btn-success fa fa-edit btn-xs" })
+                            @Html.ActionLink(" ", "Details", "Requisito", new { id = item.IDREQUISITO }, new { @class = "btn btn-primary fa fa-search btn-xs" })
+                            @Html.ActionLink(" ", "Delete", "Requisito", new { id = item.IDREQUISITO }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
+                        </li>
+                    }
+
+                </div>
+                }
+
+                else
+                {
+
+
+                <div class="col-md-6" style="margin-top:5%">
+                    <label class="text-center">FUNCIONES QUE DESEMPEÑARA EN EL CARGO</label>&nbsp;&nbsp;&nbsp;
+                    <hr>
+                    @foreach (var item in ViewBag.funciones)
+                    {
+                        <li>
+                            @item.DESCRIPCIONPLAZA
+
+                        </li>
+                    }
+
+                </div>
+
+
+                <div class="col-md-6" style="margin-top:5%">
+                    <label class="text-center">REQUISITOS PARA EL CARGO</label>&nbsp;&nbsp;&nbsp;
+                    <hr>
+                    @foreach (var item in ViewBag.requisitos)
+                    {
+                        <li>
+                            @item.DESCRIPCIONREQUISITO
+
+                        </li>
+                    }
+
+
+                    <td>@Html.ActionLink("APLICAR", "Aplicar", "Plaza", null, new { @class = "btn btn-primary fa fa-search btn-xs" })</td>
+
+                </div>
+                }
+
+            }
+
+
+
+
+
+
         }
 
 
-        
+
+
+
 
 
     </div>
 </div>
 
- <!--inicia Modal requisito -->
+<!--inicia Modal requisito -->
 <div id="modalRequisito" class="modal fade" role="dialog" style="background-color: rgba(4, 4,4,0.4); margin-top:4%">
     <div class="modal-dialog" style="width: 84%;">
         <!-- Modal content-->
@@ -222,7 +277,7 @@
                 </div>
             </div><!--Inicia el cuerpo del formulario-->
             <div class="modal-body" style="margin-top:5%">
-            <!--Inicia el formulario del model-->
+                <!--Inicia el formulario del model-->
                 <form action="/Requisito/GuardarRequisito" method="post" id="formRequisito">
                     @Html.HiddenFor(model => model.IDPLAZA)
                     <div class="row">
@@ -237,8 +292,8 @@
                     </div>
                     <input class="btn btn-primary" style="margin-left:80%" type="submit" value="Guardar" />
                 </form>
-            <!--finaliza el formulario del model-->
-        </div>
+                <!--finaliza el formulario del model-->
+            </div>
             <div class="modal-footer">
                 <!-- EL BOTON PARA CERRAR-->
                 <div class="col-md-6 text-center">
@@ -250,7 +305,7 @@
     </div>
 </div>
 <!--Termina Modal Requisito-->
- <!--inicia Modal Funcion-->
+<!--inicia Modal Funcion-->
 <div id="modalFuncion" class="modal fade" role="dialog" style="background-color: rgba(4, 4,4,0.4);">
     <div class="modal-dialog" style="width: 84%;">
         <!-- Modal content-->
