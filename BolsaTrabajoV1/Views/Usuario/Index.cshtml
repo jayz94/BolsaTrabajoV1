@@ -5,9 +5,6 @@
 <link href="~/Content/libreriasTogle/bootstrap-toggle-bootstrap-toggle.min.css" rel="stylesheet" />
 <script src="~/Content/libreriasTogle/bootstrap-toggle-bootstrap-toggle.min.js"></script>
 <!--fin para el toggle-->
-<p>
-    @Html.ActionLink("Agregar", "Create", null, new { @class = "btn btn-success" })
-</p>
 <table class="table">
     <tr>
         <th>
@@ -63,8 +60,6 @@
             @Html.DisplayFor(modelItem => item.CORREO)
         </td>
         <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.IDUSUARIO }, new { @class = "btn btn-success fa fa-edit btn-xs" })
-            @Html.ActionLink(" ", "Details", new { id = item.IDUSUARIO}, new { @class = "btn btn-primary fa fa-search btn-xs" } ) 
             @Html.ActionLink(" ", "Delete", new { id = item.IDUSUARIO }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
         </td>
     </tr>

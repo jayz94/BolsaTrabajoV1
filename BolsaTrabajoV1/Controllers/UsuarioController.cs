@@ -265,22 +265,31 @@ namespace BolsaTrabajoV1.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public async Task<ActionResult> redirigirUsuario(int idUsuario)
+        public RedirectToRouteResult redirigirUsuario(int idUsuario)
         {
             //USUARIO uSUARIO = await db.USUARIO.FindAsync(idUsuario);
             USUARIO uSUARIO = (USUARIO) Session["usuario"];
-            if (uSUARIO.IDROL==2)//usuario postulante
-            {
-                var post = await db.POSTULANTE.FirstAsync(p => p.IDUSUARIO == uSUARIO.IDUSUARIO);//from postu in db.POSTULANTE where postu.IDUSUARIO == uSUARIO.IDUSUARIO select postu;    
-                //return RedirectToAction("Details", "Postulante", new { idusuario = post.IDUSUARIO });
-                return RedirectToAction("Details", "Postulante", new RouteValueDictionary( new { id = post.IDPOSTULANTE } ));
+            switch (uSUARIO.IDROL) {
+                case 2://usuario postulante
+                    POSTULANTE post = (from postu in db.POSTULANTE where postu.IDUSUARIO == uSUARIO.IDUSUARIO select postu).FirstOrDefault();
+                    //return RedirectToAction("Details", "Postulante", new { idusuario = post.IDUSUARIO });
+                    if (post == null)
+                    {
+                        return RedirectToAction("Create","Postulante");
+                    }
+                    else
+                        return RedirectToAction("Details", "Postulante", new RouteValueDictionary(new { id = post.IDPOSTULANTE }));
+                case 3:
+                    if (uSUARIO.CODIGOEMPRESA == null)
+                    {
+                        return RedirectToAction("Create", "Empresa");
+                    }
+                    //var empresa =await db.EMPRESA.FirstAsync(e => e.CODIGOEMPRESA == uSUARIO.CODIGOEMPRESA);
+                    else
+                        return RedirectToAction("Details", "Empresa", new { idusuario = uSUARIO.CODIGOEMPRESA });
+                default:
+                    return RedirectToAction("Index", "Home");
             }
-            if (uSUARIO.IDROL == 3)//usuario empresa
-            {
-                //var empresa =await db.EMPRESA.FirstAsync(e => e.CODIGOEMPRESA == uSUARIO.CODIGOEMPRESA);
-                return RedirectToAction("Details", "Empresa", new { idusuario = uSUARIO.CODIGOEMPRESA });
-            }
-            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)
