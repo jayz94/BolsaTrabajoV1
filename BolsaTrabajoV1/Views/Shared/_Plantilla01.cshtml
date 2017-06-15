@@ -23,8 +23,11 @@
                     <div class="navbar nav_title" style="border: 0;">
                         <a href="/Home" class="site_title"><i class="fa fa-signing"></i> <span>SIBTRA</span></a>
                     </div>
-                    <div class="clearfix"></div>
+                    <div class="clearfix">
+                        <h1 id="hora" ng-controller="Controlador1" style="text-align:center;">00:00</h1>
+                    </div>
                     <!-- menu profile quick info -->
+                    
                     <div class="profile clearfix">
                         <div class="profile_pic">
                             @*<img src="images/img.jpg" alt="" class="img-circle profile_img">*@
@@ -57,6 +60,7 @@
                                 <li><a href='@Url.Action("Create", "Postulante")'><i class="fa fa-laptop"></i> Postulante</a></li>
                             </ul>*@
                         <div class="menu_section">
+                            
                             <ul class="nav side-menu">
                                 @*<li>
                                         <a href='#'><i class=""></i> Elemento estático<span class="fa fa-chevron-down"></span></a>
@@ -83,12 +87,15 @@
                                         {
                                             <li><a href='#'><i class="@menu.IMAGEN"></i> @menu.NOMBREMENU<span class="fa fa-chevron-down"></span></a></li>
                                             <li>
-                                                <ul class="child_menu">
+                                                <ul class="nav child_menu">
                                                     @foreach (var submenu in menu.MENU1)//Recorremos los de segundo nivel
                                                     {
-                                                        if (listaMenus.Contains(submenu))
+                                                        foreach (var menulista in listaMenus)
                                                         {
-                                                            <li><a href='@submenu.URL'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a></li>
+                                                            if (menulista.IDMENU == submenu.IDMENU)
+                                                            {
+                                                                <li> <a href='@submenu.URL'><i class="@submenu.IMAGEN"></i> @submenu.NOMBREMENU</a></li>
+                                                            }
                                                         }
                                                     }
                                                 </ul>
@@ -239,8 +246,16 @@
         </div>
     </div>
     @Scripts.Render("~/bundles/jsPlantilla")
-    <environment names="Development">
-        @*<script src="~/Scripts/angular.min.js"></script>*@
-    </environment>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var hora = new Date().toLocaleTimeString();
+            var divHora = document.getElementById("hora");
+            setInterval(function () {
+                hora = new Date().toLocaleTimeString();
+                divHora.innerHTML = hora;
+            }, 1000)
+        });
+        
+    </script>
 </body>
 </html>
