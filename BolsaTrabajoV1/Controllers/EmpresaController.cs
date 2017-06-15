@@ -131,6 +131,7 @@ namespace BolsaTrabajoV1.Controllers
 
             try
             {
+<<<<<<< HEAD
                 if (ModelState.IsValid)
                 {
                     db.EMPRESA.Add(eMPRESA);
@@ -152,6 +153,16 @@ namespace BolsaTrabajoV1.Controllers
                     return RedirectToAction("Index");
 
                 }
+=======
+                db.EMPRESA.Add(eMPRESA);
+                await db.SaveChangesAsync();
+                USUARIO us = (USUARIO)Session["usuario"];
+                USUARIO usuario = db.USUARIO.Find(us.IDUSUARIO);
+                usuario.CODIGOEMPRESA = eMPRESA.CODIGOEMPRESA;
+                db.Entry(usuario).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+>>>>>>> origin/master
             }
 
             catch (DataException /* dex */)

@@ -12,6 +12,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Web.Routing;
+using BolsaTrabajoV1.App_Code;
 
 namespace BolsaTrabajoV1.Controllers
 {
@@ -48,32 +49,6 @@ namespace BolsaTrabajoV1.Controllers
             //ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE");
             //ViewBag.IDIOMA = new SelectList(db.IDIOMA,"IDIDIOMA","NOMBREIDIOMA");
             return View();
-        }
-
-        public void enviarCorreo(string correo, string nombre, string asunto, string mensaje)
-        {
-            var fromAddress = new MailAddress("sistemabolsadetrabajo@gmail.com", "SIBTRA S.A de C.V.");
-            var toAddress = new MailAddress(correo, nombre);
-            string fromPassword = "sibtra2017";
-
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
-
-
-
-            MailMessage msg = new MailMessage(fromAddress.ToString(), toAddress.ToString(), asunto, mensaje);
-
-            msg.IsBodyHtml = true;
-
-            smtp.Send(msg);
-
         }
 
         public string generarMensaje(USUARIO us)
@@ -150,7 +125,13 @@ namespace BolsaTrabajoV1.Controllers
                     ViewBag.Exito = "Usuario Ingresado con exito , debe confirmar su cuenta mediante el correo enviado a su cuenta";
 
                     string mensaje = generarMensaje(us);
-                    enviarCorreo(us.CORREO, us.NOMBREUSUARIO, "Activacion de cuenta SIBTRA", mensaje);
+
+                    CorreoHelper ch = new CorreoHelper(); // crea clase helper
+                    ch.Correo = us.CORREO;
+                    ch.Nombre = us.NOMBREUSUARIO;
+                    ch.Asunto = "Activacion de cuenta SIBTRA";
+                    ch.Mensaje = mensaje;
+                    ch.enviarCorreo();  // se envia correo
                 }
             }
               
@@ -265,22 +246,31 @@ namespace BolsaTrabajoV1.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public async Task<ActionResult> redirigirUsuario(int idUsuario)
+        public RedirectToRouteResult redirigirUsuario(int idUsuario)
         {
             //USUARIO uSUARIO = await db.USUARIO.FindAsync(idUsuario);
             USUARIO uSUARIO = (USUARIO) Session["usuario"];
-            if (uSUARIO.IDROL==2)//usuario postulante
-            {
-                var post = await db.POSTULANTE.FirstAsync(p => p.IDUSUARIO == uSUARIO.IDUSUARIO);//from postu in db.POSTULANTE where postu.IDUSUARIO == uSUARIO.IDUSUARIO select postu;    
-                //return RedirectToAction("Details", "Postulante", new { idusuario = post.IDUSUARIO });
-                return RedirectToAction("Details", "Postulante", new RouteValueDictionary( new { id = post.IDPOSTULANTE } ));
+            switch (uSUARIO.IDROL) {
+                case 2://usuario postulante
+                    POSTULANTE post = (from postu in db.POSTULANTE where postu.IDUSUARIO == uSUARIO.IDUSUARIO select postu).FirstOrDefault();
+                    //return RedirectToAction("Details", "Postulante", new { idusuario = post.IDUSUARIO });
+                    if (post == null)
+                    {
+                        return RedirectToAction("Create","Postulante");
+                    }
+                    else
+                        return RedirectToAction("Details", "Postulante", new RouteValueDictionary(new { id = post.IDPOSTULANTE }));
+                case 3:
+                    if (uSUARIO.CODIGOEMPRESA == null)
+                    {
+                        return RedirectToAction("Create", "Empresa");
+                    }
+                    //var empresa =await db.EMPRESA.FirstAsync(e => e.CODIGOEMPRESA == uSUARIO.CODIGOEMPRESA);
+                    else
+                        return RedirectToAction("Details", "Empresa", new { idusuario = uSUARIO.CODIGOEMPRESA });
+                default:
+                    return RedirectToAction("Index", "Home");
             }
-            if (uSUARIO.IDROL == 3)//usuario empresa
-            {
-                //var empresa =await db.EMPRESA.FirstAsync(e => e.CODIGOEMPRESA == uSUARIO.CODIGOEMPRESA);
-                return RedirectToAction("Details", "Empresa", new { idusuario = uSUARIO.CODIGOEMPRESA });
-            }
-            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)

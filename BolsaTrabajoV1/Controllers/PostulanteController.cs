@@ -205,7 +205,7 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDPOSTULANTE,IDUSUARIO,IDMUNICIPIO,IDCURRICULUM,NOMBREPOSTULANTE,APELLIDOPOSTULANTE,IDGENERO,FECHANACIMIENTO,DIRECCION,URLCURRICULUM")] POSTULANTE pOSTULANTE)
+        public async Task<ActionResult> Create([Bind(Include = "IDMUNICIPIO,NOMBREPOSTULANTE,APELLIDOPOSTULANTE,IDGENERO,FECHANACIMIENTO,DIRECCION,URLCURRICULUM")] POSTULANTE pOSTULANTE)
         {
             if (ModelState.IsValid)
             {
@@ -216,13 +216,13 @@ namespace BolsaTrabajoV1.Controllers
                 await db.SaveChangesAsync();
                 //int id = pOSTULANTE.IDPOSTULANTE; // recuperar el id de postulante
                 //busco usuario por el id de session
-                USUARIO uSUARIO = await db.USUARIO.FindAsync(1/*(int)Session["idUs"]*/); 
+                //USUARIO uSUARIO = await db.USUARIO.FindAsync(1/*(int)Session["idUs"]*/); 
                 //uSUARIO.IDPOSTULANTE =id;
-                db.Entry(uSUARIO).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                //db.Entry(uSUARIO).State = EntityState.Modified;
+                //await db.SaveChangesAsync();
                 //creo el curriculum de postulante
                 CURRICULUM curriculum = new CURRICULUM();
-                curriculum.IDPOSTULANTE = uSUARIO.IDUSUARIO;//le asigno el id de postulante a curriculum
+                curriculum.IDPOSTULANTE = pOSTULANTE.IDPOSTULANTE;//le asigno el id de postulante a curriculum
                 //guardo el curriculum
                 db.CURRICULUM.Add(curriculum);
                 await db.SaveChangesAsync();
@@ -277,6 +277,36 @@ namespace BolsaTrabajoV1.Controllers
             ViewBag.IDUSUARIO = new SelectList(db.USUARIO, "IDUSUARIO", "NOMBREUSUARIO", pOSTULANTE.IDUSUARIO);
             ViewBag.IDGENERO = new SelectList(db.GENERO, "IDGENERO", "DESCRIPCIONGENERO");
             return View(pOSTULANTE);
+        }
+
+        //GET
+        public async Task<ActionResult> Match(int? id) {
+            CURRICULUM curriculum = db.CURRICULUM.Where(curr=>curr.IDPOSTULANTE== id).FirstOrDefault();
+            IEnumerable<IDIOMA> listaIdiomas = db.IDIOMA.Where(idP=>idP.IDCURRICULUM==curriculum.IDCURRICULUM && idP.IDPOSTULANTE==curriculum.IDPOSTULANTE);
+            ViewBag.listaIdiomas = listaIdiomas;
+
+            IEnumerable<PARTICIPACION_PROFESIONAL> listaParticipaciones = db.PARTICIPACION_PROFESIONAL.Where(idP => idP.IDCURRICULUM == curriculum.IDCURRICULUM && idP.IDPOSTULANTE == curriculum.IDPOSTULANTE);
+            ViewBag.listaParticipaciones = listaParticipaciones;
+
+            IEnumerable<HABILIDAD> listaHablidades = db.HABILIDAD.Where(idP => idP.IDCURRICULUM == curriculum.IDCURRICULUM && idP.IDPOSTULANTE == curriculum.IDPOSTULANTE);
+            ViewBag.listaHablidades = listaHablidades;
+
+            IEnumerable<CERTIFICACION> listaCertificaciones = db.CERTIFICACION.Where(idP => idP.IDCURRICULUM == curriculum.IDCURRICULUM && idP.IDPOSTULANTE == curriculum.IDPOSTULANTE);
+            ViewBag.listaCertificaciones = listaCertificaciones;
+
+            IEnumerable<FORMACIONACADEMICA> listaFormaciones = db.FORMACIONACADEMICA.Where(idP => idP.IDCURRICULUM == curriculum.IDCURRICULUM && idP.IDPOSTULANTE == curriculum.IDPOSTULANTE);
+            ViewBag.listaFormaciones = listaFormaciones;
+
+            IEnumerable<LOGRO> listaLogros = db.LOGRO.Where(idP => idP.IDCURRICULUM == curriculum.IDCURRICULUM && idP.IDPOSTULANTE == curriculum.IDPOSTULANTE);
+            ViewBag.listaLogros = listaLogros;
+
+            IEnumerable<REFERENCIA> listaReferencias = db.REFERENCIA.Where(idP => idP.IDCURRICULUM == curriculum.IDCURRICULUM && idP.IDPOSTULANTE == curriculum.IDPOSTULANTE);
+            ViewBag.listaReferencias = listaReferencias;
+
+            IEnumerable<PUBLICACION> listaPublicaciones = db.PUBLICACION.Where(idP => idP.IDCURRICULUM == curriculum.IDCURRICULUM && idP.IDPOSTULANTE == curriculum.IDPOSTULANTE);
+            ViewBag.listaPublicaciones = listaPublicaciones;
+
+            return View();
         }
 
         // GET: Postulante/Delete/5
