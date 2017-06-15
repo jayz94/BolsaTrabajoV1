@@ -12,6 +12,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Web.Routing;
+using BolsaTrabajoV1.App_Code;
 
 namespace BolsaTrabajoV1.Controllers
 {
@@ -48,32 +49,6 @@ namespace BolsaTrabajoV1.Controllers
             //ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE");
             //ViewBag.IDIOMA = new SelectList(db.IDIOMA,"IDIDIOMA","NOMBREIDIOMA");
             return View();
-        }
-
-        public void enviarCorreo(string correo, string nombre, string asunto, string mensaje)
-        {
-            var fromAddress = new MailAddress("sistemabolsadetrabajo@gmail.com", "SIBTRA S.A de C.V.");
-            var toAddress = new MailAddress(correo, nombre);
-            string fromPassword = "sibtra2017";
-
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
-
-
-
-            MailMessage msg = new MailMessage(fromAddress.ToString(), toAddress.ToString(), asunto, mensaje);
-
-            msg.IsBodyHtml = true;
-
-            smtp.Send(msg);
-
         }
 
         public string generarMensaje(USUARIO us)
@@ -150,7 +125,13 @@ namespace BolsaTrabajoV1.Controllers
                     ViewBag.Exito = "Usuario Ingresado con exito , debe confirmar su cuenta mediante el correo enviado a su cuenta";
 
                     string mensaje = generarMensaje(us);
-                    enviarCorreo(us.CORREO, us.NOMBREUSUARIO, "Activacion de cuenta SIBTRA", mensaje);
+
+                    CorreoHelper ch = new CorreoHelper(); // crea clase helper
+                    ch.Correo = us.CORREO;
+                    ch.Nombre = us.NOMBREUSUARIO;
+                    ch.Asunto = "Activacion de cuenta SIBTRA";
+                    ch.Mensaje = mensaje;
+                    ch.enviarCorreo();  // se envia correo
                 }
             }
               
