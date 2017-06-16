@@ -112,7 +112,7 @@ namespace BolsaTrabajoV1.Controllers
 
         public void cargarMenus()
         {
-            var rol = 5;//obtenemos el rol
+            //var rol = 5;//obtenemos el rol
 
             var usr = new USUARIO();
             usr = (USUARIO)Session["usuario"];
