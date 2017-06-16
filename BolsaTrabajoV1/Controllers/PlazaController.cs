@@ -70,7 +70,7 @@ namespace BolsaTrabajoV1.Controllers
                               where p.IDUSUARIO == usr.IDUSUARIO
                               select p).SingleOrDefault();
 
-            var aplicaciones = from ap in db.ViewAplicacionPostulante where ap.IDPOSTULANTE==pos.IDPOSTULANTE select ap;
+            var aplicaciones = from ap in db.ViewAplicacion where ap.IDPOSTULANTE==pos.IDPOSTULANTE select ap;
 
             ViewBag.aplicaciones = aplicaciones.ToList();
 
@@ -88,7 +88,7 @@ namespace BolsaTrabajoV1.Controllers
 
 
 
-            var aplicaciones = from ap in db.ViewAplicacionEmpresa where ap.CODIGOEMPRESA == usr.CODIGOEMPRESA orderby ap.NOMBRECARGO select ap ;
+            var aplicaciones = from ap in db.ViewAplicacion where ap.CODIGOEMPRESA == usr.CODIGOEMPRESA orderby ap.NOMBRECARGO select ap ;
 
            ViewBag.aplicaciones = aplicaciones.ToList();
 
