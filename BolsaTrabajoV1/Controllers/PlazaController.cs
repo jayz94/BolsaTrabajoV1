@@ -57,6 +57,48 @@ namespace BolsaTrabajoV1.Controllers
 
 
 
+        public ActionResult AplicacionesPostulante()
+        {
+
+            var usr = new USUARIO();
+            usr = (USUARIO)Session["usuario"];
+
+
+
+
+            POSTULANTE pos = (from p in db.POSTULANTE
+                              where p.IDUSUARIO == usr.IDUSUARIO
+                              select p).SingleOrDefault();
+
+            var aplicaciones = from ap in db.ViewAplicacionPostulante where ap.IDPOSTULANTE==pos.IDPOSTULANTE select ap;
+
+            ViewBag.aplicaciones = aplicaciones.ToList();
+
+            return View();
+        }
+
+
+
+        public ActionResult AplicacionesEmpresa()
+        {
+
+            var usr = new USUARIO();
+            usr = (USUARIO)Session["usuario"];
+
+
+
+
+            var aplicaciones = from ap in db.ViewAplicacionEmpresa where ap.CODIGOEMPRESA == usr.CODIGOEMPRESA orderby ap.NOMBRECARGO select ap ;
+
+           ViewBag.aplicaciones = aplicaciones.ToList();
+
+            return View();
+        }
+
+
+
+
+
         public ActionResult Aplicar()
         {
 
@@ -100,7 +142,7 @@ namespace BolsaTrabajoV1.Controllers
 
 
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("AplicacionesPostulante", "Plaza");
         }
 
 

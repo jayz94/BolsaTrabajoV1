@@ -210,6 +210,12 @@
                     }
 
                 </div>
+
+                <p style="margin-top:9%">
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPLAZA }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+
                 }
 
                 else
@@ -342,6 +348,6 @@
 <!--Termina Modal Funcion-->
 
 <p style="margin-top:9%">
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPLAZA }) |
-    @Html.ActionLink("Back to List", "Index")
+   
+    @Html.ActionLink("Home", "Index", "Home")
 </p>
