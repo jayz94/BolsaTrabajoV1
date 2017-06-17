@@ -6,20 +6,21 @@
 @{
     BolsaTrabajoV1.Models.USUARIO user = Session["usuario"] as BolsaTrabajoV1.Models.USUARIO;
 }
-@if(user.IDROL==3 && ViewBag.plazas!=null){
-    foreach (var plazas in ViewBag.plazas) {
-            <select name="idplaza">
-                <opion value="@plazas.idplaza"></opion>
-            </select>
-    }
-    /*aqui va el formulario*/
-}
+@*if(user.IDROL==3 && ViewBag.plazas!=null){
+        foreach (var plazas in ViewBag.plazas) {
+                <select name="idplaza">
+                    <opion value="@plazas.idplaza"></opion>
+                </select>
+        }
+        /*aqui va el formulario*/
+    }*@
 <h2>Tu perfil</h2>
 <div class="row">
     <div class="col-md-12">
         <div class="panel">
             <div class="panel-body">
                 <h3>@Model.NOMBREPOSTULANTE @Model.APELLIDOPOSTULANTE</h3>
+                <button onclick="location.href='@Url.Action("EnviarCorreo", "Postulante", new { id=Model.IDPOSTULANTE })'">Contactar</button>
             </div>
         </div>
     </div>

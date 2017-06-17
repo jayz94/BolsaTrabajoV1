@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using BolsaTrabajoV1.Models;
 using System.Data.Entity.Core.Objects;
+using BolsaTrabajoV1.App_Code;
 
 namespace BolsaTrabajoV1.Controllers
 {
@@ -280,7 +281,7 @@ namespace BolsaTrabajoV1.Controllers
         }
 
         //GET
-        public async Task<ActionResult> Match(int? id,int? id2) {
+        public ViewResult Match(int? id,int? id2) {
             CURRICULUM curriculum = db.CURRICULUM.Where(curr=>curr.IDPOSTULANTE== id).FirstOrDefault();
             IEnumerable<IDIOMA> listaIdiomas = db.IDIOMA.Where(idP=>idP.IDCURRICULUM==curriculum.IDCURRICULUM && idP.IDPOSTULANTE==curriculum.IDPOSTULANTE);
             ViewBag.listaIdiomas = listaIdiomas;
@@ -368,6 +369,23 @@ namespace BolsaTrabajoV1.Controllers
             ViewBag.otros = lista10;
             return View();
         }
+
+        public ActionResult EnviarCorreo(int id)
+        {
+            POSTULANTE postulante = db.POSTULANTE.Find(id);
+            USUARIO user = (USUARIO)Session["usuario"];
+
+            CorreoHelper ch = new CorreoHelper();
+
+            ch.Correo = postulante.USUARIO.CORREO;
+            ch.Nombre = postulante.NOMBREPOSTULANTE;
+            ch.Asunto = "SIBTRA: La empresa " + user.EMPRESA.NOMBREEMPRESA +"está interesado en tu perfil";
+            ch.Mensaje = "Hola! : <strong>" + postulante.NOMBREPOSTULANTE + "</strong><br> La empresa <strong>"+ user.EMPRESA.NOMBREEMPRESA+ "</strong>hemos observado tu perfil que has colocado en la plataforma SIBTRA, y estamos interesados en entrevistarte";
+            ch.enviarCorreo();
+
+            return RedirectToAction("Home");
+        }
+
 
         // GET: Postulante/Delete/5
         public async Task<ActionResult> Delete(int? id)

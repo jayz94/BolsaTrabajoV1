@@ -61,7 +61,7 @@ namespace BolsaTrabajoV1.Controllers
             }
 
             ViewBag.CODIGOEXAMEN = new SelectList(db.EXAMEN, "CODIGOEXAMEN", "CODIGOEXAMEN", pREGUNTA.CODIGOEXAMEN);
-            ViewBag.IDTIPOOPCION = new SelectList(db.TIPOPREGUNTA, "IDTIPOPREGUNTA", "NOMBRETIPOPREGUNTA", pREGUNTA.IDTIPOOPCION);
+            ViewBag.IDTIPOOPCION = new SelectList(db.TIPOPREGUNTA, "IDTIPOPREGUNTA", "NOMBRETIPOPREGUNTA", pREGUNTA.IDTIPOPREGUNTA);
             return View(pREGUNTA);
         }
 
@@ -72,7 +72,7 @@ namespace BolsaTrabajoV1.Controllers
             PREGUNTA pregunta = new PREGUNTA();
             pregunta.CODIGOEXAMEN = CODIGOEXAMEN;
             pregunta.TEXTOPREGUNTA = textoPregunta;
-            pregunta.IDTIPOOPCION = TIPOPREGUNTA;
+            pregunta.IDTIPOPREGUNTA = TIPOPREGUNTA;
             db.PREGUNTA.Add(pregunta);
             await db.SaveChangesAsync();
             return RedirectToAction("Details", "Examen", new { @id = CODIGOEXAMEN });
@@ -91,7 +91,7 @@ namespace BolsaTrabajoV1.Controllers
                 return HttpNotFound();
             }
             ViewBag.CODIGOEXAMEN = new SelectList(db.EXAMEN, "CODIGOEXAMEN", "CODIGOEXAMEN", pREGUNTA.CODIGOEXAMEN);
-            ViewBag.IDTIPOOPCION = new SelectList(db.TIPOPREGUNTA, "IDTIPOPREGUNTA", "NOMBRETIPOPREGUNTA", pREGUNTA.IDTIPOOPCION);
+            ViewBag.IDTIPOOPCION = new SelectList(db.TIPOPREGUNTA, "IDTIPOPREGUNTA", "NOMBRETIPOPREGUNTA", pREGUNTA.IDTIPOPREGUNTA);
             return View(pREGUNTA);
         }
 
@@ -109,7 +109,7 @@ namespace BolsaTrabajoV1.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CODIGOEXAMEN = new SelectList(db.EXAMEN, "CODIGOEXAMEN", "CODIGOEXAMEN", pREGUNTA.CODIGOEXAMEN);
-            ViewBag.IDTIPOOPCION = new SelectList(db.TIPOPREGUNTA, "IDTIPOPREGUNTA", "NOMBRETIPOPREGUNTA", pREGUNTA.IDTIPOOPCION);
+            ViewBag.IDTIPOOPCION = new SelectList(db.TIPOPREGUNTA, "IDTIPOPREGUNTA", "NOMBRETIPOPREGUNTA", pREGUNTA.IDTIPOPREGUNTA);
             return View(pREGUNTA);
         }
 
