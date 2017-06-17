@@ -3,9 +3,6 @@
     ViewBag.Title = "AplicacionesPostulante";
 }
 
-<h2>AplicacionesPostulante</h2>
-
-
 <link rel="stylesheet" href="assets/css/styles.css" />
 
 
@@ -22,7 +19,7 @@
                 <th>   Fecha de aplicación  </th>
                
             </tr>
-            @if (ViewBag.aplicaciones != null)
+            @if (ViewBag.aplicaciones !=null)
             {
                 foreach (var ap in ViewBag.aplicaciones)
                 {
@@ -35,7 +32,8 @@
 
                         <td>@ap.FECHAAPLICACION</td>
 
-                        
+
+
 
                         <td>@Html.ActionLink("Plaza", "Details", "Plaza", new { id = ap.IDPLAZA }, new { @class = "btn btn-primary fa fa-search btn-xs" })</td>
 

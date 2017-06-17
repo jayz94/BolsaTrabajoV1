@@ -102,7 +102,19 @@ namespace BolsaTrabajoV1.Controllers
                                          select r).SingleOrDefault();
 
                         this.cargarMenus();
-
+                        int numPos = db.POSTULANTE.Where(pos => pos.IDUSUARIO == currentU.IDUSUARIO).Count();
+                        if(currentU.IDROL==2 && numPos==0)//id de postulante
+                        {
+                            return RedirectToAction("Create", "Postulante");
+                        }
+                        if(currentU.IDROL==3 && currentU.CODIGOEMPRESA== null)
+                        {
+                            return RedirectToAction("Create", "Empresa");
+                        }
+                        if (currentU.IDROL == 2 && numPos==1)
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                         return RedirectToAction("Index", "Postulante");
                 }
             }

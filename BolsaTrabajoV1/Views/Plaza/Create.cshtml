@@ -1,5 +1,4 @@
 ﻿@model BolsaTrabajoV1.Models.PLAZA
-
 @{
     ViewBag.Title = "Create";
 }
@@ -39,13 +38,6 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.CODIGOEMPRESA, "CODIGOEMPRESA", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("CODIGOEMPRESA", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CODIGOEMPRESA, "", new { @class = "text-danger" })
-                </div>
-            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.FECHAFIN, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">

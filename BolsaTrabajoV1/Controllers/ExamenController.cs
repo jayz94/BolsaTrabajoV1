@@ -18,13 +18,14 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Examen
         public async Task<ActionResult> Index()
         {
-            var eXAMEN = db.EXAMEN.Include(e => e.EMPRESA).Include(e => e.TIPO_EXAMEN);
+            USUARIO user = (USUARIO)Session["usuario"];
+            var eXAMEN = db.EXAMEN.Include(e => e.EMPRESA).Include(e => e.TIPO_EXAMEN).Where(e=>e.CODIGOEMPRESA==user.CODIGOEMPRESA);
             return View(await eXAMEN.ToListAsync());
         }
         
-        public ActionResult Test()
+        public ActionResult Test(int? id)
         {
-            var ex = 2;/*esta variable se sustituira por un parametro*/
+            var ex = id;/*esta variable se sustituira por un parametro*/
             //ordenamos de manera aleatoria las preguntas y solo tomamos 5
             var query = (from examen in db.EXAMEN
                         join pregunta in db.PREGUNTA on examen.CODIGOEXAMEN equals pregunta.CODIGOEXAMEN
@@ -75,16 +76,16 @@ namespace BolsaTrabajoV1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Guardar(FormCollection form)
         {
-
+            USUARIO us = (USUARIO)Session["usuario"];
+            int idPos = (from pos in db.POSTULANTE where pos.IDUSUARIO == us.IDUSUARIO select pos.IDPOSTULANTE).FirstOrDefault();
             RESPUESTA respuesta; 
             foreach (var pregunta in TempData["preguntas"] as IEnumerable<PREGUNTA>)
             {
                 string auxiliar = "respuestas-"+pregunta.IDPREGUNTA;                
                 string resp = form[auxiliar];
-
                     respuesta= new RESPUESTA();
                     respuesta.IDOPCIONPREGUNTA = Int16.Parse(resp);
-                    respuesta.IDPOSTULANTE = 1;//se obtendra de la session
+                    respuesta.IDPOSTULANTE = idPos;//se obtendra de la session
                     db.RESPUESTA.Add(respuesta);
                     await db.SaveChangesAsync();
 
@@ -125,10 +126,12 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CODIGOEMPRESA,ACTIVO,PONDERACION,CODIGOEXAMEN,IDTIPOEXAMEN")] EXAMEN eXAMEN)
+        public async Task<ActionResult> Create([Bind(Include = "ACTIVO,PONDERACION,CODIGOEXAMEN,IDTIPOEXAMEN")] EXAMEN eXAMEN)
         {
             if (ModelState.IsValid)
             {
+                USUARIO user = (USUARIO)Session["usuario"];
+                eXAMEN.CODIGOEMPRESA = (int)user.CODIGOEMPRESA;
                 db.EXAMEN.Add(eXAMEN);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

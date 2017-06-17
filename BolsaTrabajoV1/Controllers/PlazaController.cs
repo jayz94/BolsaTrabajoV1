@@ -30,6 +30,20 @@ namespace BolsaTrabajoV1.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PLAZA pLAZA = await db.PLAZA.FindAsync(id);
+            if(Session["usuario"]!= null)
+            {
+                USUARIO usu = (USUARIO)Session["usuario"];
+                POSTULANTE postulante = db.POSTULANTE.Where(pos => pos.IDUSUARIO == usu.IDUSUARIO).FirstOrDefault();
+                int cont = db.POSTULANTE_PLAZA.Where(ap => ap.IDPOSTULANTE == postulante.IDPOSTULANTE && ap.IDPLAZA == pLAZA.IDPLAZA).Count();
+                if (cont == 1)
+                {
+                    ViewBag.examenes = db.EXAMEN.Where(ex => ex.CODIGOEMPRESA == pLAZA.CODIGOEMPRESA);
+                    ViewBag.plazas = db.ViewPlazaGenerica.Where(pla => pla.codempresa == usu.CODIGOEMPRESA);
+                }
+                    
+                else
+                    ViewBag.examenes = null;
+            }
             var funcionPlaza = from funcion in db.FUNCION_PLAZA where funcion.IDPLAZA == id select funcion;
             var requisitoPlaza = from requisito in db.REQUISITO where requisito.IDPLAZA == id select requisito;
             if (pLAZA == null)
@@ -45,8 +59,7 @@ namespace BolsaTrabajoV1.Controllers
                               select r).SingleOrDefault();
 
             Session["RolEmpresa"] = RolEmpresa.IDROL;
-
-
+            
             ViewBag.TIPOREQUISITO = new SelectList(db.TIPO_REQUISITO, "IDTIPOREQUISITO", "DESCRIPCIONTIPO");
             ViewBag.funciones = funcionPlaza;
             ViewBag.requisitos = requisitoPlaza;
@@ -57,23 +70,18 @@ namespace BolsaTrabajoV1.Controllers
 
 
 
-        public ActionResult AplicacionesPostulante()
+        public  ViewResult AplicacionesPostulante()
         {
 
             var usr = new USUARIO();
             usr = (USUARIO)Session["usuario"];
-
-
-
-
+            
             POSTULANTE pos = (from p in db.POSTULANTE
                               where p.IDUSUARIO == usr.IDUSUARIO
                               select p).SingleOrDefault();
 
             var aplicaciones = from ap in db.ViewAplicacion where ap.IDPOSTULANTE==pos.IDPOSTULANTE select ap;
-
-            ViewBag.aplicaciones = aplicaciones.ToList();
-
+            ViewBag.aplicaciones = aplicaciones;
             return View();
         }
 
@@ -166,10 +174,12 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDMUNICIPIO,IDGENERO,CODIGOEMPRESA,SALARIO,FORMAPAGO,EDADMIN,EDADMAX,VEHICULO,FECHAFIN,FECHAINICIO,IDPLAZA,IDCARGO,ANIOSMINIMOXP,DESCRIPCIONPLAZA,VACANTES,TIPOJORNADA")] PLAZA pLAZA)
+        public async Task<ActionResult> Create([Bind(Include = "IDMUNICIPIO,IDGENERO,SALARIO,FORMAPAGO,EDADMIN,EDADMAX,VEHICULO,FECHAFIN,FECHAINICIO,IDPLAZA,IDCARGO,ANIOSMINIMOXP,DESCRIPCIONPLAZA,VACANTES,TIPOJORNADA")] PLAZA pLAZA)
         {
             if (ModelState.IsValid)
             {
+                USUARIO user = (USUARIO)Session["usuario"];
+                pLAZA.CODIGOEMPRESA = user.CODIGOEMPRESA;
                 db.PLAZA.Add(pLAZA);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

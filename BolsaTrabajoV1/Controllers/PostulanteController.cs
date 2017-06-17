@@ -280,7 +280,7 @@ namespace BolsaTrabajoV1.Controllers
         }
 
         //GET
-        public async Task<ActionResult> Match(int? id) {
+        public async Task<ActionResult> Match(int? id,int? id2) {
             CURRICULUM curriculum = db.CURRICULUM.Where(curr=>curr.IDPOSTULANTE== id).FirstOrDefault();
             IEnumerable<IDIOMA> listaIdiomas = db.IDIOMA.Where(idP=>idP.IDCURRICULUM==curriculum.IDCURRICULUM && idP.IDPOSTULANTE==curriculum.IDPOSTULANTE);
             ViewBag.listaIdiomas = listaIdiomas;
@@ -289,7 +289,7 @@ namespace BolsaTrabajoV1.Controllers
             ViewBag.listaParticipaciones = listaParticipaciones;
 
             IEnumerable<HABILIDAD> listaHablidades = db.HABILIDAD.Where(idP => idP.IDCURRICULUM == curriculum.IDCURRICULUM && idP.IDPOSTULANTE == curriculum.IDPOSTULANTE);
-            ViewBag.listaHablidades = listaHablidades;
+            ViewBag.listaHabilidades = listaHablidades;
 
             IEnumerable<CERTIFICACION> listaCertificaciones = db.CERTIFICACION.Where(idP => idP.IDCURRICULUM == curriculum.IDCURRICULUM && idP.IDPOSTULANTE == curriculum.IDPOSTULANTE);
             ViewBag.listaCertificaciones = listaCertificaciones;
@@ -306,6 +306,66 @@ namespace BolsaTrabajoV1.Controllers
             IEnumerable<PUBLICACION> listaPublicaciones = db.PUBLICACION.Where(idP => idP.IDCURRICULUM == curriculum.IDCURRICULUM && idP.IDPOSTULANTE == curriculum.IDPOSTULANTE);
             ViewBag.listaPublicaciones = listaPublicaciones;
 
+            IEnumerable<EXPERIENCIALABORAL> listaExperiencias = db.EXPERIENCIALABORAL.Where(idP => idP.IDCURRICULUM == curriculum.IDCURRICULUM && idP.IDPOSTULANTE == curriculum.IDPOSTULANTE);
+            ViewBag.listaExperiencias = listaExperiencias;
+
+            IEnumerable<REQUISITO> listaRequisitos = db.REQUISITO.Where(req=>req.IDPLAZA==id2);
+            List<REQUISITO> lista1 = new List<REQUISITO>();
+            List<REQUISITO> lista2 = new List<REQUISITO>();
+            List<REQUISITO> lista3 = new List<REQUISITO>();
+            List<REQUISITO> lista4 = new List<REQUISITO>();
+            List<REQUISITO> lista5 = new List<REQUISITO>();
+            List<REQUISITO> lista6 = new List<REQUISITO>();
+            List<REQUISITO> lista7 = new List<REQUISITO>();
+            List<REQUISITO> lista8 = new List<REQUISITO>();
+            List<REQUISITO> lista9 = new List<REQUISITO>();
+            List<REQUISITO> lista10 = new List<REQUISITO>();
+            foreach (REQUISITO requisito in listaRequisitos)
+            {
+                switch (requisito.TIPO_REQUISITO.TABLA)
+                {
+                    case "IDIOMA":
+                        lista1.Add(requisito);
+                        break;
+                    case "FORMACIONACADEMICA":
+                        lista2.Add(requisito);
+                        break;
+                    case "PARTICIPACIONPROFESONAL":
+                        lista3.Add(requisito);
+                        break;
+                    case "HABILIDAD":
+                        lista4.Add(requisito);
+                        break;
+                    case "CERTIFICACION":
+                        lista5.Add(requisito);
+                        break;
+                    case "REFERENCIA":
+                        lista6.Add(requisito);
+                        break;
+                    case "PUBLICACION":
+                        lista7.Add(requisito);
+                        break;
+                    case "EXPERIENCIALABORAL":
+                        lista8.Add(requisito);
+                        break;
+                    case "LOGRO":
+                        lista9.Add(requisito);
+                        break;
+                    default:
+                        lista10.Add(requisito);
+                        break;
+                }
+            }
+            ViewBag.idiomas = lista1;
+            ViewBag.formaciones = lista2;
+            ViewBag.participaciones = lista3;
+            ViewBag.habilidades = lista4;
+            ViewBag.certificaciones = lista5;
+            ViewBag.referencias = lista6;
+            ViewBag.publicaciones = lista7;
+            ViewBag.experiencias = lista8;
+            ViewBag.logros = lista9;
+            ViewBag.otros = lista10;
             return View();
         }
 

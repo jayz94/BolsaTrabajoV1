@@ -21,6 +21,8 @@
                 <th>   Postulante   </th>
                 <th>   Genero   </th>
                 <th>   Fecha de aplicación  </th>
+                <th>    Comparar</th>
+                <th>    Perfil</th>
 
             </tr>
             @if (ViewBag.aplicaciones != null)
@@ -37,8 +39,8 @@
 
                         <td>@ap.FECHAAPLICACION</td>
 
-                        
-                        <td>@Html.ActionLink("Ver postulante", "Details", "Postulante", new { id = ap.IDPOSTULANTE }, new { @class = "btn btn-primary fa fa-search btn-xs" })</td>
+                        <td>@Html.ActionLink(" ", "Match", "Postulante", new { id = ap.IDPOSTULANTE, id2 = ap.IDPLAZA }, new { @class = "btn btn-primary fa fa-search btn-xs" })</td>
+                        <td>@Html.ActionLink(" ", "Details", "Postulante", new { id = ap.IDPOSTULANTE }, new { @class = "btn btn-primary fa fa-search btn-xs" })</td>
 
                     </tr>
                 }

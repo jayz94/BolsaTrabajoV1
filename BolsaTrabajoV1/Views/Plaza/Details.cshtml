@@ -122,6 +122,15 @@
 
         </dl>
     </div>
+    @if (ViewBag.examenes != null)
+    {
+        foreach (var examen in ViewBag.examenes)
+        {
+            <label>@examen.DESCRIPCIONEXAMEN;&nbsp;&nbsp; Ponderaciòn: @examen.PONDERACION</label>
+            @Html.ActionLink(" ", "Test","Examen", new { id = examen.CODIGOEXAMEN }, new { @class = "btn btn-primary fa fa-play-circle" })
+            <br />
+        }
+    }
     <div class="col-md-12">
 
         @if (Session["usuario"] != null)
