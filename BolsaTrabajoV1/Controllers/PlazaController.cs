@@ -153,7 +153,19 @@ namespace BolsaTrabajoV1.Controllers
             return RedirectToAction("AplicacionesPostulante", "Plaza");
         }
 
+        public ActionResult MisPlazas()
+        {
+            var usr = new USUARIO();
+            usr = (USUARIO)Session["usuario"];
 
+            var plazas = from pl in db.PLAZA
+                        where pl.CODIGOEMPRESA == usr.CODIGOEMPRESA
+                        select pl;
+
+            ViewBag.plazas = plazas.ToList();            
+
+            return View();
+        }
 
 
 

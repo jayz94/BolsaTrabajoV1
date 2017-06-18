@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "MisPlazas";
+}
+
+<h2 class="text-center">Mis Plazas</h2>
+
+<div class="container">
+    <div class="panel panel primary">
+        <div class="panel-body">
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Plaza</th>
+                            <th>Cargo</th>
+                            <th>Salario</th>
+                            <th>Genero</th>
+                            <th>Municipio</th>
+                            <th>Vacantes</th>
+                            <th>Experiencia Minima</th>
+                            <th>Postulantes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var plaza in ViewBag.plazas as IEnumerable<BolsaTrabajoV1.Models.PLAZA>)
+                        {
+                            <tr>
+                                <td>@plaza.DESCRIPCIONPLAZA</td>
+                                <td>@plaza.CARGO.NOMBRECARGO</td>
+                                <td>@plaza.SALARIO</td>
+                                <td>@plaza.GENERO.DESCRIPCIONGENERO</td>
+                                <td>@plaza.MUNICIPIO.NOMBREMUNICIPIO</td>
+                                <td>@plaza.VACANTES</td>
+                                <td>@plaza.ANIOSMINIMOXP</td>
+                                <td>
+                                    @Html.ActionLink("Examenes","Resultados", "Empresa", new { id = plaza.IDPLAZA }, new { @class = "btn btn-success fa fa-edit btn-xs" })                                    
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

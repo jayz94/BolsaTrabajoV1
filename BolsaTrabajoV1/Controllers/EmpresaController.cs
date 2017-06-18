@@ -22,7 +22,49 @@ namespace BolsaTrabajoV1.Controllers
             return View(await db.EMPRESA.ToListAsync());
         }
 
+        // GET: Resultados
+        public ActionResult Resultados(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            var usr = new USUARIO();
+            usr = (USUARIO)Session["usuario"];
+            //var empresa = 1;/*variable se obtendra como parametro*/
+            var plaza = id;/*variable se obtendra como parametro*/
+
+            //Obtenemos los resultados de los examenes para los postulantes
+            //a cierta plaza de cierta empresa
+
+            var query = db.ObtenerResultados(usr.CODIGOEMPRESA, plaza);
+
+            List<ObtenerResultados_Result> resultados = new List<ObtenerResultados_Result>();
+
+            foreach (var result in query)
+            {
+                ObtenerResultados_Result resultado = new ObtenerResultados_Result();
+                resultado.IDPOSTULANTE = result.IDPOSTULANTE;
+                resultado.NOMBREPOSTULANTE = result.NOMBREPOSTULANTE;
+                resultado.CODIGOEMPRESA = result.CODIGOEMPRESA;
+                resultado.NOMBREEMPRESA = result.NOMBREEMPRESA;
+                resultado.IDPLAZA = result.IDPLAZA;
+                resultado.DESCRIPCIONPLAZA = result.DESCRIPCIONPLAZA;
+                resultado.CODIGOEXAMEN = result.CODIGOEXAMEN;
+                resultado.DESCRIPCIONEXAMEN = result.DESCRIPCIONEXAMEN;
+                resultado.PUNTAJE = result.PUNTAJE;
+                resultado.PONDERACION = result.PONDERACION;
+                resultado.TOTAL = result.TOTAL;
+
+                resultados.Add(resultado);
+
+            }
+
+            ViewBag.resultados = resultados;
+
+            return View();
+        }
 
 
 
