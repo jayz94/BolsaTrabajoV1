@@ -4,14 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>CONTACTO</h4>
+    <h4>DETALLES DE CONTACTO</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.VINCULO)
+            @*Html.DisplayNameFor(model => model.VINCULO)*@
+            TELEFONO / URL
         </dt>
 
         <dd>
@@ -19,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.POSTULANTE.NOMBREPOSTULANTE)
+            @Html.DisplayNameFor(model => model.TIPO_CONTACTO.NOMBRETIPOCONTACTO)
         </dt>
 
         <dd>
@@ -27,7 +26,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TIPO_CONTACTO.NOMBRETIPOCONTACTO)
+            @*Html.DisplayNameFor(model => model.POSTULANTE.NOMBREPOSTULANTE)*@
+            TIPO DE CONTACTO
         </dt>
 
         <dd>
@@ -37,6 +37,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDCONTACTO }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDCONTACTO }, new { @class="btn btn-default" }) |
+    @Html.ActionLink("Regresar", "Details", "Postulante", new { id = Model.IDPOSTULANTE }, new { @id = "MiID" })
 </p>

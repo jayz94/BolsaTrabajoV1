@@ -4,18 +4,16 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>POSTULANTE_TIPO_DOCUMENTO_MM</h4>
+        <h4>AGREGAR DOCUMENTO DE IDENTIDAD</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.IDTIPODOCUMENTOIDENTIDAD, "IDTIPODOCUMENTOIDENTIDAD", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IDTIPODOCUMENTOIDENTIDAD, "TIPO DE DOCUMENTO DE IDENTIDAD", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("IDTIPODOCUMENTOIDENTIDAD", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IDTIPODOCUMENTOIDENTIDAD, "", new { @class = "text-danger" })
@@ -23,11 +21,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IDPOSTULANTE, "IDPOSTULANTE", htmlAttributes: new { @class = "control-label col-md-2" })
+            @*Html.LabelFor(model => model.IDPOSTULANTE, "IDPOSTULANTE", htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
-                @Html.DropDownList("IDPOSTULANTE", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDPOSTULANTE, "", new { @class = "text-danger" })
-            </div>
+                @Html.HiddenFor(model => model.IDPOSTULANTE, new { Value = ViewBag.IDPOSTULANTE })
+                @*Html.DropDownList("IDPOSTULANTE", null, htmlAttributes: new { @class = "form-control" })*@
+                           </div>
         </div>
 
         <div class="form-group">
@@ -47,5 +45,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Details", "Postulante", new { id = ViewBag.IDPOSTULANTE }, new { @id = "MiID" })
 </div>

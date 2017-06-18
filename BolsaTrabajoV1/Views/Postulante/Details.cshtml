@@ -30,7 +30,7 @@
         <div class="col-md-5">
             <div class="panel">
                 <div class="panel-body text-center">
-                    <img src="~/Images/no-profile-pic.png" style="width:300px;height:300px;"/>
+                    <img src="~/Images/no-profile-pic.png" style="width:300px;height:300px;" />
                 </div>
             </div>
             <div class="panel">
@@ -43,6 +43,7 @@
                             <tr>
                                 <th>Documento</th>
                                 <th>Número</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,15 +62,25 @@
                                         <td>
                                             @documento.NUMERO
                                         </td>
+                                        <td>
+                                            @Html.ActionLink(" ", "Edit", "POSTULANTETIPODOCUMENTO", new { id = documento.IDTIPODOCUMENTOIDENTIDAD, idPostulante = Model.IDPOSTULANTE }, new { @class = "fa fa-edit" }) |
+                                            @Html.ActionLink(" ", "Details", "POSTULANTETIPODOCUMENTO", new { id = documento.IDTIPODOCUMENTOIDENTIDAD, idPostulante = 1 /*Model.IDPOSTULANTE*/ }, new { @class = "fa fa-search" }) |
+                                            @Html.ActionLink(" ", "Delete", "POSTULANTETIPODOCUMENTO", new { id = documento.IDTIPODOCUMENTOIDENTIDAD, idPostulante = Model.IDPOSTULANTE }, new { @class = "fa fa-trash" })
+                                        </td>
                                     </tr>
                                 }
+                                
                             }
                         </tbody>
                     </table>
+                    <div class=" text-center">
+                        <br />
+                        <a href="@Url.Action("Create","PostulanteTipoDocumento",new { idPostulante = Model.IDPOSTULANTE })" class="btn btn-primary">Agregar Documento</a>
+                    </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="col-md-7">
             <div class="panel">
                 <div class="panel-heading">
@@ -142,23 +153,31 @@
                             </td>
                         </tr>
                     </table>
+                    <div class="text-center">
+                        <a href="@Url.Action("Edit", "Postulante", new { id = Model.IDPOSTULANTE })" class="btn btn-primary btn-lg">Editar Perfil</a>
+                    </div>
                 </div>
             </div>
             <div class="panel">
                 <div class="panel-heading">
                     <h4>Tu información de contacto</h4>
-                   <a href="@Url.Action("Create","Contacto",new { idPostulante = Model.IDPOSTULANTE })">Agregar Contacto</a>
                 </div>
-                <div class="panel-body">@*desplegamos la vista parcial de tipo de contactos en el panel *@
-                    @Html.Partial("_PartialContactos")
-                   
-                </div>
+                <div class="panel-body">
+                    @*desplegamos la vista parcial de tipo de contactos en el panel *@
+                @Html.Partial("_PartialContactos")
+                @if (Model.CONTACTO.Count >= 1)
+                {
+                    <div class="text-center">
+                        <br />
+                        <a href="@Url.Action("Create","Contacto",new { idPostulante = Model.IDPOSTULANTE })" class="btn btn-primary">Agregar Contacto</a>
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
+</div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPOSTULANTE }) 
     @*Html.ActionLink("Back to List", "Index")*@
 </p>

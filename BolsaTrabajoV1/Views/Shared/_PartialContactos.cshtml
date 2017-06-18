@@ -10,6 +10,9 @@
         @if (Model.CONTACTO.Count < 1)
         {
             <tr><td>No has ingresado tu informacion de contacto aún.</td></tr>
+            <div class="text-center">
+                <a href="@Url.Action("Create","Contacto",new { idPostulante = Model.IDPOSTULANTE })" class="btn btn-primary">Agregar Contacto</a>
+            </div>
         }
         else
         {
@@ -23,9 +26,9 @@
                         @contacto.VINCULO
                     </td>
                     <td>
-                        @Html.ActionLink(" Editar", "Edit","Contacto", new { id = contacto.IDCONTACTO }, new { @class = "fa fa-edit" }) |
-                        @Html.ActionLink(" Detalles", "Details","Contacto", new { id = contacto.IDCONTACTO },new { @class = "fa fa-search" }) |
-                        @Html.ActionLink(" Borrar", "Delete", "Contacto", new { id = contacto.IDCONTACTO }, new { @class = "fa fa-trash" })
+                        @Html.ActionLink(" ", "Edit","Contacto", new { id = contacto.IDCONTACTO }, new { @class = "fa fa-edit" }) |
+                        @Html.ActionLink(" ", "Details","Contacto", new { id = contacto.IDCONTACTO },new { @class = "fa fa-search" }) |
+                        @Html.ActionLink(" ", "Delete", "Contacto", new { id = contacto.IDCONTACTO }, new { @class = "fa fa-trash" })
                     </td>
                 </tr>
             }

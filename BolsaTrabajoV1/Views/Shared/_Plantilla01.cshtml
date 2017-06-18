@@ -4,20 +4,20 @@
     //Luego convertimos los menus en una lista de menus.
     List<BolsaTrabajoV1.Models.MENU> listaMenus = (List<BolsaTrabajoV1.Models.MENU>)Session["menus"];
 }<!DOCTYPE html>
-<html lang="en" ng-app="BolsaTrabajo">
+<html lang="en" style="height:100%;">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bolsa De Trabajo</title>
+    <title>Bolsa De Trabajo @("| "+ ViewBag.Title)</title>
     <!-- Bootstrap -->
     @Styles.Render("~/Content/cssPlantilla")
 </head>
-<body class="nav-md">
+<body class="nav-md" style="height:100%;">
     <div class="container body">
-        <div class="main_container">
+        <div class="main_container" id="container">
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
@@ -177,13 +177,13 @@
                         <a data-toggle="tooltip" data-placement="top" title="Settings">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen" id="fullscreen">
                             <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <a data-toggle="tooltip" data-placement="top" title="Lock" onclick="toggleLock();">
                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="@(user.IDROL!=1 ? @Url.Action("CerrarSesion", "Usuario") : "#")">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>
@@ -245,9 +245,13 @@
             <!-- /footer content -->
         </div>
     </div>
+    <div id="bloqueado-page" style="display:none;">
+        @Html.Partial("Lock")
+    </div>
     @Scripts.Render("~/bundles/jsPlantilla")
     <script type="text/javascript">
         $(document).ready(function () {
+        //Widget de hora
             var hora = new Date().toLocaleTimeString();
             var divHora = document.getElementById("hora");
             setInterval(function () {
@@ -255,7 +259,22 @@
                 divHora.innerHTML = hora;
             }, 1000)
         });
-        
+
+        fullscreen = function (e) {
+            if (e.webkitRequestFullScreen) {
+                e.webkitRequestFullScreen();
+            } else if (e.mozRequestFullScreen) {
+                e.mozRequestFullScreen();
+            }
+        }
+        document.getElementById('fullscreen').onclick = function () {
+            fullscreen(document.getElementById('container'));
+        }
+
+        function toggleLock() {
+            $("#container").toggle();
+            $("#bloqueado-page").toggle();
+        }
     </script>
 </body>
 </html>

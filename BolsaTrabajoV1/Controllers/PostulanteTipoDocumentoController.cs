@@ -23,13 +23,13 @@ namespace BolsaTrabajoV1.Controllers
         }
 
         // GET: PostulanteTipoDocumento/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int? id,int? idPostulante)
         {
-            if (id == null)
+            if (id == null || idPostulante == null )
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            POSTULANTE_TIPO_DOCUMENTO_MM pOSTULANTE_TIPO_DOCUMENTO_MM = await db.POSTULANTE_TIPO_DOCUMENTO_MM.FindAsync(id);
+            POSTULANTE_TIPO_DOCUMENTO_MM pOSTULANTE_TIPO_DOCUMENTO_MM = await db.POSTULANTE_TIPO_DOCUMENTO_MM.FindAsync( id , idPostulante);
             if (pOSTULANTE_TIPO_DOCUMENTO_MM == null)
             {
                 return HttpNotFound();
@@ -38,10 +38,14 @@ namespace BolsaTrabajoV1.Controllers
         }
 
         // GET: PostulanteTipoDocumento/Create
-        public ActionResult Create()
+        public ActionResult Create(int? idPostulante)
         {
-            ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE");
-            ViewBag.IDTIPODOCUMENTOIDENTIDAD = new SelectList(db.TIPO_DOCUMENTO_IDENTIDAD, "IDTIPODOCUMENTOIDENTIDAD", "MASCARA");
+            if (idPostulante == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.IDPOSTULANTE = idPostulante;// new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE");
+            ViewBag.IDTIPODOCUMENTOIDENTIDAD = new SelectList(db.TIPO_DOCUMENTO_IDENTIDAD, "IDTIPODOCUMENTOIDENTIDAD", "NOMBREDOCUMENTOIDENTIDAD");
             return View();
         }
 
@@ -56,7 +60,7 @@ namespace BolsaTrabajoV1.Controllers
             {
                 db.POSTULANTE_TIPO_DOCUMENTO_MM.Add(pOSTULANTE_TIPO_DOCUMENTO_MM);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Postulante", new { id = pOSTULANTE_TIPO_DOCUMENTO_MM.IDPOSTULANTE });
             }
 
             ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", pOSTULANTE_TIPO_DOCUMENTO_MM.IDPOSTULANTE);
@@ -65,18 +69,18 @@ namespace BolsaTrabajoV1.Controllers
         }
 
         // GET: PostulanteTipoDocumento/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(int? id,int? idPostulante)
         {
-            if (id == null)
+            if (id == null||idPostulante==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            POSTULANTE_TIPO_DOCUMENTO_MM pOSTULANTE_TIPO_DOCUMENTO_MM = await db.POSTULANTE_TIPO_DOCUMENTO_MM.FindAsync(id);
+            POSTULANTE_TIPO_DOCUMENTO_MM pOSTULANTE_TIPO_DOCUMENTO_MM = await db.POSTULANTE_TIPO_DOCUMENTO_MM.FindAsync(id,idPostulante);
             if (pOSTULANTE_TIPO_DOCUMENTO_MM == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", pOSTULANTE_TIPO_DOCUMENTO_MM.IDPOSTULANTE);
+            ViewBag.IDPOSTULANTE = idPostulante;// new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", pOSTULANTE_TIPO_DOCUMENTO_MM.IDPOSTULANTE);
             ViewBag.IDTIPODOCUMENTOIDENTIDAD = new SelectList(db.TIPO_DOCUMENTO_IDENTIDAD, "IDTIPODOCUMENTOIDENTIDAD", "MASCARA", pOSTULANTE_TIPO_DOCUMENTO_MM.IDTIPODOCUMENTOIDENTIDAD);
             return View(pOSTULANTE_TIPO_DOCUMENTO_MM);
         }
@@ -92,7 +96,7 @@ namespace BolsaTrabajoV1.Controllers
             {
                 db.Entry(pOSTULANTE_TIPO_DOCUMENTO_MM).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Postulante", new { id = pOSTULANTE_TIPO_DOCUMENTO_MM.IDPOSTULANTE });
             }
             ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", pOSTULANTE_TIPO_DOCUMENTO_MM.IDPOSTULANTE);
             ViewBag.IDTIPODOCUMENTOIDENTIDAD = new SelectList(db.TIPO_DOCUMENTO_IDENTIDAD, "IDTIPODOCUMENTOIDENTIDAD", "MASCARA", pOSTULANTE_TIPO_DOCUMENTO_MM.IDTIPODOCUMENTOIDENTIDAD);
@@ -100,13 +104,13 @@ namespace BolsaTrabajoV1.Controllers
         }
 
         // GET: PostulanteTipoDocumento/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int? id,int? idPostulante)
         {
-            if (id == null)
+            if (id == null || idPostulante == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            POSTULANTE_TIPO_DOCUMENTO_MM pOSTULANTE_TIPO_DOCUMENTO_MM = await db.POSTULANTE_TIPO_DOCUMENTO_MM.FindAsync(id);
+            POSTULANTE_TIPO_DOCUMENTO_MM pOSTULANTE_TIPO_DOCUMENTO_MM = await db.POSTULANTE_TIPO_DOCUMENTO_MM.FindAsync(id,idPostulante);
             if (pOSTULANTE_TIPO_DOCUMENTO_MM == null)
             {
                 return HttpNotFound();
@@ -117,12 +121,12 @@ namespace BolsaTrabajoV1.Controllers
         // POST: PostulanteTipoDocumento/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id, int? idPostulante)
         {
-            POSTULANTE_TIPO_DOCUMENTO_MM pOSTULANTE_TIPO_DOCUMENTO_MM = await db.POSTULANTE_TIPO_DOCUMENTO_MM.FindAsync(id);
+            POSTULANTE_TIPO_DOCUMENTO_MM pOSTULANTE_TIPO_DOCUMENTO_MM = await db.POSTULANTE_TIPO_DOCUMENTO_MM.FindAsync(id, idPostulante);
             db.POSTULANTE_TIPO_DOCUMENTO_MM.Remove(pOSTULANTE_TIPO_DOCUMENTO_MM);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Postulante", new { id = pOSTULANTE_TIPO_DOCUMENTO_MM.IDPOSTULANTE });
         }
 
         protected override void Dispose(bool disposing)
