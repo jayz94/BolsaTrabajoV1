@@ -36,11 +36,15 @@ namespace BolsaTrabajoV1.Controllers
             }
             return View(cONTACTO);
         }
-
+        
         // GET: Contacto/Create
-        public ActionResult Create()
+        public ActionResult Create(int? idPostulante)
         {
-            ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE");
+            if (idPostulante == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.IDPOSTULANTE = idPostulante;
             ViewBag.IDTIPOCONTACTO = new SelectList(db.TIPO_CONTACTO, "IDTIPOCONTACTO", "NOMBRETIPOCONTACTO");
             return View();
         }
@@ -56,9 +60,8 @@ namespace BolsaTrabajoV1.Controllers
             {
                 db.CONTACTO.Add(cONTACTO);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details","Postulante",new { id = cONTACTO.IDPOSTULANTE });
             }
-
             ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", cONTACTO.IDPOSTULANTE);
             ViewBag.IDTIPOCONTACTO = new SelectList(db.TIPO_CONTACTO, "IDTIPOCONTACTO", "NOMBRETIPOCONTACTO", cONTACTO.IDTIPOCONTACTO);
             return View(cONTACTO);
@@ -92,7 +95,7 @@ namespace BolsaTrabajoV1.Controllers
             {
                 db.Entry(cONTACTO).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Postulante", new { id = cONTACTO.IDPOSTULANTE });
             }
             ViewBag.IDPOSTULANTE = new SelectList(db.POSTULANTE, "IDPOSTULANTE", "NOMBREPOSTULANTE", cONTACTO.IDPOSTULANTE);
             ViewBag.IDTIPOCONTACTO = new SelectList(db.TIPO_CONTACTO, "IDTIPOCONTACTO", "NOMBRETIPOCONTACTO", cONTACTO.IDTIPOCONTACTO);
@@ -122,7 +125,7 @@ namespace BolsaTrabajoV1.Controllers
             CONTACTO cONTACTO = await db.CONTACTO.FindAsync(id);
             db.CONTACTO.Remove(cONTACTO);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Postulante", new { id = cONTACTO.IDPOSTULANTE });
         }
 
         protected override void Dispose(bool disposing)

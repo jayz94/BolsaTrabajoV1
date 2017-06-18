@@ -3,6 +3,7 @@
         <tr>
             <th>Tipo de Contacto</th>
             <th>Número / Direccion</th>
+            <th>Opciones</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +21,11 @@
                     </td>
                     <td>
                         @contacto.VINCULO
+                    </td>
+                    <td>
+                        @Html.ActionLink(" Editar", "Edit","Contacto", new { id = contacto.IDCONTACTO }, new { @class = "fa fa-edit" }) |
+                        @Html.ActionLink(" Detalles", "Details","Contacto", new { id = contacto.IDCONTACTO },new { @class = "fa fa-search" }) |
+                        @Html.ActionLink(" Borrar", "Delete", "Contacto", new { id = contacto.IDCONTACTO }, new { @class = "fa fa-trash" })
                     </td>
                 </tr>
             }

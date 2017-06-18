@@ -4,37 +4,38 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CONTACTO</h4>
+        <h4>CREAR CONTACTO</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.IDPOSTULANTE, "IDPOSTULANTE", htmlAttributes: new { @class = "control-label col-md-2" })
+            @*Html.LabelFor(model => model.IDPOSTULANTE, "IDPOSTULANTE", htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
-                @Html.DropDownList("IDPOSTULANTE", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDPOSTULANTE, "", new { @class = "text-danger" })
+                @*Html.DropDownList("IDPOSTULANTE", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.HiddenFor(model => model.IDPOSTULANTE, new { Value = ViewBag.IDPOSTULANTE })
+                @*Html.Hidden("IDPOSTULANTE", ViewBag.IDPOSTULANTE)*@
+                @*Html.ValidationMessageFor(model => model.IDPOSTULANTE, "", new { @class = "text-danger" })*@
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.IDTIPOCONTACTO, "IDTIPOCONTACTO", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDTIPOCONTACTO", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDTIPOCONTACTO, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.VINCULO, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*Html.LabelFor(model => model.VINCULO, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label for="VINCULO" class="col-md-2 control-label">TELEFONO / URL</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.VINCULO, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.VINCULO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDTIPOCONTACTO, "TIPO DE CONTACTO", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IDTIPOCONTACTO", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IDTIPOCONTACTO, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -47,5 +48,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Details", "Postulante", new { id = ViewBag.IDPOSTULANTE }, new { @id = "MiID" })
 </div>
