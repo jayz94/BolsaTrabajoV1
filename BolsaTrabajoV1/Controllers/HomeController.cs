@@ -136,5 +136,50 @@ namespace BolsaTrabajoV1.Controllers
             return View();
 
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult filtrar(string[] seleccionados)
+        {
+            //tabla 1: cargo    //tabla 2: area cargo        //tabla 3: empresa
+            //tabla 4: salario  //tabla 5: departamento      //tabla 6: genero
+            //tabla 7: giro de empresa
+            var plazas = from pla in db.ViewPlazaGenerica select pla;
+            var selectedFilter = new HashSet<string>(seleccionados);//seleccionados de la vista
+
+            //Arrays para cada categoria por buscar
+            List<int> cargosPorBuscar=new List<int>(); 
+
+            foreach(var filtro in selectedFilter)
+            {
+                if (filtro.Contains("cargo"))//si es de tipo cargo contiene la palabra cargo
+                {
+                    string idFiltro = filtro.Substring(6, 1); //Sacamos el substring que contiene el id
+                    cargosPorBuscar.Add((int)idFiltro);                    
+                }
+                //if(filtro.Contains("depar"))
+                //if ...
+            }
+
+
+
+            //ViewBag.cargos = db.CARGO.ToList();
+            var query = db.CARGO.ToList();
+            ViewBag.areaCargos = db.AREA_CARGO.ToList();
+            ViewBag.generos = db.GENERO.ToList();
+            ViewBag.departamentos = db.DEPARTAMENTO.ToList();
+            ViewBag.giros = db.GIRO.ToList();
+            ViewBag.plazas = plazas;
+            ViewBag.empresas = db.EMPRESA;
+
+            foreach(var carg in cargosPorBuscar)
+            {
+                query = query.Where(p => p.IDCARGO==carg);
+            }
+
+            ViewBag.cargos = query;
+            return View();
+
+        }
     }
 }
