@@ -112,16 +112,25 @@ namespace BolsaTrabajoV1.Controllers
                     us.NOMBREUSUARIO = NOMBREUSUARIO;
                     us.PASSWORD = Convert.ToBase64String(hash);
                     us.ACTIVO = false;
-                    if (rol == "on")
-                        us.IDROL = 2;
-                    else
-                        us.IDROL = 3;
+                    switch (rol)
+                    {
+                        case "on":
+                            us.IDROL = 2;
+                            break;
+                        case "four":
+                            us.IDROL = 4;
+                            USUARIO usuarioEmpresa = (USUARIO)Session["usuario"];
+                            us.CODIGOEMPRESA = usuarioEmpresa.CODIGOEMPRESA;
+                            break;
+                        default:
+                            us.IDROL = 3;
+                            break;
+                    }
                     us.CORREO = CORREO;
                     db.USUARIO.Add(us);
                     await db.SaveChangesAsync();
                     int idUsuario = us.IDUSUARIO; // recuperar el id
                     Session["idUs"] = idUsuario;
-                    //return RedirectToAction("Create", "Postulante");
                     ViewBag.Exito = "Usuario Ingresado con exito , debe confirmar su cuenta mediante el correo enviado a su cuenta";
 
                     string mensaje = generarMensaje(us);
@@ -138,6 +147,8 @@ namespace BolsaTrabajoV1.Controllers
             else {
                 ViewBag.ErrorPass = "Contraseñas no Coinciden";
             }
+            if (rol == "four")
+                return RedirectToAction("ListaEvaluadores", "Usuario");
             return View();
            // }
 
@@ -200,6 +211,17 @@ namespace BolsaTrabajoV1.Controllers
             }
             ViewBag.CODIGOEMPRESA = new SelectList(db.EMPRESA, "IDEMPRESA", "CODIGOEMPRESA", uSUARIO.CODIGOEMPRESA);
             return View(uSUARIO);
+        }
+
+        //GET:/ListaEvaluadores
+        public async Task<ActionResult> ListaEvaluadores()
+        {
+            USUARIO usuarioSession = (USUARIO)Session["usuario"];
+            return View(await db.USUARIO.Where(us=>us.CODIGOEMPRESA==usuarioSession.CODIGOEMPRESA).ToListAsync());
+        }
+        public ActionResult CreateEvaluador()
+        {
+            return View();
         }
 
         // GET: Usuario/Delete/5
@@ -267,7 +289,7 @@ namespace BolsaTrabajoV1.Controllers
                     }
                     //var empresa =await db.EMPRESA.FirstAsync(e => e.CODIGOEMPRESA == uSUARIO.CODIGOEMPRESA);
                     else
-                        return RedirectToAction("Details", "Empresa", new { idusuario = uSUARIO.CODIGOEMPRESA });
+                        return RedirectToAction("Details", "Empresa", new { id = uSUARIO.CODIGOEMPRESA });
                 default:
                     return RedirectToAction("Index", "Home");
             }

@@ -1,0 +1,311 @@
+﻿@model IEnumerable<BolsaTrabajoV1.Models.POSTULANTE>
+<div class="panel">
+    <div class="panel-heading">
+
+    </div>
+    <div class="panel-body">
+        <div class="col-md-6">
+            <h2 class="row text-center">DATOS DEL POSTULANTE</h2>
+            <ul >
+                <h2>@ViewBag.postulante.NOMBREPOSTULANTE</h2>
+                <li>DIRECCION:&nbsp; @ViewBag.postulante.DIRECCION</li>
+                <li>GENERO:&nbsp; @ViewBag.postulante.GENERO.DESCRIPCIONGENERO</li>
+            </ul>
+        </div>
+    <div class="col-md-6">
+        <h2 class="row text-center">DATOS DE LA PLAZA</h2>
+        <ul>
+            <h2>@ViewBag.plaza.CARGO.NOMBRECARGO</h2>
+            <li>DESCRIPCIÓN:&nbsp; @ViewBag.plaza.DESCRIPCIONPLAZA</li>
+            <li>SALARIO:&nbsp; @ViewBag.plaza.SALARIO</li>
+            <li>EDAD MINIMA:&nbsp; @ViewBag.plaza.EDADMIN</li>
+            <li>EDAD MAXIMA:&nbsp;@ViewBag.plaza.EDADMAX</li>
+            <li>TIPO JORNADA; &nbsp;@ViewBag.plaza.TIPOJORNADA</li>
+        </ul>
+    </div>
+    </div>
+
+</div>
+<div class="col-md-12" style="border-bottom-style: solid;">
+    <h2 class="row text-center">IDIOMAS</h2>
+    <div class="col-md-6" style="border-right-style: solid;">
+        
+        @if (ViewBag.listaIdiomas != null)
+        {
+            foreach (var idioma in ViewBag.listaIdiomas)
+            {
+                
+                <ul class="col-md-6">
+                    <h2>@idioma.NOMBREIDIOMA</h2>
+                    <li>ESCRITURA:&nbsp; @idioma.ESCRITURA</li>
+                    <li>LECTURA:&nbsp; @idioma.LECTURA</li>
+                    <li>CONVERSACION:&nbsp; @idioma.CONVERSACION</li>
+                    <li>ESCUCHA:&nbsp;@idioma.ESCUCHA</li>
+                </ul>
+            }
+        }
+    </div>
+    <div class="col-md-6">
+        @if (ViewBag.idiomas != null)
+        {
+            foreach (var requisito in ViewBag.idiomas)
+            {
+                <ul type="circle" style="font-size:20px">
+                    <li>@requisito.DESCRIPCIONREQUISITO</li>
+                </ul>
+                
+            }
+        }
+    </div>
+</div>
+<!--inicia el div para formaciones-->
+<div class="col-md-12" style="border-bottom-style: solid;">
+    <h2 class="row text-center">FORMACIONES ACADEMICAS</h2>
+    <div class="col-md-6" style="border-right-style: solid;">
+
+        @if (ViewBag.listaFormaciones != null)
+        {
+            foreach (var formacion in ViewBag.listaFormaciones)
+            {
+
+                <ul class="col-md-6">
+                    <h2>@formacion.TITULO</h2>
+                    <li>INSTITUCIÓN:&nbsp; @formacion.INSTITUCION</li>
+                    @if (formacion.FORMAL) {
+                        <li>FORMAL</li> 
+                            }
+                    @if (!formacion.FORMAL)
+                    {
+                        <li>INFORMAL</li>
+                    }
+                    <li>FECHA INICIO:&nbsp;@formacion.FECHAINICIOFORMACION.ToString("dd/MM/yyyy")</li>
+                    <li>FECHA FIN:&nbsp;@formacion.FECHAFINFORMACION.ToString("dd/MM/yyyy")</li>
+                </ul>
+            }
+        }
+    </div>
+    <div class="col-md-6">
+        @if (ViewBag.formaciones != null)
+        {
+            foreach (var requisito in ViewBag.formaciones)
+            {
+                <ul type="circle" style="font-size:20px">
+                    <li>@requisito.DESCRIPCIONREQUISITO</li>
+                </ul>
+
+            }
+        }
+    </div>
+</div>
+<!--inicia el div para experiencia laboral-->
+<div class="col-md-12" style="border-bottom-style: solid;">
+    <h2 class="row text-center">EXPERIENCIA LABORAL</h2>
+    <div class="col-md-6" style="border-right-style: solid;">
+
+        @if (ViewBag.listaExperiencias != null)
+        {
+            foreach (var experiencia in ViewBag.listaExperiencias)
+            {
+
+                <ul class="col-md-6">
+                    <h2>@experiencia.CARGO.NOMBRECARGO</h2>
+                    <li>DESCRIPCIÓN:&nbsp; @experiencia.TITULOPROYECTO</li>
+                    <li>INSTITUCIÓN:&nbsp; @experiencia.INSTITUCION</li>
+                    <li>FECHA INICIO:&nbsp;@experiencia.FECHAINICIO.ToString("dd/MM/yyyy")</li>
+                    <li>FECHA FIN:&nbsp;@experiencia.FECHAFIN.ToString("dd/MM/yyyy")</li>
+                    <li>CONTACTO:&nbsp; @experiencia.NUMEROCONTACTOORG</li>
+                </ul>
+            }
+        }
+    </div>
+    <div class="col-md-6">
+        @if (ViewBag.experiencias != null)
+        {
+            foreach (var requisito in ViewBag.experiencias)
+            {
+                <ul type="circle" style="font-size:20px">
+                    <li>@requisito.DESCRIPCIONREQUISITO</li>
+                </ul>
+
+            }
+        }
+    </div>
+</div>
+<!--inicia el div para habilidades-->
+<div class="col-md-12" style="border-bottom-style: solid;">
+    <h2 class="row text-center">HABILIDAD</h2>
+    <div class="col-md-6" style="border-right-style: solid;">
+
+        @if (ViewBag.listaHabilidades != null)
+        {
+            foreach (var habilidad in ViewBag.listaHabilidades)
+            {
+
+                <ul class="col-md-6">
+                    <h2>@habilidad.NOMBREHABILIDAD</h2>
+                    <li>TIPO HABILIDAD:&nbsp; @habilidad.TIPO_HABILIDAD.NOMBRETIPOHABILIDAD</li>
+                </ul>
+            }
+        }
+    </div>
+    <div class="col-md-6">
+        @if (ViewBag.habilidades != null)
+        {
+            foreach (var requisito in ViewBag.habilidades)
+            {
+                <ul type="circle" style="font-size:20px">
+                    <li>@requisito.DESCRIPCIONREQUISITO</li>
+                </ul>
+
+            }
+        }
+    </div>
+</div>
+<!--inicia el div para certificacion-->
+<div class="col-md-12" style="border-bottom-style: solid;">
+    <h2 class="row text-center">CERTIFICACIONES</h2>
+    <div class="col-md-6" style="border-right-style: solid;">
+
+        @if (ViewBag.listaCertificaciones != null)
+        {
+            foreach (var certificacion in ViewBag.listaCertificaciones)
+            {
+
+                <ul class="col-md-6">
+                    <h2>@certificacion.TITULOCERTIFICACION</h2>
+                    <li>DESCRIPCIÓN:&nbsp; @certificacion.DESCRIPCIONCERTIFICACION</li>
+                    <li>AREA CONOCIMIENTO:&nbsp; @certificacion.AREA_CONOCIMIENTO.NOMBREAREACONOCIMIENTO</li>
+                    <li>INSTITUCIÓN:&nbsp; @certificacion.INSTITUCION</li>
+                    <li>CODIGO:&nbsp; @certificacion.CODIGOCERTIFICACION</li>
+                    <li>FECHA INICIO:&nbsp;@certificacion.FECHAINICIOCERTIFICACION.ToString("dd/MM/yyyy")</li>
+                    <li>FECHA FIN:&nbsp;@certificacion.FECHAFINCERTIFICACION.ToString("dd/MM/yyyy")</li>
+                </ul>
+            }
+        }
+    </div>
+    <div class="col-md-6">
+        @if (ViewBag.certificaciones!= null)
+        {
+            foreach (var requisito in ViewBag.certificaciones)
+            {
+                <ul type="circle" style="font-size:20px">
+                    <li>@requisito.DESCRIPCIONREQUISITO</li>
+                </ul>
+
+            }
+        }
+    </div>
+</div>
+<!--inicia el div para logros-->
+<div class="col-md-12" style="border-bottom-style: solid;">
+    <h2 class="row text-center">LOGROS</h2>
+    <div class="col-md-6" style="border-right-style: solid;">
+
+        @if (ViewBag.listaLogros != null)
+        {
+            foreach (var logro in ViewBag.listaLogros)
+            {
+
+                <ul class="col-md-6">
+                    <h2>@logro.TITULOLOGRO</h2>
+                    <li>DESCRIPCIÓN:&nbsp; @logro.DESCRIPCIONLOGRO</li>
+                    <li>OTORGANTE:&nbsp; @logro.OTORGANTELOGRO</li>
+                    <li>FECHA:&nbsp;@logro.FECHALOGRO.ToString("dd/MM/yyyy")</li>
+                    @if (logro.PREMIO)
+                    {
+                        <li>PREMIO</li>
+                    }
+                    @if (logro.LABORSOCIAL==true)
+                    {
+                        <li>LABOR SOCIAL</li>
+                    }
+                </ul>
+            }
+        }
+    </div>
+    <div class="col-md-6">
+        @if (ViewBag.logros != null)
+        {
+            foreach (var requisito in ViewBag.logros)
+            {
+                <ul type="circle" style="font-size:20px">
+                    <li>@requisito.DESCRIPCIONREQUISITO</li>
+                </ul>
+
+            }
+        }
+    </div>
+</div>
+<!--inicia el div para publicacion-->
+<div class="col-md-12" style="border-bottom-style: solid;">
+    <h2 class="row text-center">PUBLICACIONES</h2>
+    <div class="col-md-6" style="border-right-style: solid;">
+
+        @if (ViewBag.listaPublicaciones != null)
+        {
+            foreach (var publicacion in ViewBag.listaPublicaciones)
+            {
+
+                <ul class="col-md-6">
+                    <h2>@publicacion.TITULOPUBLICACION</h2>
+                    <li>EDITORIAL:&nbsp; @publicacion.EDITORIAL</li>
+                    <li>REVISTA:&nbsp; @publicacion.REVISTA</li>
+                    <li>ISBN:&nbsp; @publicacion.ISBN</li>
+                    <li>LIBRO:&nbsp; @publicacion.LIBRO</li>
+                    <li>EDICION:&nbsp; @publicacion.NUMEROEDICION</li>
+                    <li>FECHA PUBLICACION:&nbsp;@publicacion.FECHAPUBLICACION.ToString("dd/MM/yyyy")</li>
+                </ul>
+            }
+        }
+    </div>
+    <div class="col-md-6">
+        @if (ViewBag.publicaciones != null)
+        {
+            foreach (var requisito in ViewBag.publicaciones)
+            {
+                <ul type="circle" style="font-size:20px">
+                    <li>@requisito.DESCRIPCIONREQUISITO</li>
+                </ul>
+
+            }
+        }
+    </div>
+</div>
+<!--inicia el div para participaciones profesionales-->
+<div class="col-md-12" style="border-bottom-style: solid;">
+    <h2 class="row text-center">PARTICIPACIONES</h2>
+    <div class="col-md-6" style="border-right-style: solid;">
+
+        @if (ViewBag.listaParticipaciones != null)
+        {
+            foreach (var participacion in ViewBag.listaParticipaciones)
+            {
+
+                <ul class="col-md-6">
+                    <h2>@participacion.TITULOPARTICIPACION</h2>
+                    <li>TIPO PARTICIPACION:&nbsp; @participacion.TIPO_PARTICIPACION.NOMBRETIPOPARTICIPACION</li>
+                    <li>LUGAR PARTICIPACIÓN:&nbsp; @participacion.LUGARPARTICIPACION</li>
+                    <li>PAIS:&nbsp; @participacion.PAIS.NOMBREPAIS</li>
+                </ul>
+            }
+        }
+    </div>
+    <div class="col-md-6">
+        @if (ViewBag.participaciones != null)
+        {
+            foreach (var requisito in ViewBag.participaciones)
+            {
+                <ul type="circle" style="font-size:20px">
+                    <li>@requisito.DESCRIPCIONREQUISITO</li>
+                </ul>
+
+            }
+        }
+    </div>
+</div>
+
+
+
+
+
+

@@ -33,16 +33,20 @@ namespace BolsaTrabajoV1.Controllers
             if(Session["usuario"]!= null)
             {
                 USUARIO usu = (USUARIO)Session["usuario"];
-                POSTULANTE postulante = db.POSTULANTE.Where(pos => pos.IDUSUARIO == usu.IDUSUARIO).FirstOrDefault();
-                int cont = db.POSTULANTE_PLAZA.Where(ap => ap.IDPOSTULANTE == postulante.IDPOSTULANTE && ap.IDPLAZA == pLAZA.IDPLAZA).Count();
-                if (cont == 1)
+                if (usu.IDROL == 2)
                 {
-                    ViewBag.examenes = db.EXAMEN.Where(ex => ex.CODIGOEMPRESA == pLAZA.CODIGOEMPRESA);
-                    ViewBag.plazas = db.ViewPlazaGenerica.Where(pla => pla.codempresa == usu.CODIGOEMPRESA);
+                    POSTULANTE postulante = db.POSTULANTE.Where(pos => pos.IDUSUARIO == usu.IDUSUARIO).FirstOrDefault();
+                    int cont = db.POSTULANTE_PLAZA.Where(ap => ap.IDPOSTULANTE == postulante.IDPOSTULANTE && ap.IDPLAZA == pLAZA.IDPLAZA).Count();
+                    if (cont == 1)
+                    {
+                        ViewBag.examenes = db.EXAMEN.Where(ex => ex.CODIGOEMPRESA == pLAZA.CODIGOEMPRESA);
+                        ViewBag.plazas = db.ViewPlazaGenerica.Where(pla => pla.codempresa == usu.CODIGOEMPRESA);
+                    }
+
+                    else
+                        ViewBag.examenes = null;
                 }
-                    
-                else
-                    ViewBag.examenes = null;
+
             }
             var funcionPlaza = from funcion in db.FUNCION_PLAZA where funcion.IDPLAZA == id select funcion;
             var requisitoPlaza = from requisito in db.REQUISITO where requisito.IDPLAZA == id select requisito;
@@ -194,7 +198,7 @@ namespace BolsaTrabajoV1.Controllers
                 pLAZA.CODIGOEMPRESA = user.CODIGOEMPRESA;
                 db.PLAZA.Add(pLAZA);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("MisPlazas");
             }
 
             ViewBag.IDCARGO = new SelectList(db.CARGO, "IDCARGO", "NOMBRECARGO", pLAZA.IDCARGO);

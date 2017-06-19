@@ -2,7 +2,11 @@
 @{
     ViewBag.Title = "Create";
 }
-
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+@Scripts.Render("~/Scripts/jsDatepicker/jquery-ui.js")
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+@Styles.Render("~/bundles/datepickerCSS")
 <h2 class="text-center">Nueva Plaza</h2>
 
 @using (Html.BeginForm()) 
@@ -39,14 +43,6 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.FECHAFIN, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.FECHAFIN, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FECHAFIN, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
                 @Html.LabelFor(model => model.FECHAINICIO, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.FECHAINICIO, new { htmlAttributes = new { @class = "form-control" } })
@@ -55,9 +51,17 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(model => model.FECHAFIN, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FECHAFIN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FECHAFIN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(model => model.SALARIO, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.SALARIO, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.SALARIO, new { htmlAttributes = new { @class = "form-control",@type="number"} })
                     @Html.ValidationMessageFor(model => model.SALARIO, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -76,7 +80,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.EDADMIN, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.EDADMIN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.EDADMIN, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
                     @Html.ValidationMessageFor(model => model.EDADMIN, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -84,7 +88,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.EDADMAX, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.EDADMAX, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.EDADMAX, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
                     @Html.ValidationMessageFor(model => model.EDADMAX, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -102,7 +106,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ANIOSMINIMOXP, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ANIOSMINIMOXP, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.ANIOSMINIMOXP, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
                     @Html.ValidationMessageFor(model => model.ANIOSMINIMOXP, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -118,7 +122,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.VACANTES, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.VACANTES, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.VACANTES, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
                     @Html.ValidationMessageFor(model => model.VACANTES, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -141,3 +145,13 @@
         </div>
     </div>
 }
+<script>
+    $('#FECHAINICIO').datetimepicker({
+        format: 'DD/MM/YYYY',
+        viewMode: 'years'
+    });
+    $('#FECHAFIN').datetimepicker({
+        format: 'DD/MM/YYYY',
+        viewMode: 'years'
+    });
+</script>

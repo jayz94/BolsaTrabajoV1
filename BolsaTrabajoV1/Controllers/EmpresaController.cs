@@ -190,9 +190,9 @@ namespace BolsaTrabajoV1.Controllers
 
                     result.CODIGOEMPRESA = eMPRESA.CODIGOEMPRESA;
                     db.SaveChanges();
-
-
-                    return RedirectToAction("Index");
+                    usr.CODIGOEMPRESA = eMPRESA.CODIGOEMPRESA;
+                    Session["usuario"] = usr;
+                    return RedirectToAction("Details", "Empresa", new { id = eMPRESA.CODIGOEMPRESA });
 
                 }
 
@@ -203,7 +203,7 @@ namespace BolsaTrabajoV1.Controllers
                 usuario.CODIGOEMPRESA = eMPRESA.CODIGOEMPRESA;
                 db.Entry(usuario).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
 
             }
 
@@ -211,13 +211,13 @@ namespace BolsaTrabajoV1.Controllers
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "No se guardaron los cambios. Por favor verifique los datos.");
-
+                return RedirectToAction("Create", "Empresa");
             }
 
             ViewBag.IDMUNICIPIO = new SelectList(db.MUNICIPIO, "IDMUNICIPIO", "NOMBREMUNICIPIO", eMPRESA.IDMUNICIPIO);
             ViewBag.GIRO = new SelectList(db.GIRO, "IDGIRO", "DESCRIPCIONGIRO", eMPRESA.IDGIRO);
 
-            return View(eMPRESA);
+            return RedirectToAction("Details", "Empresa", new { id = eMPRESA.CODIGOEMPRESA });
         }
 
 
@@ -276,9 +276,10 @@ namespace BolsaTrabajoV1.Controllers
             {
                 db.Entry(eMPRESA).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Empresa", new { id = eMPRESA.CODIGOEMPRESA });
             }
-            return View(eMPRESA);
+            else
+                return View("Index","Postulante");
         }
 
 

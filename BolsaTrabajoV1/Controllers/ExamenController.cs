@@ -126,7 +126,7 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ACTIVO,PONDERACION,CODIGOEXAMEN,IDTIPOEXAMEN")] EXAMEN eXAMEN)
+        public async Task<ActionResult> Create([Bind(Include = "ACTIVO,PONDERACION,CODIGOEXAMEN,IDTIPOEXAMEN,DESCRIPCIONEXAMEN")] EXAMEN eXAMEN)
         {
             if (ModelState.IsValid)
             {
@@ -164,7 +164,7 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CODIGOEMPRESA,ACTIVO,PONDERACION,CODIGOEXAMEN,IDTIPOEXAMEN")] EXAMEN eXAMEN)
+        public async Task<ActionResult> Edit([Bind(Include = "CODIGOEMPRESA,ACTIVO,PONDERACION,CODIGOEXAMEN,IDTIPOEXAMEN,DESCRIPCIONEXAMEN")] EXAMEN eXAMEN)
         {
             if (ModelState.IsValid)
             {

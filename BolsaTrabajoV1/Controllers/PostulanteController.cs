@@ -280,9 +280,13 @@ namespace BolsaTrabajoV1.Controllers
             return View(pOSTULANTE);
         }
 
-        //GET
+        //GET id=idpostulante   id2=idplaza
         public ViewResult Match(int? id,int? id2) {
             CURRICULUM curriculum = db.CURRICULUM.Where(curr=>curr.IDPOSTULANTE== id).FirstOrDefault();
+            POSTULANTE postulante = db.POSTULANTE.Find(id);
+            ViewBag.Postulante = postulante;
+            PLAZA plaza = db.PLAZA.Find(id2);
+            ViewBag.plaza = plaza;
             IEnumerable<IDIOMA> listaIdiomas = db.IDIOMA.Where(idP=>idP.IDCURRICULUM==curriculum.IDCURRICULUM && idP.IDPOSTULANTE==curriculum.IDPOSTULANTE);
             ViewBag.listaIdiomas = listaIdiomas;
 

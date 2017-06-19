@@ -1,115 +1,74 @@
 ﻿@model BolsaTrabajoV1.Models.EMPRESA
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
-
-<div>
-    <h4>EMPRESA</h4>
+<div class="col-md-offset-4 col-md-12">
+    <h4>
+        EMPRESA: @Html.DisplayFor(model => model.NOMBREEMPRESA)
+        @Html.ActionLink("Editar", "Edit", new { id = Model.CODIGOEMPRESA }, new { @class = "btn btn-primary" })
+    </h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
            CODIGO:
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.CODIGOEMPRESA)
         </dd>
-
-       
-        <br>
-
-
         <dt>
            NOMBRE:
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.NOMBREEMPRESA)
         </dd>
-
-
         <br>
-
-
-
         <dt>
            ABREVIATURA:
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ABREVIATURA)
         </dd>
-
-
-
         <br>
 
         <dt>
           CORREO ELECTRONICO:
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.CORREOELECTRONICO)
         </dd>
-
-
-
         <br>
         <dt>
            TELEFONO:
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.TELEFONO)
         </dd>
-
-
-
         <br>
         <dt>
             PAIS
         </dt>
-
         <dd>
             @TempData["nPais"]
         </dd>
-
-
         <br>
         <dt>
            DEPARTAMENTO
         </dt>
-
         <dd>
             @TempData["nDept"]
         </dd>
-
-
         <br>
-
         <dt>
             MUNICIPIO
         </dt>
-
         <dd>
             @TempData["nMn"]
         </dd>
-
-
-
         <br>
         <dt>
             NIT:
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.NIT)
         </dd>
-
-
         <br>
         <dt>
             GIRO:
@@ -118,8 +77,6 @@
         <dd>
             @TempData["nGiro"]
         </dd>
-
-
         <br>
         <dt>
             DESCRIPCION:
@@ -128,13 +85,6 @@
         <dd>
             @Html.DisplayFor(model => model.DESCRIPCION)
         </dd>
-
-
-
-
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CODIGOEMPRESA }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
