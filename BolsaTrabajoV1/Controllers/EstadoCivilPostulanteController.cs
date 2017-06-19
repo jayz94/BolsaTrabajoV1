@@ -16,9 +16,9 @@ namespace BolsaTrabajoV1.Controllers
         private ConexionBDBolsa db = new ConexionBDBolsa();
 
         // GET: EstadoCivilPostulante
-        public async Task<ActionResult> Index(int? id)
+        public async Task<ActionResult> Index()
         {
-            var eSTADO_CIVIL_POSTULANTE_MM = db.ESTADO_CIVIL_POSTULANTE_MM.Include(e => e.ESTADO_CIVIL).Include(e => e.POSTULANTE).Where(e=> e.IDPOSTULANTE == id);
+            var eSTADO_CIVIL_POSTULANTE_MM = db.ESTADO_CIVIL_POSTULANTE_MM.Include(e => e.ESTADO_CIVIL).Include(e => e.POSTULANTE);
             return View(await eSTADO_CIVIL_POSTULANTE_MM.ToListAsync());
         }
 

@@ -1,13 +1,9 @@
-﻿@{ 
-    BolsaTrabajoV1.Models.USUARIO user = Session["usuario"] as BolsaTrabajoV1.Models.USUARIO;
-}
-<table class="table table-responsive table-striped">
+﻿<table class="table table-responsive table-striped">
     <thead>
         <tr>
             <th>Tipo de Contacto</th>
             <th>Número / Direccion</th>
-            @if (user.IDROL == 2)
-            {<th>Opciones</th>}
+            <th>Opciones</th>
         </tr>
     </thead>
     <tbody>
@@ -29,13 +25,11 @@
                     <td>
                         @contacto.VINCULO
                     </td>
-                    @if (user.IDROL == 2) { 
                     <td>
                         @Html.ActionLink(" ", "Edit","Contacto", new { id = contacto.IDCONTACTO }, new { @class = "fa fa-edit" }) |
                         @Html.ActionLink(" ", "Details","Contacto", new { id = contacto.IDCONTACTO },new { @class = "fa fa-search" }) |
                         @Html.ActionLink(" ", "Delete", "Contacto", new { id = contacto.IDCONTACTO }, new { @class = "fa fa-trash" })
                     </td>
-                    }
                 </tr>
             }
         }

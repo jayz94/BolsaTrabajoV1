@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "Details";
+}
+@{
     BolsaTrabajoV1.Models.USUARIO user = Session["usuario"] as BolsaTrabajoV1.Models.USUARIO;
 }
-
 @*if(user.IDROL==3 && ViewBag.plazas!=null){
         foreach (var plazas in ViewBag.plazas) {
                 <select name="idplaza">
@@ -19,8 +20,7 @@
         <div class="panel">
             <div class="panel-body">
                 <h3>@Model.NOMBREPOSTULANTE @Model.APELLIDOPOSTULANTE</h3>
-                @if (user.IDROL == 3)
-                {<button onclick="location.href='@Url.Action("EnviarCorreo", "Postulante", new { id = Model.IDPOSTULANTE })'">Contactar</button>}
+                <button onclick="location.href='@Url.Action("EnviarCorreo", "Postulante", new { id=Model.IDPOSTULANTE })'">Contactar</button>
             </div>
         </div>
     </div>
@@ -43,8 +43,7 @@
                             <tr>
                                 <th>Documento</th>
                                 <th>Número</th>
-                                @if (user.IDROL == 2)
-                                {<th>Opciones</th>}
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,44 +62,21 @@
                                         <td>
                                             @documento.NUMERO
                                         </td>
-                                        @if (user.IDROL == 2) { 
                                         <td>
                                             @Html.ActionLink(" ", "Edit", "POSTULANTETIPODOCUMENTO", new { id = documento.IDTIPODOCUMENTOIDENTIDAD, idPostulante = Model.IDPOSTULANTE }, new { @class = "fa fa-edit" }) |
                                             @Html.ActionLink(" ", "Details", "POSTULANTETIPODOCUMENTO", new { id = documento.IDTIPODOCUMENTOIDENTIDAD, idPostulante = 1 /*Model.IDPOSTULANTE*/ }, new { @class = "fa fa-search" }) |
                                             @Html.ActionLink(" ", "Delete", "POSTULANTETIPODOCUMENTO", new { id = documento.IDTIPODOCUMENTOIDENTIDAD, idPostulante = Model.IDPOSTULANTE }, new { @class = "fa fa-trash" })
                                         </td>
-                                        }
                                     </tr>
                                 }
-
+                                
                             }
                         </tbody>
                     </table>
-                    @if (user.IDROL == 2)
-                    {
-                        <div class=" text-center">
-                            <br />
-                            <a href="@Url.Action("Create","PostulanteTipoDocumento",new { idPostulante = Model.IDPOSTULANTE })" class="btn btn-primary">Agregar Documento</a>
-                        </div>
-                    }
-                    
-                </div>
-            </div>
-            <div class="panel">
-                <div class="panel-heading">
-                    <h4>Tu Estado Civil</h4>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-responsive table-striped">
-                        @foreach (var item in Model.ESTADO_CIVIL_POSTULANTE_MM)
-                        {
-                            <tr>
-
-                                <th>@item.ESTADO_CIVIL.NOMBREESTADOCIVIL</th>
-                                <td>Editar</td>
-                            </tr>
-                        }
-                    </table>
+                    <div class=" text-center">
+                        <br />
+                        <a href="@Url.Action("Create","PostulanteTipoDocumento",new { idPostulante = Model.IDPOSTULANTE })" class="btn btn-primary">Agregar Documento</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -177,12 +153,9 @@
                             </td>
                         </tr>
                     </table>
-                    @if (user.IDROL == 2)
-                    {
-                        <div class="text-center">
-                            <a href="@Url.Action("Edit", "Postulante", new { id = Model.IDPOSTULANTE })" class="btn btn-primary btn-lg">Editar Perfil</a>
-                        </div>
-                    }
+                    <div class="text-center">
+                        <a href="@Url.Action("Edit", "Postulante", new { id = Model.IDPOSTULANTE })" class="btn btn-primary btn-lg">Editar Perfil</a>
+                    </div>
                 </div>
             </div>
             <div class="panel">
@@ -191,29 +164,18 @@
                 </div>
                 <div class="panel-body">
                     @*desplegamos la vista parcial de tipo de contactos en el panel *@
-                    @Html.Partial("_PartialContactos")
-                    @if (user.IDROL == 2)//El botón lo mira solo el postulante
-                    {
-                        if (Model.CONTACTO.Count >= 1)
-                        {
-                            <div class="text-center">
-                                <br />
-                                <a href="@Url.Action("Create","Contacto",new { idPostulante = Model.IDPOSTULANTE })" class="btn btn-primary">Agregar Contacto</a>
-                            </div>
-                        }
-                    }
-                </div>
-            </div>
-            <div class="panel">
-                <div class="panel-heading">
-                    <h4>Tus Teléfonos</h4>
-                </div>
-                <div class="panel-body">
-
-                </div>
+                @Html.Partial("_PartialContactos")
+                @if (Model.CONTACTO.Count >= 1)
+                {
+                    <div class="text-center">
+                        <br />
+                        <a href="@Url.Action("Create","Contacto",new { idPostulante = Model.IDPOSTULANTE })" class="btn btn-primary">Agregar Contacto</a>
+                    </div>
+                }
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <p>
