@@ -106,7 +106,7 @@ namespace BolsaTrabajoV1.Controllers
             {
                 db.Entry(pREGUNTA).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Examen", new { @id = pREGUNTA.CODIGOEXAMEN });
             }
             ViewBag.CODIGOEXAMEN = new SelectList(db.EXAMEN, "CODIGOEXAMEN", "CODIGOEXAMEN", pREGUNTA.CODIGOEXAMEN);
             ViewBag.IDTIPOOPCION = new SelectList(db.TIPOPREGUNTA, "IDTIPOPREGUNTA", "NOMBRETIPOPREGUNTA", pREGUNTA.IDTIPOPREGUNTA);

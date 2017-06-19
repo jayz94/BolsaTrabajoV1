@@ -39,9 +39,9 @@
     {
         <li>
             @item.DESCRIPCIONOPCION
-            @Html.ActionLink(" ", "Edit", "Opcion", new { id = item.IDOPCIONPREGUNTA }, new { @class = "btn btn-success fa fa-edit btn-xs" })
-            @Html.ActionLink(" ", "Details", "Pregunta", new { id = item.IDOPCIONPREGUNTA }, new { @class = "btn btn-primary fa fa-search btn-xs" })
-            @Html.ActionLink(" ", "Delete", "Pregunta", new { id = item.IDOPCIONPREGUNTA }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
+            @Html.ActionLink(" ", "Edit", "OpcionPregunta", new { id = item.IDOPCIONPREGUNTA }, new { @class = "btn btn-success fa fa-edit btn-xs" })
+            @Html.ActionLink(" ", "Details", "OpcionPregunta", new { id = item.IDOPCIONPREGUNTA }, new { @class = "btn btn-primary fa fa-search btn-xs" })
+            @Html.ActionLink(" ", "Delete", "OpcionPregunta", new { id = item.IDOPCIONPREGUNTA }, new { @class = "btn btn-danger fa fa-trash btn-xs" })
         </li>
     }
 </div>
@@ -77,13 +77,13 @@
                             <label>Orden</label>
                         </div>
                         <div class="col-md-1 col-sm-6">
-                            <input name="orden" class="form-control"/>
+                            <input name="orden" class="form-control" type="number"/>
                         </div>
                         <div class="col-md-1 col-sm-6">
                             <label>Puntaje</label>
                         </div>
                         <div class="col-md-1 col-sm-6">
-                            <input name="puntaje" class="form-control" />
+                            <input name="puntaje" class="form-control" type="number"/>
                         </div>
                         <input class="btn btn-primary" style="margin-left:80%" type="submit" value="Guardar" />
                     </div>
@@ -101,7 +101,8 @@
     </div>
 </div>
 <!--Termina Modal Requisito-->
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPREGUNTA }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+    @Html.ActionLink("Modificar", "Edit", new { id = Model.IDPREGUNTA }, new { @class = "btn btn-success" })
+    <a class="btn btn-danger" style="margin-right:20%; margin-left:20%" href='@Url.Action("Details", "Examen",new {id=Model.CODIGOEXAMEN })'>
+    <span class="fa fa-reply">&emsp; Regresar</span></a>
+

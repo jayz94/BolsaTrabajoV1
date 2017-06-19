@@ -90,9 +90,8 @@ namespace BolsaTrabajoV1.Controllers
                     await db.SaveChangesAsync();
 
             }
+            return RedirectToAction("AplicacionesPostulante", "Plaza");
 
-              return RedirectToAction("Index");
-            
         }
 
         // GET: Examen/Details/5

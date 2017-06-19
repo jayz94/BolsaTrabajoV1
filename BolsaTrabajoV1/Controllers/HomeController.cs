@@ -47,6 +47,7 @@ namespace BolsaTrabajoV1.Controllers
             ViewBag.departamentos = db.DEPARTAMENTO.ToList();
             ViewBag.giros = db.GIRO.ToList();
             ViewBag.plazas = db.ViewPlazaGenerica.ToList();
+            ViewBag.empresas =db.EMPRESA;
             return View();
         }
 
@@ -131,6 +132,7 @@ namespace BolsaTrabajoV1.Controllers
             ViewBag.departamentos = db.DEPARTAMENTO.ToList();
             ViewBag.giros = db.GIRO.ToList();
             ViewBag.plazas = plazas;
+            ViewBag.empresas =db.EMPRESA;
             return View();
 
         }

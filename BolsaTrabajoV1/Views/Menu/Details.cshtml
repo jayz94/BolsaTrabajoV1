@@ -1,11 +1,5 @@
 ﻿@model BolsaTrabajoV1.Models.MENU
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
-
 <div>
     <h4>MENU</h4>
     <hr />
@@ -53,6 +47,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDMENU }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Modificar", "Edit", new { id = Model.IDMENU },new { @class="btn btn-success"}) 
+    <a class="btn btn-danger"  href='@Url.Action("Index", "Menu")'>
+        Regresar
+    </a>
+
 </p>

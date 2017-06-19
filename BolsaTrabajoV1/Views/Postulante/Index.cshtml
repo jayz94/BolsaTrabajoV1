@@ -8,6 +8,7 @@
         <li class="green" >
             <a href="#" >DEPARTAMENTO</a>
             <ul>
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
                 @foreach (var departamento in ViewBag.departamentos)
                 {
                     <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=1, idRegistro=departamento.IDDEPARTAMENTO})'>@departamento.NOMBREDEPARTAMENTO</a></li>
@@ -17,6 +18,7 @@
         <li class="blue">
             <a href="#" class="icon-beaker">IDIOMA</a>
             <ul>
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
                 @foreach (var idioma in ViewBag.idiomas)
             {
                     <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla = 2, idRegistro = idioma.IDIDIOMA })'>@idioma.NOMBREIDIOMA</a></li>
@@ -26,6 +28,7 @@
         <li class="yellow">
             <a href="#" class="icon-beaker">AREA CONOCIMIENTO</a>
             <ul>
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
                 @foreach (var areaCo in ViewBag.areasConocimiento)
             {
                     <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla = 3, idRegistro = areaCo.IDAREACONOCIMIENTO })'>@areaCo.NOMBREAREACONOCIMIENTO</a></li>
@@ -35,6 +38,7 @@
         <li class="blue">
             <a href="#" class="icon-beaker">TIPO HABILIDAD</a>
             <ul>
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
                 @foreach (var tipoHabilidad in ViewBag.tiposHabilidades)
             {
                     <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla = 4, idRegistro = tipoHabilidad.IDTIPOHABILIDAD })'>@tipoHabilidad.NOMBRETIPOHABILIDAD</a></li>
@@ -46,6 +50,7 @@
         <li class="yellow">
             <a href="#" class="icon-beaker">TIPO FORMACION ACADEMICA</a>
             <ul>
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
                 @foreach (var tipoFor in ViewBag.tiposFormaciones)
             {
                     <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla = 5, idRegistro = tipoFor.IDTIPOFORMACION })'>@tipoFor.NOMBRETIPOFORMACION</a></li>
@@ -55,6 +60,7 @@
         <li class="purple">
             <a href="#" class="icon-envelope">GÉNERO</a>
             <ul>
+                <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
                 @foreach (var genero in ViewBag.generos)
             {
                     <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=6, idRegistro=genero.IDGENERO})'>@genero.DESCRIPCIONGENERO</a></li>

@@ -238,7 +238,7 @@ namespace BolsaTrabajoV1.Controllers
             {
                 db.Entry(pLAZA).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("MisPlazas");
             }
             ViewBag.IDCARGO = new SelectList(db.CARGO, "IDCARGO", "NOMBRECARGO", pLAZA.IDCARGO);
             ViewBag.CODIGOEMPRESA = new SelectList(db.EMPRESA, "CODIGOEMPRESA", "NOMBREEMPRESA", pLAZA.CODIGOEMPRESA);

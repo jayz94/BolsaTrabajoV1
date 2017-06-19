@@ -43,19 +43,19 @@ namespace BolsaTrabajoV1.Controllers
 
             switch (idTabla)
             {
-                case 1:
+                case 1://EmployeeName = employee != null ? employee.Name : null,
                     postulantes = from pos in db.ViewPostulante
                                   join curr in db.ViewCurriculum on pos.idpostulante equals curr.IDPOSTULANTE
-                                  where pos.iddep ==idRegistro
+                                  where pos.iddep == idRegistro
                                   select new
                                   {
                                       pos.nombre,
                                       pos.genero,
                                       pos.Edad,
-                                      curr.INSTITUCION,
-                                      curr.NOMBREHABILIDAD,
-                                      curr.NOMBREIDIOMA,
-                                      curr.TITULO,
+                                      INSTITUCION=curr.INSTITUCION !=null ? curr.INSTITUCION :"N/A",
+                                      NOMBREHABILIDAD=curr.NOMBREHABILIDAD !=null ? curr.NOMBREHABILIDAD: "N/A",
+                                      NOMBREIDIOMA=curr.NOMBREIDIOMA !=null ? curr.NOMBREIDIOMA: "N/A",
+                                      TITULO =curr.TITULO !=null? curr.TITULO: "N/A",
                                       pos.municipio
                                   };
                     break;

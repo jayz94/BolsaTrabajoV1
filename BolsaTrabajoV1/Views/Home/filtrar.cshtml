@@ -4,6 +4,7 @@
         <li class="green">
             <a href="#">CARGO</a>
             <ul>
+                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
                 @foreach (var cargo in ViewBag.cargos)
                 {
                     <li><a href='@Url.Action("filtrar", "Home",new { idTabla=1, idRegistro=cargo.IDCARGO})'>@cargo.NOMBRECARGO</a></li>
@@ -15,8 +16,9 @@
             <ul>
                 @if (ViewBag.areaCargos != null)
             {
-                foreach (var areac in ViewBag.areaCargos)
-                {
+                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
+                    foreach (var areac in ViewBag.areaCargos)
+                    {
                         <li><a href='@Url.Action("filtrar", "Home",new { idTabla=2, idRegistro=areac.IDAREACARGO})'>@areac.DESCRIPCIONAREA</a></li>
                     }
                 }
@@ -27,8 +29,9 @@
             <ul>
                 @if (ViewBag.empresas != null)
             {
-                foreach (var empresa in ViewBag.empresas)
-                {
+                <li><a href='@Url.Action("filtrar", "Home",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
+                    foreach (var empresa in ViewBag.empresas)
+                    {
                     <li><a href='@Url.Action("filtrar", "Home",new { idTabla=3, idRegistro=empresa.CODIGOEMPRESA})'>@empresa.NOMBREEMPRESA</a></li>
                 }
             }
@@ -49,6 +52,7 @@
     <li class="yellow">
         <a href="#" class="icon-beaker">DEPARTAMENTO</a>
         <ul>
+            <li><a href='@Url.Action("filtrar", "Home",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
             @foreach (var departamento in ViewBag.departamentos)
             {
                 <li><a href='@Url.Action("filtrar", "Home",new { idTabla=5, idRegistro=departamento.IDDEPARTAMENTO})'>@departamento.NOMBREDEPARTAMENTO</a></li>
@@ -57,7 +61,7 @@
     </li>
     <li class="purple">
         <a href="#" class="icon-envelope">GÉNERO</a>
-        <ul>
+        <ul><li><a href='@Url.Action("filtrar", "Home",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
             @foreach (var genero in ViewBag.generos)
             {
                 <li><a href='@Url.Action("filtrar", "Home",new { idTabla=6, idRegistro=genero.IDGENERO})'>@genero.DESCRIPCIONGENERO</a></li>

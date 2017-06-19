@@ -11,7 +11,8 @@
                 <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=0, idRegistro=0})'>TODOS</a></li>
                 @foreach (var departamento in ViewBag.departamentos)
                 {
-                    <li><a href='@Url.Action("FiltrarPostulante", "Postulante",new { idTabla=1, idRegistro=departamento.IDDEPARTAMENTO})'>@departamento.NOMBREDEPARTAMENTO</a></li>
+                    <input style="background:silver" type="checkbox" value="dept@departamento.IDDEPARTAMENTO"/>@departamento.NOMBREDEPARTAMENTO
+                    <br />
                 }
             </ul>
         </li>
@@ -173,6 +174,9 @@
             }
 
             #colorNav li ul li:hover {
+                background-color: #444;
+            }
+            #colorNav input:hover {
                 background-color: #444;
             }
 
