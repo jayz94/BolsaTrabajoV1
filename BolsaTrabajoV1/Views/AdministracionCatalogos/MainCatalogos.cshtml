@@ -4,7 +4,7 @@
             <h1>ADMINISTRAR CATALOGOS</h1>
         </div>
         <div class="panel-body">
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>AREA CONOCIMIENTO</b>
                 </div>
@@ -12,7 +12,7 @@
                     <span class="fa fa-cog"></span>
                 </a>
             </div>
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>TIPO DE CONTACTO</b>
                 </div>
@@ -21,16 +21,9 @@
                 </a>
             </div>
 
-            <div class="col-md-3 cuadro">
-                <div class="col-md-7">
-                    <b>TIPO DOCUMENTO DE IDENTIDAD</b>
-                </div>
-                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "TipoDocumentoIdentidad")'>
-                    <span class="fa fa-cog"></span>
-                </a>
-            </div>
+            
 
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>TIPO FORMACIÓN ACADEMICA</b>
                 </div>
@@ -38,7 +31,7 @@
                     <span class="fa fa-cog"></span>
                 </a>
             </div>
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>TIPO DE HABILIDAD</b>
                 </div>
@@ -46,7 +39,7 @@
                     <span class="fa fa-cog"></span>
                 </a>
             </div>
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>PAISES</b>
                 </div>
@@ -54,7 +47,7 @@
                     <span class="fa fa-cog"></span>
                 </a>
             </div>
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>TIPO DE PARTICIPACIÓN</b>
                 </div>
@@ -62,7 +55,7 @@
                     <span class="fa fa-cog"></span>
                 </a>
             </div>
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>TIPO DE REFERNCIA</b>
                 </div>
@@ -70,7 +63,7 @@
                     <span class="fa fa-cog"></span>
                 </a>
             </div>
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>TIPO DE TELEFONO</b>
                 </div>
@@ -78,7 +71,7 @@
                     <span class="fa fa-cog"></span>
                 </a>
             </div>
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>DEPARTAMENTO</b>
                 </div>
@@ -86,7 +79,7 @@
                     <span class="fa fa-cog"></span>
                 </a>
             </div>
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>MUNICIPIO</b>
                 </div>
@@ -95,7 +88,7 @@
                 </a>
             </div>
 
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>ESTADO CIVIL</b>
                 </div>
@@ -103,11 +96,19 @@
                     <span class="fa fa-cog"></span>
                 </a>
             </div>
-            <div class="col-md-3 cuadro">
+            <div class="col-md-3 col-sm-5 cuadro">
                 <div class="col-md-7">
                     <b>NIVEL IDIOMA</b>
                 </div>
                 <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "NivelIdioma")'>
+                    <span class="fa fa-cog"></span>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-5 cuadro">
+                <div class="col-md-7">
+                    <b>TIPO DOCUMENTO DE IDENTIDAD</b>
+                </div>
+                <a class="col-md-4 cuadroHijo text-center" href='@Url.Action("Index", "TipoDocumentoIdentidad")'>
                     <span class="fa fa-cog"></span>
                 </a>
             </div>
@@ -124,13 +125,15 @@
         font-size: 120%;
         background: rgba(30, 93, 129, 0.7);
         margin:1%;
+        max-width:300px;
+        max-height:100px
     }
 
     .cuadroHijo {
-        font-size: 300%;
+        font-size: 200%;
         padding: 4%;
         background: rgba(255,255,255,0.1);
-        margin-left: 8%;
+        margin-left: 2%;
         -webkit-border-radius: 100%;
         /* Firefox 1-3.6 */
         -moz-border-radius: 100%;

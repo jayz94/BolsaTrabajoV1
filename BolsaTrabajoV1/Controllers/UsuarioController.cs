@@ -97,7 +97,7 @@ namespace BolsaTrabajoV1.Controllers
             {*/
             if (PASSWORD.Equals(PASS2))
             {
-                int usuarioBase = (from usu in db.USUARIO where usu.NOMBREUSUARIO == NOMBREUSUARIO /*|| usu.CORREO==CORREO*/ select usu).Count();
+                int usuarioBase = (from usu in db.USUARIO where usu.NOMBREUSUARIO == NOMBREUSUARIO || usu.CORREO==CORREO select usu).Count();
                 if (usuarioBase > 0) {
                     ViewBag.ErrorPass = "Este Correo o Usuario ya Existe, Intente con uno nuevo";
                 }

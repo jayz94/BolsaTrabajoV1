@@ -78,18 +78,25 @@ namespace BolsaTrabajoV1.Controllers
         {
             USUARIO us = (USUARIO)Session["usuario"];
             int idPos = (from pos in db.POSTULANTE where pos.IDUSUARIO == us.IDUSUARIO select pos.IDPOSTULANTE).FirstOrDefault();
-            RESPUESTA respuesta; 
-            foreach (var pregunta in TempData["preguntas"] as IEnumerable<PREGUNTA>)
+            RESPUESTA respuesta;
+            try
             {
-                string auxiliar = "respuestas-"+pregunta.IDPREGUNTA;                
-                string resp = form[auxiliar];
-                    respuesta= new RESPUESTA();
+                foreach (var pregunta in TempData["preguntas"] as IEnumerable<PREGUNTA>)
+                {
+                    string auxiliar = "respuestas-" + pregunta.IDPREGUNTA;
+                    string resp = form[auxiliar];
+                    respuesta = new RESPUESTA();
                     respuesta.IDOPCIONPREGUNTA = Int16.Parse(resp);
                     respuesta.IDPOSTULANTE = idPos;//se obtendra de la session
                     db.RESPUESTA.Add(respuesta);
                     await db.SaveChangesAsync();
 
+                }
             }
+            catch {
+                Response.Write("El examen no se permite hacerlo dos veces") ;
+            }
+            
             return RedirectToAction("AplicacionesPostulante", "Plaza");
 
         }

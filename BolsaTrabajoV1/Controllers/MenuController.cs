@@ -39,6 +39,7 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Menu/Create
         public ActionResult Create()
         {
+            ViewBag.IDPADRE = new SelectList(db.MENU, "IDMENU", "NOMBREMENU");
             return View();
         }
 
@@ -47,7 +48,7 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDMENU,NOMBREMENU,URL,IMAGEN,DESCRIPCIONMENU,ORDEN")] MENU mENU)
+        public async Task<ActionResult> Create([Bind(Include = "IDMENU,NOMBREMENU,URL,IMAGEN,DESCRIPCIONMENU,ORDEN,IDPADRE")] MENU mENU)
         {
             if (ModelState.IsValid)
             {
@@ -71,6 +72,7 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.IDPADRE = new SelectList(db.MENU, "IDMENU", "NOMBREMENU");
             return View(mENU);
         }
 
@@ -79,7 +81,7 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IDMENU,NOMBREMENU,URL,IMAGEN,DESCRIPCIONMENU,ORDEN")] MENU mENU)
+        public async Task<ActionResult> Edit([Bind(Include = "IDMENU,NOMBREMENU,URL,IMAGEN,DESCRIPCIONMENU,ORDEN,IDPADRE")] MENU mENU)
         {
             if (ModelState.IsValid)
             {

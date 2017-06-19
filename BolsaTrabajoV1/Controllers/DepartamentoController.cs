@@ -39,6 +39,7 @@ namespace BolsaTrabajoV1.Controllers
         // GET: Departamento/Create
         public ActionResult Create()
         {
+            ViewBag.IDPAIS = new SelectList(db.PAIS, "IDPAIS", "NOMBREPAIS");
             return View();
         }
 
@@ -47,7 +48,7 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDDEPARTAMENTO,NOMBREDEPARTAMENTO,ZONA")] DEPARTAMENTO dEPARTAMENTO)
+        public async Task<ActionResult> Create([Bind(Include = "IDDEPARTAMENTO,NOMBREDEPARTAMENTO,ZONA,IDPAIS")] DEPARTAMENTO dEPARTAMENTO)
         {
             if (ModelState.IsValid)
             {
@@ -71,6 +72,7 @@ namespace BolsaTrabajoV1.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.IDPAIS = new SelectList(db.PAIS, "IDPAIS", "NOMBREPAIS");
             return View(dEPARTAMENTO);
         }
 
@@ -79,7 +81,7 @@ namespace BolsaTrabajoV1.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IDDEPARTAMENTO,NOMBREDEPARTAMENTO,ZONA")] DEPARTAMENTO dEPARTAMENTO)
+        public async Task<ActionResult> Edit([Bind(Include = "IDDEPARTAMENTO,NOMBREDEPARTAMENTO,ZONA,IDPAIS")] DEPARTAMENTO dEPARTAMENTO)
         {
             if (ModelState.IsValid)
             {
