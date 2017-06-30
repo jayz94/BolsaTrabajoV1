@@ -112,6 +112,7 @@ namespace BolsaTrabajoV1.Controllers
                     postulantes = from pos in db.ViewPostulante
                                   join curr in db.ViewCurriculum on pos.idpostulante equals curr.IDPOSTULANTE
                                   where curr.IDTIPOFORMACION == idRegistro
+                                  
                                   select new
                                   {
                                       pos.nombre,
@@ -159,19 +160,33 @@ namespace BolsaTrabajoV1.Controllers
 
 
             List<PostulanteCurriculum> listaPostulantes=new List<PostulanteCurriculum>();
+            List<String> nombres= new List<string>();
             foreach(var postulante in postulantes)
             {
+                int cont= 0;
                 PostulanteCurriculum postCurr = new PostulanteCurriculum();
-                postCurr.nombre = postulante.nombre;
-                postCurr.genero = postulante.genero;
-                postCurr.edad =(int) postulante.Edad;
-                postCurr.institucion = postulante.INSTITUCION;
-                postCurr.habilidad = postulante.NOMBREHABILIDAD;
-                postCurr.idioma = postulante.NOMBREIDIOMA;
-                postCurr.titulo = postulante.TITULO;
-                postCurr.municipio = postulante.municipio;
-                //agregamos a la lista el objeto creado 
-                listaPostulantes.Add(postCurr);
+                foreach (var nombre in nombres) {
+                    if (nombre == postulante.nombre)
+                    {
+                        cont = 1;
+                    }
+                        
+                }
+                if (cont < 1)
+                {
+                    postCurr.nombre = postulante.nombre;
+                    postCurr.genero = postulante.genero;
+                    postCurr.edad = (int)postulante.Edad;
+                    postCurr.institucion = postulante.INSTITUCION;
+                    postCurr.habilidad = postulante.NOMBREHABILIDAD;
+                    postCurr.idioma = postulante.NOMBREIDIOMA;
+                    postCurr.titulo = postulante.TITULO;
+                    postCurr.municipio = postulante.municipio;
+                    //agregamos a la lista el objeto creado 
+                    listaPostulantes.Add(postCurr);
+                    nombres.Add(postulante.nombre);
+                }
+                
             }
             return View(listaPostulantes.ToList());
         }
